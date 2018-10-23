@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition description="保证保险标的表">
+	<mapping>
+		<area description="保证保险标的表">
+			<table tableName="t_subjguarantee" dataProviderType="CSNODE" as="Contract">
+				<item fieldName="PolicyNo" fieldType="String" parameterType="GLOBAL" parameter="policyno" /> <!-- 保单号 -->
+				<item fieldName="EndorseNo" fieldType="String" parameterType="GLOBAL" parameter="endorseno" /> <!-- 批单号 -->
+				<item fieldName="NodeNo" fieldType="String" parameterType="GLOBAL" parameter="nodeno" /> <!-- 节点号 -->
+				<item fieldName="ContractNo" fieldType="String" parameterType="GLOBAL" parameter="contractno" /> <!-- 合同号 -->
+				<item fieldName="SubVersionNo" fieldType="String" parameterType="GLOBAL" parameter="version" /> <!-- 版本号 -->
+				<item fieldName="ProposalNo" fieldType="String" parameterType="GLOBAL" parameter="proposalno" /> <!-- 投保单号 -->
+				<item fieldName="ApplyCertificateId" fieldType="String" parameterType="CSNODE" parameter="SXU00302" method="getElementByCode.getValue" /> <!-- 投保人身份证号 -->
+				<item fieldName="ApplyCareer" fieldType="String" parameterType="CSNODE" parameter="SXU00605" method="getElementByCode.getValue" /> <!-- 投保人职业 -->
+				<item fieldName="LoanContractNo" fieldType="String" parameterType="CSNODE" parameter="SXU00606" method="getElementByCode.getValue" /> <!-- 借款合同号 -->
+				<item fieldName="BorrowerName" fieldType="String" parameterType="CSNODE" parameter="SXU00616" method="getElementByCode.getValue" /> <!-- 借款人 -->
+				<item fieldName="LenerName" fieldType="String" parameterType="CSNODE" parameter="SXU00617" method="getElementByCode.getValue" /> <!-- 贷款人 -->
+				<item fieldName="AutoSalerName" fieldType="String" parameterType="CSNODE" parameter="SXU00607" method="getElementByCode.getValue" /> <!-- 汽车销售商名称 -->
+				<item fieldName="AutoMortgage" fieldType="String" parameterType="CSNODE" parameter="SXU00608" method="getElementByCode.getValue" /> <!-- 贷款车是否办理本车抵押 -->
+				<item fieldName="FirstPaymentCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00609" method="getElementByCode.getValue.getCurrency" /> <!-- 首付款金额币种 -->
+				<item fieldName="FristPaymentAmount" fieldType="Float" parameterType="CSNODE" parameter="SXU00609" method="getElementByCode.getValue.getAmount" /> <!-- 首付款金额 -->
+				<item fieldName="LoanCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00610" method="getElementByCode.getValue.getCurrency" /> <!-- 借款数额币种 -->
+				<item fieldName="LoanAmount" fieldType="Float" parameterType="CSNODE" parameter="SXU00610" method="getElementByCode.getValue.getAmount" /> <!-- 借款数额 -->
+				<item fieldName="LoadRate" fieldType="Float" parameterType="CSNODE" parameter="SXU00611" method="getElementByCode.getValue" /> <!-- 借款利率 -->
+				<item fieldName="MonthPaymentCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00612" method="getElementByCode.getValue.getCurrency" /> <!-- 月还款额币种 -->
+				<item fieldName="MonthPaymentAmount" fieldType="Float" parameterType="CSNODE" parameter="SXU00612" method="getElementByCode.getValue.getAmount" /> <!-- 月还款额 -->
+				<item fieldName="LoanMonthNumber" fieldType="Long" parameterType="CSNODE" parameter="SXU00613" method="getElementByCode.getValue" /> <!-- 贷款月数 -->
+				<item fieldName="PaymentStartDate" fieldType="Date" parameterType="CSNODE" parameter="SXU00614" method="getElementByCode.getValue" /> <!-- 还款起期 -->
+				<item fieldName="PaymentEndDate" fieldType="Date" parameterType="CSNODE" parameter="SXU00615" method="getElementByCode.getValue" /> <!-- 还款止期 -->
+				<item fieldName="FrstGrntyName" fieldType="String" parameterType="CSNODE" parameter="SXU00618" method="getElementByCode.getValue" /> <!-- 第一担保人姓名 -->
+				<item fieldName="FrstGrntyAdress" fieldType="String" parameterType="CSNODE" parameter="SXU00619" method="getElementByCode.getValue" /> <!-- 第一担保人地址、身份证号 -->
+				<item fieldName="FrstGrntySlryCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00620" method="getElementByCode.getValue.getCurrency" /> <!-- 第一担保人月收入币种 -->
+				<item fieldName="FrstGrntySalary" fieldType="Float" parameterType="CSNODE" parameter="SXU00620" method="getElementByCode.getValue.getAmount" /> <!-- 第一担保人月收入 -->
+				<item fieldName="FrstGrntyRelation" fieldType="String" parameterType="CSNODE" parameter="SXU00621" method="getElementByCode.getValue" /> <!-- 第一担保人与购车人关系 -->
+				<item fieldName="ScndGrntyName" fieldType="String" parameterType="CSNODE" parameter="SXU00622" method="getElementByCode.getValue" /> <!-- 第二担保人姓名 -->
+				<item fieldName="ScndGrntyAddress" fieldType="String" parameterType="CSNODE" parameter="SXU00623" method="getElementByCode.getValue" /> <!-- 第二担保人地址、身份证号 -->
+				<item fieldName="ScndGrntySlryCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00624" method="getElementByCode.getValue.getCurrency" /> <!-- 第二担保人月收入币种 -->
+				<item fieldName="ScndGrntySalary" fieldType="Float" parameterType="CSNODE" parameter="SXU00624" method="getElementByCode.getValue.getAmount" /> <!-- 第二担保人月收入 -->
+				<item fieldName="ScndGrntyRelation" fieldType="String" parameterType="CSNODE" parameter="SXU00625" method="getElementByCode.getValue" /> <!-- 第二担保人与购车人关系 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" parameter="objectno" /> <!-- 对象号 -->
+			</table>
+		</area>
+	</mapping>
+</definition>

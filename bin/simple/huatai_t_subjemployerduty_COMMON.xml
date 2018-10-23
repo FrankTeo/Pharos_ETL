@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition description="雇主责任险标的表">
+	<mapping>
+		<area description="雇主责任险标的表">
+			<table tableName="T_SubjEmployerDuty" dataProviderType="CSNODE" as="Contract">
+				<item fieldName="PolicyNo" fieldType="String" parameterType="GLOBAL" parameter="policyno" /> <!-- 保单号 -->
+				<item fieldName="EndorseNo" fieldType="String" parameterType="GLOBAL" parameter="endorseno" /> <!-- 批单号 -->
+				<item fieldName="NodeNo" fieldType="String" parameterType="GLOBAL" parameter="nodeno" /> <!-- 节点号 -->
+				<item fieldName="ContractNo" fieldType="String" parameterType="GLOBAL" parameter="contractno" /> <!-- 合同号 -->
+				<item fieldName="SubVersionNo" fieldType="String" parameterType="GLOBAL" parameter="version" /> <!-- 版本号 -->
+				<item fieldName="ProposalNo" fieldType="String" parameterType="GLOBAL" parameter="proposalno" /> <!-- 投保单号 -->
+				<!--<item fieldName="ZipCode" fieldType="String" />--> <!-- 邮政编码 -->
+				<!--<item fieldName="OrganizationForm" fieldType="String" />--> <!-- 企业组织形式 -->
+				<!--<item fieldName="OrganizationType" fieldType="String" />--> <!-- 企业类型 -->
+				<!--<item fieldName="BizRange" fieldType="String" />--> <!-- 营业范围 -->
+				<!--<item fieldName="IsEntire" fieldType="String" />--> <!-- 是否全员投保 -->
+				<!--<item fieldName="RecentLossing" fieldType="String" />--> <!-- 以往损失记录 -->
+				<!--<item fieldName="BizQuality" fieldType="String" />--> <!-- 营业性质 -->
+				<!--<item fieldName="AreaRange" fieldType="String" />--> <!-- 地区范围 -->
+				<!--<item fieldName="PerPrsnDthDescript" fieldType="String" />--> <!-- 死亡每人赔偿限额描述 -->
+				<!--<item fieldName="PerPrsnDthStanard" fieldType="String" />--> <!-- 死亡每人赔偿金额标准 -->
+				<!--<item fieldName="PerPrsnPrmntDsblDescript" fieldType="String" />--> <!-- 永久伤残每人赔偿限额描述 -->
+				<!--<item fieldName="PerPrsnPrmntDsblStanard" fieldType="String" />--> <!-- 永久伤残每人赔偿金额标准 -->
+				<!--<item fieldName="PerPrsnTmpLbrDsblDescript" fieldType="String" />--> <!-- 暂时失去劳动能力每人限额描述 -->
+				<!--<item fieldName="PerPrsnTmpWrkDsblDescript" fieldType="String" />--> <!-- 暂时失去工作能力每人限额描述 -->
+				<!--<item fieldName="PerPrsnAccdMdclDescript" fieldType="String" />--> <!-- 意外伤害每人医疗费用描述 -->
+				<!--<item fieldName="PerAccdLmtCurrency" fieldType="String" />--> <!-- 每次事故赔偿限额币种 -->
+				<!--<item fieldName="PerAccdLimit" fieldType="Float" />--> <!-- 每次事故赔偿限额 -->
+				<!--<item fieldName="AggrCmpnstLmtCurrency" fieldType="String" />--> <!-- 累计赔偿限额币种 -->
+				<!--<item fieldName="AggrCmpnstLimit" fieldType="Float" />--> <!-- 累计赔偿限额 -->
+				<!--<item fieldName="PerPrsnLmtCurrency" fieldType="String" />--> <!-- 每人赔偿限额币种 -->
+				<!--<item fieldName="PerPrsnLimit" fieldType="Float" />--> <!-- 每人赔偿限额 -->
+				<!--<item fieldName="LglExpnsDtyLmtCurrency" fieldType="String" />--> <!-- 法律费用责任限额币种 -->
+				<!--<item fieldName="LglExpnsDtyLimit" fieldType="Float" />--> <!-- 法律费用责任限额 -->
+				<!--<item fieldName="AnnSlryTtlCurrency" fieldType="String" />--> <!-- 年工资总额合计币种 -->
+				<!--<item fieldName="AnnSalaryTotal" fieldType="Float" />--> <!-- 年工资总额合计 -->
+				<!--<item fieldName="AnnClcSlryTtlCurrency" fieldType="String" />--> <!-- 缴费年工资总额币种 -->
+				<!--<item fieldName="AnnClcSalaryTotal" fieldType="Float" />--> <!-- 缴费年工资总额 -->
+				<!--<item fieldName="PerPrsnDthLmtCurrency" fieldType="String" />--> <!-- 每人死亡责任限额币种 -->
+				<!--<item fieldName="PerPrsnDthLimit" fieldType="Float" />--> <!-- 每人死亡责任限额 -->
+				<!--<item fieldName="PerPrsnDsblLmtCrrency" fieldType="String" />--> <!-- 每人伤残责任限额币种 -->
+				<!--<item fieldName="PerPrsnDsblLimit" fieldType="Float" />--> <!-- 每人伤残责任限额 -->
+				<!--<item fieldName="PerPrsnMdclExpnsvCurrency" fieldType="String" />--> <!-- 每人医疗费用责任限额币种 -->
+				<!--<item fieldName="PerPrsnMdclExpensive" fieldType="Float" />--> <!-- 每人医疗费用责任限额 -->
+				<!--<item fieldName="PerAccdRscExpnsvCurrency" fieldType="String" />--> <!-- 每次事故救援费用限额币种 -->
+				<!--<item fieldName="PerAccdRscExpensive" fieldType="Float" />--> <!-- 每次事故救援费用限额 -->
+				<!--<item fieldName="AggrRscExpnsvCurrency" fieldType="String" />--> <!-- 累计救援费用限额币种 -->
+				<!--<item fieldName="AggrRscExpensive" fieldType="Float" />--> <!-- 累计救援费用限额 -->
+				<!--<item fieldName="Num" fieldType="Long" />--> <!-- 雇员数量 -->
+				<!--<item fieldName="BizStation" fieldType="String" />--> <!-- 营业场所 -->
+				<!--<item fieldName="ManageArea" fieldType="String" />--> <!-- 投保区域 -->
+				<!--<item fieldName="SubjectName" fieldType="String" />--> <!-- 标的名称 -->
+				<!--<item fieldName="ExceptTtlCurrency" fieldType="String" />--> <!-- 预计销售总额币种 -->
+				<!--<item fieldName="ExceptTtlAmount" fieldType="Float" />--> <!-- 预计销售总额 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" parameter="objectno" /> <!-- 对象号 -->
+				<!--<item fieldName="Remark" fieldType="String" />--> <!-- 备注 -->
+				<!--<item fieldName="CrtTime" fieldType="Date" />--> <!-- 创建时间 -->
+				<!--<item fieldName="MdfTime" fieldType="Date" />--> <!-- 修改时间 -->
+			</table>
+		</area>
+	</mapping>
+</definition>

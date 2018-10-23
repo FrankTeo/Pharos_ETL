@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition description="责任险标的表">
+	<mapping>
+		<area description="责任险标的表">
+			<table tableName="T_SubjDuty" dataProviderType="CSNODE" as="Contract">
+				<item fieldName="PolicyNo" fieldType="String" parameterType="GLOBAL" parameter="policyno" /> <!-- 保单号 -->
+				<item fieldName="EndorseNo" fieldType="String" parameterType="GLOBAL" parameter="endorseno" /> <!-- 批单号 -->
+				<item fieldName="NodeNo" fieldType="String" parameterType="GLOBAL" parameter="nodeno" /> <!-- 节点号 -->
+				<item fieldName="ContractNo" fieldType="String" parameterType="GLOBAL" parameter="contractno" /> <!-- 合同号 -->
+				<item fieldName="SubVersionNo" fieldType="String" parameterType="GLOBAL" parameter="version" /> <!-- 版本号 -->
+				<item fieldName="ProposalNo" fieldType="String" parameterType="GLOBAL" parameter="proposalno" /> <!-- 投保单号 -->
+				<!--<item fieldName="CertificateNo" fieldType="String" />--> <!-- 执业许可证号 -->
+				<!--<item fieldName="BizQuality" fieldType="String" />--> <!-- 营业性质 -->
+				<!--<item fieldName="AnnTouristNumber" fieldType="Float" />--> <!-- 年旅客量人次 -->
+				<!--<item fieldName="AnnTouristDay" fieldType="Float" />--> <!-- 年旅客量人天 -->
+				<!--<item fieldName="AnnSale" fieldType="Float" />--> <!-- 年营业额 -->
+				<!--<item fieldName="InsurePeriod" fieldType="Float" />--> <!-- 保险期限月 -->
+				<!--<item fieldName="PreAccdLimitCurrency" fieldType="String" />--> <!-- 每次事故责任限额币种 -->
+				<!--<item fieldName="PreAccdLimit" fieldType="Float" />--> <!-- 每次事故责任限额 -->
+				<!--<item fieldName="NtnPerPrsnLmtCurrency" fieldType="String" />--> <!-- 国内每人限额币种 -->
+				<!--<item fieldName="NtnPerPrsnLimit" fieldType="Float" />--> <!-- 国内每人限额 -->
+				<!--<item fieldName="NtnPerPrptyLmtCurrency" fieldType="String" />--> <!-- 国内每人物损限额币种 -->
+				<!--<item fieldName="NtnPerPrptyLimit" fieldType="Float" />--> <!-- 国内每人物损限额 -->
+				<!--<item fieldName="AbrdPerPrsnLmtCurrency" fieldType="String" />--> <!-- 出境每人限额币种 -->
+				<!--<item fieldName="AbrdPerPrsnLimit" fieldType="Float" />--> <!-- 出境每人限额 -->
+				<!--<item fieldName="AbrdPerPrptyLmtCurrency" fieldType="String" />--> <!-- 出境每人物损限额币种 -->
+				<!--<item fieldName="AbrdPerPrptyLimit" fieldType="Float" />--> <!-- 出境每人物损限额 -->
+				<!--<item fieldName="PerAccdDdctDescrption" fieldType="String" />--> <!-- 每次事故免赔额 -->
+				<!--<item fieldName="SpecialTourItem" fieldType="String" />--> <!-- 特殊旅游项目 -->
+				<!--<item fieldName="BizStation" fieldType="String" />--> <!-- 营业场所 -->
+				<!--<item fieldName="ZipCode" fieldType="String" />--> <!-- 邮政编码 -->
+				<!--<item fieldName="ManageArea" fieldType="String" />--> <!-- 承保区域 -->
+				<!--<item fieldName="BizArea" fieldType="Float" />--> <!-- 营业面积 -->
+				<!--<item fieldName="ConstructLevel" fieldType="String" />--> <!-- 建筑等级 -->
+				<!--<item fieldName="BizIncome" fieldType="Float" />--> <!-- 近三年营业收入 -->
+				<!--<item fieldName="PastAccident" fieldType="String" />--> <!-- 以往发生何事故 -->
+				<!--<item fieldName="PerPrsnLimitCurrency" fieldType="String" />--> <!-- 每人伤亡责任限额币种 -->
+				<!--<item fieldName="PerPrsnLimit" fieldType="Float" />--> <!-- 每人伤亡责任限额 -->
+				<!--<item fieldName="TeacherNumber" fieldType="Long" />--> <!-- 教职工人员 -->
+				<!--<item fieldName="StudentNumber" fieldType="Long" />--> <!-- 学生人数 -->
+				<!--<item fieldName="DistanceLimit" fieldType="String" />--> <!-- 区域限制 -->
+				<!--<item fieldName="IsBoardingSchool" fieldType="String" />--> <!-- 是否寄宿 -->
+				<!--<item fieldName="AggrgLmtCurrency" fieldType="String" />--> <!-- 累计赔偿限额币种 -->
+				<!--<item fieldName="AggrgLimit" fieldType="Float" />--> <!-- 累计赔偿限额 -->
+				<!--<item fieldName="RetrospectDate" fieldType="String" />--> <!-- 追溯日 -->
+				<!--<item fieldName="ClaimableNotice" fieldType="String" />--> <!-- 索赔/可赔偿情形的通知 -->
+				<!--<item fieldName="AnnBasePrmmCurrency" fieldType="String" />--> <!-- 年度基本保费币种 -->
+				<!--<item fieldName="AnnBasePremium" fieldType="Float" />--> <!-- 年度基本保费 -->
+				<!--<item fieldName="AnnBaseRate" fieldType="Float" />--> <!-- 年度基本费率 -->
+				<!--<item fieldName="SubjectName" fieldType="String" />--> <!-- 标的名称 -->
+				<!--<item fieldName="OtherNotice" fieldType="String" />--> <!-- 所有其他通知 -->
+				<!--<item fieldName="LowestRate" fieldType="Float" />--> <!-- 最低实现保费比例 -->
+				<!--<item fieldName="NewPolluteStartDate" fieldType="Date" />--> <!-- 新污染状况保险起期 -->
+				<!--<item fieldName="NewPolluteEndDate" fieldType="Date" />--> <!-- 新污染状况保险止期 -->
+				<!--<item fieldName="PerPlltRetntCurrency" fieldType="String" />--> <!-- 每一污染状况自保自留额币种 -->
+				<!--<item fieldName="PerPlltRetent" fieldType="Float" />--> <!-- 每一污染状况自保自留额 -->
+				<!--<item fieldName="TradeClassify" fieldType="String" />--> <!-- 行业分类 -->
+				<!--<item fieldName="TtlAsstVluCurrency" fieldType="String" />--> <!-- 总资产币种 -->
+				<!--<item fieldName="TtlAsstValue" fieldType="Float" />--> <!-- 总资产 -->
+				<!--<item fieldName="ResearchTerm" fieldType="String" />--> <!-- 研究时间 -->
+				<!--<item fieldName="InspectOrganization" fieldType="String" />--> <!-- 验收时间机构 -->
+				<!--<item fieldName="FrstUseOrganization" fieldType="String" />--> <!-- 首次应用机构 -->
+				<!--<item fieldName="ResultOrientation" fieldType="String" />--> <!-- 成果用途 -->
+				<!--<item fieldName="OrganizationForm" fieldType="String" />--> <!-- 企业组织形式 -->
+				<!--<item fieldName="HygienicGrade" fieldType="String" />--> <!-- 食品卫生等级 -->
+				<!--<item fieldName="RestaurantType" fieldType="String" />--> <!-- 餐厅类型 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" parameter="objectno" /> <!-- 对象号 -->
+				<!--<item fieldName="Remark" fieldType="String" />--> <!-- 备注 -->
+				<!--<item fieldName="CrtTime" fieldType="Date" />--> <!-- 创建时间 -->
+				<!--<item fieldName="MdfTime" fieldType="Date" />--> <!-- 修改时间 -->
+			</table>
+		</area>
+	</mapping>
+</definition>

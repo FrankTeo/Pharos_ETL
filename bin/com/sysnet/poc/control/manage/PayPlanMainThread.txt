@@ -1,0 +1,172 @@
+package com.sysnet.poc.control.manage;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.naming.NamingException;
+
+import org.apache.log4j.Logger;
+
+import com.sysnet.poc.control.manage.vo.EveryThreadInfo;
+import com.sysnet.poc.control.manage.vo.StatusBean;
+import com.sysnet.poc.control.manage.vo.StopBean;
+import com.sysnet.poc.service.dao.dbc.ConnDB;
+
+public class PayPlanMainThread extends Thread {
+
+	private Logger log = Logger.getLogger(PayPlanMainThread.class);
+
+	private StopBean stopBean;
+
+	private StatusBean statusBean;
+
+	public StatusBean getStatusBean() {
+		return statusBean;
+	}
+
+	public void setStatusBean(StatusBean statusBean) {
+		this.statusBean = statusBean;
+	}
+
+	public StopBean getStopBean() {
+		return stopBean;
+	}
+
+	public void setStopBean(StopBean stopBean) {
+		this.stopBean = stopBean;
+	}
+
+	public void run() {
+		log.info("缴费计划任务主线程开始执行");
+		StopBean sbean = new StopBean();
+		List<EveryThreadInfo> list = null;
+		try {
+			list = this.toAssignAmount(this.getStatusBean().getBAT_ID());
+		} catch (NamingException e1) {
+
+			e1.printStackTrace();
+
+		} catch (SQLException e1) {
+
+			e1.printStackTrace();
+		}
+		if (list != null && list.size() != 0) {
+
+			for (int i = 0; i < list.size(); i++) {
+
+				PayPlanBusinessThread businessThread = new PayPlanBusinessThread();
+				businessThread.setStopBean(sbean);
+				businessThread.setStatusBean(statusBean);
+				businessThread.setEveryThreadInfo(list.get(i));
+				businessThread.start();
+
+			}
+		}
+		while (true) {
+			if (sbean.getStop() == stopBean.getThreadC()) {
+				this.stopBean.setStop(1);
+				log.info("缴费计划任务主线程执行结束");
+				break;
+			}
+			try {
+				Thread.sleep(5000);
+			} catch (InterruptedException e) {
+
+				e.printStackTrace();
+			}
+		}
+
+	}
+
+	/**
+	 * 缴费计划子线程分配处理任务DAO，暂时不拿到DAO层了，因为重构的时候时间太紧 ，该部分处理比较麻烦
+	 * 
+	 * @param bat_id
+	 * @return
+	 * @throws NamingException
+	 * @throws SQLException
+	 */
+	@SuppressWarnings("unchecked")
+	public List<EveryThreadInfo> toAssignAmount(int bat_id) throws NamingException, SQLException {
+		Connection conn = null;
+		Statement stmt = null;
+		List<EveryThreadInfo> list = new ArrayList<EveryThreadInfo>();
+		int count = 0;
+		try {
+			conn = ConnDB.getPharosConn();
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("select count(OBJECT_ID) from ETL_PHAROS_INCR_PAYPLAN where bat_id='" + bat_id + "' and STAGE_WRITE_FLAG is null");
+			if (rs.next()) {
+				count = rs.getInt(1);
+			}
+			int everyThread = 0;
+			everyThread = count / this.getStopBean().getThreadC();
+
+			// 修补原来一bug
+			if (everyThread == 0) {
+				everyThread = 1;
+			}
+			// --------
+			int minobjectId = 0;
+			int maxobjectId = 0;
+			rs = stmt.executeQuery("select min(object_Id),max(object_Id) from ETL_PHAROS_INCR_PAYPLAN where bat_id='" + bat_id + "' and STAGE_WRITE_FLAG is null ");
+			if (rs.next()) {
+				minobjectId = rs.getInt(1);
+				maxobjectId = rs.getInt(2);
+			}
+			int tempMax = minobjectId + everyThread;
+			for (int i = 0; i < this.getStopBean().getThreadC(); i++) {
+				String sql = "";
+				if (i == this.getStopBean().getThreadC() - 1) {
+					sql = "select object_Id,object_type from ETL_PHAROS_INCR_PAYPLAN where bat_id='" + bat_id + "' and STAGE_WRITE_FLAG is null and object_Id>= " + minobjectId + " and object_Id<=" + maxobjectId + " Order By object_id";
+					log.info("sql1111==========" + sql);
+				} else {
+
+					sql = "select object_Id,object_type from ETL_PHAROS_INCR_PAYPLAN where bat_id='" + bat_id + "' and STAGE_WRITE_FLAG is null and object_Id>= " + minobjectId + " and object_Id<" + tempMax + " Order By object_id";
+
+					// 修补原来一bug
+					if (count == 1) {
+						sql = "select object_Id,object_type from ETL_PHAROS_INCR_PAYPLAN where bat_id='" + bat_id + "' and STAGE_WRITE_FLAG is null and object_Id>= " + minobjectId + " Order By object_id";
+					}
+					// --------
+					log.info("sq22222==========" + sql);
+				}
+				rs = stmt.executeQuery(sql);
+				EveryThreadInfo everyThreadInfo = new EveryThreadInfo();
+				while (rs.next()) {
+
+					everyThreadInfo.getObjectIds().add(rs.getInt("object_Id"));
+					everyThreadInfo.getObjectTypes().add(rs.getString("object_type"));
+				}
+				list.add(everyThreadInfo);
+
+				minobjectId = tempMax;
+				tempMax = tempMax + everyThread;
+			}
+
+			return list;
+		} catch (NamingException ex) {
+
+			throw ex;
+		} catch (SQLException ex) {
+			throw ex;
+		} finally {
+			try {
+
+				if (stmt != null) {
+					stmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+}

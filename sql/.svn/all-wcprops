@@ -1,0 +1,101 @@
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/BizCore/!svn/ver/5126/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/sql
+END
+AutoSynData.prc
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/sql/AutoSynData.prc
+END
+一些JOBS.sql
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BizCore/!svn/ver/14512/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/sql/%E4%B8%80%E4%BA%9BJOBS.sql
+END
+RMNode.sql
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/BizCore/!svn/ver/14512/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/sql/RMNode.sql
+END
+生产BaseData视图.sql
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/BizCore/!svn/ver/14606/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/sql/%E7%94%9F%E4%BA%A7BaseData%E8%A7%86%E5%9B%BE.sql
+END
+UPDATEODS.sql
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/BizCore/!svn/ver/14512/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/sql/UPDATEODS.sql
+END
+GETMLS.sql
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/BizCore/!svn/ver/11927/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/sql/GETMLS.sql
+END
+RMNode_Package.sql
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BizCore/!svn/ver/14512/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/sql/RMNode_Package.sql
+END
+autosynchron_pa.prc
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/sql/autosynchron_pa.prc
+END
+saveliability.sql
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/BizCore/!svn/ver/11927/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/sql/saveliability.sql
+END
+生产BaseData.sql
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BizCore/!svn/ver/14606/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/sql/%E7%94%9F%E4%BA%A7BaseData.sql
+END
+UPDATEODS_PACKAGE.sql
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BizCore/!svn/ver/11927/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/sql/UPDATEODS_PACKAGE.sql
+END
+grant2ods.sql
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/BizCore/!svn/ver/11927/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/sql/grant2ods.sql
+END
+BaseData.sql
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/BizCore/!svn/ver/11927/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/sql/BaseData.sql
+END
+GETMLSNEW.sql
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/BizCore/!svn/ver/11927/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/sql/GETMLSNEW.sql
+END
+createliability.sql
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/BizCore/!svn/ver/11927/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/sql/createliability.sql
+END
+核心需要建的视图BaseData.sql
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/svn/BizCore/!svn/ver/14512/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/sql/%E6%A0%B8%E5%BF%83%E9%9C%80%E8%A6%81%E5%BB%BA%E7%9A%84%E8%A7%86%E5%9B%BEBaseData.sql
+END

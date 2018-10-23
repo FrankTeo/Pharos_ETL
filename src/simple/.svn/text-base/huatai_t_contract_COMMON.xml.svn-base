@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition description="合同表">
+	<mapping>
+		<area description="合同表">
+			<table tableName="T_Contract" dataProviderType="CSNODE" as="Contract">
+				<item fieldName="ContractNo" fieldType="String" parameterType="GLOBAL" parameter="contractno" /> <!-- 合同号 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" parameter="objectno" /> <!-- 对象号 -->
+				<!--<item fieldName="ContractName" fieldType="String" />--> <!-- 合同名称 -->
+				<item fieldName="ProductCode" fieldType="String" parameterType="CSNODE" method="getProductCode" /> <!-- 产品Code -->
+				<item fieldName="ProductNode" fieldType="String" parameterType="CSNODE" method="getProductNodeCode" /> <!-- 产品Node -->
+				<item fieldName="RenewContractNo" fieldType="String" parameterType="CSNODE" method="getSourceContractNo" /> <!-- 续保合同号 -->
+				<!--<item fieldName="BIZCompanyCode" fieldType="String" parameterType="CSNODE" method="getElementByName.getValue" /> --> <!-- 用户业务隶属机构 -->
+				<!--<item fieldName="AcquisitionStaff" fieldType="String" parameterType="CSNODE" method="getElementByName.getValue" /> --> <!-- 展业业务员 -->
+				<item fieldName="Creator" fieldType="String" parameterType="CSNODE" method="getCreateUserCode" /> <!-- 创建人 -->
+				<!--<item fieldName="Remark" fieldType="String" />--> <!-- 备注 -->
+				<!--<item fieldName="CrtTime" fieldType="Date" />--> <!-- 创建时间 -->
+				<!--<item fieldName="MdfTime" fieldType="Date" />--> <!-- 修改时间 -->
+			</table>
+		</area>
+	</mapping>
+</definition>

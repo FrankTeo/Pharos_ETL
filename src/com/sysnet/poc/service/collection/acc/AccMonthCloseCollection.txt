@@ -1,0 +1,47 @@
+package com.sysnet.poc.service.collection.acc;
+
+import pharos.account.bo.IBankAccountBO;
+import pharos.account.vo.accountstructure.AccMonthClose;
+
+import com.sysnet.poc.control.manage.vo.EtlPharosIncrAcc;
+import com.sysnet.poc.util.DateHelper;
+import com.sysnet.poc.util.PharosServiceContainer;
+import com.sysnet.poc.vo.StgAccMonthclose;
+
+public class AccMonthCloseCollection {
+	private StgAccMonthclose stgAccMonthclose;
+
+	public AccMonthCloseCollection(EtlPharosIncrAcc ec) {
+		PharosServiceContainer pc = PharosServiceContainer.Instance();
+		IBankAccountBO bankAccuntBO = pc.getIBankAccountBO();
+		AccMonthClose accMonthClose = bankAccuntBO.getMonthClose(new Long(ec.getObjectNo()));
+		this.setAccMonthClose(accMonthClose, ec);
+	}
+
+	private void setAccMonthClose(AccMonthClose accMonthClose, EtlPharosIncrAcc ec) {
+		if (accMonthClose != null) {
+			this.stgAccMonthclose = new StgAccMonthclose();
+			this.stgAccMonthclose.setMonthcloseId(accMonthClose.getId());
+			this.stgAccMonthclose.setRemoved(new Long(0));
+			this.stgAccMonthclose.setYearItem(new Long(accMonthClose.getYear()));
+			this.stgAccMonthclose.setMonthItem(new Long(accMonthClose.getMonth()));
+			// this.stgAccMonthclose.setStatus(accMonthClose);
+			this.stgAccMonthclose.setUpdateDate(DateHelper.getSqlDate(accMonthClose.getUpdateDate()));
+			this.stgAccMonthclose.setUpdateUser(accMonthClose.getUpdateUser());
+			this.stgAccMonthclose.setTimeStamp(ec.getTimeStamp());
+			this.stgAccMonthclose.setBatId(ec.getBatId());
+			this.stgAccMonthclose.setObjectId(ec.getObjectId());
+			this.stgAccMonthclose.setObjectType(String.valueOf(ec.getObjectType()));
+
+		}
+
+	}
+
+	public StgAccMonthclose getStgAccMonthclose() {
+		return stgAccMonthclose;
+	}
+
+	public void setStgAccMonthclose(StgAccMonthclose stgAccMonthclose) {
+		this.stgAccMonthclose = stgAccMonthclose;
+	}
+}

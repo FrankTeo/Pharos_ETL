@@ -1,0 +1,264 @@
+package com.sysnet.poc.vo;
+
+import java.sql.*;
+
+/**
+ * StgCstCust entity.
+ * 
+ * @author MyEclipse Persistence Tools
+ */
+
+public class StgCstCust implements java.io.Serializable {
+
+	// Fields
+
+	// 客户类型CD
+	private String custTypeCd;
+	// 中文名称
+	private String nameCn;
+	// 有效状态
+	private String enabled;
+	// 源系统有效起始日期
+	private Timestamp soucSysStartDate;
+	// 源数据有效结束日期
+	private Timestamp soucSysEndDate;
+	// 当前数据在业务中，当前记录有效的时间范围的开始时间
+	private Timestamp bizStartDate;
+	// 当前数据在业务中，当前记录有效的时间范围的结束时间
+	private Timestamp bizEndDate;
+	// 记录信息所来自的源系统标志，用于多个源系统的数据整合
+	private String soucSysFlag;
+	// 客户CD
+	private Long custNo;
+	// 批次序号
+	private Long batId;
+	// 对象序号
+	private Long objectId;
+	// 对象类型
+	private String objectType;
+	// 时间戳
+	private Timestamp timeStamp;
+	// 客户级别 1:VIP 2:中级 3:普通
+	private String clientLevel;
+	// 机构性质
+	private String companyNature;
+	// 联系人姓名
+	private String contactName;
+	// 邮政编码
+	private String postCode;
+	// 国籍
+	private String country;
+	// 固定电话
+	private String telephone;
+	// 移动电话
+	private String mobile;
+	// 电子信箱
+	private String email;
+	// 被保人资信等级
+	private String creditLevel;
+	// PartyID
+	private String partyId;
+	// 地址
+	private String address;
+
+	// Constructors
+
+	/** default constructor */
+	public StgCstCust() {
+	}
+
+	// Property accessors
+
+	public String getCustTypeCd() {
+		return this.custTypeCd;
+	}
+
+	public void setCustTypeCd(String custTypeCd) {
+		this.custTypeCd = custTypeCd;
+	}
+
+	public String getNameCn() {
+		return this.nameCn;
+	}
+
+	public void setNameCn(String nameCn) {
+		this.nameCn = nameCn;
+	}
+
+	public String getEnabled() {
+		return this.enabled;
+	}
+
+	public void setEnabled(String enabled) {
+		this.enabled = enabled;
+	}
+
+	public Timestamp getSoucSysStartDate() {
+		return this.soucSysStartDate;
+	}
+
+	public void setSoucSysStartDate(Timestamp soucSysStartDate) {
+		this.soucSysStartDate = soucSysStartDate;
+	}
+
+	public Timestamp getSoucSysEndDate() {
+		return this.soucSysEndDate;
+	}
+
+	public void setSoucSysEndDate(Timestamp soucSysEndDate) {
+		this.soucSysEndDate = soucSysEndDate;
+	}
+
+	public Timestamp getBizStartDate() {
+		return this.bizStartDate;
+	}
+
+	public void setBizStartDate(Timestamp bizStartDate) {
+		this.bizStartDate = bizStartDate;
+	}
+
+	public Timestamp getBizEndDate() {
+		return this.bizEndDate;
+	}
+
+	public void setBizEndDate(Timestamp bizEndDate) {
+		this.bizEndDate = bizEndDate;
+	}
+
+	public String getSoucSysFlag() {
+		return this.soucSysFlag;
+	}
+
+	public void setSoucSysFlag(String soucSysFlag) {
+		this.soucSysFlag = soucSysFlag;
+	}
+
+	public Long getCustNo() {
+		return custNo;
+	}
+
+	public void setCustNo(Long custNo) {
+		this.custNo = custNo;
+	}
+
+	public Long getBatId() {
+		return this.batId;
+	}
+
+	public void setBatId(Long batId) {
+		this.batId = batId;
+	}
+
+	public Long getObjectId() {
+		return this.objectId;
+	}
+
+	public void setObjectId(Long objectId) {
+		this.objectId = objectId;
+	}
+
+	public String getObjectType() {
+		return this.objectType;
+	}
+
+	public void setObjectType(String objectType) {
+		this.objectType = objectType;
+	}
+
+	public Timestamp getTimeStamp() {
+		return this.timeStamp;
+	}
+
+	public void setTimeStamp(Timestamp timeStamp) {
+		this.timeStamp = timeStamp;
+	}
+
+	public String getClientLevel() {
+		return this.clientLevel;
+	}
+
+	public void setClientLevel(String clientLevel) {
+		this.clientLevel = clientLevel;
+	}
+
+	public String getCompanyNature() {
+		return this.companyNature;
+	}
+
+	public void setCompanyNature(String companyNature) {
+		this.companyNature = companyNature;
+	}
+
+	public String getContactName() {
+		return this.contactName;
+	}
+
+	public void setContactName(String contactName) {
+		this.contactName = contactName;
+	}
+
+	public String getPostCode() {
+		return this.postCode;
+	}
+
+	public void setPostCode(String postCode) {
+		this.postCode = postCode;
+	}
+
+	public String getCountry() {
+		return this.country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public String getTelephone() {
+		return this.telephone;
+	}
+
+	public void setTelephone(String telephone) {
+		this.telephone = telephone;
+	}
+
+	public String getMobile() {
+		return this.mobile;
+	}
+
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
+	}
+
+	public String getEmail() {
+		return this.email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getCreditLevel() {
+		return this.creditLevel;
+	}
+
+	public void setCreditLevel(String creditLevel) {
+		this.creditLevel = creditLevel;
+	}
+
+	public String getPartyId() {
+		return this.partyId;
+	}
+
+	public void setPartyId(String partyId) {
+		this.partyId = partyId;
+	}
+
+	public String getAddress() {
+		return this.address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+}

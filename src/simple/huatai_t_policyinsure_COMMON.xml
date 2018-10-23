@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition description="保单被保人表">
+	<mapping>
+		<area description="保单被保人表">
+			<table tableName="T_PolicyInsure" dataProviderType="ROLE" as="Contract">
+				<item fieldName="PolicyNo" fieldType="String" parameterType="GLOBAL" parameter="policyno" /> <!-- 保单号 -->
+				<item fieldName="EndorseNo" fieldType="String" parameterType="GLOBAL" parameter="endorseno" /> <!-- 批单号 -->
+				<item fieldName="NodeNo" fieldType="String" parameterType="GLOBAL" parameter="nodeno" /> <!-- 节点号 -->
+				<item fieldName="PartyCode" fieldType="String" parameterType="ROLE" method="getParty.getCode" /> <!-- 当事方 -->
+				<item fieldName="PartyVersionNo" fieldType="String" parameterType="ROLE" method="getParty.getVersionNo" /> <!-- 当事方版本 -->
+				<item fieldName="ContractNo" fieldType="String" parameterType="GLOBAL" parameter="contractno" /> <!-- 合同号 -->
+				<item fieldName="SubVersionNo" fieldType="String" parameterType="GLOBAL" parameter="version" /> <!-- 版本号 -->
+				<item fieldName="CustType" fieldType="String" parameterType="ROLE" method="getParty.getType" /> <!-- 客户类别 -->
+				<item fieldName="PartyName" fieldType="String" parameterType="ROLE" method="getParty.getPartyName" /> <!-- 名称 -->
+				<item fieldName="Phone" fieldType="String" parameterType="ROLE" parameter="SXU00036" method="getParty.getPartyDeclarationByCode" /> <!-- 电话 -->
+				<item fieldName="Address" fieldType="String" parameterType="ROLE" parameter="SXU00013" method="getParty.getPartyDeclarationByCode" /> <!-- 地址 -->
+				<item fieldName="ZipCode" fieldType="String" parameterType="ROLE" parameter="SXU00014" method="getParty.getPartyDeclarationByCode" /> <!-- 邮编 -->
+				<item fieldName="ProposalNo" fieldType="String" parameterType="GLOBAL" parameter="proposalno" /> <!-- 投保单号 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" parameter="objectno" /> <!-- 对象号 -->
+				<!--<item fieldName="Remark" fieldType="String" />--> <!-- 备注 -->
+				<!--<item fieldName="CrtTime" fieldType="Date" />--> <!-- 创建时间 -->
+				<!--<item fieldName="MdfTime" fieldType="Date" />--> <!-- 修改时间 -->
+			</table>
+		</area>
+	</mapping>
+</definition>

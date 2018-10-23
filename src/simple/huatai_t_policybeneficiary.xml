@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition description="保单受益人表">
+	<mapping>
+		<area description="保单受益人表">
+			<table tableName="t_policybeneficiary" dataProviderType="ROLE" as="Contract">
+				<item fieldName="PolicyNo" fieldType="String" parameterType="GLOBAL" parameter="policyno" /><!-- 保单号 -->
+				<item fieldName="EndorseNo" fieldType="String" parameterType="GLOBAL" parameter="endorseno" /><!-- 批单号 -->
+				<item fieldName="BeneficiaryNo" fieldType="String" parameterType="ROLE" method="getParty.getCode" /><!-- 受益人No -->
+				<item fieldName="PartyVersionNo" fieldType="String" parameterType="ROLE" method="getParty.getVersionNo" /><!-- 受益人版本号 -->
+				<item fieldName="ContractNo" fieldType="String" parameterType="GLOBAL" parameter="contractno" /><!-- 合同号 -->
+				<item fieldName="NodeNo" fieldType="String" parameterType="GLOBAL" parameter="nodeno" /><!-- 节点号 -->
+				<item fieldName="SubVersionNo" fieldType="String" parameterType="GLOBAL" parameter="version" /><!-- 版本号 -->
+				<item fieldName="ProposalNo" fieldType="String" parameterType="GLOBAL" parameter="proposalno" /><!-- 投保单号 -->
+				<item fieldName="BeneficiaryName" fieldType="String" parameterType="ROLE" method="getParty.getPartyName" /><!-- 受益人名称 -->
+				<!-- <item fieldName="BenefitCondition" fieldType="String" parameterType="" /> --> <!-- 受益条件 -->
+				<item fieldName="BeneficialOrder" fieldType="String" parameterType="ROLE" method="getLayer" /><!-- 受益顺序 -->
+				<item fieldName="BeneficialRate" fieldType="Float" parameterType="ROLE" method="getPercentage" /><!-- 受益比例 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" parameter="objectid" /><!-- 对象号 -->
+				<!-- <item fieldName="Remark" fieldType="String" parameterType="" /> --> <!-- 备注 -->
+				<!-- <item fieldName="CrtTime" fieldType="Date" parameterType="" /> --> <!-- 创建时间 -->
+				<!-- <item fieldName="MdfTime" fieldType="Date" parameterType="" /> --> <!-- 修改时间 -->
+			</table>
+		</area>
+	</mapping>
+</definition>

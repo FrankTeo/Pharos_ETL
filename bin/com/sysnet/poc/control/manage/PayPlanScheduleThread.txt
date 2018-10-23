@@ -1,0 +1,116 @@
+package com.sysnet.poc.control.manage;
+
+import org.apache.log4j.Logger;
+import org.jdom.Document;
+import com.sysnet.poc.control.manage.vo.ConfigureBean;
+import com.sysnet.poc.control.manage.vo.StatusBean;
+import com.sysnet.poc.control.manage.vo.StopBean;
+import com.sysnet.poc.service.dao.PayPlanScheduleDAO;
+
+public class PayPlanScheduleThread extends Thread {
+
+	private static final long serialVersionUID = 1L;
+
+	private Logger log = Logger.getLogger(PayPlanScheduleThread.class);
+
+	private Document configDocument;
+
+	public Document getConfigDocument() {
+		return configDocument;
+	}
+
+	public void setConfigDocument(Document configDocument) {
+		this.configDocument = configDocument;
+	}
+
+	@Override
+	public void run() {
+
+		doPayPlan();
+	}
+
+	public void doPayPlan() {
+
+		log.info("缴费计划主线程开始执行================================================");
+		PayPlanMainThread payPlanMainThread = null;
+
+		while (true) {
+			try {
+				// 初始化全局配置信息
+				PayPlanScheduleDAO payPlanScheduleDAO = new PayPlanScheduleDAO();
+				ConfigureBean configureBean = payPlanScheduleDAO.getConfigure();
+				StatusBean statusBean = payPlanScheduleDAO.getBatStatus();
+
+				// 检测上次处理状态
+				if (statusBean != null && (statusBean.getSTAGE_DATE_READY_STATUS().trim().equals("0")))// 批次未处理完成
+				{
+					int c = payPlanScheduleDAO.getPharosIncr(String.valueOf(statusBean.getBAT_ID()));
+					if (c == 0) {
+						// 改变标志位
+						payPlanScheduleDAO.updateBatStatus(String.valueOf(statusBean.getBAT_ID()));
+						continue;
+					}
+					statusBean.setCurrentStatus(1);// 上次没处理完
+				} else// 批次处理完成
+				{
+					// 产生一个新的批次
+					boolean isBat = payPlanScheduleDAO.insertOneBat(configureBean, statusBean);
+					if (!isBat) {
+						// System.out.println("没有增量数据，休眠等待");
+						log.info("没有增量数据，休眠等待");
+
+						Thread.sleep(configureBean.getGENERAL_SLEEP_MILLIS_COUNT());
+						// System.out.println("等待结束，重新开始处理");
+						log.info("等待结束，重新开始处理");
+						if (Runtime.getRuntime().freeMemory() < 10 * 1024 * 1024) {
+							System.out.println("内存不足10M");
+							System.gc();
+						}
+						continue;
+					}
+					// 重新初始化批量配置信息
+					statusBean = payPlanScheduleDAO.getBatStatus();
+					statusBean.setCurrentStatus(0);// 上次处理完了
+
+				}
+
+				// 线程控制标志
+				StopBean stopBean = new StopBean();
+				stopBean.setStop(0);
+				if (statusBean.getCurrentStatus() == 0) {
+					stopBean.setThreadC(configureBean.getGENERAL_MAX_THREAD_COUNT());
+				} else {
+					stopBean.setThreadC(configureBean.getEXCEPT_MAX_THREAD_COUNT());
+				}
+
+				// 启动主线程
+				payPlanMainThread = new PayPlanMainThread();
+				payPlanMainThread.setStopBean(stopBean);
+				payPlanMainThread.setStatusBean(statusBean);
+				payPlanMainThread.start();
+
+				while (true) {
+					if (stopBean.getStop() == 1) {
+						log.info("缴费计划主线程开始休眠");
+						payPlanMainThread = null;
+						if (statusBean.getCurrentStatus() == 1) {
+							// 设置异常休眠时间
+							Thread.sleep(configureBean.getEXCEPT_SLEEP_MILLIS_COUNT());
+						} else { // 设置正常休眠时间
+							Thread.sleep(configureBean.getGENERAL_SLEEP_MILLIS_COUNT());
+						}
+						log.info("缴费计划主线程休眠完毕");
+						break;
+					}
+
+				}
+
+			} catch (Exception e) {
+				log.info("缴费计划主线程抛出异常=====" + e.getMessage());
+				e.printStackTrace();
+			}
+		}
+
+	}
+
+}

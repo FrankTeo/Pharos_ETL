@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition description="货运险标的表">
+	<mapping>
+		<area description="货运险标的表">
+			<table tableName="T_SubjFreight" dataProviderType="CSNODE" as="Contract">
+				<item fieldName="PolicyNo" fieldType="String" parameterType="GLOBAL" parameter="policyno" /> <!-- 保单号 -->
+				<item fieldName="EndorseNo" fieldType="String" parameterType="GLOBAL" parameter="endorseno" /> <!-- 批单号 -->
+				<item fieldName="NodeNo" fieldType="String" parameterType="GLOBAL" parameter="nodeno" /> <!-- 节点号 -->
+				<item fieldName="ContractNo" fieldType="String" parameterType="GLOBAL" parameter="contractno" /> <!-- 合同号 -->
+				<item fieldName="SubVersionNo" fieldType="String" parameterType="GLOBAL" parameter="version" /> <!-- 版本号 -->
+				<item fieldName="ProposalNo" fieldType="String" parameterType="GLOBAL" parameter="proposalno" /> <!-- 投保单号 -->
+				<item fieldName="TransportTools" fieldType="String" parameterType="CSNODE" parameter="SXU00095" method="getElementByCode.getValue" /> <!-- 转运工具 -->
+				<item fieldName="ManageLicense" fieldType="String" parameterType="CSNODE" parameter="SXU00169" method="getElementByCode.getValue" /> <!-- 业务经营许可证号 -->
+				<item fieldName="BizQuality" fieldType="String" parameterType="CSNODE" parameter="SXU00098" method="getElementByCode.getValue" /> <!-- 营业性质 -->
+				<item fieldName="Voyage" fieldType="String" parameterType="CSNODE" parameter="SXU00250" method="getElementByCode.getValue" /> <!-- 航程 -->
+				<item fieldName="FreightCvrgCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00251" method="getElementByCode.getValue.getCurrency" /> <!-- 货运险保险金额币种 -->
+				<item fieldName="FreightCoverage" fieldType="Float" parameterType="CSNODE" parameter="SXU00251" method="getElementByCode.getValue.getAmount" /> <!-- 货运险保险金额 -->
+				<item fieldName="InsureTermMonth" fieldType="Long" parameterType="CSNODE" parameter="SXU00174" method="getElementByCode.getValue" /> <!-- 保险期限（个月） -->
+				<item fieldName="AnnGoodsValue" fieldType="String" parameterType="CSNODE" parameter="SXU00187" method="getElementByCode.getValue" /> <!-- 年货物价值 -->
+				<item fieldName="PerAccdCmpnstLmtCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00121" method="getElementByCode.getValue.getCurrency" /> <!-- 每次事故赔偿限额币种 -->
+				<item fieldName="PerAccdCmpnstLimit" fieldType="Float" parameterType="CSNODE" parameter="SXU00121" method="getElementByCode.getValue.getAmount" /> <!-- 每次事故赔偿限额 -->
+				<item fieldName="AggrCmpnstLmtCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00107" method="getElementByCode.getValue.getCurrency" /> <!-- 年度累计赔偿限额 -->
+				<item fieldName="AggregCmpnstLimit" fieldType="Float" parameterType="CSNODE" parameter="SXU00107" method="getElementByCode.getValue.getAmount" /> <!-- 年度累计赔偿限额 -->
+				<item fieldName="AddSpecialItem" fieldType="String" parameterType="CSNODE" parameter="SXU00252" method="getElementByCode.getValue" /> <!-- 附加险特殊项目责任保险 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" parameter="objectno" /> <!-- 对象号 -->
+			</table>
+		</area>
+	</mapping>
+</definition>

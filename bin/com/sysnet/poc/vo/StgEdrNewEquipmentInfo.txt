@@ -1,0 +1,142 @@
+package com.sysnet.poc.vo;
+
+import java.sql.*;
+
+/**
+ * StgEdrNewEquipmentInfo entity.
+ * 
+ * @author MyEclipse Persistence Tools
+ */
+
+public class StgEdrNewEquipmentInfo implements java.io.Serializable {
+
+	// Fields
+
+	// 新增设备顺序号
+	private String newEuipmentId;
+	// 批单CD
+	private String endorseNo;
+	// 新增设备项目
+	private String newEuipments;
+	// 新增设备数量
+	private Long newEquipmentNumber;
+	// 新增加设备购置价
+	private Double newEquipmentPrice;
+	// 新增设备新件实际价值
+	private Double newEquipmentActualPrice;
+	// 新增设备新件购置价小计
+	private Double newEquipmentPriceSubtotal;
+	// 对象序号
+	private Long objectId;
+	// 对象类型
+	private String objectType;
+	// 批次序号
+	private Long batId;
+	// 时间戳
+	private Date timeStamp;
+	// 标的序列号
+	private Long itemNo;
+
+	// Constructors
+
+	/** default constructor */
+	public StgEdrNewEquipmentInfo() {
+	}
+
+	public String getNewEuipmentId() {
+		return newEuipmentId;
+	}
+
+	public void setNewEuipmentId(String newEuipmentId) {
+		this.newEuipmentId = newEuipmentId;
+	}
+
+	public String getEndorseNo() {
+		return endorseNo;
+	}
+
+	public void setEndorseNo(String endorseNo) {
+		this.endorseNo = endorseNo;
+	}
+
+	public String getNewEuipments() {
+		return this.newEuipments;
+	}
+
+	public void setNewEuipments(String newEuipments) {
+		this.newEuipments = newEuipments;
+	}
+
+	public Long getNewEquipmentNumber() {
+		return this.newEquipmentNumber;
+	}
+
+	public void setNewEquipmentNumber(Long newEquipmentNumber) {
+		this.newEquipmentNumber = newEquipmentNumber;
+	}
+
+	public Double getNewEquipmentPrice() {
+		return this.newEquipmentPrice;
+	}
+
+	public void setNewEquipmentPrice(Double newEquipmentPrice) {
+		this.newEquipmentPrice = newEquipmentPrice;
+	}
+
+	public Double getNewEquipmentActualPrice() {
+		return this.newEquipmentActualPrice;
+	}
+
+	public void setNewEquipmentActualPrice(Double newEquipmentActualPrice) {
+		this.newEquipmentActualPrice = newEquipmentActualPrice;
+	}
+
+	public Double getNewEquipmentPriceSubtotal() {
+		return this.newEquipmentPriceSubtotal;
+	}
+
+	public void setNewEquipmentPriceSubtotal(Double newEquipmentPriceSubtotal) {
+		this.newEquipmentPriceSubtotal = newEquipmentPriceSubtotal;
+	}
+
+	public Long getObjectId() {
+		return this.objectId;
+	}
+
+	public void setObjectId(Long objectId) {
+		this.objectId = objectId;
+	}
+
+	public String getObjectType() {
+		return this.objectType;
+	}
+
+	public void setObjectType(String objectType) {
+		this.objectType = objectType;
+	}
+
+	public Long getBatId() {
+		return this.batId;
+	}
+
+	public void setBatId(Long batId) {
+		this.batId = batId;
+	}
+
+	public Date getTimeStamp() {
+		return this.timeStamp;
+	}
+
+	public void setTimeStamp(Date timeStamp) {
+		this.timeStamp = timeStamp;
+	}
+
+	public Long getItemNo() {
+		return itemNo;
+	}
+
+	public void setItemNo(Long itemNo) {
+		this.itemNo = itemNo;
+	}
+
+}

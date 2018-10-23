@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition description="责任险标的表">
+	<mapping>
+		<area description="责任险标的表">
+			<table tableName="T_SubjDuty" dataProviderType="CSNODE" as="Contract">
+				<item fieldName="PolicyNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="policyno" /> <!-- 保单号 -->
+				<item fieldName="EndorseNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="endorseno" /> <!-- 批单号 -->
+				<item fieldName="NodeNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="nodeno" /> <!-- 节点号 -->
+				<item fieldName="ContractNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="contractno" /> <!-- 合同号 -->
+				<item fieldName="SubVersionNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="version" /> <!-- 版本号 -->
+				<item fieldName="ProposalNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="proposalno" /> <!-- 投保单号 -->
+				<item fieldName="BizStation" fieldType="String" parameterType="CSNODE" parameter="SXU00013" method="getElementByCode.getValue" /> <!-- 营业场所 -->
+				<item fieldName="SubjectName" fieldType="String" parameterType="CSNODE" parameter="SXU00771" method="getElementByCode.getValue" /> <!-- 标的名称 -->
+				<item fieldName="TradeSubCategory" fieldType="String" parameterType="CSNODE" parameter="SXU00556" method="getElementByCode.getValue" /> <!-- 行业中类 -->
+				<item fieldName="TradeSpecialRisk" fieldType="String" parameterType="CSNODE" parameter="SXU00558" method="getElementByCode.getValue" /> <!-- 行业特殊风险 -->
+				<item fieldName="ActiveName" fieldType="String" parameterType="CSNODE" parameter="SXU00770" method="getElementByCode.getValue" /> <!-- 活动名称 -->
+				<item fieldName="AppointHole" fieldType="String" parameterType="CSNODE" parameter="SXU00774" method="getElementByCode.getValue" /> <!-- 指定球洞 -->
+				<item fieldName="HoleDistance" fieldType="String" parameterType="CSNODE" parameter="SXU00773" method="getElementByCode.getValue" /> <!-- 球洞距离 -->
+				<item fieldName="PlayerNumber" fieldType="String" parameterType="CSNODE" parameter="SXU00775" method="getElementByCode.getValue" /> <!-- 参赛人次 -->
+				<item fieldName="MatchPrize" fieldType="String" parameterType="CSNODE" parameter="SXU00776" method="getElementByCode.getValue" /> <!-- 比赛奖品 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="objectno" /> <!-- 对象号 -->
+			</table>
+		</area>
+	</mapping>
+</definition>

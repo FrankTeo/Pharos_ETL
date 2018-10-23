@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition description="责任险标的表">
+	<mapping>
+		<area description="责任险标的表">
+			<table tableName="T_SubjDuty" dataProviderType="CSNODE" as="Contract">
+				<item fieldName="PolicyNo" fieldType="String" parameterType="GLOBAL" parameter="policyno" /> <!-- 保单号 -->
+				<item fieldName="EndorseNo" fieldType="String" parameterType="GLOBAL" parameter="endorseno" /> <!-- 批单号 -->
+				<item fieldName="NodeNo" fieldType="String" parameterType="GLOBAL" parameter="nodeno" /> <!-- 节点号 -->
+				<item fieldName="ContractNo" fieldType="String" parameterType="GLOBAL" parameter="contractno" /> <!-- 合同号 -->
+				<item fieldName="SubVersionNo" fieldType="String" parameterType="GLOBAL" parameter="version" /> <!-- 版本号 -->
+				<item fieldName="ProposalNo" fieldType="String" parameterType="GLOBAL" parameter="proposalno" /> <!-- 投保单号 -->
+				<item fieldName="PreAccdLimitCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00121" method="getElementByCode.getValue.getCurrency" /> <!-- 每次事故责任限额币种 -->
+				<item fieldName="PreAccdLimit" fieldType="Float" parameterType="CSNODE" parameter="SXU00121" method="getElementByCode.getValue.getAmount" /> <!-- 每次事故责任限额 -->
+				<item fieldName="BizStation" fieldType="String" parameterType="CSNODE" parameter="SXU00254" method="getElementByCode.getValue" /> <!-- 营业场所 -->
+				<item fieldName="ConstructLevel" fieldType="String" parameterType="CSNODE" parameter="SXU00103" method="getElementByCode.getValue" /> <!-- 建筑等级 -->
+				<item fieldName="BizIncmCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00849" method="getElementByCode.getValue.getCurrency" /> <!-- 近三年营业收入币种 -->
+				<item fieldName="BizIncome" fieldType="Float" parameterType="CSNODE" parameter="SXU00849" method="getElementByCode.getValue.getAmount" /> <!-- 近三年营业收入 -->
+				<item fieldName="PastAccident" fieldType="String" parameterType="CSNODE" parameter="SXU00848" method="getElementByCode.getValue" /> <!-- 以往发生何事故 -->
+				<item fieldName="AggrgLmtCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00107" method="getElementByCode.getValue.getCurrency" /> <!-- 累计赔偿限额币种 -->
+				<item fieldName="AggrgLimit" fieldType="Float" parameterType="CSNODE" parameter="SXU00107" method="getElementByCode.getValue.getAmount" /> <!-- 累计赔偿限额 -->
+				<item fieldName="SubjectName" fieldType="String" parameterType="CSNODE" parameter="SXU00262" method="getElementByCode.getValue" /> <!-- 标的名称 -->
+				<item fieldName="CarportNumber" fieldType="Long" parameterType="CSNODE" parameter="SXU00264" method="getElementByCode.getValue" /> <!-- 停车位数量 -->
+				<item fieldName="PrvtCrprtNumber" fieldType="Long" parameterType="CSNODE" parameter="SXU00265" method="getElementByCode.getValue" /> <!-- 业主自购车位数量 -->
+				<item fieldName="LngTmLsNumber" fieldType="Long" parameterType="CSNODE" parameter="SXU00266" method="getElementByCode.getValue" /> <!-- 长期包租车位数量 -->
+				<item fieldName="TempNumber" fieldType="Long" parameterType="CSNODE" parameter="SXU00267" method="getElementByCode.getValue" /> <!-- 临时停放车位数量 -->
+				<item fieldName="PerVhclLmtCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00268" method="getElementByCode.getValue.getCurrency" /> <!-- 每车每次事故赔偿限额币种 -->
+				<item fieldName="PerVhclLimt" fieldType="Float" parameterType="CSNODE" parameter="SXU00268" method="getElementByCode.getValue.getAmount" /> <!-- 每车每次事故赔偿限额 -->
+				<item fieldName="PrmmStndrdCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00847" method="getElementByCode.getValue.getCurrency" /> <!-- 保险收费标准币种 -->
+				<item fieldName="PrmmStandard" fieldType="Float" parameterType="CSNODE" parameter="SXU00847" method="getElementByCode.getValue.getAmount" /> <!-- 保险收费标准 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" parameter="objectno" /> <!-- 对象号 -->
+			</table>
+		</area>
+	</mapping>
+</definition>

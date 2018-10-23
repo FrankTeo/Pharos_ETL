@@ -1,0 +1,174 @@
+package com.sysnet.poc.vo;
+
+import java.sql.*;
+
+/**
+ * StgEdrPayPlan entity.
+ * 
+ * @author MyEclipse Persistence Tools
+ */
+
+public class StgEdrPayPlan implements java.io.Serializable {
+
+	// Fields
+
+	// 缴费计划ID
+	private Long payPlanId;
+	// 保单当前版本号
+	private Long version;
+	// 批单CD
+	private String endorseNo;
+	// 截止日期
+	private Date dueDate;
+	// 币种
+	private Long currency;
+	// 保费
+	private Double preminum;
+	// 加费
+	private Double overcharge;
+	// 折扣
+	private Double discount;
+	// 分期付款手续费
+	private Double surcharge;
+	// 总计
+	private Double total;
+	// 对象类型
+	private String objectType;
+	// 批次序号
+	private Long batId;
+	// 对象序号
+	private Long objectId;
+	// 时间戳
+	private Timestamp timeStamp;
+	// 保单CD
+	private String policyNo;
+
+	// Constructors
+
+	/** default constructor */
+	public StgEdrPayPlan() {
+	}
+
+	// Property accessors
+
+	public Long getPayPlanId() {
+		return payPlanId;
+	}
+
+	public void setPayPlanId(Long payPlanId) {
+		this.payPlanId = payPlanId;
+	}
+
+	public Long getVersion() {
+		return version;
+	}
+
+	public void setVersion(Long version) {
+		this.version = version;
+	}
+
+	public String getEndorseNo() {
+		return endorseNo;
+	}
+
+	public void setEndorseNo(String endorseNo) {
+		this.endorseNo = endorseNo;
+	}
+
+	public Date getDueDate() {
+		return this.dueDate;
+	}
+
+	public void setDueDate(Date dueDate) {
+		this.dueDate = dueDate;
+	}
+
+	public Long getCurrency() {
+		return this.currency;
+	}
+
+	public void setCurrency(Long currency) {
+		this.currency = currency;
+	}
+
+	public Double getPreminum() {
+		return this.preminum;
+	}
+
+	public void setPreminum(Double preminum) {
+		this.preminum = preminum;
+	}
+
+	public Double getOvercharge() {
+		return this.overcharge;
+	}
+
+	public void setOvercharge(Double overcharge) {
+		this.overcharge = overcharge;
+	}
+
+	public Double getDiscount() {
+		return this.discount;
+	}
+
+	public void setDiscount(Double discount) {
+		this.discount = discount;
+	}
+
+	public Double getSurcharge() {
+		return this.surcharge;
+	}
+
+	public void setSurcharge(Double surcharge) {
+		this.surcharge = surcharge;
+	}
+
+	public Double getTotal() {
+		return this.total;
+	}
+
+	public void setTotal(Double total) {
+		this.total = total;
+	}
+
+	public String getObjectType() {
+		return this.objectType;
+	}
+
+	public void setObjectType(String objectType) {
+		this.objectType = objectType;
+	}
+
+	public Long getBatId() {
+		return this.batId;
+	}
+
+	public void setBatId(Long batId) {
+		this.batId = batId;
+	}
+
+	public Long getObjectId() {
+		return this.objectId;
+	}
+
+	public void setObjectId(Long objectId) {
+		this.objectId = objectId;
+	}
+
+	public Timestamp getTimeStamp() {
+		return this.timeStamp;
+	}
+
+	public void setTimeStamp(Timestamp timeStamp) {
+		this.timeStamp = timeStamp;
+	}
+
+	public String getPolicyNo() {
+		return this.policyNo;
+	}
+
+	public void setPolicyNo(String policyNo) {
+		this.policyNo = policyNo;
+	}
+
+}

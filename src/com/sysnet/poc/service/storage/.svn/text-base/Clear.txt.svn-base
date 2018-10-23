@@ -1,0 +1,77 @@
+package com.sysnet.poc.service.storage;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Clear {
+	List plc_list = new ArrayList();
+	List prp_list = new ArrayList();
+	List edr_list = new ArrayList();
+
+	public void init() {
+
+		String plc_sql0 = "delete from STG_PLC_DCL_ROLE_INFO";
+		String plc_sql1 = "delete from STG_PLC_ROLE_INFO";
+		String plc_sql2 = "delete from STG_PLC_CONDITION";
+		String plc_sql3 = "delete from STG_PLC_CAR_DECLARATION";
+		String plc_sql4 = "delete from STG_PLC_POLICY";
+		plc_list.add(plc_sql0);
+		plc_list.add(plc_sql1);
+		plc_list.add(plc_sql2);
+		plc_list.add(plc_sql3);
+		plc_list.add(plc_sql4);
+
+		String prp_sql0 = "delete from STG_PRP_DCL_ROLE_INFO";
+		String prp_sql1 = "delete from STG_PRP_ROLE_INFO";
+		String prp_sql2 = "delete from STG_PRP_CONDITION";
+		String prp_sql3 = "delete from STG_PRP_CAR_DECLARATION";
+		String prp_sql4 = "delete from STG_PRP_PROPOSAL";
+		prp_list.add(prp_sql0);
+		prp_list.add(prp_sql1);
+		prp_list.add(prp_sql2);
+		prp_list.add(prp_sql3);
+		prp_list.add(prp_sql4);
+
+		String edr_sql0 = "delete from STG_EDR_DCL_ROLE_INFO";
+		String edr_sql1 = "delete from STG_EDR_ROLE_INFO";
+		String edr_sql2 = "delete from STG_EDR_CONDITION";
+		String edr_sql3 = "delete from STG_EDR_CAR_DECLARATION";
+		String edr_sql4 = "delete from STG_EDR_ENDORSE";
+		edr_list.add(edr_sql0);
+		edr_list.add(edr_sql1);
+		edr_list.add(edr_sql2);
+		edr_list.add(edr_sql3);
+		edr_list.add(edr_sql4);
+	}
+
+	public void clearByObjectNo(Connection conn, String type, String object_no) throws SQLException {
+		init();
+		Statement state = conn.createStatement();
+		boolean result = false;
+		if (type.equals("1")) {
+			for (int i = 0; i < 5; i++) {
+				System.out.println(edr_list.get(i).toString() + " where POLICY_NO  = '" + object_no + "'");
+				result = state.execute(plc_list.get(i).toString() + " where POLICY_NO  = '" + object_no + "'");
+			}
+		} else if (type.equals("2")) {
+			for (int i = 0; i < 5; i++) {
+				System.out.println(edr_list.get(i).toString() + " where ENDORSE_NO  = '" + object_no + "'");
+				result = state.execute(edr_list.get(i).toString() + " where ENDORSE_NO  = '" + object_no + "'");
+			}
+		} else if (type.equals("3")) {
+			for (int i = 0; i < 5; i++) {
+				System.out.println(edr_list.get(i).toString() + " where PROPOSAL_NO  = '" + object_no + "'");
+				result = state.execute(prp_list.get(i).toString() + " where PROPOSAL_NO  = '" + object_no + "'");
+			}
+
+		}
+		if (result) {
+			System.out.println("删除成功");
+		}
+
+	}
+
+}

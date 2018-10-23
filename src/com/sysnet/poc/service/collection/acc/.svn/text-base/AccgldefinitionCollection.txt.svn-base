@@ -1,0 +1,110 @@
+package com.sysnet.poc.service.collection.acc;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import pharos.account.bo.IGeneralLedgerBO;
+import pharos.account.vo.accountstructure.GeneralLedgerBaseDef;
+import pharos.account.vo.accountstructure.GeneralLedgerDef;
+
+import com.sysnet.poc.control.manage.vo.EtlPharosIncrAcc;
+import com.sysnet.poc.util.PharosServiceContainer;
+import com.sysnet.poc.vo.StgAccGlbasedefinition;
+import com.sysnet.poc.vo.StgAccGldefinition;
+
+public class AccgldefinitionCollection {
+
+	private StgAccGldefinition stgAccGldefinition;
+	private ArrayList<StgAccGlbasedefinition> stgAccGlbasedefinitionList;
+
+	public AccgldefinitionCollection(EtlPharosIncrAcc ec) {
+		PharosServiceContainer pc = PharosServiceContainer.Instance();
+		IGeneralLedgerBO generalLedgerBO = pc.getIGeneralLedgerBO();
+		GeneralLedgerDef ledger = generalLedgerBO.queryGLDefinition(Long.parseLong(ec.getObjectNo()));
+		this.setAccgldefinition(ledger, ec);
+		this.setAccglbasedefinition(ledger, ec);
+	}
+
+	/**
+	 * T_ACCGLDEFINITION 财务总帐定义主表
+	 * 
+	 * @param ledger
+	 * @param ec
+	 */
+	private void setAccgldefinition(GeneralLedgerDef ledger, EtlPharosIncrAcc ec) {
+
+		if (ledger != null) {
+			this.stgAccGldefinition = new StgAccGldefinition();
+			this.stgAccGldefinition.setGldefId(ledger.getId());
+			// this.stgAccGldefinition.setRemoved();
+			this.stgAccGldefinition.setName(ledger.getName());
+			this.stgAccGldefinition.setTaxZone(new Long(ledger.getTaxZone()));
+			this.stgAccGldefinition.setSource(new Long(ledger.getSource()));
+			this.stgAccGldefinition.setDocumentType(new Long(ledger.getDoctype()));
+			this.stgAccGldefinition.setConcept(new Long(ledger.getConcept()));
+			this.stgAccGldefinition.setLoi(new Long(ledger.getLoi()));
+			this.stgAccGldefinition.setCurrency(new Long(ledger.getCurrency()));
+			this.stgAccGldefinition.setAmountType(new Long(ledger.getAmounttype()));
+			this.stgAccGldefinition.setAmountSign(ledger.getAmountSign());
+			this.stgAccGldefinition.setAppliedSource(new Long(ledger.getAppliedSource()));
+			this.stgAccGldefinition.setAppliedDocumentType(new Long(ledger.getAppliedDocType()));
+			this.stgAccGldefinition.setIsappliedtrans(new Long(ledger.isAppliedTrans() ? 1 : 0));
+			this.stgAccGldefinition.setBatId(ec.getBatId());
+			this.stgAccGldefinition.setObjectId(ec.getObjectId());
+			this.stgAccGldefinition.setObjectType(String.valueOf(ec.getObjectType()));
+			this.stgAccGldefinition.setTimeStamp(ec.getTimeStamp());
+
+		}
+	}
+
+	/**
+	 * T_ACCGLBASEDEFINITION 财务总帐定义明细
+	 * 
+	 * @param ledger
+	 * @param ec
+	 */
+	private void setAccglbasedefinition(GeneralLedgerDef ledger, EtlPharosIncrAcc ec) {
+
+		this.stgAccGlbasedefinitionList = new ArrayList<StgAccGlbasedefinition>();
+
+		List<GeneralLedgerBaseDef> ledgerBaseDefList = ledger.getBaseDefinitions();
+		if (ledgerBaseDefList == null || ledgerBaseDefList.size() == 0) {
+			return;
+		} else {
+
+			for (GeneralLedgerBaseDef vo : ledgerBaseDefList) {
+				StgAccGlbasedefinition base = new StgAccGlbasedefinition();
+				base.setGlbasedefinitionId(vo.getId());
+				base.setGldefId(ledger.getId());
+				base.setRemoved(new Long(0));
+				base.setName(vo.getName());
+				base.setVoucher(new Long(vo.getVoucher()));
+				base.setGlcode(vo.getCodeRule());// ?
+				base.setIsdebit(new Long(vo.isDebit() ? 1 : 0));
+				base.setHasThirdParty(new Long(vo.isHasThirdParty() ? 1 : 0));
+				base.setTimeStamp(ec.getTimeStamp());
+				base.setBatId(ec.getBatId());
+				base.setObjectId(ec.getObjectId());
+				base.setObjectType(String.valueOf(ec.getObjectType()));
+				this.stgAccGlbasedefinitionList.add(base);
+			}
+		}
+
+	}
+
+	public StgAccGldefinition getStgAccGldefinition() {
+		return stgAccGldefinition;
+	}
+
+	public void setStgAccGldefinition(StgAccGldefinition stgAccGldefinition) {
+		this.stgAccGldefinition = stgAccGldefinition;
+	}
+
+	public ArrayList<StgAccGlbasedefinition> getStgAccGlbasedefinitionList() {
+		return stgAccGlbasedefinitionList;
+	}
+
+	public void setStgAccGlbasedefinitionList(ArrayList<StgAccGlbasedefinition> stgAccGlbasedefinitionList) {
+		this.stgAccGlbasedefinitionList = stgAccGlbasedefinitionList;
+	}
+}

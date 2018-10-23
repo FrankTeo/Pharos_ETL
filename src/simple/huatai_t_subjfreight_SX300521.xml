@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition description="货运险标的表">
+	<mapping>
+		<area description="货运险标的表">
+			<table tableName="T_SubjFreight" dataProviderType="CSNODE" as="Contract">
+				<item fieldName="PolicyNo" fieldType="String" parameterType="GLOBAL" parameter="policyno" /> <!-- 保单号 -->
+				<item fieldName="EndorseNo" fieldType="String" parameterType="GLOBAL" parameter="endorseno" /> <!-- 批单号 -->
+				<item fieldName="NodeNo" fieldType="String" parameterType="GLOBAL" parameter="nodeno" /> <!-- 节点号 -->
+				<item fieldName="ContractNo" fieldType="String" parameterType="GLOBAL" parameter="contractno" /> <!-- 合同号 -->
+				<item fieldName="SubVersionNo" fieldType="String" parameterType="GLOBAL" parameter="version" /> <!-- 版本号 -->
+				<item fieldName="ProposalNo" fieldType="String" parameterType="GLOBAL" parameter="proposalno" /> <!-- 投保单号 -->
+				<item fieldName="InsuranceCondition" fieldType="String" parameterType="CSNODE" parameter="SXU00080" method="getElementByCode.getValue" /> <!-- 承保条件 -->
+				<item fieldName="TransRange" fieldType="String" parameterType="CSNODE" parameter="SXU00530" method="getElementByCode.getValue" /> <!-- 运输范围 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" parameter="objectno" /> <!-- 对象号 -->
+			</table>
+		</area>
+	</mapping>
+</definition>

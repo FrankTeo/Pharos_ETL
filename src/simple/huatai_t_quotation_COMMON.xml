@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition description="询价单">
+	<mapping>
+		<area description="询价单">
+			<table tableName="T_Quotation" dataProviderType="CSNODE" as="Contract">
+				<item fieldName="QuotationNo" fieldType="String" parameterType="GLOBAL" parameter="quotationno" /> <!-- 询价单号 -->
+				<item fieldName="QuotaVersion" fieldType="Long" parameterType="GLOBAL" parameter="quotaversion" /> <!-- 询价单版本 -->
+				<item fieldName="ProductCode" fieldType="String" parameterType="GLOBAL" parameter="productcode" /> <!-- 产品代码 -->
+				<item fieldName="InsuranceCode" fieldType="String" parameterType="GLOBAL" parameter="productcode" /> <!-- 险种代码 -->
+				<!--item fieldName="TermUnit" fieldType="String" parameterType="CSNODE" parameter="SXU00551" method="getElementByCode.getValue" /> --> <!-- 期间单位 -->
+				<item fieldName="TermCount" fieldType="Long" parameterType="CSNODE" method="getInsureDays" /> <!-- 期间数量 -->
+				<item fieldName="QuotationDate" fieldType="Date" parameterType="CSNODE" method="getQuoteDate" /> <!-- 询价日期 -->
+				<item fieldName="StartDate" fieldType="Date" parameterType="GLOBAL" parameter="origindate" /> <!-- 保险起期 -->
+				<item fieldName="EndDate" fieldType="Date" parameterType="GLOBAL" parameter="enddate" /> <!-- 保险止期 -->
+				<item fieldName="AcquisitionBranch" fieldType="String" parameterType="CSNODE" method="getBizCompanyNodeCode" /> <!-- 归属机构 -->
+				<item fieldName="AcquisitionStaff" fieldType="String" parameterType="CSNODE" method="getBusinessman" /> <!-- 归属业务员 -->
+				<item fieldName="Creator" fieldType="String" parameterType="CSNODE" method="getPolicyInputuser" /> <!-- 录单人 -->
+				<item fieldName="UnderWriteStaff" fieldType="String" parameterType="CSNODE" method="getFinalUnderwriter" /> <!-- 审核人 -->
+				<item fieldName="CoverageCurrency" fieldType="String" parameterType="CSNODE" method="getInsuredValueCurrency" /> <!-- 保额币种 -->
+				<item fieldName="Coverage" fieldType="Float" parameterType="CSNODE" method="getInsuredValue" /> <!-- 保额 -->
+				<item fieldName="PremiumCurrency" fieldType="String" parameterType="CSNODE" method="getPremiumCurrency" /> <!-- 保费币种 -->
+				<item fieldName="Premium" fieldType="Float" parameterType="CSNODE" method="getPremiumValue" /> <!-- 保费 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" parameter="objectno" /> <!-- 对象号 -->
+				<!--<item fieldName="Remark" fieldType="String" />--> <!-- 备注 -->
+				<!--<item fieldName="CrtTime" fieldType="Date" />--> <!-- 创建时间 -->
+				<!--<item fieldName="MdfTime" fieldType="Date" />--> <!-- 修改时间 -->
+			</table>
+		</area>
+	</mapping>
+</definition>

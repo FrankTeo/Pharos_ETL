@@ -1,0 +1,236 @@
+package com.sysnet.poc.vo;
+
+import java.sql.Date;
+
+public class StgProcedureDetail {
+
+	private long proceduredetail_id;
+
+	private String procedurecode;
+
+	private String procedurerootcode;
+
+	private long proceduregroup_id;
+
+	private String copayment;
+
+	private double deductiblepercentage;
+
+	private String deductiblefixamount;
+
+	private double percentage;
+
+	private Date start_date;
+
+	private Date end_date;
+
+	private double coninsureance;
+
+	private Date create_date;
+
+	private int insure_company_id;
+
+	private String insure_company_code;
+
+	private Date souc_sys_start_date;
+
+	private Date souc_sys_end_date;
+
+	private Date biz_end_date;
+
+	private Date biz_start_date;
+
+	private Date load_date;
+
+	private String object_type;
+
+	private int bat_id;
+
+	private int object_id;
+
+	private String souc_sys_flag;
+
+	public long getProceduredetail_id() {
+		return proceduredetail_id;
+	}
+
+	public void setProceduredetail_id(long proceduredetail_id) {
+		this.proceduredetail_id = proceduredetail_id;
+	}
+
+	public String getProcedurecode() {
+		return procedurecode;
+	}
+
+	public void setProcedurecode(String procedurecode) {
+		this.procedurecode = procedurecode;
+	}
+
+	public String getProcedurerootcode() {
+		return procedurerootcode;
+	}
+
+	public void setProcedurerootcode(String procedurerootcode) {
+		this.procedurerootcode = procedurerootcode;
+	}
+
+	public long getProceduregroup_id() {
+		return proceduregroup_id;
+	}
+
+	public void setProceduregroup_id(long proceduregroup_id) {
+		this.proceduregroup_id = proceduregroup_id;
+	}
+
+	public String getCopayment() {
+		return copayment;
+	}
+
+	public void setCopayment(String copayment) {
+		this.copayment = copayment;
+	}
+
+	public double getDeductiblepercentage() {
+		return deductiblepercentage;
+	}
+
+	public void setDeductiblepercentage(double deductiblepercentage) {
+		this.deductiblepercentage = deductiblepercentage;
+	}
+
+	public String getDeductiblefixamount() {
+		return deductiblefixamount;
+	}
+
+	public void setDeductiblefixamount(String deductiblefixamount) {
+		this.deductiblefixamount = deductiblefixamount;
+	}
+
+	public double getPercentage() {
+		return percentage;
+	}
+
+	public void setPercentage(double percentage) {
+		this.percentage = percentage;
+	}
+
+	public Date getStart_date() {
+		return start_date;
+	}
+
+	public void setStart_date(Date start_date) {
+		this.start_date = start_date;
+	}
+
+	public Date getEnd_date() {
+		return end_date;
+	}
+
+	public void setEnd_date(Date end_date) {
+		this.end_date = end_date;
+	}
+
+	public double getConinsureance() {
+		return coninsureance;
+	}
+
+	public void setConinsureance(double coninsureance) {
+		this.coninsureance = coninsureance;
+	}
+
+	public Date getCreate_date() {
+		return create_date;
+	}
+
+	public void setCreate_date(Date create_date) {
+		this.create_date = create_date;
+	}
+
+	public int getInsure_company_id() {
+		return insure_company_id;
+	}
+
+	public void setInsure_company_id(int insure_company_id) {
+		this.insure_company_id = insure_company_id;
+	}
+
+	public String getInsure_company_code() {
+		return insure_company_code;
+	}
+
+	public void setInsure_company_code(String insure_company_code) {
+		this.insure_company_code = insure_company_code;
+	}
+
+	public Date getSouc_sys_start_date() {
+		return souc_sys_start_date;
+	}
+
+	public void setSouc_sys_start_date(Date souc_sys_start_date) {
+		this.souc_sys_start_date = souc_sys_start_date;
+	}
+
+	public Date getSouc_sys_end_date() {
+		return souc_sys_end_date;
+	}
+
+	public void setSouc_sys_end_date(Date souc_sys_end_date) {
+		this.souc_sys_end_date = souc_sys_end_date;
+	}
+
+	public Date getBiz_end_date() {
+		return biz_end_date;
+	}
+
+	public void setBiz_end_date(Date biz_end_date) {
+		this.biz_end_date = biz_end_date;
+	}
+
+	public Date getBiz_start_date() {
+		return biz_start_date;
+	}
+
+	public void setBiz_start_date(Date biz_start_date) {
+		this.biz_start_date = biz_start_date;
+	}
+
+	public Date getLoad_date() {
+		return load_date;
+	}
+
+	public void setLoad_date(Date load_date) {
+		this.load_date = load_date;
+	}
+
+	public String getObject_type() {
+		return object_type;
+	}
+
+	public void setObject_type(String object_type) {
+		this.object_type = object_type;
+	}
+
+	public int getBat_id() {
+		return bat_id;
+	}
+
+	public void setBat_id(int bat_id) {
+		this.bat_id = bat_id;
+	}
+
+	public int getObject_id() {
+		return object_id;
+	}
+
+	public void setObject_id(int object_id) {
+		this.object_id = object_id;
+	}
+
+	public String getSouc_sys_flag() {
+		return souc_sys_flag;
+	}
+
+	public void setSouc_sys_flag(String souc_sys_flag) {
+		this.souc_sys_flag = souc_sys_flag;
+	}
+}

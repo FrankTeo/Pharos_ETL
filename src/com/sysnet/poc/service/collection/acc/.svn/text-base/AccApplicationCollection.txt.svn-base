@@ -1,0 +1,109 @@
+package com.sysnet.poc.service.collection.acc;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.commons.logging.Log;
+
+import pharos.account.bo.IApplicationBO;
+import pharos.account.vo.accountstructure.Application;
+import pharos.account.vo.accountstructure.ApplicationDetail;
+
+import com.sysnet.poc.control.manage.vo.EtlPharosIncrAcc;
+import com.sysnet.poc.util.DateHelper;
+import com.sysnet.poc.util.OdsLogger;
+import com.sysnet.poc.util.PharosServiceContainer;
+import com.sysnet.poc.vo.StgAccApplication;
+import com.sysnet.poc.vo.StgAccApplicationdetail;
+
+public class AccApplicationCollection {
+
+	private static final Log log = OdsLogger.getLog("accLog4j", "ACC");
+	private StgAccApplication stgAccApplication = null;
+
+	private List<StgAccApplicationdetail> stgAccApplicationdetailList = new ArrayList<StgAccApplicationdetail>();
+
+	@SuppressWarnings("unused")
+	private AccApplicationCollection() {
+
+	}
+
+	public AccApplicationCollection(EtlPharosIncrAcc ec) {
+
+		PharosServiceContainer pc = PharosServiceContainer.Instance();
+		// long times = System.currentTimeMillis();
+		// log.info(times);
+		IApplicationBO iApplicationBO = pc.getIApplicationBO();
+		Application application = iApplicationBO.getApplication(Long.parseLong(ec.getObjectNo()));
+		setApplication(ec, application);
+		// log.info(System.currentTimeMillis() - times);
+	}
+
+	private void setApplication(EtlPharosIncrAcc ec, Application application) {
+		if (application != null) {
+			stgAccApplication = new StgAccApplication();
+			stgAccApplication.setAppId(application.getId());
+			stgAccApplication.setAppliedTransId(application.getApplyTransaction().getId());
+			stgAccApplication.setBaseTransId(application.getBaseTransaction().getId());
+			stgAccApplication.setAmount(application.getAppliedAmount());
+			stgAccApplication.setAppliedDate(DateHelper.getSqlDate(application.getAppliedDate()));
+			stgAccApplication.setRemoved(new Long(0));
+			stgAccApplication.setStatus(new Long(application.getStatus()));
+			stgAccApplication.setReversedId(application.getReversedId());
+			stgAccApplication.setAppliedId(application.getAppliedId());
+			stgAccApplication.setCreateUserId(application.getCreateUserId());
+			stgAccApplication.setCreateDateTime(DateHelper.getSqlDate(application.getCreateDate()));
+			stgAccApplication.setChangeUserId(application.getChangeUserId());
+			stgAccApplication.setChangeDateTime(DateHelper.getSqlDate(application.getChangeDate()));
+			stgAccApplication.setBusinessCompanyCode(application.getBusinessCompanyCode());
+			stgAccApplication.setBusinessCompanyNodeCode(application.getBusinessCompanyNodeCode());
+			stgAccApplication.setUserCompanyCode(application.getUserCompanyCode());
+			stgAccApplication.setUserCompanyNodeCode(application.getUserCompanyNodeCode());
+			stgAccApplication.setTimeStamp(ec.getTimeStamp());
+			stgAccApplication.setBatId(ec.getBatId());
+			stgAccApplication.setObjectId(ec.getObjectId());
+			stgAccApplication.setObjectType(String.valueOf(ec.getObjectType()));
+
+			List<ApplicationDetail> list = application.getApplicationDetails();
+			if (list != null && list.size() > 0) {
+				this.setApplicationDetail(ec, list, application.getId());
+			}
+		}
+	}
+
+	private void setApplicationDetail(EtlPharosIncrAcc ec, List<ApplicationDetail> list, Long appId) {
+
+		for (ApplicationDetail vo : list) {
+			StgAccApplicationdetail stgAccApplicationdetail = new StgAccApplicationdetail();
+			stgAccApplicationdetail.setAppDetailId(vo.getId());
+			stgAccApplicationdetail.setAppId(appId);
+			stgAccApplicationdetail.setTransDetailId(vo.getTransDetalId());
+			stgAccApplicationdetail.setInstallDetailId(String.valueOf(vo.getInstallmentDetailId()));
+			stgAccApplicationdetail.setAppliedAmount(vo.getAppliedAmount());
+			stgAccApplicationdetail.setAmountType(new Long(0));
+			stgAccApplicationdetail.setRemoved(new Long(0));
+			stgAccApplicationdetail.setBatId(ec.getBatId());
+			stgAccApplicationdetail.setObjectId(ec.getObjectId());
+			stgAccApplicationdetail.setObjectType(String.valueOf(ec.getObjectType()));
+			stgAccApplicationdetail.setTimeStamp(ec.getTimeStamp());
+			stgAccApplicationdetailList.add(stgAccApplicationdetail);
+		}
+
+	}
+
+	public StgAccApplication getStgAccApplication() {
+		return stgAccApplication;
+	}
+
+	public void setStgAccApplication(StgAccApplication stgAccApplication) {
+		this.stgAccApplication = stgAccApplication;
+	}
+
+	public List<StgAccApplicationdetail> getStgAccApplicationdetailList() {
+		return stgAccApplicationdetailList;
+	}
+
+	public void setStgAccApplicationdetailList(List<StgAccApplicationdetail> stgAccApplicationdetailList) {
+		this.stgAccApplicationdetailList = stgAccApplicationdetailList;
+	}
+}

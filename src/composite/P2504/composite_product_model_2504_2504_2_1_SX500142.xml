@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definition description="" productCode="506" prodectNodeCode="" version="" author="" createDate="">
+	<dataProviders>
+		<dataProvider name="list" nodeName="" providerType="CSNODE" />
+	</dataProviders>
+	<mapping>
+		<area description="节点表" include="huatai_t_node_COMMON.xml" replace="true">
+			<table tableName="t_node" dataProvider="CSNODE=list" as="node" />
+		</area>
+		<area description="财产清单表" include="huatai_t_propertylist_SX500142.xml" replace="true">
+			<table tableName="t_propertylist" dataProvider="CSNODE=list" as="node" />
+		</area>
+	</mapping>
+</definition>
+

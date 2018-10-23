@@ -1,0 +1,18 @@
+package com.sysnet.etl;
+
+/**
+ * 固定的几个sql
+ * 
+ * @author Administrator
+ * 
+ */
+public final class Common {
+	public static final String GET_PROCEDURE_NAME_SQL = "select  prdname from prd_config where  dealstype =";
+	public static final String GET_POLICY_BATID_SQL = "select  bat_id  from  ETL_STAGE_ETL_STATUS  where stage_date_ready_status = '1'  and (ods_data_deal_status = 0 or ods_data_deal_status is null)  order  by BAT_ID asc";
+	public static final String GET_PARTY_BATID_SQL = "select  bat_id  from  ETL_STAGE_ETL_PARTY_STATUS  where stage_date_ready_status = '1' and (ods_data_deal_status = 0 or ods_data_deal_status is null)  order  by BAT_ID asc";
+	public static final String GET_CLM_BATID_SQL = "select  bat_id  from  ETL_STAGE_ETL_CLM_STATUS  where stage_date_ready_status = '1' and (ods_data_deal_status = 0 or ods_data_deal_status is null)  order  by BAT_ID asc";
+	public static final String CHECK_STATUS = "select  status  from prd_config where dealstype =  ";
+	public static final String UP_BEFORE = "update  prd_config  set   status = 1  where  dealstype =  ";
+	public static final String UP_AFTER = "update  prd_config  set   status = 0  where  dealstype =  ";
+	public static final int TIMES = 120000;
+}

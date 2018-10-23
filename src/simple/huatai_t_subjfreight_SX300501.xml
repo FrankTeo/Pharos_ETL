@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition description="货运险标的表">
+	<mapping>
+		<area description="货运险标的表">
+			<table tableName="T_SubjFreight" dataProviderType="CSNODE" as="Contract">
+				<item fieldName="PolicyNo" fieldType="String" parameterType="GLOBAL" parameter="policyno" /> <!-- 保单号 -->
+				<item fieldName="EndorseNo" fieldType="String" parameterType="GLOBAL" parameter="endorseno" /> <!-- 批单号 -->
+				<item fieldName="NodeNo" fieldType="String" parameterType="GLOBAL" parameter="nodeno" /> <!-- 节点号 -->
+				<item fieldName="ContractNo" fieldType="String" parameterType="GLOBAL" parameter="contractno" /> <!-- 合同号 -->
+				<item fieldName="SubVersionNo" fieldType="String" parameterType="GLOBAL" parameter="version" /> <!-- 版本号 -->
+				<item fieldName="ProposalNo" fieldType="String" parameterType="GLOBAL" parameter="proposalno" /> <!-- 投保单号 -->
+				<item fieldName="Ship" fieldType="String" parameterType="ROLE" parameter="SXU00005" method="getRoleByCode.getParty.getCode" /> <!-- 船舶Party -->
+				<!--<item fieldName="ShipName" fieldType="String" parameterType="ROLE" parameter="SXU00005" method="getRoleByCode.getParty.getNames.get0" />--> <!-- 船名 -->
+				<item fieldName="DepartureDate" fieldType="Date" parameterType="CSNODE" parameter="SXU00023" method="getElementByCode.getValue" /> <!-- 启运日期 -->
+				<item fieldName="GoodsCategory" fieldType="String" parameterType="CSNODE" parameter="SXU00061" method="getElementByCode.getValue" /> <!-- 货物大类 -->
+				<item fieldName="GoodsType" fieldType="String" parameterType="CSNODE" parameter="SXU00513" method="getElementByCode.getValue" /> <!-- 货物小类 -->
+				<item fieldName="TransportType" fieldType="String" parameterType="CSNODE" parameter="SXU00062" method="getElementByCode.getValue" /> <!-- 运输方式 -->
+				<item fieldName="VoyageNo" fieldType="String" parameterType="CSNODE" parameter="SXU00065" method="getElementByCode.getValue" /> <!-- 航次 -->
+				<item fieldName="InvoiceNo" fieldType="String" parameterType="CSNODE" parameter="SXU00066" method="getElementByCode.getValue" /> <!-- 发票号 -->
+				<item fieldName="LoadBillNo" fieldType="String" parameterType="CSNODE" parameter="SXU00067" method="getElementByCode.getValue" /> <!-- 提单号 -->
+				<item fieldName="DeparturePort" fieldType="String" parameterType="CSNODE" parameter="SXU00068" method="getElementByCode.getValue" /> <!-- 启运港 -->
+				<item fieldName="DepartureArea" fieldType="String" parameterType="CSNODE" parameter="SXU00069" method="getElementByCode.getValue" /> <!-- 启运地 -->
+				<item fieldName="TransitionPort" fieldType="String" parameterType="CSNODE" parameter="SXU00070" method="getElementByCode.getValue" /> <!-- 途经港 -->
+				<item fieldName="DestinationPort" fieldType="String" parameterType="CSNODE" parameter="SXU00071" method="getElementByCode.getValue" /> <!-- 目的港 -->
+				<item fieldName="DestinationArea" fieldType="String" parameterType="CSNODE" parameter="SXU00072" method="getElementByCode.getValue" /> <!-- 目的地 -->
+				<item fieldName="TransportTools" fieldType="String" parameterType="CSNODE" parameter="SXU00073" method="getElementByCode.getValue" /> <!-- 转运工具 -->
+				<item fieldName="DatePrint" fieldType="String" parameterType="CSNODE" parameter="SXU00074" method="getElementByCode.getValue" /> <!-- 日期打印 -->
+				<item fieldName="ExceptArriveDate" fieldType="Date" parameterType="CSNODE" parameter="SXU00075" method="getElementByCode.getValue" /> <!-- 预计抵达日期 -->
+				<item fieldName="OriginalNumber" fieldType="Long" parameterType="CSNODE" parameter="SXU00077" method="getElementByCode.getValue" /> <!-- 正本份数 -->
+				<item fieldName="PremiumPrint" fieldType="String" parameterType="CSNODE" parameter="SXU00078" method="getElementByCode.getValue" /> <!-- 保费打印 -->
+				<item fieldName="Surveyor" fieldType="String" parameterType="ROLE" parameter="SXU00004" method="getRoleByCode.getParty.getCode" /> <!-- 查勘代理人 -->
+				<!--<item fieldName="SurveyName" fieldType="String" parameterType="ROLE" parameter="SXU00004" method="getRoleByCode.getParty.getNames.get0" />--> <!-- 查勘代理人名 -->
+				<item fieldName="ClaimPayAt" fieldType="String" parameterType="CSNODE" parameter="SXU00079" method="getElementByCode.getValue" /> <!-- 赔款偿付地 -->
+				<item fieldName="InsuranceCondition" fieldType="String" parameterType="CSNODE" parameter="SXU00080" method="getElementByCode.getValue" /> <!-- 承保条件 -->
+				<item fieldName="LicenseNo" fieldType="String" parameterType="CSNODE" parameter="SXU00095" method="getElementByCode.getValue" /> <!-- 车牌号 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" parameter="objectno" /> <!-- 对象号 -->
+			</table>
+		</area>
+	</mapping>
+</definition>

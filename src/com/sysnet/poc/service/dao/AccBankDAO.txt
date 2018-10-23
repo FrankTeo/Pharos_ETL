@@ -1,0 +1,42 @@
+package com.sysnet.poc.service.dao;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+
+import com.sysnet.poc.vo.StgAccBankaccount;
+import com.sysnet.poc.vo.StgAccBankaccountdetail;
+import com.sysnet.poc.vo.StgAccBankdeposit;
+import com.sysnet.poc.vo.StgAccBanktransfer;
+import com.sysnet.poc.vo.StgAccBanktransferdetail;
+import com.sysnet.poc.vo.StgAccBanktransferfailurelog;
+import com.sysnet.poc.vo.StgAccCashbox;
+import com.sysnet.poc.vo.StgAccCashierClose;
+import com.sysnet.poc.vo.StgAccMonthclose;
+
+/**
+ * 收付费银行 DAO
+ * 
+ * @author Administrator
+ * 
+ */
+public interface AccBankDAO {
+
+	public void insertStgAccBankaccount(Connection conn, StgAccBankaccount stgAccBankaccount) throws SQLException, Exception;
+
+	public void insertStgAccBankaccountdetail(Connection conn, StgAccBankaccountdetail stgAccBankaccountdetail) throws SQLException, Exception;
+
+	public void insertStgAccBankdeposit(Connection conn, StgAccBankdeposit stgAccBankdeposit) throws SQLException, Exception;
+
+	public void insertStgAccCashbox(Connection conn, StgAccCashbox stgAccCashbox) throws SQLException, Exception;
+
+	public void insertStgAccCashierClose(Connection conn, StgAccCashierClose stgAccCashierClose) throws SQLException, Exception;
+
+	public void insertStgAccBanktransferfailurelog(Connection conn, StgAccBanktransferfailurelog stgAccBanktransferfailurelog) throws SQLException, Exception;
+
+	public void insertStgAccBanktransfer(Connection conn, StgAccBanktransfer stgAccBanktransfer) throws SQLException, Exception;
+
+	public void insertStgAccBanktransferdetail(Connection conn, StgAccBanktransferdetail stgAccBanktransferdetail) throws SQLException, Exception;
+
+	public void insertStgAccMonthclose(Connection conn, StgAccMonthclose stgAccMonthclose) throws SQLException, Exception;
+
+}

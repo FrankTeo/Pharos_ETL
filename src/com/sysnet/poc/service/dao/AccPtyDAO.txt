@@ -1,0 +1,23 @@
+package com.sysnet.poc.service.dao;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+
+import com.sysnet.poc.vo.StgPtyCorpRelationship;
+import com.sysnet.poc.vo.StgPtyPartiesRelation;
+import com.sysnet.poc.vo.StgPtyParty;
+import com.sysnet.poc.vo.StgPtyPartyCertid;
+import com.sysnet.poc.vo.StgPtyPartyName;
+
+public interface AccPtyDAO {
+
+	public void insertStgPtyParty(Connection conn, StgPtyParty vo) throws SQLException, Exception;
+
+	public void insertStgPtyPartyCertid(Connection conn, StgPtyPartyCertid vo) throws SQLException, Exception;
+
+	public void insertStgPtyPartyName(Connection conn, StgPtyPartyName vo) throws SQLException, Exception;
+
+	public void insertStgPtyCorpRelationship(Connection conn, StgPtyCorpRelationship vo) throws SQLException, Exception;
+
+	public void insertStgPtyPartiesRelation(Connection conn, StgPtyPartiesRelation vo) throws SQLException, Exception;
+}

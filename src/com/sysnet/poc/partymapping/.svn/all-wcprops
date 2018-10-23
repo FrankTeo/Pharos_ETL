@@ -1,0 +1,89 @@
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/BizCore/!svn/ver/9475/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/partymapping
+END
+DataProviderMapping.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/BizCore/!svn/ver/9475/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/partymapping/DataProviderMapping.java
+END
+PartyType.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/partymapping/PartyType.java
+END
+MappingBuilder.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/partymapping/MappingBuilder.java
+END
+PharosNodeType.txt
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/partymapping/PharosNodeType.txt
+END
+PartyMappingBuilder.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/partymapping/PartyMappingBuilder.java
+END
+ReflectUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/BizCore/!svn/ver/9475/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/partymapping/ReflectUtil.java
+END
+FieldType.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/partymapping/FieldType.java
+END
+SequenceUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/partymapping/SequenceUtil.java
+END
+ParameterTypeMappingManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/partymapping/ParameterTypeMappingManager.java
+END
+TestMapping.txt
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/partymapping/TestMapping.txt
+END
+TotalPremiumAndInsure.txt
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/partymapping/TotalPremiumAndInsure.txt
+END
+MappingCacheManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/partymapping/MappingCacheManager.java
+END
+RsFlagMapping.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/partymapping/RsFlagMapping.java
+END
+MappingHelper.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/partymapping/MappingHelper.java
+END

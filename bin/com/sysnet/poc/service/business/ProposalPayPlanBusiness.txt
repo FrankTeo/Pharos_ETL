@@ -1,0 +1,109 @@
+package com.sysnet.poc.service.business;
+
+import java.io.Serializable;
+import java.sql.Connection;
+import java.util.List;
+import java.util.Map;
+
+import javax.transaction.SystemException;
+import javax.transaction.UserTransaction;
+
+import org.apache.log4j.Logger;
+
+import com.sysnet.poc.control.config.Constants;
+import com.sysnet.poc.service.collection.ProposalPayPlanCollection;
+import com.sysnet.poc.service.dao.PlCIncrementDAO;
+import com.sysnet.poc.service.dao.ProposalPayPlanDAO;
+import com.sysnet.poc.service.dao.daoFactory.DAOFactory;
+import com.sysnet.poc.service.dao.dbc.ConnDB;
+import com.sysnet.poc.transaction.UserTransactionFactory;
+
+/**
+ * 
+ * @author li_yanpeng
+ * 
+ */
+public class ProposalPayPlanBusiness {
+
+	private Logger log = Logger.getLogger(ProposalPayPlanBusiness.class);
+
+	/**
+	 * 执行方法
+	 * 
+	 * @param objectId
+	 * @param objectType
+	 * @param bat_Id
+	 * 
+	 */
+	public void excute(String objectId, String objectType, int bat_Id) {
+
+		// 调用保单缴费计划数据采集方法
+		ProposalPayPlanCollection proposalPayPlanCollection = new ProposalPayPlanCollection();
+		Map<String, List<Serializable>> map = proposalPayPlanCollection.getAllProposalPayPlanInfo(objectId, objectType, bat_Id);
+
+		// 缴费计划基本信息
+		List<Serializable> list = map.get(Constants.STG_PRP_PAY_PLAN);
+
+		UserTransaction ut = null;
+		Connection conn = null;
+		Connection pharosConn = null;
+
+		try {
+
+			// 开启分布式事务
+			ut = (UserTransaction) UserTransactionFactory.getUserTransaction();
+			// ut = UserTransactionFactory.getUserTransaction();
+			ut.begin();
+
+			// 获取ODS连接
+			conn = ConnDB.getODSConn();
+			pharosConn = ConnDB.getPharosConn();
+
+			// 实例化DAO
+			PlCIncrementDAO plCIncrementDAO = DAOFactory.getPlcIncrecentDAO();
+			ProposalPayPlanDAO ProposalPayPlanDAO = DAOFactory.getProposalPayPlanDAO();
+
+			// 执行保单缴费计划数据的插入
+			ProposalPayPlanDAO.insertProposalPayPlan(conn, list);
+
+			// 回写Pharos增量表
+			plCIncrementDAO.updatePayPlanStatus(pharosConn, Integer.valueOf(objectId));
+
+			ut.commit();
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+			try {
+				if (ut != null) {
+					ut.rollback();
+					log.info("回滚了！----------------------------" + e.getMessage());
+				}
+
+			} catch (IllegalStateException e1) {
+
+				e1.printStackTrace();
+			} catch (SecurityException e1) {
+
+				e1.printStackTrace();
+			} catch (SystemException e1) {
+
+				e1.printStackTrace();
+			}
+
+		} finally {
+			try {
+				if (conn != null) {
+					conn.close();
+				}
+				if (pharosConn != null) {
+					pharosConn.close();
+				}
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+}

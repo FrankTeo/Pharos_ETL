@@ -1,0 +1,271 @@
+package com.sysnet.poc.service.dao;
+
+import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.naming.NamingException;
+
+import org.apache.log4j.Logger;
+
+import com.sysnet.poc.service.dao.dbc.ConnDB;
+
+public class CommDAO {
+
+	private static Logger log = Logger.getLogger(CommDAO.class);
+
+	/**
+	 * 查询错误增量的数量
+	 * 
+	 * @param tableName
+	 * @return
+	 * @throws NamingException
+	 * @throws SQLException
+	 */
+	public static int getErrorCountOfIncremental(String tableName) throws NamingException, SQLException {
+
+		int count = 0;
+		Connection conn = null;
+		Statement stmt = null;
+		try {
+			conn = ConnDB.getPharosConn();
+			stmt = conn.createStatement();
+			String sql = "select count(1) from " + tableName + " where STAGE_WRITE_FLAG=2 ";
+			ResultSet rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				count = rs.getInt(1);
+			}
+			return count;
+
+		} catch (NamingException ex) {
+
+			throw ex;
+		} catch (SQLException ex) {
+			throw ex;
+		} finally {
+			try {
+				if (stmt != null) {
+					stmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e) {
+				log.error("CommonDAO", e);
+			}
+		}
+
+	}
+
+	/**
+	 * 查询 Oracle 当前登录用户名
+	 * 
+	 * @return
+	 */
+	public static String getOracleLoginName() {
+		String userName = "";
+		Connection conn = null;
+		DatabaseMetaData odmd;
+		try {
+			conn = ConnDB.getODSConn();
+			odmd = conn.getMetaData();
+			userName = odmd.getUserName();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (NamingException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e) {
+				log.error("CommonDAO", e);
+			}
+		}
+		return userName;
+
+	}
+
+	/**
+	 * 查询要处理的增量总数，查询原理是 bat_id >= 0 的所有增量
+	 * 
+	 * @param tableName
+	 * @return
+	 * @throws NamingException
+	 * @throws SQLException
+	 */
+	public static long getCountOfIncremental(String tableName) throws NamingException, SQLException {
+
+		long count = 0;
+		Connection conn = null;
+		Statement stmt = null;
+		try {
+			conn = ConnDB.getPharosConn();
+			stmt = conn.createStatement();
+			String sql = "select count(1) from " + tableName + " where bat_id >= 0 or bat_id is null";
+			ResultSet rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				count = rs.getLong(1);
+			}
+			return count;
+
+		} catch (NamingException ex) {
+
+			throw ex;
+		} catch (SQLException ex) {
+			throw ex;
+		} finally {
+			try {
+				if (stmt != null) {
+					stmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e) {
+				log.error("CommonDAO", e);
+			}
+		}
+	}
+
+	/**
+	 * 查询剩余未处理增量
+	 * 
+	 * @param tableName
+	 * @return
+	 * @throws NamingException
+	 * @throws SQLException
+	 */
+	public static long getCountOfLastIncremental(String tableName) throws NamingException, SQLException {
+
+		long count = 0;
+		Connection conn = null;
+		Statement stmt = null;
+		try {
+			conn = ConnDB.getPharosConn();
+			stmt = conn.createStatement();
+			String sql = "select count(1) from " + tableName + " where bat_id = 0 or bat_id is null";
+			ResultSet rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				count = rs.getLong(1);
+			}
+			return count;
+
+		} catch (NamingException ex) {
+
+			throw ex;
+		} catch (SQLException ex) {
+			throw ex;
+		} finally {
+			try {
+				if (stmt != null) {
+					stmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e) {
+				log.error("CommonDAO", e);
+			}
+		}
+	}
+
+	/**
+	 * 查询ETLbat的处理数量
+	 * 
+	 * @return
+	 * @throws NamingException
+	 * @throws SQLException
+	 */
+	public static int getCountOfEtlBat() throws NamingException, SQLException {
+		int count = 0;
+		Connection conn = null;
+		Statement stmt = null;
+		List<String> list = new ArrayList<String>();
+		list.add("etl_stage_etl_party_status");
+		list.add("etl_stage_etl_status");
+		list.add("etl_stage_etl_clm_status");
+		list.add("etl_stage_etl_acc_status");
+		try {
+			conn = ConnDB.getODSConn();
+			for (String string : list) {
+				stmt = conn.createStatement();
+				String sql = "select count(1) from " + string + " where ods_data_deal_status = 1";
+				ResultSet rs = stmt.executeQuery(sql);
+				while (rs.next()) {
+					count = count + rs.getInt(1);
+				}
+			}
+			return count;
+
+		} catch (NamingException ex) {
+
+			throw ex;
+		} catch (SQLException ex) {
+			throw ex;
+		} finally {
+			try {
+				if (stmt != null) {
+					stmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e) {
+				log.error("CommonDAO", e);
+			}
+		}
+	}
+
+	/**
+	 * 查询ETLbat的总量
+	 * 
+	 * @return
+	 * @throws NamingException
+	 * @throws SQLException
+	 */
+	public static int getCountOfAllEtlBat() throws NamingException, SQLException {
+		int count = 0;
+		Connection conn = null;
+		Statement stmt = null;
+		List<String> list = new ArrayList<String>();
+		list.add("etl_stage_etl_party_status");
+		list.add("etl_stage_etl_status");
+		list.add("etl_stage_etl_clm_status");
+		list.add("etl_stage_etl_acc_status");
+		try {
+			conn = ConnDB.getODSConn();
+			for (String string : list) {
+				stmt = conn.createStatement();
+				String sql = "select count(1) from " + string;
+				ResultSet rs = stmt.executeQuery(sql);
+				while (rs.next()) {
+					count = count + rs.getInt(1);
+				}
+			}
+			return count;
+
+		} catch (NamingException ex) {
+
+			throw ex;
+		} catch (SQLException ex) {
+			throw ex;
+		} finally {
+			try {
+				if (stmt != null) {
+					stmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e) {
+				log.error("CommonDAO", e);
+			}
+		}
+	}
+}

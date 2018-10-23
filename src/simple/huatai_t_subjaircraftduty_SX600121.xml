@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition description="飞行器责任险标的表">
+	<mapping>
+		<area description="飞行器责任险标的表">
+			<table tableName="t_subjaircraftduty" dataProviderType="CSNODE" as="Contract">
+				<item fieldName="PolicyNo" fieldType="String" parameterType="GLOBAL" parameter="policyno" /> <!-- 保单号 -->
+				<item fieldName="EndorseNo" fieldType="String" parameterType="GLOBAL" parameter="endorseno" /> <!-- 批单号 -->
+				<item fieldName="NodeNo" fieldType="String" parameterType="GLOBAL" parameter="nodeno" /> <!-- 节点号 -->
+				<item fieldName="ContractNo" fieldType="String" parameterType="GLOBAL" parameter="contractno" /> <!-- 合同号 -->
+				<item fieldName="SubVersionNo" fieldType="String" parameterType="GLOBAL" parameter="version" /> <!-- 版本号 -->
+				<item fieldName="ProposalNo" fieldType="String" parameterType="GLOBAL" parameter="proposalno" /> <!-- 投保单号 -->
+				<item fieldName="PreAccdLimitCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00121" method="getElementByCode.getValue.getCurrency" /> <!-- 每次事故责任限额币种 -->
+				<item fieldName="PreAccdLimit" fieldType="Float" parameterType="CSNODE" parameter="SXU00121" method="getElementByCode.getValue.getAmount" /> <!-- 每次事故责任限额 -->
+				<item fieldName="AggrgLmtCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00155" method="getElementByCode.getValue.getCurrency" /> <!-- 累计赔偿请求限额币种 -->
+				<item fieldName="AggrgLimit" fieldType="Float" parameterType="CSNODE" parameter="SXU00155" method="getElementByCode.getValue.getAmount" /> <!-- 累计赔偿请求限额 -->
+				<item fieldName="SatelliteStatus" fieldType="String" parameterType="CSNODE" parameter="SXU00841" method="getElementByCode.getValue" /> <!-- 保单类型 -->
+				<item fieldName="SubjectName" fieldType="String" parameterType="CSNODE" parameter="SXU00842" method="getElementByCode.getValue" /> <!-- 标的名称 -->
+				<item fieldName="SatellitePlatModel" fieldType="String" parameterType="CSNODE" parameter="SXU00843" method="getElementByCode.getValue" /> <!-- 卫星平台型号 -->
+				<item fieldName="RocketMode" fieldType="String" parameterType="CSNODE" parameter="SXU00844" method="getElementByCode.getValue" /> <!-- 运载火箭型号 -->
+				<item fieldName="LaunchSiteName" fieldType="String" parameterType="CSNODE" parameter="SXU00845" method="getElementByCode.getValue" /> <!-- 发射场名称 -->
+				<item fieldName="QuotaExplain" fieldType="String" parameterType="CSNODE" parameter="SXU00087" method="getElementByCode.getValue" /> <!-- 保单限额说明 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" parameter="objectno" /> <!-- 对象号 -->
+			</table>
+		</area>
+	</mapping>
+</definition>

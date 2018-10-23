@@ -1,0 +1,96 @@
+package com.sysnet.poc.control.manage;
+
+import java.util.Properties;
+
+import javax.naming.Context;
+
+import org.apache.commons.logging.Log;
+
+import com.sysnet.poc.control.manage.vo.EveryThreadInfo;
+import com.sysnet.poc.control.manage.vo.StatusBean;
+import com.sysnet.poc.control.manage.vo.StopBean;
+import com.sysnet.poc.service.business.EndorPayPlanBusiness;
+import com.sysnet.poc.service.business.PolicyPayPlanBusiness;
+import com.sysnet.poc.service.business.ProposalPayPlanBusiness;
+import com.sysnet.poc.util.OdsLogger;
+//aaa
+public class PayPlanBusinessThread extends Thread {
+
+	private static final Log log = OdsLogger.getLog("insureLog4j", "Insure");
+
+	Properties prop = new Properties();
+
+	Context initContext;
+
+	private StopBean stopBean;
+
+	private StatusBean statusBean;
+
+	private EveryThreadInfo everyThreadInfo;
+
+	public EveryThreadInfo getEveryThreadInfo() {
+		return everyThreadInfo;
+	}
+
+	public void setEveryThreadInfo(EveryThreadInfo everyThreadInfo) {
+		this.everyThreadInfo = everyThreadInfo;
+	}
+
+	public StopBean getStopBean() {
+		return stopBean;
+	}
+
+	public void setStopBean(StopBean stopBean) {
+		this.stopBean = stopBean;
+	}
+
+	public void run() {
+
+		log.info("info=======缴费计划任务子线程开始执行");
+		for (int i = 0; i < everyThreadInfo.getObjectIds().size(); i++) {
+			String OBJECT_ID = everyThreadInfo.getObjectIds().get(i).toString();
+			String OBJECT_Type = everyThreadInfo.getObjectTypes().get(i).toString();
+			loop(OBJECT_ID, OBJECT_Type, statusBean.getBAT_ID());
+		}
+		log.info("info=======缴费计划任务子线程执行结束");
+
+		stopBean.setStop(stopBean.getStop() + 1);
+	}
+
+	public void loop(String objectId, String objectType, int batId) {
+
+		try {
+			if ((objectType.trim()).equals("1")) {
+				// 保单缴费计划
+				log.info("info=======保单缴费计划");
+				PolicyPayPlanBusiness policPayPlanBusiness = new PolicyPayPlanBusiness();
+				policPayPlanBusiness.excute(objectId, objectType, batId);
+			}
+			if ((objectType.trim()).equals("2")) {
+				// 批单缴费计划
+				log.info("info=======批单缴费计划");
+				EndorPayPlanBusiness endorPayPlanBusiness = new EndorPayPlanBusiness();
+				endorPayPlanBusiness.excute(objectId, objectType, batId);
+
+			}
+			if ((objectType.trim()).equals("3")) {
+				// 投保单缴费计划
+				log.info("info=======投保单缴费计划");
+				ProposalPayPlanBusiness proposalPayPlanBusiness = new ProposalPayPlanBusiness();
+				proposalPayPlanBusiness.excute(objectId, objectType, batId);
+			}
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}
+	}
+
+	public StatusBean getStatusBean() {
+		return statusBean;
+	}
+
+	public void setStatusBean(StatusBean statusBean) {
+		this.statusBean = statusBean;
+	}
+}

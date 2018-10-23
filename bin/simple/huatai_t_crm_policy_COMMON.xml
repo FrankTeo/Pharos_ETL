@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition description="CRM保单表">
+	<mapping>
+		<area description="CRM保单表">
+			<table tableName="T_CRM_Policy" dataProviderType="CSNODE" as="Contract">
+				<item fieldName="PolicyNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="policyno" /> <!-- 保单号 -->
+				<item fieldName="EndorseNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="endorseno" /> <!-- 批单号 -->
+				<item fieldName="EndorseIndex" fieldType="Long" parameterType="CSNODE" method="getEndorseIndex" /> <!-- 批改序号 -->
+				<item fieldName="InsuranceCode" fieldType="String" parameterType="CSNODE" method="getInsuranceCode" /> <!-- 险种代码 -->
+				<item fieldName="UnionPolicyNo" fieldType="String" parameterType="CSNODE" method="getJoinsuranceWithSelf.getJoiPolicyNo" /> <!-- 关联保单号 -->
+				<item fieldName="Coverage" fieldType="Float" parameterType="CSNODE" method="getInsuredValue" /> <!-- 保额 -->
+				<item fieldName="ApplicantName" fieldType="String" parameterType="CSNODE" parameter="SXU00001" method="getRoleByCode.getThpname" /> <!-- 投保人姓名 -->
+				<item fieldName="ApplicantType" fieldType="String" parameterType="CSNODE" parameter="SXU00001" method="getRoleByCode.getParty.getType" /> <!-- 投保人类型 -->
+				<item fieldName="InsuredName" fieldType="String" parameterType="CSNODE" parameter="SXU00002" method="getRoleByCode.getThpname" /> <!-- 被保险人姓名  -->
+				<item fieldName="InsuredType" fieldType="String" parameterType="CSNODE" parameter="SXU00002" method="getRoleByCode.getParty.getType" /> <!-- 投保人类型 -->
+				<item fieldName="BeneficiaryName" fieldType="String" parameterType="CSNODE" parameter="SXU00003" method="getRoleByCode.getThpname" /> <!-- 受益人 -->
+				<item fieldName="ApplicantParty" fieldType="String" parameterType="CSNODE" parameter="SXU00001" method="getRoleByCode.getThirdPartyId" /> <!-- 投保人姓名 ID -->
+				<item fieldName="InsuredParty" fieldType="String" parameterType="CSNODE" parameter="SXU00002" method="getRoleByCode.getThirdPartyId" /> <!-- 被保险人姓名 ID -->
+				<item fieldName="BeneficiaryParty" fieldType="String" parameterType="CSNODE" parameter="SXU00003" method="getRoleByCode.getThirdPartyId" /> <!-- 受益人ID -->
+				<item fieldName="StartDate" fieldType="Date" parameterType="CSNODE" method="getOriginalDate" /> <!-- 起保时间 -->
+				<item fieldName="EndDate" fieldType="Date" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="enddate" /> <!-- 终保时间 -->
+				<item fieldName="BusinessOrigin" fieldType="String" parameterType="CSNODE" method="getBizFrom" /> <!-- 业务来源 -->
+				<item fieldName="AcquisitionBranch" fieldType="String" parameterType="CSNODE" method="getBizCompanyNodeCode" /> <!-- 归属机构 -->
+				<item fieldName="AcquisitionStaff" fieldType="String" parameterType="CSNODE" method="getBusinessman" /> <!-- 归属业务员 -->
+				<item fieldName="SaleSystem" fieldType="String" parameterType="CSNODE" method="getSaleSystem" /> <!-- 销售体系 -->
+				<item fieldName="Creator" fieldType="String" parameterType="CSNODE" method="getPolicyInputuser" /> <!-- 操作员姓名 -->
+				<item fieldName="MakeDate" fieldType="Date" parameterType="CSNODE" method="getInputDate" /> <!-- 输单日期 -->
+				<item fieldName="IsVIP" fieldType="String" parameterType="CSNODE" parameter="SXU00108" method="getElementByCode.getValue" /> <!-- 重客编码 -->
+				<item fieldName="ChangeDate" fieldType="Date" parameterType="CSNODE" method="getChangeDatetime" /> <!-- 最后更新时间 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="objectno" /> <!-- 对象号 -->
+			</table>
+		</area>
+	</mapping>
+</definition>

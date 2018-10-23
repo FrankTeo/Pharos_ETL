@@ -1,0 +1,151 @@
+package com.sysnet.poc.vo;
+
+/**
+ * StgEdrRoleInfo entity.
+ * 
+ * @author MyEclipse Persistence Tools
+ */
+
+public class StgEdrRoleInfo implements java.io.Serializable {
+
+	// Fields
+
+	// 角色序列号
+	private Long roleId;
+	// PartyID
+	private Long partyId;
+	// 批单CD
+	private String endorseNo;
+	// 角色ID
+	private Long droleId;
+	// 层级
+	private Long layer;
+	// 根据角色不同含义会有不同，，如果是付款人的话，，就是付款百分比
+	private Double percentage;
+	// 关联到crm系统中的当事人的姓名
+	private String name;
+	// 对象类型
+	private String objectType;
+	// 批次序号
+	private Long batId;
+	// 对象序号
+	private Long objectId;
+	// 时间戳
+	private String timeStamp;
+	// 角色类型
+	private String roleType;
+	// partyCode
+	private Long partyCode;
+
+	// Constructors
+
+	/** default constructor */
+	public StgEdrRoleInfo() {
+	}
+
+	// Property accessors
+
+	public Long getRoleId() {
+		return this.roleId;
+	}
+
+	public void setRoleId(Long roleId) {
+		this.roleId = roleId;
+	}
+
+	public Long getPartyId() {
+		return this.partyId;
+	}
+
+	public void setPartyId(Long partyId) {
+		this.partyId = partyId;
+	}
+
+	public String getEndorseNo() {
+		return endorseNo;
+	}
+
+	public void setEndorseNo(String endorseNo) {
+		this.endorseNo = endorseNo;
+	}
+
+	public Long getDroleId() {
+		return this.droleId;
+	}
+
+	public void setDroleId(Long droleId) {
+		this.droleId = droleId;
+	}
+
+	public Long getLayer() {
+		return this.layer;
+	}
+
+	public void setLayer(Long layer) {
+		this.layer = layer;
+	}
+
+	public Double getPercentage() {
+		return this.percentage;
+	}
+
+	public void setPercentage(Double percentage) {
+		this.percentage = percentage;
+	}
+
+	public String getName() {
+		return this.name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getObjectType() {
+		return this.objectType;
+	}
+
+	public void setObjectType(String objectType) {
+		this.objectType = objectType;
+	}
+
+	public Long getBatId() {
+		return this.batId;
+	}
+
+	public void setBatId(Long batId) {
+		this.batId = batId;
+	}
+
+	public Long getObjectId() {
+		return this.objectId;
+	}
+
+	public void setObjectId(Long objectId) {
+		this.objectId = objectId;
+	}
+
+	public String getTimeStamp() {
+		return this.timeStamp;
+	}
+
+	public void setTimeStamp(String timeStamp) {
+		this.timeStamp = timeStamp;
+	}
+
+	public String getRoleType() {
+		return this.roleType;
+	}
+
+	public void setRoleType(String roleType) {
+		this.roleType = roleType;
+	}
+
+	public Long getPartyCode() {
+		return this.partyCode;
+	}
+
+	public void setPartyCode(Long partyCode) {
+		this.partyCode = partyCode;
+	}
+}

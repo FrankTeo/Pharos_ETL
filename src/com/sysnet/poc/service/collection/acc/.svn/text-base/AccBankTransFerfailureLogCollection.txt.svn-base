@@ -1,0 +1,57 @@
+package com.sysnet.poc.service.collection.acc;
+
+import pharos.account.bo.IBankTranferBO;
+import pharos.account.vo.banktransfer.BankTransferFailureLog;
+
+import com.sysnet.poc.control.manage.vo.EtlPharosIncrAcc;
+import com.sysnet.poc.util.DateHelper;
+import com.sysnet.poc.util.PharosServiceContainer;
+import com.sysnet.poc.vo.StgAccBanktransferfailurelog;
+
+public class AccBankTransFerfailureLogCollection {
+
+	private StgAccBanktransferfailurelog stgAccBanktransferfailurelog;
+
+	public AccBankTransFerfailureLogCollection(EtlPharosIncrAcc ec) {
+		PharosServiceContainer pc = PharosServiceContainer.Instance();
+		IBankTranferBO bankTranFerBO = pc.getIBankTranferBO();
+		BankTransferFailureLog bankTransLog = bankTranFerBO.getBankTransferFailureLog(Integer.valueOf(ec.getObjectNo()));
+		this.setBankTransferFailureLog(bankTransLog, ec);
+	}
+
+	private void setBankTransferFailureLog(BankTransferFailureLog bankTransLog, EtlPharosIncrAcc ec) {
+		if (bankTransLog != null) {
+			this.stgAccBanktransferfailurelog = new StgAccBanktransferfailurelog();
+			this.stgAccBanktransferfailurelog.setBanktransferfailurelogId(bankTransLog.getId());
+			this.stgAccBanktransferfailurelog.setRemoved(new Long(0));
+			this.stgAccBanktransferfailurelog.setTranscationNo(bankTransLog.getTranscationno());
+			this.stgAccBanktransferfailurelog.setDueAmount(bankTransLog.getDueamount());
+			this.stgAccBanktransferfailurelog.setCurrency(new Long(bankTransLog.getCurrency()));
+			this.stgAccBanktransferfailurelog.setFailureTimes(new Long(bankTransLog.getFailuretimes()));
+			this.stgAccBanktransferfailurelog.setFailureReason(new Long(bankTransLog.getFailurereason()));
+			this.stgAccBanktransferfailurelog.setTransferDate(DateHelper.getSqlDate(bankTransLog.getTransferdate()));
+			this.stgAccBanktransferfailurelog.setInstallId(bankTransLog.getInstallid());
+			this.stgAccBanktransferfailurelog.setRefId(bankTransLog.getRefid());
+			this.stgAccBanktransferfailurelog.setPriority(new Long(bankTransLog.getPriority()));
+			this.stgAccBanktransferfailurelog.setBatchNo(bankTransLog.getBatchno());
+			this.stgAccBanktransferfailurelog.setSliceId(bankTransLog.getSliceid());
+			this.stgAccBanktransferfailurelog.setOutDate(DateHelper.getSqlDate(bankTransLog.getOutdate()));
+			this.stgAccBanktransferfailurelog.setIsdo(new Long(bankTransLog.getIsdo() ? 1 : 0));
+			this.stgAccBanktransferfailurelog.setDueDate(DateHelper.getSqlDate(bankTransLog.getDuedate()));
+			this.stgAccBanktransferfailurelog.setObjectType(String.valueOf(ec.getObjectType()));
+			this.stgAccBanktransferfailurelog.setTimeStamp(ec.getTimeStamp());
+			this.stgAccBanktransferfailurelog.setBatId(ec.getBatId());
+			this.stgAccBanktransferfailurelog.setObjectId(ec.getObjectId());
+
+		}
+	}
+
+	public StgAccBanktransferfailurelog getStgAccBanktransferfailurelog() {
+		return stgAccBanktransferfailurelog;
+	}
+
+	public void setStgAccBanktransferfailurelog(StgAccBanktransferfailurelog stgAccBanktransferfailurelog) {
+		this.stgAccBanktransferfailurelog = stgAccBanktransferfailurelog;
+	}
+
+}

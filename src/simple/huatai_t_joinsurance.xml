@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition description="联保表">
+	<mapping>
+		<area description="联保表">
+			<table tableName="T_JoInsurance" dataProviderType="CSNODE" as="Contract">
+				<item fieldName="PolicyNo" fieldType="String" parameterType="GLOBAL" parameter="policyno" /><!-- 保单号 -->
+				<item fieldName="EndorseNo" fieldType="String" parameterType="GLOBAL" parameter="endorseno" /><!-- 批单号 -->
+				<item fieldName="PartyCode" fieldType="String" parameterType="JOINSURANCES" method="getJoiPartyCode" /><!-- 联保Party编码 -->
+				<item fieldName="ContractNo" fieldType="String" parameterType="GLOBAL" parameter="contractno" /><!-- 合同号 -->
+				<item fieldName="NodeNo" fieldType="String" parameterType="GLOBAL" parameter="nodeno" /><!-- 节点号 -->
+				<item fieldName="SubVersionNo" fieldType="String" parameterType="GLOBAL" parameter="version" /><!-- 版本号 -->
+				<item fieldName="ProposalNo" fieldType="String" parameterType="GLOBAL" parameter="proposalno" /><!-- 投保单号 -->
+				<!-- <item fieldName="InsurerName" fieldType="String" parameterType="" /> --> <!-- 联共保公司名称 -->
+				<item fieldName="InsureType" fieldType="String" parameterType="JOINSURANCES" method="getJoiMark" /><!-- 联共保类型 -->
+				<item fieldName="InsuranceRate" fieldType="Float" parameterType="JOINSURANCES" method="getRate" /><!-- 联共保比例 -->
+				<item fieldName="Coverage" fieldType="Float" parameterType="JOINSURANCES" method="getInsuredValue" /><!-- 保额 -->
+				<item fieldName="Premium" fieldType="Float" parameterType="JOINSURANCES" method="getPremium" /><!-- 保费 -->
+				<item fieldName="ExpenseRate" fieldType="Float" parameterType="JOINSURANCES" method="getIssuingFeeRate" /><!-- 出单费比例 -->
+				<item fieldName="Expense" fieldType="Float" parameterType="JOINSURANCES" method="getIssuingFee" /><!-- 出单费 -->
+				<item fieldName="SurveyFeeRate" fieldType="Float" parameterType="JOINSURANCES" method="getSurveyFeeRate" /><!-- 查勘费比例 -->
+				<item fieldName="SurveyFee" fieldType="Float" parameterType="JOINSURANCES" method="getSurveyFee" /><!-- 查勘费 -->
+				<item fieldName="JoiPolicyNo" fieldType="String" parameterType="JOINSURANCES" method="getJoiPolicyNo" /><!-- 主联保保单号 -->
+				<item fieldName="JoiCode" fieldType="String" parameterType="JOINSURANCES" method="getJoiCode" /><!-- 联保公司编码 -->
+				<item fieldName="IsInputer" fieldType="String" parameterType="JOINSURANCES" method="getIsInputer" /><!-- 是否录单公司 -->
+				<item fieldName="OriginRate" fieldType="Float" parameterType="JOINSURANCES" method="getRateOfPolicy" /><!-- 在原保单占比 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" parameter="objectid" /><!-- 对象号 -->
+				<!-- <item fieldName="Remark" fieldType="String" parameterType="" /> --> <!-- 备注 -->
+				<!-- <item fieldName="CrtTime" fieldType="Date" parameterType="" /> --> <!-- 创建时间 -->
+				<!-- <item fieldName="MdfTime" fieldType="Date" parameterType="" /> --> <!-- 修改时间 -->
+			</table>
+		</area>
+	</mapping>
+</definition>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition description="飞行器责任险标的表">
+	<mapping>
+		<area description="飞行器责任险标的表">
+			<table tableName="T_SubjAircraftDuty" dataProviderType="CSNODE" as="Contract">
+				<item fieldName="PolicyNo" fieldType="String" parameterType="GLOBAL" parameter="policyno" /> <!-- 保单号 -->
+				<item fieldName="EndorseNo" fieldType="String" parameterType="GLOBAL" parameter="endorseno" /> <!-- 批单号 -->
+				<item fieldName="NodeNo" fieldType="String" parameterType="GLOBAL" parameter="nodeno" /> <!-- 节点号 -->
+				<item fieldName="ContractNo" fieldType="String" parameterType="GLOBAL" parameter="contractno" /> <!-- 合同号 -->
+				<item fieldName="SubVersionNo" fieldType="String" parameterType="GLOBAL" parameter="version" /> <!-- 版本号 -->
+				<item fieldName="ProposalNo" fieldType="String" parameterType="GLOBAL" parameter="proposalno" /> <!-- 投保单号 -->
+				<!--<item fieldName="PreAccdLimitCurrency" fieldType="String" />--> <!-- 每次事故责任限额币种 -->
+				<!--<item fieldName="PreAccdLimit" fieldType="Float" />--> <!-- 每次事故责任限额 -->
+				<!--<item fieldName="AggrgLmtCurrency" fieldType="String" />--> <!-- 累计赔偿限额币种 -->
+				<!--<item fieldName="AggrgLimit" fieldType="Float" />--> <!-- 累计赔偿限额 -->
+				<!--<item fieldName="PlaneModel" fieldType="String" />--> <!-- 飞机型号 -->
+				<!--<item fieldName="RegistNo" fieldType="String" />--> <!-- 注册号 -->
+				<!--<item fieldName="PlaneType" fieldType="String" />--> <!-- 机型 -->
+				<!--<item fieldName="PlaneUsage" fieldType="String" />--> <!-- 飞机用途 -->
+				<!--<item fieldName="FlightRange" fieldType="String" />--> <!-- 飞行范围及地域限制 -->
+				<!--<item fieldName="SatelliteStatus" fieldType="String" />--> <!-- 保单类型 -->
+				<!--<item fieldName="SubjectName" fieldType="String" />--> <!-- 标的名称 -->
+				<!--<item fieldName="SatellitePlatModel" fieldType="String" />--> <!-- 卫星平台型号 -->
+				<!--<item fieldName="RocketMode" fieldType="String" />--> <!-- 运载火箭型号 -->
+				<!--<item fieldName="LaunchSiteName" fieldType="String" />--> <!-- 发射场名称 -->
+				<!--<item fieldName="QuotaExplain" fieldType="String" />--> <!-- 保单限额说明 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" parameter="objectno" /> <!-- 对象号 -->
+				<!--<item fieldName="Remark" fieldType="String" />--> <!-- 备注 -->
+				<!--<item fieldName="CrtTime" fieldType="Date" />--> <!-- 创建时间 -->
+				<!--<item fieldName="MdfTime" fieldType="Date" />--> <!-- 修改时间 -->
+			</table>
+		</area>
+	</mapping>
+</definition>

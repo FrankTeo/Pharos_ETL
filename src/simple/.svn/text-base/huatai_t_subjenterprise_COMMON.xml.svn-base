@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition description="企财险标的表">
+	<mapping>
+		<area description="企财险标的表">
+			<table tableName="t_subjenterprise" dataProviderType="CSNODE" as="Contract">
+				<item fieldName="PolicyNo" fieldType="String" parameterType="GLOBAL" parameter="policyno" /> <!-- 保单号 -->
+				<item fieldName="EndorseNo" fieldType="String" parameterType="GLOBAL" parameter="endorseno" /> <!-- 批单号 -->
+				<item fieldName="NodeNo" fieldType="String" parameterType="GLOBAL" parameter="nodeno" /> <!-- 节点号 -->
+				<item fieldName="ContractNo" fieldType="String" parameterType="GLOBAL" parameter="contractno" /> <!-- 合同号 -->
+				<item fieldName="SubVersionNo" fieldType="String" parameterType="GLOBAL" parameter="version" /> <!-- 版本号 -->
+				<item fieldName="ProposalNo" fieldType="String" parameterType="GLOBAL" parameter="proposalno" /> <!-- 投保单号 -->
+				<!--<item fieldName="Material" fieldType="String" />--> <!-- 原材料 -->
+				<!--<item fieldName="Technology" fieldType="String" />--> <!-- 生产工艺 -->
+				<!--<item fieldName="BuildingType" fieldType="String" />--> <!-- 建筑类型 -->
+				<!--<item fieldName="Occupancy" fieldType="String" />--> <!-- 占用性质 -->
+				<!--<item fieldName="SubjectType" fieldType="String" />--> <!-- 标的类型 -->
+				<!--<item fieldName="QuotaExplain" fieldType="String" />--> <!-- 保单限额说明 -->
+				<!--<item fieldName="PerAccdCmpnstLmtCurrency" fieldType="String" />--> <!-- 每次事故赔偿限额币种 -->
+				<!--<item fieldName="PerAccdCmpnstLimit" fieldType="Float" />--> <!-- 每次事故赔偿限额 -->
+				<!--<item fieldName="AggrCmpnstLmtCurrency" fieldType="String" />--> <!-- 年度累计赔偿限额 -->
+				<!--<item fieldName="AggregCmpnstLimit" fieldType="Float" />--> <!-- 年度累计赔偿限额 -->
+				<!--<item fieldName="MachineExplain" fieldType="String" />--> <!-- 机器设备说明 -->
+				<!--<item fieldName="IncludeEngineBase" fieldType="String" />--> <!-- 是否投保机座 -->
+				<!--<item fieldName="IncludeHoliday" fieldType="String" />--> <!-- 是否含假日工资 -->
+				<!--<item fieldName="IncludeExtra" fieldType="String" />--> <!-- 是否含加班费 -->
+				<!--<item fieldName="IncludeTransExpense" fieldType="String" />--> <!-- 是否含运费 -->
+				<!--<item fieldName="ThirdParty" fieldType="String" />--> <!-- 第三者受害方 -->
+				<!--<item fieldName="SubjectAddress" fieldType="String" />--> <!-- 标的地址 -->
+				<!--<item fieldName="ZipCode" fieldType="String" />--> <!-- 邮政编码 -->
+				<!--<item fieldName="BoilerLocation" fieldType="String" />--> <!-- 锅炉容器位置 -->
+				<!--<item fieldName="CertificateNo" fieldType="String" />--> <!-- 保险凭证号 -->
+				<!--<item fieldName="SerialNumberPIN" fieldType="String" />--> <!-- 序列号PIN -->
+				<!--<item fieldName="TPPerAccdLmtCurrency" fieldType="String" />--> <!-- 第三者每次事故赔偿限额币种 -->
+				<!--<item fieldName="TPPerAccdLimit" fieldType="Float" />--> <!-- 第三者每次事故赔偿限额 -->
+				<!--<item fieldName="TPPerPrsnLmtCurrency" fieldType="String" />--> <!-- 第三者每一受害方币种 -->
+				<!--<item fieldName="TPPerPrsnLimit" fieldType="Float" />--> <!-- 第三者每一受害方 -->
+				<!--<item fieldName="ElPrprtInsureAmtCurrency" fieldType="String" />--> <!-- 电梯财产总保险金额币种 -->
+				<!--<item fieldName="ElPrprtInsureAmount" fieldType="Float" />--> <!-- 电梯财产总保险金额 -->
+				<!--<item fieldName="ElPrprtInsurePrmmCurrency" fieldType="String" />--> <!-- 电梯财产保费合计币种 -->
+				<!--<item fieldName="ElPrprtInsurePremium" fieldType="Float" />--> <!-- 电梯财产保费合计 -->
+				<!--<item fieldName="PreAccdFrghtLmtCurrency" fieldType="String" />--> <!-- 每次事故运输货物损失币种 -->
+				<!--<item fieldName="PreAccdFrghtLimit" fieldType="Float" />--> <!-- 每次事故运输货物损失 -->
+				<!--<item fieldName="PreAccdPrsnPrprtLmtCurrency" fieldType="String" />--> <!-- 每次事故个人携带的财产物品损失币种 -->
+				<!--<item fieldName="PreAccdPrsnPrptLimt" fieldType="Float" />--> <!-- 每次事故个人携带的财产物品损失 -->
+				<!--<item fieldName="PreAccdPrePrsnLmtCurrency" fieldType="String" />--> <!-- 每次事故抢救及医疗费币种 -->
+				<!--<item fieldName="PreAccdPrePrsnLimit" fieldType="Float" />--> <!-- 每次事故抢救及医疗费 -->
+				<!--<item fieldName="PreAccdMdclLmtCurrency" fieldType="String" />--> <!-- 每次事故抢救及医疗费币种 -->
+				<!--<item fieldName="PreAccdMdclLimit" fieldType="Float" />--> <!-- 每次事故抢救及医疗费 -->
+				<!--<item fieldName="CleanExpensiveCurrency" fieldType="String" />--> <!-- 清理残骸费用币种 -->
+				<!--<item fieldName="CleanExpensive" fieldType="Float" />--> <!-- 清理残骸费用 -->
+				<!--<item fieldName="OutfireExpnsvCurrency" fieldType="String" />--> <!-- 灭火费用币种 -->
+				<!--<item fieldName="OutfireExpensive" fieldType="Float" />--> <!-- 灭火费用 -->
+				<!--<item fieldName="PrfssnlExpnsvCurrency" fieldType="String" />--> <!-- 专业费用币种 -->
+				<!--<item fieldName="PrfssnlExpensive" fieldType="Float" />--> <!-- 专业费用币 -->
+				<!--<item fieldName="OtherExpnsvCurrency" fieldType="String" />--> <!-- 其他费用币种 -->
+				<!--<item fieldName="OtherExpensive" fieldType="Float" />--> <!-- 其他费用 -->
+				<!--<item fieldName="BizQuality" fieldType="String" />--> <!-- 营业性质 -->
+				<!--<item fieldName="SubjectName" fieldType="String" />--> <!-- 标的名称 -->
+				<!--<item fieldName="TradeType" fieldType="String" />--> <!-- 行业类型 -->
+				<!--<item fieldName="HrdWrCvrgCurrency" fieldType="String" />--> <!-- 计算机硬件保险金额币种 -->
+				<!--<item fieldName="HrdWrCoverage" fieldType="Float" />--> <!-- 计算机硬件保险金额 -->
+				<!--<item fieldName="HrdWrRate" fieldType="Float" />--> <!-- 计算机硬件费率 -->
+				<!--<item fieldName="HrdWrPrmmCurrency" fieldType="String" />--> <!-- 计算机硬件保费币种 -->
+				<!--<item fieldName="HrdWrPremium" fieldType="Float" />--> <!-- 计算机硬件保费 -->
+				<!--<item fieldName="SftWrRate" fieldType="Float" />--> <!-- 计算机软件费率 -->
+				<!--<item fieldName="SftWrPrmmCurrency" fieldType="String" />--> <!-- 计算机软件保费币种 -->
+				<!--<item fieldName="SftWrPremium" fieldType="Float" />--> <!-- 计算机软件保费 -->
+				<!--<item fieldName="DtrplctCvrgCurrency" fieldType="String" />--> <!-- 数据复制费用保险金额币种 -->
+				<!--<item fieldName="DtrplctCoverage" fieldType="Float" />--> <!-- 数据复制费用保险金额 -->
+				<!--<item fieldName="DtrplctRate" fieldType="Float" />--> <!-- 数据复制费用费率 -->
+				<!--<item fieldName="DtrplctPrmmCurrency" fieldType="String" />--> <!-- 数据复制费用保费币种 -->
+				<!--<item fieldName="DtrplctPremium" fieldType="Float" />--> <!-- 数据复制费用保费 -->
+				<!--<item fieldName="AddCvrgCurrecny" fieldType="String" />--> <!-- 增加费用保险金额币种 -->
+				<!--<item fieldName="AddCoverage" fieldType="Float" />--> <!-- 增加费用保险金额 -->
+				<!--<item fieldName="AddRate" fieldType="Float" />--> <!-- 增加费用费率 -->
+				<!--<item fieldName="AddPrmmCurrency" fieldType="String" />--> <!-- 增加费用保费币种 -->
+				<!--<item fieldName="AddPremium" fieldType="Float" />--> <!-- 增加费用保费 -->
+				<!--<item fieldName="HrdWrDdctDescription" fieldType="String" />--> <!-- 硬件免赔描述 -->
+				<!--<item fieldName="SftWrDdctDescription" fieldType="String" />--> <!-- 软件免赔描述 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" parameter="objectno" /> <!-- 对象号 -->
+				<!--<item fieldName="Remark" fieldType="String" />--> <!-- 备注 -->
+				<!--<item fieldName="CrtTime" fieldType="Date" />--> <!-- 创建时间 -->
+				<!--<item fieldName="MdfTime" fieldType="Date" />--> <!-- 修改时间 -->
+			</table>
+		</area>
+	</mapping>
+</definition>

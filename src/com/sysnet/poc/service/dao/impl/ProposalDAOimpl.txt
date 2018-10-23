@@ -1,0 +1,665 @@
+package com.sysnet.poc.service.dao.impl;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.List;
+
+import com.sysnet.poc.service.dao.ProposalDAO;
+import com.sysnet.poc.vo.StgPrpCarDeclaration;
+import com.sysnet.poc.vo.StgPrpCondition;
+import com.sysnet.poc.vo.StgPrpDclRoleInfo;
+import com.sysnet.poc.vo.StgPrpProposal;
+import com.sysnet.poc.vo.StgPrpRoleInfo;
+
+public class ProposalDAOimpl implements ProposalDAO {
+
+	private PreparedStatement pstmt = null;
+
+	/**
+	 * 投保单入库
+	 * 
+	 * @param conn
+	 * @param vo
+	 * @return
+	 */
+	public boolean insertProposal(Connection conn, StgPrpProposal vo) throws SQLException, Exception {
+		boolean bool = false;
+		String sql = "INSERT INTO STG_PRP_PROPOSAL ( PROPOSAL_NO, START_DATE, END_DATE, OUT_DATE, VERSION, TAX_ZONE, PAY_TYPE, " + "PREMINUM_VALUE, PREMIUM_CURRENCY, INSURED_VALUE, INSURED_VALUE_CURRENCY, DISCOUNT, DISCOUNT_PCTG, LOADING, LOADING_PCTG, " + "PAYMENT_DAY, TEXT, LAST_RENEW_DATE, ENSURE_DAYS, CONTRACT_ID, MAIN_VERSION, TRANSCATON_TYPE, TRANSACTION_NO, " + "TRANSACTION_DATE, TAX_DATE, XCG_RATE, XCG_DATE, PAYMENT_TYPE, INVOICING_TYPE, ISSUE_DATE, COI_TYPE, COMMISSION_AMOUNT, " + "ACCOUNT_DATE, COI_COMMISSION_RATE, COI_CONTRACT_NO, RENEW_STATUS, CONTRACT_NO, PRO_COMPANY_ID, PRO_COMPANY_NODE_ID, " + "CLAIM_TYPE, CATEGORY, OWN_PERCENTAGE, COMPANY_ID, COMPANY_NODE_ID, STATUS, PRODUCT_ID, DISPLAY_NAME, REF_NO, CAN_RENEW, "
+				+ "BAT_ID, OBJECT_ID, OBJECT_TYPE, TIME_STAMP, CLIENT_LV, POST_STAGE, CHANGE_ITEM, MOTORCADE_TYPE, INSURE_CAR_NUMBER, " + "ACTURL_CAR_NUMBER, DISCOUNT_TYPE, COMMISSION_RATE, BROKER_COMMISSION_RATE, BROKER_COMMISSION, POLICY_NO, DCS_NODE_ID, " + "IS_RENEW ) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, " + "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+		pstmt = conn.prepareStatement(sql);
+
+		// 投保单号(主键)
+		pstmt.setString(1, vo.getProposalNo());
+
+		// 起保日期
+		pstmt.setDate(2, vo.getStartDate());
+
+		// 终保日期
+		pstmt.setDate(3, vo.getEndDate());
+
+		// 中止日期
+		pstmt.setDate(4, vo.getOutDate());
+
+		// 当前版本号
+		pstmt.setLong(5, vo.getVersion());
+
+		// 税区
+		pstmt.setLong(6, vo.getTaxZone());
+
+		// 从收付费抽取
+		pstmt.setLong(7, vo.getPayType());
+
+		// 保费
+		pstmt.setDouble(8, vo.getPreminumValue());
+
+		// 保费币种
+		pstmt.setLong(9, vo.getPremiumCurrency());
+
+		// 保额
+		pstmt.setDouble(10, vo.getInsuredValue());
+
+		// 保额币种
+		pstmt.setLong(11, vo.getInsuredValueCurrency());
+
+		// 折扣金额
+		pstmt.setDouble(12, vo.getDiscount());
+
+		// 折扣比例
+		pstmt.setDouble(13, vo.getDiscountPctg());
+
+		// 风险加费
+		pstmt.setDouble(14, vo.getLoading());
+
+		// 风险加费比例
+		pstmt.setDouble(15, vo.getLoadingPctg());
+
+		// 支付日
+		pstmt.setLong(16, vo.getPaymentDay());
+
+		// 备注
+		pstmt.setString(17, vo.getText());
+
+		// 续保日期
+		pstmt.setDate(18, vo.getLastRenewDate());
+
+		// 保障天数
+		pstmt.setLong(19, vo.getEnsureDays());
+
+		// 合同ID
+		pstmt.setLong(20, vo.getContractId());
+
+		// 主版本号
+		pstmt.setLong(21, vo.getMainVersion());
+
+		// 交易类型
+		pstmt.setLong(22, vo.getTranscatonType());
+
+		// 交易编号
+		pstmt.setString(23, vo.getTransactionNo());
+
+		// 交易生效日期
+		pstmt.setDate(24, vo.getTransactionDate());
+
+		// 纳税开始日期
+		pstmt.setDate(25, vo.getTaxDate());
+
+		// 汇率
+		pstmt.setDouble(26, vo.getXcgRate());
+
+		// 汇率日期
+		pstmt.setDate(27, vo.getXcgDate());
+
+		// 交费频率
+		pstmt.setLong(28, vo.getPaymentType());
+
+		// 发票类型
+		pstmt.setLong(29, vo.getInvoicingType());
+
+		// 发单日期
+		pstmt.setDate(30, vo.getIssueDate());
+
+		// 共保类型
+		pstmt.setLong(31, vo.getCoiType());
+
+		// 佣金
+		pstmt.setDouble(32, vo.getCommissionAmount());
+
+		// 记账日期
+		pstmt.setDate(33, vo.getAccountDate());
+
+		// 共保佣金率
+		pstmt.setDouble(34, vo.getCoiCommissionRate());
+
+		// 共保合同号
+		pstmt.setString(35, vo.getCoiContractNo());
+
+		// 续保状态
+		pstmt.setLong(36, vo.getRenewStatus());
+
+		// CONTRACT_NO
+		pstmt.setString(37, vo.getContractNo());
+
+		// 产品公司id
+		pstmt.setLong(38, vo.getProCompanyId());
+
+		// 产品公司节点id
+		pstmt.setLong(39, vo.getProCompanyNodeId());
+
+		// 理赔类型
+		pstmt.setLong(40, vo.getClaimType());
+
+		// 分类
+		pstmt.setLong(41, vo.getCategory());
+
+		// 所占百分比
+		pstmt.setDouble(42, vo.getOwnPercentage());
+
+		// 公司id
+		pstmt.setLong(43, vo.getCompanyId());
+
+		// 公司节点id
+		pstmt.setLong(44, vo.getCompanyNodeId());
+
+		// 保单状态
+		pstmt.setLong(45, vo.getStatus());
+
+		// 产品CD
+		pstmt.setLong(46, vo.getProductId());
+
+		// 显示名称
+		pstmt.setString(47, vo.getDisplayName());
+
+		// 账户授权号
+		pstmt.setString(48, vo.getRefNo());
+
+		// 能否续保标志
+		pstmt.setLong(49, vo.getCanRenew());
+
+		// 批次序号
+		pstmt.setLong(50, vo.getBatId());
+
+		// 对象序号
+		pstmt.setDouble(51, vo.getObjectId());
+
+		// 对象类型
+		pstmt.setString(52, vo.getObjectType());
+
+		// 时间戳
+		pstmt.setDate(53, vo.getTimeStamp());
+
+		// 客户等级显示
+		pstmt.setLong(54, vo.getClientLv());
+
+		// 岗位状态
+		pstmt.setString(55, vo.getPostStage());
+
+		// 表示本次批改内容长度
+		pstmt.setString(56, vo.getChangeItem());
+
+		// 长度待定
+		pstmt.setString(57, vo.getMotorcadeType());
+
+		// 投保车辆数
+		pstmt.setLong(58, vo.getInsureCarNumber());
+
+		// 实际车辆数
+		pstmt.setLong(59, vo.getActurlCarNumber());
+
+		// 折扣方式
+		pstmt.setLong(60, vo.getDiscountType());
+
+		// 手续费率（%）
+		pstmt.setDouble(61, vo.getCommissionRate());
+
+		// 经纪佣金率
+		pstmt.setDouble(62, vo.getBrokerCommissionRate());
+
+		// 经纪佣金
+		pstmt.setDouble(63, vo.getBrokerCommission());
+
+		// 保单号
+		pstmt.setString(64, vo.getPolicyNo());
+
+		// 对应的DCS的id
+		pstmt.setLong(65, vo.getDcsNodeId());
+
+		// 是否是续保
+		pstmt.setLong(66, vo.getIsRenew());
+
+		bool = pstmt.execute();
+		return bool;
+	}
+
+	/**
+	 * 投保单责任入库
+	 * 
+	 * @param conn
+	 * @param vo
+	 * @return
+	 */
+	public boolean insertProposalCondition(Connection conn, List<StgPrpCondition> list) throws SQLException, Exception {
+		boolean bool = false;
+		String sql = "insert into STG_PRP_CONDITION ( POLICY_NO, ITEM_NO, PROPOSAL_NO, CONDITION_ID, DCONDITION_ID, " + "INCLUDE, IS_RENEW, CLAIM_CODE, IS_USE, RATE, PREMIUM_AMOUNT, PREMIUM_YEAR, INSURED_VALUE_AMOUNT, LOADING_PCTG, " + "DISCOUNTING_PCTG, REI_RATE, REI_PREMIUM_AMOUNT, LOADING_AMOUNT, DISCOUNT_AMOUNT, COI_PCTG, COMMISSION_RATE, " + "COMMISSION_AMOUNT, EXHAUSTED, QUOTA, RATE_BASIS, RATE_TYPE, PRORATE, DEDUCTIBLE_AMOUNT, DEDUCTIBLE_PCTG, " + "EARNED_PREMIUM_AMOUNT, UNEARNED_PREMIUM_AMOUNT, INSURED_LIMIT_EVENT_AMOUNT, INSURED_LIMIT_TERM_AMOUNT, " + "FRANCHINSE_LIMIT_EVENT_AMOUNT, INSURED_TYPE, VARIABLE_INDEX_TYPE, CONDITION_TEXT, LOAD_DESCRIPTION, INSURANCE_CODE, "
+				+ "RISK_CODE, CONDITION_CLASS, PRORATE_TYPE, LOI, START_DATE, END_DATE, OUT_DATE, PREMIUM_CURRENCY, INSURED_VALUE_CURRENCY, " + "REI_PREMIUM_CURRENCY, EARNED_PREMIUM_CURRENCY, UNEARNED_PREMIUM_CURRENCY, INSURED_LIMIT_EVENT_CURRENCY, " + "INSURED_LIMIT_TERM_CURRENCY, LOADING_CURRENCY, DISCOUNT_CURRENCY, CAT_ACCUMULATE_ZONE, WAITING_PERIOD, " + "EFFECTIVE_PERIOD, REI_EARNED_PREMIUM_CURRENCY, REI_EARNED_PREMIUM_AMOUNT, REI_UNEARNED_PREMIUM_CURRENCY, " + "REI_UNEARNED_PREMIUM_AMOUNT, COPAYMENT_PCTG, COPAYMENT_CURRENCY, COPAYMENT_AMOUNT, DEDUCTIBLE_CURRENCY, " + "COMMISSION_CURRENCY, VERSION, MAIN_VERSION, OBJECT_ID, OBJECT_TYPE, BAT_ID, ADDITIONAL_AREA, PARK_DAYS, " + "AREA_EVENT_TYPE, NEGOTIATION, TIME_STAMP ) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, "
+				+ "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, " + "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+		pstmt = conn.prepareStatement(sql);
+
+		for (StgPrpCondition vo : list) {
+
+			// 保单CD
+			pstmt.setString(1, vo.getPolicyNo());
+
+			// 标的序列号
+			pstmt.setInt(2, 1);
+
+			// 投保单号
+			pstmt.setString(3, vo.getProposalNo());
+
+			// 标的责任CD
+			pstmt.setLong(4, vo.getConditionId());
+
+			// 定义的条款的ID
+			pstmt.setLong(5, vo.getDconditionId());
+
+			// 是否有效
+			pstmt.setLong(6, vo.getInclude());
+
+			// 是否续保
+			pstmt.setString(7, vo.getIsRenew());
+
+			// 理赔的代码
+			pstmt.setString(8, vo.getClaimCode());
+
+			// 条款是否可用
+			pstmt.setString(9, vo.getIsUse());
+
+			// 费率
+			pstmt.setDouble(10, vo.getRate());
+
+			// 原始保费或者是调整后的保费
+			pstmt.setDouble(11, vo.getPremiumAmount());
+
+			// 年化保费
+			pstmt.setString(12, vo.getPremiumYear());
+
+			// 保额
+			pstmt.setDouble(13, vo.getInsuredValueAmount());
+
+			// 加费比例
+			pstmt.setDouble(14, vo.getLoadingPctg());
+
+			// 折扣比例
+			pstmt.setDouble(15, vo.getDiscountingPctg());
+
+			// 再保费率
+			pstmt.setDouble(16, vo.getReiRate());
+
+			// 再保险保费
+			pstmt.setDouble(17, vo.getReiPremiumAmount());
+
+			// 加费额
+			pstmt.setDouble(18, vo.getLoadingAmount());
+
+			// 折扣额
+			pstmt.setDouble(19, vo.getDiscountAmount());
+
+			// 共保比例
+			pstmt.setDouble(20, vo.getCoiPctg());
+
+			// 佣金率
+			pstmt.setDouble(21, vo.getCommissionRate());
+
+			// 佣金
+
+			pstmt.setDouble(22, vo.getCommissionAmount());
+
+			// 是否终止
+			pstmt.setString(23, vo.getExhausted());
+
+			// 理赔限额
+			pstmt.setString(24, vo.getQuota());
+
+			// 费率基础
+			pstmt.setString(25, vo.getRateBasis());
+
+			// 费率类型
+			pstmt.setString(26, vo.getRateType());
+
+			// 保费的计算方式
+			pstmt.setString(27, vo.getProrate());
+
+			// 免赔金额
+			pstmt.setDouble(28, vo.getDeductibleAmount());
+
+			// 免赔比例
+			pstmt.setDouble(29, vo.getDeductiblePctg());
+
+			// 已赚保费
+			pstmt.setDouble(30, vo.getEarnedPremiumAmount());
+
+			// 未赚保费
+			pstmt.setDouble(31, vo.getUnearnedPremiumAmount());
+
+			// 每事故保额限额
+			pstmt.setDouble(32, vo.getInsuredLimitEventAmount());
+
+			// 每期保额限额
+			pstmt.setDouble(33, vo.getInsuredLimitEventAmount());
+
+			// 每次理赔绝对免赔额限额
+			pstmt.setDouble(34, vo.getFranchinseLimitEventAmount());
+
+			// 保额类型
+			pstmt.setString(35, vo.getInsuredType());
+
+			// 理赔保额类型
+			pstmt.setLong(36, vo.getVariableIndexType());
+
+			// 条款文本
+			pstmt.setString(37, vo.getConditionText());
+
+			// 加费说明
+			pstmt.setString(38, vo.getLoadDescription());
+
+			// 险种代码
+			pstmt.setString(39, vo.getInsuranceCode());
+
+			// 险别代码
+			pstmt.setString(40, vo.getRiskCode());
+
+			// Condition种类
+			pstmt.setLong(41, vo.getConditionClass());
+
+			// 分配类型
+			pstmt.setString(42, vo.getProrate());
+
+			// 产品线
+			pstmt.setLong(43, vo.getLoi());
+
+			// 起保日期
+			pstmt.setDate(44, vo.getStartDate());
+
+			// 终保日期
+			pstmt.setDate(45, vo.getEndDate());
+
+			// 终止日期
+			pstmt.setDate(46, vo.getOutDate());
+
+			// 保费币种
+			pstmt.setLong(47, vo.getPremiumCurrency());
+
+			// 保额币种
+			pstmt.setLong(48, vo.getInsuredValueCurrency());
+
+			// 再保险保费币种
+			pstmt.setLong(49, vo.getReiPremiumCurrency());
+
+			// 已赚保费币种
+			pstmt.setLong(50, vo.getEarnedPremiumCurrency());
+
+			// 未赚保费币种
+			pstmt.setLong(51, vo.getUnearnedPremiumCurrency());
+
+			// 每事故保额限额币种
+			pstmt.setLong(52, vo.getInsuredLimitEventCurrency());
+
+			// 每期保额限额币种
+			pstmt.setLong(53, vo.getInsuredLimitEventCurrency());
+
+			// 加费币种
+			pstmt.setLong(54, vo.getLoadingCurrency());
+
+			// 折扣币种
+			pstmt.setLong(55, vo.getDiscountCurrency());
+
+			// 风险累计区域
+			pstmt.setLong(56, vo.getCatAccumulateZone());
+
+			// 等待期
+			pstmt.setLong(57, vo.getWaitingPeriod());
+
+			// 免责期
+			pstmt.setLong(58, vo.getEffectivePeriod());
+
+			// 再保已赚保费币种
+			pstmt.setLong(59, vo.getReiEarnedPremiumCurrency());
+
+			// 再保已赚保费金额
+			pstmt.setDouble(60, 0);
+
+			// 再保未赚保费币种
+			pstmt.setLong(61, vo.getReiEarnedPremiumCurrency());
+
+			// 再保未赚保费金额
+			pstmt.setDouble(62, vo.getReiUnearnedPremiumAmount());
+
+			// 共同给付比例
+			pstmt.setDouble(63, vo.getCopaymentPctg());
+
+			// 共同给付币种
+			pstmt.setLong(64, vo.getCopaymentCurrency());
+
+			// 共同给付金额
+			pstmt.setDouble(65, vo.getCopaymentAmount());
+
+			// 免赔币种
+			pstmt.setLong(66, vo.getDeductibleCurrency());
+
+			// 佣金币种
+			pstmt.setLong(67, vo.getCommissionCurrency());
+
+			// 保单当前版本号
+			pstmt.setLong(68, vo.getVersion());
+
+			// 主版本号
+			pstmt.setLong(69, vo.getMainVersion());
+
+			// 对象序号
+			pstmt.setLong(70, vo.getObjectId());
+
+			// 对象类型
+			pstmt.setString(71, vo.getObjectType());
+
+			// 批次序号
+			pstmt.setLong(72, vo.getBatId());
+
+			// 扩展区域半径
+			pstmt.setString(73, vo.getAdditionalArea());
+
+			// 停驶险约定赔偿天数
+			pstmt.setLong(74, vo.getParkDays());
+
+			// 约定区域通行费用特约事故类型
+			pstmt.setString(75, vo.getAreaEventType());
+
+			// 协商实际价值
+			pstmt.setString(76, vo.getNegotiation());
+
+			// 时间戳
+			pstmt.setDate(77, null);
+
+			bool = pstmt.execute();
+		}
+		return bool;
+	}
+
+	/**
+	 * 投保单标的入库
+	 * 
+	 * @param conn
+	 * @param vo
+	 * @return
+	 */
+	public boolean insertProposalDeclaration(Connection conn, StgPrpCarDeclaration vo) throws SQLException, Exception {
+		boolean bool = false;
+
+		String sql = "insert into STG_PRP_CAR_DECLARATION(POLICY_NO," + "ITEM_NO," + "PROPOSAL_NO," + "HKM_CAR_NO," + "CAR_BYNAME," + "CAR_NUMBER," + "NUMBER_TYPE," + "YEARLY_MILES," + "ENGINE_NO," + "VIN_NO," + "PLATE_NO," + "USE," + "VEHICLE_TYPE," + "PASSENGER," + "GAS," + "DRIVING_AREA," + "PRICE," + "ACTUAL_PRICE," + "SPECIAL_AGREEMENT," + "APPLY_LOCATION," + "REGISTER_DATE," + "AGE_LIMIT," + "VEHICLE_RELATIONSHIP," + "CLAUSE_PRODUCT," + "PLATE_COLOR," + "CAR_TYPE_CODE," + "QUALITY," + "VEHICLE_COLOR," + "IS_MAINTAIN," + "IS_RENEWAL," + "IS_DETAIL," + "CAR_TYPE_QUOTIETY_FACTORY," + "CAR_TYPE_QUOTIETY_LOSS," + "CAR_TYPE_QUOTIETY_THEFT," + "CAR_TYPE," + "CHANGE_DATE," + "CHECK_DATE," + "BREAK_TIMES," + "DISPUTE," + "ATTRIBUTION," + "CHANNEL_CODE," + "CHANGE_TIMES," + "CLAIM_TIMES,"
+				+ "CAR_TYPE_NAME," + "BUSINESS_SOURCE," + "CHECK_DETAIL," + "EQUIPMENT_QUALITY," + "IS_DISCOUNT," + "IS_LOANOFF," + "IS_SPOT," + "MANUFACTURER," + "NOTE," + "PARKING_PLACE," + "PROJECT_CODE," + "QUICK_FILTER_CODE," + "RELATIVE_PRICE," + "SECURITY," + "TRANSMISSION_TYPE," + "VEHICLE_TYPE_BYNAME," + "YEAR," + "BAT_ID," + "OBJECT_ID," + "OBJECT_TYPE," + "TIME_STAMP," + "SPECIAL_AGREEMENT_CODE," + "SPECIAL_AGREEMENT_CONTENT," + "DIRECT_BUSINESS_TYPE,"
+
+				+ "MILE_AGES," + "NEW_VEHICLE_FLAG," + "ECDEMIC_VEHICLE_FLAG," + "SPECIAL_CAR_FLAG," + "NO_DAMAGE_YEARS," + "POWER," + "AREA," + "HK_FLAG," + "COUNTRY_CODE," + "MAKE_DATE," + "INVOICE_NO," + "LAST_INSURER," + "MODEL," + "BUY_DATE," + "POLICY_TYPE," + "JUDICAL_SCOPE," + "IS_DEDUCTIBLE_PCTG," + "GLASS_SOURCE) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		pstmt = conn.prepareStatement(sql);
+
+		pstmt.setString(1, vo.getPolicyNo());
+		pstmt.setLong(2, vo.getItemNo());
+		pstmt.setString(3, vo.getProposalNo());
+		pstmt.setString(4, vo.getHkmCarNo());
+		pstmt.setString(5, vo.getCarByname());
+		pstmt.setString(6, vo.getCarNumber());
+		pstmt.setString(7, vo.getNumberType());
+		pstmt.setFloat(8, vo.getYearlyMiles());
+		pstmt.setString(9, vo.getEngineNo());
+		pstmt.setString(10, vo.getVinNo());
+		pstmt.setString(11, vo.getPlateNo());
+		pstmt.setString(12, vo.getUse());
+		pstmt.setString(13, vo.getVehicleType());
+		pstmt.setLong(14, vo.getPassenger());
+		pstmt.setFloat(15, vo.getGas());
+		pstmt.setString(16, vo.getDrivingArea());
+		pstmt.setDouble(17, vo.getPrice());
+		pstmt.setDouble(18, vo.getActualPrice());
+		pstmt.setString(19, vo.getSpecialAgreement());
+		pstmt.setString(20, vo.getApplyLocation());
+		pstmt.setDate(21, vo.getRegisterDate());
+		pstmt.setLong(22, vo.getAgeLimit());
+		pstmt.setString(23, vo.getVehicleRelationship());
+		pstmt.setString(24, vo.getClauseProduct());
+		pstmt.setString(25, vo.getPlateColor());
+		pstmt.setString(26, vo.getCarTypeCode());
+		pstmt.setFloat(27, vo.getQuality());
+		pstmt.setString(28, vo.getVehicleColor());
+		pstmt.setString(29, vo.getIsMaintain());
+		pstmt.setString(30, vo.getIsRenewal());
+		pstmt.setString(31, vo.getIsDetail());
+		pstmt.setFloat(32, vo.getCarTypeQuotietyFactory());
+		pstmt.setFloat(33, vo.getCarTypeQuotietyLoss());
+		pstmt.setFloat(34, vo.getCarTypeQuotietyTheft());
+		pstmt.setString(35, vo.getCarType());
+		pstmt.setDate(36, vo.getChangeDate());
+		pstmt.setDate(37, vo.getCheckDate());
+		pstmt.setLong(38, vo.getBreakTimes());
+		pstmt.setString(39, vo.getDispute());
+		pstmt.setString(40, vo.getAttribution());
+		pstmt.setString(41, vo.getChannelCode());
+		pstmt.setLong(42, vo.getChangeTimes());
+		pstmt.setLong(43, vo.getClaimTimes());
+		pstmt.setString(44, vo.getCarTypeName());
+		pstmt.setString(45, vo.getBusinessSource());
+		pstmt.setString(46, vo.getCheckDetail());
+		pstmt.setFloat(47, vo.getEquipmentQuality());
+		pstmt.setString(48, vo.getIsDiscount());
+		pstmt.setString(49, vo.getIsLoanoff());
+		pstmt.setString(50, vo.getIsSpot());
+		pstmt.setString(51, vo.getManufacturer());
+		pstmt.setString(52, vo.getNote());
+		pstmt.setString(53, vo.getParkingPlace());
+		pstmt.setString(54, vo.getProjectCode());
+		pstmt.setString(55, vo.getQuickFilterCode());
+		pstmt.setString(56, vo.getRelativePrice());
+		pstmt.setString(57, vo.getSecurity());
+		pstmt.setString(58, vo.getTransmissionType());
+		pstmt.setString(59, vo.getVehicleTypeByname());
+		pstmt.setDate(60, vo.getYear());
+		pstmt.setLong(61, vo.getBatId());
+		pstmt.setLong(62, vo.getObjectId());
+		pstmt.setString(63, vo.getObjectType());
+		pstmt.setTimestamp(64, vo.getTimeStamp());
+		pstmt.setString(65, vo.getSpecialAgreementCode());
+		pstmt.setString(66, vo.getSpecialAgreementContent());
+		pstmt.setString(67, vo.getDirectBusinessType());
+		pstmt.setString(68, vo.getMileAges());
+
+		pstmt.setString(69, vo.getNewVehicleFlag());
+		pstmt.setString(70, vo.getEcdemicVehicleFlag());
+		pstmt.setString(71, vo.getSpecialCarFlag());
+		pstmt.setLong(72, vo.getNoDamageYears());
+		pstmt.setFloat(73, vo.getPower());
+		pstmt.setString(74, vo.getArea());
+		pstmt.setLong(75, vo.getHkFlag());
+		pstmt.setString(76, vo.getCountryCode());
+		pstmt.setDate(77, vo.getMakeDate());
+		pstmt.setString(78, vo.getInvoiceNo());
+		pstmt.setString(79, vo.getLastInsurer());
+		pstmt.setString(80, vo.getModel());
+		pstmt.setDate(81, vo.getBuyDate());
+		pstmt.setString(82, vo.getPolicyType());
+		pstmt.setString(83, vo.getJudicalScope());
+		pstmt.setString(84, vo.getIsDeductiblePctg());
+		pstmt.setString(85, vo.getGlassSource());
+
+		bool = pstmt.execute();
+		return bool;
+	}
+
+	/**
+	 * 投保单角色入库
+	 * 
+	 * @param conn
+	 * @param vo
+	 * @return
+	 */
+	public boolean insertProposalRoleInfo(Connection conn, List<StgPrpRoleInfo> list) throws SQLException, Exception {
+		boolean bool = false;
+		for (int i = 0; i < list.size(); i++) {
+
+			StgPrpRoleInfo vo = list.get(i);
+
+			String sql = "insert into STG_PRP_ROLE_INFO(POLICY_NO," + "ROLE_ID," + "PROPOSAL_NO" + "PARTY_ID," + "DROLE_ID," + "LAYER," + "PERCENTAGE," + "NAME," + "OBJECT_TYPE," + "BAT_ID," + "OBJECT_ID," + "TIME_STAMP," + "ROLE_TYPE," + "PARTY_CODE) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, vo.getPolicyNo());
+			pstmt.setLong(2, vo.getRoleId());
+			pstmt.setString(3, vo.getProposalNo());
+			pstmt.setLong(4, vo.getPartyId());
+			pstmt.setLong(5, vo.getDroleId());
+			pstmt.setLong(6, vo.getLayer());
+			pstmt.setDouble(7, vo.getPercentage());
+			pstmt.setString(8, vo.getName());
+			pstmt.setString(9, vo.getObjectType());
+			pstmt.setLong(10, vo.getBatId());
+			pstmt.setLong(11, vo.getObjectId());
+			pstmt.setString(12, vo.getTimeStamp());
+			pstmt.setString(13, vo.getRoleType());
+			pstmt.setLong(14, vo.getPartyCode());
+
+			bool = pstmt.execute();
+		}
+		return bool;
+	}
+
+	/**
+	 * 投保单驾驶员入库
+	 * 
+	 * @param conn
+	 * @param vo
+	 * @return
+	 */
+	public boolean insertProposalDclRoleInfo(Connection conn, List<StgPrpDclRoleInfo> list) throws SQLException, Exception {
+		boolean bool = false;
+		for (int i = 0; i < list.size(); i++) {
+
+			StgPrpDclRoleInfo vo = list.get(i);
+
+			String sql = "insert into STG_PRP_DCL_ROLE_INFO(ROLE_ID," + "DROLE_ID," + "LAYER," + "PERCENTAGE," + "NAME," + "TIME_STAMP" + "PARTY_ID" + "OBJECT_TYPE," + "BAT_ID," + "OBJECT_ID," + "POLICY_NO," + "ITEM_NO," + "PROPOSAL_NO) values (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setLong(1, vo.getRoleId());
+			pstmt.setLong(2, vo.getDroleId());
+			pstmt.setLong(3, vo.getLayer());
+			pstmt.setDouble(4, vo.getPercentage());
+			pstmt.setString(5, vo.getName());
+			pstmt.setString(6, vo.getTimeStamp());
+			pstmt.setLong(7, vo.getPartyId());
+			pstmt.setString(8, vo.getObjectType());
+			pstmt.setLong(9, vo.getBatId());
+			pstmt.setLong(10, vo.getObjectId());
+			pstmt.setString(11, vo.getPolicyNo());
+			pstmt.setLong(12, vo.getItemNo());
+			pstmt.setString(13, vo.getProposalNo());
+
+			bool = pstmt.execute();
+		}
+		return bool;
+	}
+
+}

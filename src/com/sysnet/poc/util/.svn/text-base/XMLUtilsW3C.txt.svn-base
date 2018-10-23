@@ -1,0 +1,732 @@
+package com.sysnet.poc.util;
+
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.StringReader;
+import java.io.StringWriter;
+import java.io.Writer;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+
+import javax.xml.namespace.QName;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Result;
+import javax.xml.transform.Source;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathExpressionException;
+import javax.xml.xpath.XPathFactory;
+
+import org.apache.log4j.Logger;
+import org.w3c.dom.Attr;
+import org.w3c.dom.CDATASection;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.w3c.dom.Text;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
+
+public class XMLUtilsW3C {
+
+	static Logger log = Logger.getLogger(XMLUtilsW3C.class);
+
+	private final static DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+	private final static TransformerFactory tf = TransformerFactory.newInstance();
+
+	private final static XPathFactory xpf = XPathFactory.newInstance();
+
+	static {
+		// tf.setAttribute("indent-number", 4);
+		dbf.setValidating(false);
+		dbf.setNamespaceAware(true);
+	}
+
+	private XMLUtilsW3C() {
+
+	}
+
+	/**
+	 * 获得所有的 child element
+	 * 
+	 * @param parentNode
+	 * @return
+	 */
+	public static List<Element> getChildElements(Node parentNode) {
+		NodeList nodeList = parentNode.getChildNodes();
+		List<Element> childElements = new ArrayList<Element>(nodeList.getLength());
+		for (int i = 0; i < nodeList.getLength(); i++) {
+			Node childNode = nodeList.item(i);
+
+			if (childNode.getNodeType() == Node.ELEMENT_NODE) {
+				childElements.add((Element) childNode);
+			}
+		}
+		return childElements;
+	}
+
+	/**
+	 * get child nodes of the node with the tagName
+	 * 
+	 * @param node
+	 * @param tagName
+	 */
+	public static Node getChildNodeOf(Node node, String tagName) {
+		for (Node temp = node.getFirstChild(); temp != null; temp = temp.getNextSibling())
+			if (temp.getNodeType() == Node.ELEMENT_NODE && tagName.equals(temp.getNodeName())) {
+				return temp;
+			}
+		return null;
+	}
+
+	/**
+	 * 取得 node 下所有 tagName 的 child node
+	 * 
+	 * @param node
+	 * @param tagName
+	 * @return
+	 */
+	public static List<Node> getChildNodesOf(Node node, String tagName) {
+		NodeList nodelist = node.getChildNodes();
+		List<Node> nodes = new ArrayList<Node>();
+		for (int i = 0; i < nodelist.getLength(); i++) {
+			Node temp = nodelist.item(i);
+			if (temp.getNodeName().equals(tagName)) {
+				nodes.add(temp);
+			}
+		}
+		return nodes;
+	}
+
+	/**
+	 * 取得 node 下 child node 为 tagName 的值
+	 * 
+	 * @param node
+	 * @param tagName
+	 * @return
+	 */
+	public static String getChildNodeValueOf(Node node, String tagName) {
+		if (tagName.equals(node.getNodeName())) {
+			return getValueOf(node);
+		}
+		for (Node temp = node.getFirstChild(); temp != null; temp = temp.getNextSibling()) {
+			if (temp.getNodeType() == Node.ELEMENT_NODE && tagName.equals(temp.getNodeName())) {
+				return getValueOf(temp);
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * 取得 node 的 value
+	 * 
+	 * @param node
+	 * @return
+	 */
+	public static String getValueOf(Node node) {
+		if (node == null) {
+			return null;
+		} else if (node instanceof Text) {
+			return node.getNodeValue().trim();
+		} else if (node instanceof Element) {
+			((Element) node).normalize();
+			Node temp = node.getFirstChild();
+			if (temp != null && (temp instanceof Text))
+				return temp.getNodeValue().trim();
+			else
+				return "";
+		} else {
+			return node.getNodeValue().trim();
+		}
+	}
+
+	/**
+	 * 取得 node 的 一个attribute 的值
+	 * 
+	 * @param node
+	 * @param attribute
+	 * @return
+	 */
+	public static String getAtrributeValueOf(Node node, String attribute) {
+		Node _node = node.getAttributes().getNamedItem(attribute);
+		return getValueOf(_node);
+	}
+
+	/**
+	 * 取得 element 下 所有某个tag 的 child element 列表
+	 * 
+	 * @param element
+	 * @param tag
+	 * @return
+	 */
+	public static List<Element> getElementsByTagName(Element element, String tag) {
+		List<Element> children = new ArrayList<Element>();
+		if (element != null && tag != null) {
+			NodeList nodes = element.getElementsByTagName(tag);
+			for (int i = 0; i < nodes.getLength(); i++) {
+				Node child = nodes.item(i);
+				children.add((Element) child);
+			}
+		}
+		return children;
+	}
+
+	/**
+	 * 取得 element 下 tags 中 child element
+	 * 
+	 * @param element
+	 * @param tags
+	 * @return
+	 */
+	public static List<Element> getElementsByTagNames(Element element, String[] tags) {
+		List<Element> children = new ArrayList<Element>();
+		if (element != null && tags != null) {
+			List<?> tagList = Arrays.asList(tags);
+			NodeList nodes = element.getChildNodes();
+			for (int i = 0; i < nodes.getLength(); i++) {
+				Node child = nodes.item(i);
+				if (child.getNodeType() == Node.ELEMENT_NODE && tagList.contains(((Element) child).getTagName())) {
+					children.add((Element) child);
+				}
+			}
+		}
+		return children;
+	}
+
+	/**
+	 * get the xml root document of the xml descriptor
+	 * 
+	 * @param url
+	 *            the xml descriptor url
+	 * @return XML document
+	 * @throws Exception
+	 *             if failed to create XML document
+	 */
+	public static Document loadDocument(URL url) throws IOException, ParserConfigurationException, SAXException {
+		InputStream is = null;
+		try {
+			is = new BufferedInputStream(url.openStream());
+			return dbf.newDocumentBuilder().parse(is);
+		} finally {
+			if (is != null) {
+				is.close();
+				is = null;
+			}
+		}
+	}
+
+	/**
+	 * parse document from xml String
+	 * 
+	 * @param xml
+	 * @return
+	 * @throws Exception
+	 */
+	public static Document loadDocument(String xml) throws IOException, ParserConfigurationException, SAXException {
+		return dbf.newDocumentBuilder().parse(new InputSource(new StringReader(xml)));
+	}
+
+	/**
+	 * parse document from xml String
+	 * 
+	 * @param xml
+	 * @return
+	 * @throws Exception
+	 */
+	public static Document loadDocument(File xmlFile) throws IOException, ParserConfigurationException, SAXException {
+		return dbf.newDocumentBuilder().parse(xmlFile);
+	}
+
+	/**
+	 * parse document from xml String
+	 * 
+	 * @param xml
+	 * @return
+	 * @throws Exception
+	 */
+	public static Document loadDocument(InputStream in) throws Exception {
+		try {
+			Document doc = dbf.newDocumentBuilder().parse(in);
+			in.close();
+			return doc;
+		} catch (Exception e) {
+			in.close();
+			throw e;
+		}
+	}
+
+	/**
+	 * new document
+	 */
+	public static Document newDocument() {
+		try {
+			return dbf.newDocumentBuilder().newDocument();
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	/**
+	 * 为 parent Node 增加一个 TextElement
+	 * 
+	 * @param parent
+	 *            父节点
+	 * @param name
+	 *            element name
+	 * @param value
+	 *            element value
+	 * @return 增加的 element
+	 */
+	public static Element addTextElement(Node parent, String name, String value) {
+		return addTextElement(parent, name, value, null);
+	}
+
+	/**
+	 * 为 parent Node 增加一个 TextElement，可定义该Element 的属性。
+	 * 
+	 * @param parent
+	 * @param name
+	 * @param value
+	 * @param attrs
+	 */
+	public static Element addTextElement(Node parent, String name, String value, Attr[] attrs) {
+		Element element = null;
+		if (parent instanceof Document) {
+			element = ((Document) parent).createElement(name);
+		} else {
+			element = parent.getOwnerDocument().createElement(name);
+		}
+
+		if (attrs != null && attrs.length > 0) {
+			for (Attr attr : attrs) {
+				element.setAttributeNode(attr);
+			}
+		}
+
+		if (value != null) {
+			element.setTextContent(value);
+		}
+		parent.appendChild(element);
+		return element;
+	}
+
+	/**
+	 * Add a CDATA element.
+	 * 
+	 * @param parent
+	 * @param name
+	 * @param data
+	 */
+	public static Element addCDATAElement(Node parent, String name, String data) {
+		return addCDATAElement(parent, name, data, null);
+	}
+
+	/**
+	 * Add a CDATA element with attributes.
+	 * 
+	 * NOTE: Serializing a XML document via TRAX changes "\r\n" to "\r\r\n" in a CDATA section. Serializing with the Xalan XMLSerializer works fine.
+	 * 
+	 * @param parent
+	 * @param name
+	 * @param data
+	 * @param attrs
+	 */
+	public static Element addCDATAElement(Node parent, String name, String data, Attr[] attrs) {
+		Element element = null;
+		CDATASection cdata = null;
+		if (parent instanceof Document) {
+			element = ((Document) parent).createElement(name);
+			/*
+			 * Creates a <code>CDATASection</code> node whose value is the specified.
+			 */
+			cdata = ((Document) parent).createCDATASection(data);
+		} else {
+			element = parent.getOwnerDocument().createElement(name);
+			cdata = parent.getOwnerDocument().createCDATASection(data);
+		}
+
+		if (attrs != null && attrs.length > 0) {
+			for (Attr attr : attrs) {
+				element.setAttributeNode(attr);
+			}
+		}
+
+		element.appendChild(cdata);
+		parent.appendChild(element);
+		return element;
+	}
+
+	/**
+	 * 为 parent Node 增加一个空的 Element
+	 * 
+	 * @param parent
+	 *            父节点
+	 * @param name
+	 *            element name
+	 * @param attrs
+	 *            element 的 attributes
+	 * @return 增加的 element
+	 */
+	public static Element addElement(Node parent, String name, Attr[] attrs) {
+		Element element = null;
+		if (parent instanceof Document) {
+			element = ((Document) parent).createElement(name);
+		} else {
+			element = parent.getOwnerDocument().createElement(name);
+		}
+		if (attrs != null && attrs.length > 0) {
+			for (Attr attr : attrs) {
+				element.setAttributeNode(attr);
+			}
+		}
+		parent.appendChild(element);
+		return element;
+	}
+
+	public static Element addElement(Element parent, Element childElement) {
+		Node childNode = parent.getOwnerDocument().importNode(childElement, true);
+		parent.appendChild(childNode);
+		return parent;
+	}
+
+	public static Element addElement(Document parent, Element childElement) {
+		Node childNode = parent.importNode(childElement, true);
+		parent.appendChild(childNode);
+		return parent.getDocumentElement();
+	}
+
+	public static void removeChild(Node parent, Node child) {
+		parent.removeChild(child);
+	}
+
+	public static void removeChilds(Node parent, String childTagName) {
+		List<Node> childNodes = getChildNodesOf(parent, childTagName);
+
+		for (Node childNode : childNodes) {
+			parent.removeChild(childNode);
+		}
+	}
+
+	/**
+	 * 创建 Attribute
+	 * 
+	 * @param document
+	 * @param name
+	 * @param value
+	 * @return Attr
+	 */
+	public static Attr createAttribute(Document document, String name, String value) {
+		Attr attr = document.createAttribute(name);
+		attr.setTextContent(value);
+		return attr;
+	}
+
+	/**
+	 * 将document转成字符串
+	 * 
+	 * @param doc
+	 */
+	public static String xmlNodeToString(Node doc) {
+		if (doc == null) {
+			return "";
+		}
+		try {
+			Transformer tran = tf.newTransformer();
+			tran.setOutputProperty(OutputKeys.INDENT, "yes");
+			StringWriter swriter = new StringWriter();
+			Source src = new DOMSource(doc);
+			Result res = new StreamResult(swriter);
+			tran.transform(src, res);
+			return swriter.getBuffer().toString();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "";
+		}
+	}
+
+	/**
+	 * 将 xml document 写到一个 writer 中
+	 * 
+	 * @param doc
+	 * @param writer
+	 */
+	public static void xmlNodeToWriter(Document doc, Writer writer) {
+		if (doc == null || writer == null) {
+			return;
+		}
+		try {
+			Transformer tran = tf.newTransformer();
+			tran.setOutputProperty(OutputKeys.INDENT, "yes");
+			Source src = new DOMSource(doc);
+			Result res = new StreamResult(writer);
+			tran.transform(src, res);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * 执行一个 xpath
+	 * 
+	 * @param doc
+	 * @param xpath
+	 * @param returnType
+	 * @return
+	 * @throws XPathExpressionException
+	 */
+	public static Object evaluateXpath(Document doc, String xpath, QName returnType) throws XPathExpressionException {
+		XPath path = xpf.newXPath();
+		return path.evaluate(xpath, doc, returnType);
+	}
+
+	/**
+	 * 根据 XPath 和对象得到值
+	 * 
+	 * @param xpath
+	 * @param doc
+	 * @return
+	 */
+	public static String getValueByXPath(String xpath, Object node) {
+		try {
+			if (node == null) {
+				log.error("Input Node is null!");
+				return "";
+			}
+			XPath path = xpf.newXPath();
+			String value = path.evaluate(xpath, node);
+			return value;
+
+		} catch (XPathExpressionException e) {
+			e.printStackTrace();
+			return "";
+		}
+	}
+
+	// private static void createXML() {
+
+	// Document document = XMLUtilsW3C.newDocument();
+	// Element rspNode = XMLUtilsW3C.addElement(document, "response", new Attr[]
+	// { XMLUtilsW3C.createAttribute(document, "type", "MESSAGE_TYPE") });
+	//
+	// XMLUtilsW3C.addTextElement(rspNode, "username", "姓名");
+	// XMLUtilsW3C.addTextElement(rspNode, "password", "User.getPassword()");
+	// XMLUtilsW3C.addTextElement(rspNode, "result", "successful");
+	// XMLUtilsW3C.addTextElement(rspNode, "sessionId", "session_id");
+	// XMLUtilsW3C.addCDATAElement(rspNode, "sessionId", "session_id");
+	//
+	// Element childsElement = XMLUtilsW3C.addTextElement(rspNode, "childs",
+	// null, null);
+	// XMLUtilsW3C.addTextElement(childsElement, "child", "1");
+	//
+	// Document document2 = XMLUtilsW3C.newDocument();
+	// Element rspNode2 = XMLUtilsW3C.addElement(document2, "response", new
+	// Attr[] { XMLUtilsW3C.createAttribute(document2, "type", "MESSAGE_TYPE")
+	// });
+	//
+	// XMLUtilsW3C.addElement(rspNode, rspNode2);
+	//
+	// System.out.println(XMLUtilsW3C.xmlNodeToString(document.getDocumentElement()));
+	// }
+	//
+
+	public static Node selectSingleNode(Node node, String tagName) {
+		String[] nodelist = tagName.split("/");
+
+		for (int i = 0; i < nodelist.length; i++) {
+			String s = nodelist[i];
+			if (!s.equals("")) {
+				Node n = XMLUtilsW3C.getChildNodeOf(node, s);
+				node = n;
+			}
+		}
+		return node;
+	}
+
+	public static List<Element> selectNodes(Node node, String tagName) {
+		String[] nodelist = tagName.split("/");
+
+		for (int i = 0; i < nodelist.length - 1; i++) {
+			String s = nodelist[i];
+			if (!s.equals("")) {
+				Node n = XMLUtilsW3C.getChildNodeOf(node, s);
+				node = n;
+			}
+		}
+		List<Element> nodes = XMLUtilsW3C.getChildElements(node);
+		return nodes;
+	}
+
+	/**
+	 * 处理被保人错位
+	 * 
+	 * @param xml
+	 * @param type
+	 * @return
+	 * @throws IOException
+	 * @throws ParserConfigurationException
+	 * @throws SAXException
+	 */
+
+	public static String doReplace(String xml, String type) throws IOException, ParserConfigurationException, SAXException {
+		// xml = "<bContractNode id=\"2009051910244187234\">" +
+		// "<summaries>" +
+		// "<vsList><accumulationCode>PingAn2247</accumulationCode><classificCode>-1</classificCode><commission/><discount/><earnedPremium/><insuredValue><m
+		// c=\"1\">10000.0</m>
+		// </insuredValue><LOI>1</LOI><overcharge/><premium><m
+		// c=\"1\">228.0</m></premium><reiEarnedPremium/><reiInsuredValue/><reiPremium><m
+		// c=\"1\">228.0</m></reiPremium><reiUnearnedPremium/><unearnedPremium/></vsList>"+
+		// "</summaries>" +
+		// "<role id=\"2009051910244187235\" isSpecAssign=\"false\"
+		// versionNum=\"6609\" message=\"\" displayOrder=\"0\"
+		// executeOrder=\"0\" status=\"1\" name=\"beneficiary\" code=\"0\"> " +
+		// "<term>" +
+		// "<s>2009-01-01T00:00:00+08:00</s>" +
+		// "<e>2010-01-01T00:00:00+08:00</e>" +
+		// "<o>2010-01-01T00:00:00+08:00</o>" +
+		// "</term>" +
+		// "<dRoleid>2007082316464259950</dRoleid>" +
+		// "<layer>1</layer>" +
+		// "<percentage>1.0</percentage>" +
+		// "<sequence>1</sequence>" +
+		// "<partyCode>PingAn2248</partyCode>" +
+		// "<thpname>王 晓悦</thpname>" +
+		// "<accountReferenceNo></accountReferenceNo>" +
+		// "<roleTag>2009051910243612484</roleTag>" +
+		// "<beneficiaryType>0</beneficiaryType>" +
+		// "<relationShip>0</relationShip>" +
+		// "<visibleType>1</visibleType>" +
+		// "<active>false</active>" +
+		// "</role>" +
+		// "<role id=\"2009051910244187235\" isSpecAssign=\"false\"
+		// versionNum=\"6609\" message=\"\" displayOrder=\"0\"
+		// executeOrder=\"0\" status=\"1\" name=\"beneficiary\" code=\"0\"> " +
+		// "<term>" +
+		// "<s>2009-01-01T00:00:00+08:00</s>" +
+		// "<e>2010-01-01T00:00:00+08:00</e>" +
+		// "<o>2010-01-01T00:00:00+08:00</o>" +
+		// "</term>" +
+		// "<dRoleid>2007082316442791450</dRoleid>" +
+		// "<layer>0</layer>" +
+		// "<percentage>1.0</percentage>" +
+		// "<sequence>1</sequence>" +
+		// "<partyCode>PingAn2247</partyCode>" +
+		// "<thpname>周 烺</thpname>" +
+		// "<accountReferenceNo></accountReferenceNo>" +
+		// "<roleTag>2009051910243612485</roleTag>" +
+		// "<beneficiaryType>0</beneficiaryType>" +
+		// "<relationShip>0</relationShip>" +
+		// "<visibleType>1</visibleType>" +
+		// "<active>false</active>" +
+		// "</role>" +
+		// "</bContractNode>";
+		// String head = "<?xml version=\"1.0\" encoding=\"GBK\"?>";
+		Document doc = XMLUtilsW3C.loadDocument(xml);
+		Document newDoc = XMLUtilsW3C.newDocument();
+		Node xContractNode = null;
+		if (type.equalsIgnoreCase("b")) {
+			xContractNode = XMLUtilsW3C.getChildNodeOf(doc, "bContractNode");
+		}
+		if (type.equalsIgnoreCase("w")) {
+			xContractNode = XMLUtilsW3C.getChildNodeOf(doc, "wContractNode");
+		}
+
+		Node summaries = XMLUtilsW3C.getChildNodeOf(xContractNode, "summaries");
+		Node vsList = XMLUtilsW3C.getChildNodeOf(summaries, "vsList");
+		Node accumulationCode = XMLUtilsW3C.getChildNodeOf(vsList, "accumulationCode");
+		List<Node> roles = XMLUtilsW3C.getChildNodesOf(xContractNode, "role");
+
+		String partyCode = "";
+		String thpname = "";
+
+		for (Node role : roles) {
+
+			Node dRoleidNode = XMLUtilsW3C.getChildNodeOf(role, "dRoleid");
+			if (dRoleidNode.getTextContent().equals("2007082316464259950")) {
+
+				Node partyCodeNode = XMLUtilsW3C.getChildNodeOf(role, "partyCode");
+				partyCode = partyCodeNode.getTextContent();
+				Node thpnameNode = XMLUtilsW3C.getChildNodeOf(role, "thpname");
+				thpname = thpnameNode.getTextContent();
+			}
+			if (dRoleidNode.getTextContent().equals("2007082316442791450")) {
+				Node partyCodeNode = XMLUtilsW3C.getChildNodeOf(role, "partyCode");
+				partyCodeNode.setTextContent(partyCode);
+				Node thpnameNode = XMLUtilsW3C.getChildNodeOf(role, "thpname");
+				thpnameNode.setTextContent(thpname);
+
+			}
+		}
+		accumulationCode.setTextContent(partyCode);
+
+		return xmlNodeToString(doc.getFirstChild());
+	}
+
+	/**
+	 * 处理保全处理类型
+	 * 
+	 * @param file
+	 * @param type
+	 * @return
+	 * @throws IOException
+	 * @throws ParserConfigurationException
+	 * @throws SAXException
+	 */
+	public static String doReplace1(String file, String type) throws IOException, ParserConfigurationException, SAXException {
+		// File filexml = new File(file);
+		Document doc = XMLUtilsW3C.loadDocument(file);
+
+		Node xContractNode = null;
+		xContractNode = doc.getFirstChild();
+		List<Node> declaration = XMLUtilsW3C.getChildNodesOf(xContractNode, "declaration");
+
+		for (int i = 0; i < declaration.size(); i++) {
+			Node ddeclarationid = XMLUtilsW3C.getChildNodeOf(declaration.get(i), "ddeclarationid");
+
+			Node bdv = XMLUtilsW3C.getChildNodeOf(declaration.get(i), "bdv");
+
+			if (ddeclarationid.getTextContent().equals("2009051910230741788")) {
+				Node sv = XMLUtilsW3C.getChildNodeOf(bdv, "sv");
+				sv.setTextContent("10002");
+			}
+			if (ddeclarationid.getTextContent().equals("2009051910230742414")) {
+				Node sv = XMLUtilsW3C.getChildNodeOf(bdv, "sv");
+				sv.setTextContent("2");
+			}
+			if (ddeclarationid.getTextContent().equals("2009051910230741920")) {
+				Node sv = XMLUtilsW3C.getChildNodeOf(bdv, "sv");
+				sv.setTextContent("2");
+			}
+		}
+		System.out.print(xmlNodeToString(doc));
+		return xmlNodeToString(doc);
+	}
+
+	public static void main(String[] args) throws Exception {
+		/*
+		 * String result = "<?xml version=\"1.0\" encoding=\"GB2312\"?><PACKET type=\
+		 * "RESPONSE\" version=\"1.0\"><HEAD><REQUEST_TYPE>01</REQUEST_TYPE><RESPONSE_CODE>1</RESPONSE_CODE><ERROR_CODE>0000</ERROR_CODE><ERROR_MESSAGE>成功</ERROR_MESSAGE></HEAD><BODY><BASE_PART><QUERY_SEQUENCE_NO>01PICC057106001156421487812453</QUERY_SEQUENCE_NO><CAR_MARK>京F57297</CAR_MARK><VEHICLE_TYPE>02</VEHICLE_TYPE><USE_TYPE>A</USE_TYPE><RACK_NO>28798</RACK_NO><ENGINE_NO>4522704-D1H</ENGINE_NO><COLOR>A</COLOR><OWNER>李四</OWNER><VEHICLE_REGISTER_DATE>20021018</VEHICLE_REGISTER_DATE><MADE_DATE>20010405</MADE_DATE><LIMIT_LOAD_PERSON>5</LIMIT_LOAD_PERSON><LIMIT_LOAD></LIMIT_LOAD><INEFFECTUAL_DATE>20031020</INEFFECTUAL_DATE><MADE_FACTORY>长春一汽大众</MADE_FACTORY><VEHICLE_MODEL>CQ4190TF2</VEHICLE_MODEL><VEHICLE_BRAND_1>奥迪</VEHICLE_BRAND_1><VEHICLE_BRAND_2>audi</VEHICLE_BRAND_2><VEHICLE_STYLE>K33</VEHICLE_STYLE><LAST_CHECK_DATE>20060608</LAST_CHECK_DATE><REJECT_DATE>20160405</REJECT_DATE><STATUS>A</STATUS><HAULAGE></HAULAGE></BASE_PART><DRIVER_LIST><DRIVER_DATA><NAME>驾驶员</NAME><CERTI_TYPE>1</CERTI_TYPE><CERTI_CODE>220100197502151133</CERTI_CODE><GENDER>1</GENDER><BIRTH_DATE>19750215</BIRTH_DATE><REGISTER_DATE>19960101</REGISTER_DATE><DRIVER_TYPE>C1</DRIVER_TYPE></DRIVER_DATA><DRIVER_DATA><NAME>驾驶员</NAME><CERTI_TYPE>1</CERTI_TYPE><CERTI_CODE>220100197502151133</CERTI_CODE><GENDER>1</GENDER><BIRTH_DATE>19750215</BIRTH_DATE><REGISTER_DATE>19960101</REGISTER_DATE><DRIVER_TYPE>C1</DRIVER_TYPE></DRIVER_DATA></DRIVER_LIST><COVERAGE_LIST><COVERAGE><COVERAGE_TYPE>1</COVERAGE_TYPE><COVERAGE_CODE>BZ</COVERAGE_CODE><STANDARD_PREMIUM>475.0</STANDARD_PREMIUM><PECCANCY_ADJUST_VALUE>0.0</PECCANCY_ADJUST_VALUE><CLAIM_ADJUST_VALUE>0.0</CLAIM_ADJUST_VALUE><DRIVER_RATE>0.0</DRIVER_RATE><DISTRICT_RATE>0.0</DISTRICT_RATE><ADDITION_RATE>0.0</ADDITION_RATE><BASED_PREMIUM>950.0</BASED_PREMIUM><PECCANCY_ADJUST_REASON></PECCANCY_ADJUST_REASON><CLAIM_ADJUST_REASON></CLAIM_ADJUST_REASON><DRIVER_RATE_REASON></DRIVER_RATE_REASON><DISTRICT_RATE_REASON></DISTRICT_RATE_REASON><RATE_FLOAT_FLAG>02</RATE_FLOAT_FLAG><REINSURE_FLAG>0</REINSURE_FLAG><LAST_BILL_DATE></LAST_BILL_DATE></COVERAGE></COVERAGE_LIST><CLAIM_LIST><CLAIM_DATA><COMPANY_ID>PICC</COMPANY_ID><REGISREATION_NO>CDAA200611010261028582</REGISREATION_NO><CLAIM_NO>ADAA200611010261026954</CLAIM_NO><ACCIDENT_TIME>200512051425</ACCIDENT_TIME><ENDCASE_TIME>200512181030</ENDCASE_TIME><ACCIDENT_DEATH>0</ACCIDENT_DEATH><CLAIM_COVER_LIST><CLAIM_COVER_DATA><POLICY_NO>PDAA200611010204039669</POLICY_NO><COVERAGE_TYPE>1</COVERAGE_TYPE><CLAIM_AMOUNT>2000</CLAIM_AMOUNT></CLAIM_COVER_DATA></CLAIM_COVER_LIST></CLAIM_DATA></CLAIM_LIST><VehicleTaxation><TaxTermTypeCode>0401</TaxTermTypeCode><TaxConditionCode>T</TaxConditionCode><TaxRegistryNumber>320102136160586</TaxRegistryNumber><TaxPayerName>某某股份有限公司</TaxPayerName><TaxPayerIdentificationCode>012345678912345</TaxPayerIdentificationCode><CurrentTaxDue><TaxLocationCode>330204</TaxLocationCode><TaxStartDate>20080101</TaxStartDate><TaxEndDate>20081231</TaxEndDate><DeclareDate>20080101</DeclareDate><TaxDepartmentCode></TaxDepartmentCode><TaxDepartment></TaxDepartment><TaxDocumentNumber></TaxDocumentNumber><AnnualTaxAmount>600</AnnualTaxAmount><TaxRate><AppliedArea>330200</AppliedArea><TaxRateIdentifier>20080101</TaxRateIdentifier><TaxItemDetailCode>K1</TaxItemDetailCode><TaxUnitTypeCode>1</TaxUnitTypeCode><UnitRate>600</UnitRate><TaxRateStartDate></TaxRateStartDate><TaxRateEndDate></TaxRateEndDate></TaxRate><ExceedDate></ExceedDate><ExceedDaysCount></ExceedDaysCount><OverDue></OverDue><TotalAmount></TotalAmount></CurrentTaxDue><DelinquentTaxDue><TaxLocationCode>330204</TaxLocationCode><TaxStartDate>20070101</TaxStartDate><TaxEndDate>20071231</TaxEndDate><DeclareDate></DeclareDate><TaxDepartmentCode></TaxDepartmentCode><TaxDepartment></TaxDepartment><TaxDocumentNumber></TaxDocumentNumber><AnnualTaxAmount>600</AnnualTaxAmount><TaxRate><AppliedArea>330200</AppliedArea><TaxRateIdentifier>20070101</TaxRateIdentifier><TaxItemDetailCode>K1</TaxItemDetailCode><TaxUnitTypeCode>1</TaxUnitTypeCode><UnitRate>600</UnitRate><TaxRateStartDate></TaxRateStartDate><TaxRateEndDate></TaxRateEndDate></TaxRate><ExceedDate>20071231</ExceedDate><ExceedDaysCount>365</ExceedDaysCount><OverDue>10.95</OverDue><TotalAmount>610.5</TotalAmount></DelinquentTaxDue><AnnualTaxDue>600</AnnualTaxDue><SumTaxDefault>600</SumTaxDefault><SumOverdue>10.95</SumOverdue><SumTax>1210.5</SumTax><TaxDescription></TaxDescription></VehicleTaxation></BODY></PACKET>"
+		 * ; Document doc = XMLUtilsW3C.loadDocument(result); Node PACKET = XMLUtilsW3C.getChildNodeOf(doc, "PACKET"); Node BODY = XMLUtilsW3C.getChildNodeOf(PACKET, "BODY");
+		 * 
+		 * String xpath = "DRIVER_LIST/DRIVER_DATA"; Node x = XMLUtilsW3C.selectSingleNode(BODY, xpath); System.out.println(x.getNodeName()); xpath = "//PACKET/BODY/PECC_LIST/PECC_DATA"; Node peccDatesReturn = XMLUtilsW3C.selectSingleNode(doc, "//PACKET/BODY/PECC_LIST");
+		 */
+
+		// List nodes = XMLUtilsW3C.selectNodes(doc,xpath);
+		// Object obj = getObjByXPath(xpath, doc);
+		// System.out.println(nodes.size());
+		// doReplace(null,"b");
+		doReplace1("D:\\NodeClob.xml", "");
+	}
+
+}

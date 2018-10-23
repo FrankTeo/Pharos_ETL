@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition description="货代责任险标的表">
+	<mapping>
+		<area description="货代责任险标的表">
+			<table tableName="T_SubjFreightForward" dataProviderType="CSNODE" as="Contract">
+				<item fieldName="PolicyNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="policyno" /> <!-- 保单号 -->
+				<item fieldName="EndorseNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="endorseno" /> <!-- 批单号 -->
+				<item fieldName="NodeNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="nodeno" /> <!-- 节点号 -->
+				<item fieldName="ContractNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="contractno" /> <!-- 合同号 -->
+				<item fieldName="SubVersionNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="version" /> <!-- 版本号 -->
+				<item fieldName="ProposalNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="proposalno" /> <!-- 投保单号 -->
+				<item fieldName="BizIncomeCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00568" method="getElementByCode.getValue.getCurrency" /> <!-- 营业收入币种 -->
+				<item fieldName="BizIncomeAmount" fieldType="Float" parameterType="CSNODE" parameter="SXU00568" method="getElementByCode.getValue.getAmount" /> <!-- 营业收入额 -->
+				<item fieldName="LicenseNo" fieldType="String" parameterType="CSNODE" parameter="SXU00790" method="getElementByCode.getValue" /> <!-- 车牌号码 -->
+				<item fieldName="ApplySetupTime" fieldType="Date" parameterType="CSNODE" parameter="SXU00639" method="getElementByCode.getValue" /> <!-- 被保险人成立时间 -->
+				<item fieldName="AcqrLcnsTime" fieldType="Date" parameterType="CSNODE" parameter="SXU00789" method="getElementByCode.getValue" /> <!-- 获得无船承运人资格时间 -->
+				<item fieldName="BizRange" fieldType="String" parameterType="CSNODE" parameter="SXU00283" method="getElementByCode.getValue" /> <!-- 经营业务 -->
+				<item fieldName="EstIncomeCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00791" method="getElementByCode.getValue.getCurrency" /> <!-- 预计营业收入币种 -->
+				<item fieldName="EstIncomeAmount" fieldType="Float" parameterType="CSNODE" parameter="SXU00791" method="getElementByCode.getValue.getAmount" /> <!-- 预计营业收入 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="objectno" /> <!-- 对象号 -->
+			</table>
+		</area>
+	</mapping>
+</definition>

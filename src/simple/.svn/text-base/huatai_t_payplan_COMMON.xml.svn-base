@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition description="缴费计划表">
+	<mapping>
+		<area description="缴费计划表">
+			<table tableName="T_PayPlan" dataProviderType="PAYMENTSCHEDULE" as="Contract">
+				<item fieldName="PolicyNo" fieldType="String" parameterType="GLOBAL" parameter="policyno" /> <!-- 保单号 -->
+				<item fieldName="EndorseNo" fieldType="String" parameterType="GLOBAL" parameter="endorseno" /> <!-- 批单号 -->
+				<item fieldName="SerialNo" fieldType="Long" parameterType="PAYMENTSCHEDULE" method="getIndex" /> <!-- 序号 -->
+				<item fieldName="ContractNo" fieldType="String" parameterType="GLOBAL" parameter="contractno" /> <!-- 合同号 -->
+				<item fieldName="NodeNo" fieldType="String" parameterType="GLOBAL" parameter="nodeno" /> <!-- 节点号 -->
+				<item fieldName="SubVersionNo" fieldType="String" parameterType="GLOBAL" parameter="version" /> <!-- 版本号 -->
+				<item fieldName="ProposalNo" fieldType="String" parameterType="GLOBAL" parameter="proposalno" /> <!-- 投保单号 -->
+				<item fieldName="BankName" fieldType="String" parameterType="INSTALLMENT" method="getBankName" /> <!-- 开户行 -->
+				<item fieldName="AccountName" fieldType="String" parameterType="INSTALLMENT" method="getAccountOwner" /> <!-- 户名 -->
+				<item fieldName="AccountNo" fieldType="String" parameterType="INSTALLMENT" method="getAccountNo" /> <!-- 帐号 -->
+				<item fieldName="PayWay" fieldType="String" parameterType="PAYMENTSCHEDULE" method="getPayWay" /> <!-- 付款途径 -->
+				<item fieldName="Payer" fieldType="String" parameterType="PAYMENTSCHEDULE" method="getPayerCode" /> <!-- 付款人 -->
+				<item fieldName="PayDate" fieldType="Date" parameterType="PAYMENTSCHEDULE" method="getDueDate" /> <!-- 付款日期 -->
+				<item fieldName="PayAmount" fieldType="Float" parameterType="PAYMENTSCHEDULE" method="getDuePremium" /> <!-- 付款金额 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" parameter="objectno" /> <!-- 对象号 -->
+				<!--<item fieldName="Remark" fieldType="String" />--> <!-- 备注 -->
+				<!--<item fieldName="CrtTime" fieldType="Date" />--> <!-- 创建时间 -->
+				<!--<item fieldName="MdfTime" fieldType="Date" />--> <!-- 修改时间 -->
+			</table>
+		</area>
+	</mapping>
+</definition>

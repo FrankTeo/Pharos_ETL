@@ -1,0 +1,133 @@
+package com.sysnet.poc.vo;
+
+import java.sql.*;
+
+/**
+ * StgCstCustBranchRelation entity.
+ * 
+ * @author MyEclipse Persistence Tools
+ */
+
+public class StgCstCustBranchRelation implements java.io.Serializable {
+
+	// Fields
+	// 客户CD
+	private Long custNo;
+	// 机构CD
+	private Long companyCd;
+	// 对象序号
+	private Long objectId;
+	// 对象类型
+	private String objectType;
+	// 批次序号
+	private Long batId;
+	// 时间戳
+	private Date timeStamp;
+	// 源系统有效起始日期
+	private Date soucSysStartDate;
+	// 源数据有效结束日期
+	private Date soucSysEndDate;
+	// 当前数据在业务中，当前记录有效的时间范围的开始时间
+	private Date bizStartDate;
+	// 当前数据在业务中，当前记录有效的时间范围的结束时间
+	private Date bizEndDate;
+	// 记录信息所来自的源系统标志，用于多个源系统的数据整合
+	private String soucSysFlag;
+
+	// Constructors
+
+	/** default constructor */
+	public StgCstCustBranchRelation() {
+	}
+
+	// Property accessors
+
+	public Long getCustNo() {
+		return this.custNo;
+	}
+
+	public void setCustNo(Long custNo) {
+		this.custNo = custNo;
+	}
+
+	public Long getCompanyCd() {
+		return companyCd;
+	}
+
+	public void setCompanyCd(Long companyCd) {
+		this.companyCd = companyCd;
+	}
+
+	public Long getObjectId() {
+		return this.objectId;
+	}
+
+	public void setObjectId(Long objectId) {
+		this.objectId = objectId;
+	}
+
+	public String getObjectType() {
+		return this.objectType;
+	}
+
+	public void setObjectType(String objectType) {
+		this.objectType = objectType;
+	}
+
+	public Long getBatId() {
+		return this.batId;
+	}
+
+	public void setBatId(Long batId) {
+		this.batId = batId;
+	}
+
+	public Date getTimeStamp() {
+		return this.timeStamp;
+	}
+
+	public void setTimeStamp(Date timeStamp) {
+		this.timeStamp = timeStamp;
+	}
+
+	public Date getSoucSysStartDate() {
+		return this.soucSysStartDate;
+	}
+
+	public void setSoucSysStartDate(Date soucSysStartDate) {
+		this.soucSysStartDate = soucSysStartDate;
+	}
+
+	public Date getSoucSysEndDate() {
+		return this.soucSysEndDate;
+	}
+
+	public void setSoucSysEndDate(Date soucSysEndDate) {
+		this.soucSysEndDate = soucSysEndDate;
+	}
+
+	public Date getBizStartDate() {
+		return this.bizStartDate;
+	}
+
+	public void setBizStartDate(Date bizStartDate) {
+		this.bizStartDate = bizStartDate;
+	}
+
+	public Date getBizEndDate() {
+		return this.bizEndDate;
+	}
+
+	public void setBizEndDate(Date bizEndDate) {
+		this.bizEndDate = bizEndDate;
+	}
+
+	public String getSoucSysFlag() {
+		return this.soucSysFlag;
+	}
+
+	public void setSoucSysFlag(String soucSysFlag) {
+		this.soucSysFlag = soucSysFlag;
+	}
+
+}

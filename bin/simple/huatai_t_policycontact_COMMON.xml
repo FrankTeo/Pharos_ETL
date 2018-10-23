@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition description="保单联系人表">
+	<mapping>
+		<area description="保单联系人表">
+			<table tableName="T_PolicyContact" dataProviderType="ROLE" as="Contract">
+				<item fieldName="PolicyNo" fieldType="String" parameterType="GLOBAL" parameter="policyno" /> <!-- 保单号 -->
+				<item fieldName="EndorseNo" fieldType="String" parameterType="GLOBAL" parameter="endorseno" /> <!-- 批单号 -->
+				<item fieldName="PartyCode" fieldType="String" parameterType="GLOBAL" parameter="nodeno" /> <!-- 当事方 -->
+				<item fieldName="ContactNo" fieldType="String" parameterType="ROLE" method="getParty.getCode" /> <!-- 联系人 -->
+				<item fieldName="PartyVersionNo" fieldType="String" parameterType="ROLE" method="getParty.GetPartyVersionNo" /> <!-- 当事方版本号 -->
+				<item fieldName="ContactVersionNo" fieldType="String" parameterType="ROLE" method="getParty.GetPartyVersionNo" /> <!-- 联系人版本号 -->
+				<item fieldName="ContractNo" fieldType="String" parameterType="GLOBAL" parameter="contractno" /> <!-- 合同号 -->
+				<item fieldName="NodeNo" fieldType="String" parameterType="GLOBAL" parameter="nodeno" /> <!-- 节点号 -->
+				<item fieldName="SubVersionNo" fieldType="String" parameterType="GLOBAL" parameter="version" /> <!-- 版本号 -->
+				<item fieldName="ProposalNo" fieldType="String" parameterType="GLOBAL" parameter="proposalno" /> <!-- 投保单号 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" parameter="objectno" /> <!-- 对象号 -->
+				<!--<item fieldName="Remark" fieldType="String" />--> <!-- 备注 -->
+				<!--<item fieldName="CrtTime" fieldType="Date" />--> <!-- 创建时间 -->
+				<!--<item fieldName="MdfTime" fieldType="Date" />--> <!-- 修改时间 -->
+			</table>
+		</area>
+	</mapping>
+</definition>

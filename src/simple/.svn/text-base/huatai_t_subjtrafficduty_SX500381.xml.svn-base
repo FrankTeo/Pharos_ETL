@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition description="交通责任险标的表">
+	<mapping>
+		<area description="交通责任险标的表">
+			<table tableName="T_SubjTrafficDuty" dataProviderType="CSNODE" as="Contract">
+				<item fieldName="PolicyNo" fieldType="String" parameterType="GLOBAL" parameter="policyno" /> <!-- 保单号 -->
+				<item fieldName="EndorseNo" fieldType="String" parameterType="GLOBAL" parameter="endorseno" /> <!-- 批单号 -->
+				<item fieldName="NodeNo" fieldType="String" parameterType="GLOBAL" parameter="nodeno" /> <!-- 节点号 -->
+				<item fieldName="ContractNo" fieldType="String" parameterType="GLOBAL" parameter="contractno" /> <!-- 合同号 -->
+				<item fieldName="SubVersionNo" fieldType="String" parameterType="GLOBAL" parameter="version" /> <!-- 版本号 -->
+				<item fieldName="ProposalNo" fieldType="String" parameterType="GLOBAL" parameter="proposalno" /> <!-- 投保单号 -->
+				<item fieldName="TransportNumber" fieldType="Long" parameterType="CSNODE" parameter="SXU00413" method="getElementByCode.getValue" /> <!-- 承保营运交通工具数量 -->
+				<item fieldName="AggregDutyLmtCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00107" method="getElementByCode.getValue.getCurrency" /> <!-- 累计责任限额币种 -->
+				<item fieldName="AggregDutyLimit" fieldType="Float" parameterType="CSNODE" parameter="SXU00107" method="getElementByCode.getValue.getAmount" /> <!-- 累计责任限额 -->
+				<item fieldName="ManageLicense" fieldType="String" parameterType="CSNODE" parameter="SXU00169" method="getElementByCode.getValue" /> <!-- 经营许可证 -->
+				<item fieldName="BizRange" fieldType="String" parameterType="CSNODE" parameter="SXU00289" method="getElementByCode.getValue" /> <!-- 经营区域范围 -->
+				<item fieldName="RecentLossing" fieldType="String" parameterType="CSNODE" parameter="SXU00630" method="getElementByCode.getValue" /> <!-- 最近三年损失 -->
+				<item fieldName="LicenseNo" fieldType="String" parameterType="CSNODE" parameter="SXU00286" method="getElementByCode.getValue" /> <!-- 车辆牌照号 -->
+				<item fieldName="GoodsName" fieldType="String" parameterType="CSNODE" parameter="SXU00012" method="getElementByCode.getValue" /> <!-- 货物品名 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" parameter="objectno" /> <!-- 对象号 -->
+			</table>
+		</area>
+	</mapping>
+</definition>

@@ -1,0 +1,106 @@
+package com.sysnet.etl_all.work;
+
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import org.apache.commons.logging.Log;
+
+import com.sysnet.poc.control.manage.vo.StopBean;
+import com.sysnet.poc.service.dao.dbc.ConnDB;
+import com.sysnet.poc.util.OdsLogger;
+
+public class Work extends Thread {
+	private static final Log log = OdsLogger.getLog("rLog4j", "R");
+	/**
+	 * false表示本次没有执行完
+	 */
+	private StopBean sb;
+
+	public StopBean getSb() {
+		return sb;
+	}
+
+	public void setSb(StopBean sb) {
+		this.sb = sb;
+	}
+
+	@Override
+	public void run() {
+		firstRuning();
+	}
+
+	public void firstRuning() {
+		log.info(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()) + "\n" + "-----public Starting！" + "\n");
+		boolean flag = odsProcess();
+		if (flag)
+			log.info(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()) + "\n" + "------->public执行成功!" + "\n");
+		else
+			log.info(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()) + "\n" + "----执行发生异常!" + "\n");
+		sb.setStop(1);
+	}
+
+	private boolean odsProcess() {
+		System.out.println("=======开始执行公共部分=========");
+		sb.setStop(0);
+		boolean result = false;
+		Connection conn = null;
+		int flag = 1;
+		int flag1 = 1;
+		String errorString1 = null;
+		String errorString2 = null;
+		CallableStatement cs = null;
+		CallableStatement cs0 = null;
+		CallableStatement cs1 = null;
+		try {
+			conn = ConnDB.getODSConn();
+			conn.setAutoCommit(false);
+			cs0 = conn.prepareCall("call UP_STG_OTHER_SUBJECT()");
+			cs0.executeUpdate();
+			cs = conn.prepareCall("call UP_ODS_PRODUCT(?,?,?,?)");
+			// 注册出入参
+			cs.setInt(1, 1);// 历史问题需要保留
+			cs.registerOutParameter(2, 4);// 返回标志字段 0成功，非0失败
+			cs.registerOutParameter(3, 4);// 错误代码
+			cs.registerOutParameter(4, 12);// 错误日志
+			cs.executeUpdate();
+
+			cs1 = conn.prepareCall("call UP_ODS_OTHERS(?,?,?,?)");// 出入参和UP_ODS_PRODUCT一致
+			cs1.setInt(1, 1);
+			cs1.registerOutParameter(2, 4);
+			cs1.registerOutParameter(3, 4);
+			cs1.registerOutParameter(4, 12);
+			cs1.executeUpdate();
+			// 取出参信息
+			flag = cs.getInt(2);
+			errorString1 = cs.getString(4);
+			flag1 = cs1.getInt(2);
+			errorString2 = cs1.getString(4);
+			if ((flag == 0) && (flag1 == 0)) {
+				conn.commit();
+				log.info(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()) + "\n" + "------->public执行成功!" + "\n");
+				result = true;
+			}
+			log.info(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()) + "\n" + errorString1 + errorString2 + "\n");
+			conn.rollback();
+			return result;
+		} catch (Exception e) {
+			try {
+				conn.rollback();
+				log.info(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()) + "\n" + e.toString() + "\n");
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return result;
+	}
+
+}

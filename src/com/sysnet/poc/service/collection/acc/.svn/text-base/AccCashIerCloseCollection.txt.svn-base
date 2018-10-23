@@ -1,0 +1,45 @@
+package com.sysnet.poc.service.collection.acc;
+
+import pharos.account.bo.IBankAccountBO;
+import pharos.account.vo.banks.CashierClose;
+
+import com.sysnet.poc.control.manage.vo.EtlPharosIncrAcc;
+import com.sysnet.poc.util.DateHelper;
+import com.sysnet.poc.util.PharosServiceContainer;
+import com.sysnet.poc.vo.StgAccCashierClose;
+
+public class AccCashIerCloseCollection {
+	private StgAccCashierClose stgAccCashierClose;
+
+	public AccCashIerCloseCollection(EtlPharosIncrAcc ec) {
+		PharosServiceContainer pc = PharosServiceContainer.Instance();
+		IBankAccountBO bankAccuntBO = pc.getIBankAccountBO();
+		CashierClose cashierClose = bankAccuntBO.getCashierClose(ec.getObjectId());
+		this.setAcccashierClose(cashierClose, ec);
+	}
+
+	private void setAcccashierClose(CashierClose cashierClose, EtlPharosIncrAcc ec) {
+		if (cashierClose != null) {
+			this.stgAccCashierClose = new StgAccCashierClose();
+			this.stgAccCashierClose.setCashierCloseId(cashierClose.getId());
+			this.stgAccCashierClose.setCashier(cashierClose.getCashier());
+			this.stgAccCashierClose.setCloseDate(DateHelper.getSqlDate(cashierClose.getCloseDate()));
+			this.stgAccCashierClose.setIsReopen(new Long(cashierClose.isReopen() ? 1 : 0));
+			this.stgAccCashierClose.setReopenUser(cashierClose.getReopenUser());
+			this.stgAccCashierClose.setReopenDate(DateHelper.getSqlDate(cashierClose.getReopenDate()));
+			this.stgAccCashierClose.setRemoved(new Long(0));
+			this.stgAccCashierClose.setObjectType(String.valueOf(ec.getObjectType()));
+			this.stgAccCashierClose.setTimeStamp(ec.getTimeStamp());
+			this.stgAccCashierClose.setBatId(ec.getBatId());
+			this.stgAccCashierClose.setObjectId(ec.getObjectId());
+		}
+	}
+
+	public StgAccCashierClose getStgAccCashierClose() {
+		return stgAccCashierClose;
+	}
+
+	public void setStgAccCashierClose(StgAccCashierClose stgAccCashierClose) {
+		this.stgAccCashierClose = stgAccCashierClose;
+	}
+}

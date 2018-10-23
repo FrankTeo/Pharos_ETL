@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition description="货代责任险标的表">
+	<mapping>
+		<area description="货代责任险标的表">
+			<table tableName="T_SubjFreightForward" dataProviderType="CSNODE" as="Contract">
+				<item fieldName="PolicyNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="policyno" /> <!-- 保单号 -->
+				<item fieldName="EndorseNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="endorseno" /> <!-- 批单号 -->
+				<item fieldName="NodeNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="nodeno" /> <!-- 节点号 -->
+				<item fieldName="ContractNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="contractno" /> <!-- 合同号 -->
+				<item fieldName="SubVersionNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="version" /> <!-- 版本号 -->
+				<item fieldName="ProposalNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="proposalno" /> <!-- 投保单号 -->
+				<!--<item fieldName="TradeSubCategory" fieldType="String" />--> <!-- 行业中类 -->
+				<!--<item fieldName="TradeSpecialRisk" fieldType="String" />--> <!-- 行业特殊风险 -->
+				<!--<item fieldName="ADutyRange" fieldType="String" />--> <!-- 责任范围A-对货物的责任 -->
+				<!--<item fieldName="ALimitCurrency" fieldType="String" />--> <!-- A赔偿限额币种 -->
+				<!--<item fieldName="ALimitAmount" fieldType="Float" />--> <!-- A赔偿限额 -->
+				<!--<item fieldName="ADeductDscrpt" fieldType="String" />--> <!-- A免赔额 -->
+				<!--<item fieldName="APreAccdDdctCurrency" fieldType="String" />--> <!-- A每一事故的免赔额币种 -->
+				<!--<item fieldName="APreAccdDeduct" fieldType="Float" />--> <!-- A每一事故的免赔额金额 -->
+				<!--<item fieldName="ARate" fieldType="Float" />--> <!-- A费率 -->
+				<!--<item fieldName="APremiumCurrency" fieldType="String" />--> <!-- A保费币种 -->
+				<!--<item fieldName="APremium" fieldType="Float" />--> <!-- A保费 -->
+				<!--<item fieldName="BDutyRange" fieldType="String" />--> <!-- 责任范围B-第三者责任 -->
+				<!--<item fieldName="BPreAccdPrptyLossLmtCurrency" fieldType="String" />--> <!-- B每一事故物损赔偿责任限额币种 -->
+				<!--<item fieldName="BPreAccdPrptyLossLimit" fieldType="Float" />--> <!-- B每一事故物损赔偿责任限额金额 -->
+				<!--<item fieldName="BPreAccdPrsnInjrLmtCurrency" fieldType="String" />--> <!-- B每一事故人伤赔偿责任限额币种 -->
+				<!--<item fieldName="BPreAccdPrsnInjrLimit" fieldType="Float" />--> <!-- B每一事故人伤赔偿责任限额金额 -->
+				<!--<item fieldName="BPreAccdDdctCurrency" fieldType="String" />--> <!-- B每一事故的免赔额币种 -->
+				<!--<item fieldName="BPreAccdDeduct" fieldType="Float" />--> <!-- B每一事故的免赔额金额 -->
+				<!--<item fieldName="BILimitDscrpt" fieldType="String" />--> <!-- BI赔偿限额 -->
+				<!--<item fieldName="BIDeductDscrpt" fieldType="String" />--> <!-- BI免赔额 -->
+				<!--<item fieldName="BIRate" fieldType="Float" />--> <!-- BI费率 -->
+				<!--<item fieldName="BIPremiumCurrency" fieldType="String" />--> <!-- BI保费币种 -->
+				<!--<item fieldName="BIPremium" fieldType="Float" />--> <!-- BI保费 -->
+				<!--<item fieldName="BIILimitDscrpt" fieldType="String" />--> <!-- BII赔偿限额 -->
+				<!--<item fieldName="BIIDeductDscrpt" fieldType="String" />--> <!-- BII免赔额 -->
+				<!--<item fieldName="BIIRate" fieldType="Float" />--> <!-- BII费率 -->
+				<!--<item fieldName="BIIPremiumCurrency" fieldType="String" />--> <!-- BII保费币种 -->
+				<!--<item fieldName="BIIPremium" fieldType="Float" />--> <!-- BII保费 -->
+				<!--<item fieldName="CDutyRange" fieldType="String" />--> <!-- 责任范围C-职业责任 -->
+				<!--<item fieldName="CLimitCurrency" fieldType="String" />--> <!-- C赔偿限额币种 -->
+				<!--<item fieldName="CLimitAmount" fieldType="Float" />--> <!-- C赔偿限额 -->
+				<!--<item fieldName="CDeductCurrency" fieldType="String" />--> <!-- C免赔额币种 -->
+				<!--<item fieldName="CDeductAmount" fieldType="Float" />--> <!-- C免赔额 -->
+				<!--<item fieldName="CRate" fieldType="Float" />--> <!-- C费率 -->
+				<!--<item fieldName="CPremiumCurrency" fieldType="String" />--> <!-- C保费币种 -->
+				<!--<item fieldName="CPremium" fieldType="Float" />--> <!-- C保费 -->
+				<!--<item fieldName="AggrCmpnLmtCurrency" fieldType="String" />--> <!-- 累计赔偿限额币种 -->
+				<!--<item fieldName="AggregCmpnstLimit" fieldType="Float" />--> <!-- 累计赔偿限额金额 -->
+				<!--<item fieldName="AnnFrghtIOVlmContainer" fieldType="Long" />--> <!-- 年货物吞吐量(集装箱) -->
+				<!--<item fieldName="AnnFrghtIOVlmCntnrRate" fieldType="Float" />--> <!-- 年货物吞吐量(集装箱)费率 -->
+				<!--<item fieldName="AnnFrghtIOVlmTon" fieldType="Long" />--> <!-- 年货物吞吐量(公吨) -->
+				<!--<item fieldName="AnnFrghtIOVlmTonRate" fieldType="Float" />--> <!-- 年货物吞吐量(公吨)费率 -->
+				<!--<item fieldName="BizIncomeRate" fieldType="Float" />--> <!-- 年营业额基础费率 -->
+				<!--<item fieldName="ExcessPointCurrency" fieldType="String" />--> <!-- 起赔点币种 -->
+				<!--<item fieldName="ExcessPoint" fieldType="Float" />--> <!-- 起赔点金额 -->
+				<!--<item fieldName="BizIncomeCurrency" fieldType="String" />--> <!-- 营业收入币种 -->
+				<!--<item fieldName="BizIncomeAmount" fieldType="Float" />--> <!-- 营业收入额 -->
+				<!--<item fieldName="PrmmTtlCurrency" fieldType="String" />--> <!-- 总保费币种 -->
+				<!--<item fieldName="PremiumTotal" fieldType="Float" />--> <!-- 总保费 -->
+				<!--<item fieldName="StoreAddress" fieldType="String" />--> <!-- 仓储地址 -->
+				<!--<item fieldName="LicenseNo" fieldType="String" />--> <!-- 车牌号码 -->
+				<!--<item fieldName="ContractDocument" fieldType="String" />--> <!-- 认可的合同文件 -->
+				<!--<item fieldName="ManageArea" fieldType="String" />--> <!-- 承保区域 -->
+				<!--<item fieldName="ApplySetupTime" fieldType="Date" />--> <!-- 被保险人成立时间 -->
+				<!--<item fieldName="AcqrLcnsTime" fieldType="Date" />--> <!-- 获得无船承运人资格时间 -->
+				<!--<item fieldName="BizRange" fieldType="String" />--> <!-- 经营业务 -->
+				<!--<item fieldName="EstIncomeAmount" fieldType="Float" />--> <!-- 预计营业收入 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="objectno" /> <!-- 对象号 -->
+				<!--<item fieldName="Remark" fieldType="String" />--> <!-- 备注 -->
+				<!--<item fieldName="CrtTime" fieldType="Date" />--> <!-- 创建时间 -->
+				<!--<item fieldName="MdfTime" fieldType="Date" />--> <!-- 修改时间 -->
+			</table>
+		</area>
+	</mapping>
+</definition>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition description="医疗责任险标的表">
+	<mapping>
+		<area description="医疗责任险标的表">
+			<table tableName="t_subjmedliab" dataProviderType="CSNODE" as="Contract">
+				<item fieldName="PolicyNo" fieldType="String" parameterType="GLOBAL" parameter="policyno" /> <!-- 保单号 -->
+				<item fieldName="EndorseNo" fieldType="String" parameterType="GLOBAL" parameter="endorseno" /> <!-- 批单号 -->
+				<item fieldName="NodeNo" fieldType="String" parameterType="GLOBAL" parameter="nodeno" /> <!-- 节点号 -->
+				<item fieldName="ContractNo" fieldType="String" parameterType="GLOBAL" parameter="contractno" /> <!-- 合同号 -->
+				<item fieldName="SubVersionNo" fieldType="String" parameterType="GLOBAL" parameter="version" /> <!-- 版本号 -->
+				<item fieldName="ProposalNo" fieldType="String" parameterType="GLOBAL" parameter="proposalno" /> <!-- 投保单号 -->
+				<!--<item fieldName="HospitalClass" fieldType="String" />--> <!-- 医院等级 -->
+				<!--<item fieldName="BizRange" fieldType="String" />--> <!-- 医疗业务范围 -->
+				<!--<item fieldName="Years" fieldType="Long" />--> <!-- 目前业务的年数 -->
+				<!--<item fieldName="BedNumber" fieldType="Long" />--> <!-- 床位数 -->
+				<!--<item fieldName="OutpatientNum" fieldType="Long" />--> <!-- 年门诊量 -->
+				<!--<item fieldName="SurgeryNum" fieldType="Long" />--> <!-- 年手术量 -->
+				<!--<item fieldName="NurseNumHR" fieldType="Long" />--> <!-- 高风险护士人数 -->
+				<!--<item fieldName="NurseNumGR" fieldType="Long" />--> <!-- 一般风险护士人数 -->
+				<!--<item fieldName="NurseNumLR" fieldType="Long" />--> <!-- 低风险护士人数 -->
+				<!--<item fieldName="DoctorNumHR" fieldType="Long" />--> <!-- 高风险医技人数 -->
+				<!--<item fieldName="DoctorNumGR" fieldType="Long" />--> <!-- 一般风险医技人数 -->
+				<!--<item fieldName="DoctorNumLR" fieldType="Long" />--> <!-- 低风险医技人数 -->
+				<!--<item fieldName="AggrCmpnLmtCurrency" fieldType="String" />--> <!-- 累计赔偿限额币种 -->
+				<!--<item fieldName="AggregCmpnstLimit" fieldType="Float" />--> <!-- 累计赔偿限额 -->
+				<!--<item fieldName="PerLegalLimitCurrency" fieldType="String" />--> <!-- 法律费用每次限额币种 -->
+				<!--<item fieldName="PerLegalLimit" fieldType="Float" />--> <!-- 法律费用每次限额 -->
+				<!--<item fieldName="RetroactiveDate" fieldType="Date" />--> <!-- 追溯日 -->
+				<!--<item fieldName="CertificateNo" fieldType="String" />--> <!-- 执业许可证号 -->
+				<!--<item fieldName="HospitalType" fieldType="String" />--> <!-- 被保人性质 -->
+				<!--<item fieldName="HospitalLevel" fieldType="String" />--> <!-- 被保人级别 -->
+				<!--<item fieldName="ChairNumber" fieldType="Long" />--> <!-- 手术椅数量 -->
+				<!--<item fieldName="LossRecord" fieldType="String" />--> <!-- 以往损失记录 -->
+				<!--<item fieldName="ManageArea" fieldType="String" />--> <!-- 承保区域 -->
+				<!--<item fieldName="PerPrsnLimitCurrency" fieldType="String" />--> <!-- 每人责任限额币种 -->
+				<!--<item fieldName="PerPrsnLimit" fieldType="Float" />--> <!-- 每人责任限额 -->
+				<!--<item fieldName="DeductDescription" fieldType="String" />--> <!-- 免赔额 -->
+				<!--<item fieldName="ExpectPrmmCurrency" fieldType="String" />--> <!-- 年度机构保费币种 -->
+				<!--<item fieldName="ExpectPremium" fieldType="Float" />--> <!-- 年度机构保费 -->
+				<!--<item fieldName="AnnPrsnPrmmCurrency" fieldType="String" />--> <!-- 年度人员保费币种 -->
+				<!--<item fieldName="AnnPrsnPremium" fieldType="Float" />--> <!-- 年度人员保费 -->
+				<!--<item fieldName="InsureAddress" fieldType="String" />--> <!-- 被保人执业地点 -->
+				<!--<item fieldName="PreAccdLimitCurrency" fieldType="String" />--> <!-- 每次事故责任限额币种 -->
+				<!--<item fieldName="PreAccdLimit" fieldType="Float" />--> <!-- 每次事故责任限额 -->
+				<!--<item fieldName="InsureNumber" fieldType="Long" />--> <!-- 被保险人人数 -->
+				<!--<item fieldName="School" fieldType="String" />--> <!-- 被保险人注册院校 -->
+				<!--<item fieldName="SchoolAddress" fieldType="String" />--> <!-- 注册院校地址 -->
+				<!--<item fieldName="PracticeName" fieldType="String" />--> <!-- 实习基地名称 -->
+				<!--<item fieldName="PracticeAdress" fieldType="String" />--> <!-- 实习基地地址 -->
+				<!--<item fieldName="PracticeType" fieldType="String" />--> <!-- 实习类型 -->
+				<!--<item fieldName="GuideDoctor" fieldType="String" />--> <!-- 指导医师 -->
+				<!--<item fieldName="OrganizationForm" fieldType="String" />--> <!-- 企业组织形式 -->
+				<!--<item fieldName="CreateDate" fieldType="Date" />--> <!-- 创建时间 -->
+				<!--<item fieldName="LocalCity" fieldType="String" />--> <!-- 所在城市 -->
+				<!--<item fieldName="HospitalCategory" fieldType="String" />--> <!-- 医疗类别 -->
+				<!--<item fieldName="UnitPrmmCurrency" fieldType="String" />--> <!-- 床位单位保费币种 -->
+				<!--<item fieldName="UnitPremium" fieldType="Float" />--> <!-- 床位单位保费 -->
+				<!--<item fieldName="PrePrsnAggrLmtCurrency" fieldType="String" />--> <!-- 每人累计限额币种 -->
+				<!--<item fieldName="PrePrsnAggrLimit" fieldType="Float" />--> <!-- 每人累计限额 -->
+				<!--<item fieldName="LglAggrLmtCurrency" fieldType="String" />--> <!-- 法律累计限额币种 -->
+				<!--<item fieldName="LglAggrLimit" fieldType="Float" />--> <!-- 法律累计限额 -->
+				<!--<item fieldName="BusinessArea" fieldType="String" />--> <!-- 场所面积 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" parameter="objectno" /> <!-- 对象号 -->
+				<!--<item fieldName="Remark" fieldType="String" />--> <!-- 备注 -->
+				<!--<item fieldName="CrtTime" fieldType="Date" />--> <!-- 创建时间 -->
+				<!--<item fieldName="MdfTime" fieldType="Date" />--> <!-- 修改时间 -->
+			</table>
+		</area>
+	</mapping>
+</definition>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition description="共保表">
+	<mapping>
+		<area description="共保表">
+			<table tableName="T_COINSURANCES" dataProviderType="COINSURANCES" as="Contract">
+				<item fieldName="PolicyNo" fieldType="String" parameterType="GLOBAL" parameter="policyno" /> <!-- 保单号 -->
+				<item fieldName="EndorseNo" fieldType="String" parameterType="GLOBAL" parameter="endorseno" /> <!-- 批单号 -->
+				<item fieldName="PartyCode" fieldType="String" parameterType="COINSURANCES" method="getCoiCode" /> <!-- 共保公司编码 -->
+				<item fieldName="ContractNo" fieldType="String" parameterType="GLOBAL" parameter="contractno" /> <!-- 合同号 -->
+				<item fieldName="NodeNo" fieldType="String" parameterType="GLOBAL" parameter="nodeno" /> <!-- 节点号 -->
+				<item fieldName="SubVersionNo" fieldType="String" parameterType="GLOBAL" parameter="version" /> <!-- 版本号 -->
+				<item fieldName="ProposalNo" fieldType="String" parameterType="GLOBAL" parameter="proposalno" /> <!-- 投保单号 -->
+				<item fieldName="InsureType" fieldType="String" parameterType="COINSURANCES" method="getCoiMark" /> <!-- 共保类型 -->
+				<item fieldName="InsuranceRate" fieldType="Float" parameterType="COINSURANCES" method="getRate" /> <!-- 共保比例 -->
+				<item fieldName="Coverage" fieldType="Float" parameterType="COINSURANCES" method="getInsuredValue" /> <!-- 保额 -->
+				<item fieldName="Premium" fieldType="Float" parameterType="COINSURANCES" method="getPremium" /> <!-- 保费 -->
+				<item fieldName="ExpenseRate" fieldType="Float" parameterType="COINSURANCES" method="getIssuingFeeRate" /> <!-- 出单费比例 -->
+				<item fieldName="Expense" fieldType="Float" parameterType="COINSURANCES" method="getIssuingFee" /> <!-- 出单费 -->
+				<item fieldName="SurveyFeeRate" fieldType="Float" parameterType="COINSURANCES" method="getSurveyFeeRate" /> <!-- 查勘费比例 -->
+				<item fieldName="SurveyFee" fieldType="Float" parameterType="COINSURANCES" method="getSurveyFee" /> <!-- 查勘费 -->
+				<item fieldName="IsOwn" fieldType="Long" parameterType="COINSURANCES" method="getHuatai" /> <!-- 是否我司 -->
+				<item fieldName="CoiPolicyNo" fieldType="String" parameterType="COINSURANCES" method="getCoiPolicyNo" /> <!-- 主共保保单号 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" parameter="objectno" /> <!-- 对象号 -->
+				<!--<item fieldName="Remark" fieldType="String" />--> <!-- 备注 -->
+				<!--<item fieldName="CrtTime" fieldType="Date" />--> <!-- 创建时间 -->
+				<!--<item fieldName="MdfTime" fieldType="Date" />--> <!-- 修改时间 -->
+			</table>
+		</area>
+	</mapping>
+</definition>

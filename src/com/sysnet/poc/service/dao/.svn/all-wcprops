@@ -1,0 +1,167 @@
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/service/dao
+END
+PartyScheduleDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/BizCore/!svn/ver/11927/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/service/dao/PartyScheduleDAO.java
+END
+OtherTopicsScheduleDAO.txt
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/service/dao/OtherTopicsScheduleDAO.txt
+END
+PayPlanScheduleDAO.txt
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/service/dao/PayPlanScheduleDAO.txt
+END
+AccBankDAO.txt
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/service/dao/AccBankDAO.txt
+END
+AccPtyDAO.txt
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/service/dao/AccPtyDAO.txt
+END
+EtlPublicDAO.txt
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/service/dao/EtlPublicDAO.txt
+END
+AccSchedulDAOLHB.txt
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/service/dao/AccSchedulDAOLHB.txt
+END
+InsureScheduleDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/BizCore/!svn/ver/11927/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/service/dao/InsureScheduleDAO.java
+END
+PlCIncrementDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/service/dao/PlCIncrementDAO.java
+END
+ProposalPayPlanDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/service/dao/ProposalPayPlanDAO.java
+END
+PolicyPayPlanDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/service/dao/PolicyPayPlanDAO.java
+END
+ClaimDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/service/dao/ClaimDAO.java
+END
+AccDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/service/dao/AccDAO.java
+END
+ProcedureDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/service/dao/ProcedureDAO.java
+END
+CommDAO.txt
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/service/dao/CommDAO.txt
+END
+CustScheduleDAO.txt
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/service/dao/CustScheduleDAO.txt
+END
+EndorPayPlanDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/service/dao/EndorPayPlanDAO.java
+END
+ClaimSchduleDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/service/dao/ClaimSchduleDAO.java
+END
+AccSchedulDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/service/dao/AccSchedulDAO.java
+END
+PolicyDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/service/dao/PolicyDAO.java
+END
+ProposalDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/service/dao/ProposalDAO.java
+END
+AccInvoiceDAO.txt
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/service/dao/AccInvoiceDAO.txt
+END
+AccDataDeleteDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/service/dao/AccDataDeleteDAO.java
+END
+PartyIncrementDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/service/dao/PartyIncrementDAO.java
+END
+RunLogDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/service/dao/RunLogDAO.java
+END
+CustomDAO.txt
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/service/dao/CustomDAO.txt
+END
+EtlBatDAO.txt
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/service/dao/EtlBatDAO.txt
+END

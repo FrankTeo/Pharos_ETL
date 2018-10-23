@@ -1,0 +1,518 @@
+package com.sysnet.poc.service.dao.impl;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import com.sysnet.poc.service.dao.AccBankDAO;
+import com.sysnet.poc.vo.StgAccBankaccount;
+import com.sysnet.poc.vo.StgAccBankaccountdetail;
+import com.sysnet.poc.vo.StgAccBankdeposit;
+import com.sysnet.poc.vo.StgAccBanktransfer;
+import com.sysnet.poc.vo.StgAccBanktransferdetail;
+import com.sysnet.poc.vo.StgAccBanktransferfailurelog;
+import com.sysnet.poc.vo.StgAccCashbox;
+import com.sysnet.poc.vo.StgAccCashierClose;
+import com.sysnet.poc.vo.StgAccMonthclose;
+
+/**
+ * 收付费银行实现类
+ * 
+ * @author Administrator
+ * 
+ */
+public class AccBankDAOimpl implements AccBankDAO {
+
+	private PreparedStatement pstmt = null;
+
+	/**
+	 * 银行账户主表
+	 */
+	public void insertStgAccBankaccount(Connection conn, StgAccBankaccount vo) throws SQLException, Exception {
+
+		if (vo == null) {
+			throw new Exception("Class of AccBankDAOimpl mothed insertStgAccBankaccount param stgAccBankaccount is null!");
+		}
+		StringBuilder sqlSB = new StringBuilder();
+		sqlSB.append("insert into STG_ACC_BANKACCOUNT(");
+		sqlSB.append(" BANKACCOUNT_ID,");
+		sqlSB.append(" REMOVED,");
+		sqlSB.append(" ACCOUNT_CODE,");
+		sqlSB.append(" ACCOUNT_NAME,");
+		sqlSB.append(" ACCOUNT_NUMBER,");
+		sqlSB.append(" BANK,");
+		sqlSB.append(" ALLLEVEL,");
+		sqlSB.append(" BUSINESS_COMPANY_NODE_ID,");
+		sqlSB.append(" CURRENCY,");
+		sqlSB.append(" BUSINESS_COMPANY_ID,");
+		sqlSB.append(" STATUS,");
+		sqlSB.append(" USER_COMPANY_ID,");
+		sqlSB.append(" USER_COMPANY_NODE_ID,");
+		sqlSB.append(" TIME_STAMP,");
+		sqlSB.append(" BAT_ID,");
+		sqlSB.append(" OBJECT_ID,");
+		sqlSB.append(" OBJECT_TYPE");
+		sqlSB.append(") values (");
+		sqlSB.append("?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+		pstmt = conn.prepareStatement(sqlSB.toString());
+		pstmt.setLong(1, vo.getBankaccountId());
+		pstmt.setLong(2, vo.getRemoved());
+		pstmt.setString(3, vo.getAccountCode());
+		pstmt.setString(4, vo.getAccountName());
+		pstmt.setString(5, vo.getAccountNumber());
+		pstmt.setString(6, vo.getBank());
+		pstmt.setLong(7, vo.getAlllevel());
+		pstmt.setString(8, vo.getBusinessCompanyNodeCode());
+		pstmt.setLong(9, vo.getCurrency());
+		pstmt.setString(10, vo.getBusinessCompanyCode());
+		pstmt.setLong(11, vo.getStatus());
+		pstmt.setString(12, vo.getUserCompanyCode());
+		pstmt.setString(13, vo.getUserCompanyNodeCode());
+		pstmt.setDate(14, vo.getTimeStamp());
+		pstmt.setLong(15, vo.getBatId());
+		pstmt.setLong(16, vo.getObjectId());
+		pstmt.setString(17, vo.getObjectType());
+		pstmt.execute();
+		pstmt.close();
+
+	}
+
+	/**
+	 * 银行账户明细
+	 */
+	public void insertStgAccBankaccountdetail(Connection conn, StgAccBankaccountdetail vo) throws SQLException, Exception {
+		if (vo == null) {
+			throw new Exception("Class of AccBankDAOimpl mothed insertStgAccBankaccountdetail param StgAccBankaccountdetail is null!");
+		}
+		StringBuilder sqlSB = new StringBuilder();
+		sqlSB.append("insert into STG_ACC_BANKACCOUNTDETAIL(");
+		sqlSB.append(" BANKACCOUNTDETAIL_ID,");
+		sqlSB.append(" REMOVED,");
+		sqlSB.append(" INSTRUMENTNUMBER,");
+		sqlSB.append(" ACCOUNTNUMBER,");
+		sqlSB.append(" BANKACCOUNT_ID,");
+		sqlSB.append(" OBJECT_ID,");
+		sqlSB.append(" OBJECT_TYPE,");
+		sqlSB.append(" TIME_STAMP,");
+		sqlSB.append(" BAT_ID");
+		sqlSB.append(") values (");
+		sqlSB.append("?,?,?,?,?,?,?,?,?)");
+		pstmt = conn.prepareStatement(sqlSB.toString());
+		pstmt.setLong(1, vo.getBankaccountdetailId());
+		pstmt.setLong(2, vo.getRemoved());
+		pstmt.setString(3, vo.getInstrumentnumber());
+		pstmt.setString(4, vo.getAccountnumber());
+		pstmt.setLong(5, vo.getBankaccountId());
+		pstmt.setLong(6, vo.getObjectId());
+		pstmt.setString(7, vo.getObjectType());
+		pstmt.setDate(8, vo.getTimeStamp());
+		pstmt.setLong(9, vo.getBatId());
+		pstmt.execute();
+		pstmt.close();
+
+	}
+
+	/**
+	 * 银行存款明细
+	 */
+	public void insertStgAccBankdeposit(Connection conn, StgAccBankdeposit vo) throws SQLException, Exception {
+		if (vo == null) {
+			throw new Exception("Class of AccBankDAOimpl mothed insertStgAccBankdeposit param stgAccBankdeposit is null!");
+		}
+		int i = 1;
+		StringBuilder sqlSB = new StringBuilder();
+		sqlSB.append("insert into STG_ACC_BANKDEPOSIT(");
+		sqlSB.append(" BANKDEPOSIT_ID,");
+		sqlSB.append(" REMOVED,");
+		sqlSB.append(" TRANSCATION_NO,");
+		sqlSB.append(" TRANS_DATE,");
+		sqlSB.append(" DEPOSIT_DATE,");
+		sqlSB.append(" PAYMENT_TYPE,");
+		sqlSB.append(" AMOUNT,");
+		sqlSB.append(" BANK_ACCOUNT,");
+		sqlSB.append(" DEPOSIT_USER,");
+		sqlSB.append(" DEPOSITNO,");
+		sqlSB.append(" FEE,");
+		sqlSB.append(" BUSINESS_COMPANY_NODE_ID,");
+		sqlSB.append(" CASHIER,");
+		sqlSB.append(" BUSINESS_COMPANY_ID,");
+		sqlSB.append(" CURRENCY,");
+		sqlSB.append(" CHECK_BOOK,");
+		sqlSB.append(" CHECK_NUMBER,");
+		sqlSB.append(" USER_COMPANY_ID,");
+		sqlSB.append(" USER_COMPANY_NODE_ID,");
+		sqlSB.append(" BAT_ID,");
+		sqlSB.append(" OBJECT_ID,");
+		sqlSB.append(" OBJECT_TYPE,");
+		sqlSB.append(" TIME_STAMP");
+		sqlSB.append(") values (");
+		sqlSB.append("?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+		pstmt = conn.prepareStatement(sqlSB.toString());
+
+		pstmt.setLong(i++, vo.getBankdepositId());
+		pstmt.setLong(i++, vo.getRemoved());
+		pstmt.setString(i++, vo.getTransno());
+		pstmt.setDate(i++, vo.getTransDate());
+		pstmt.setDate(i++, vo.getDepositDate());
+		pstmt.setLong(i++, vo.getPaymentType());
+		pstmt.setDouble(i++, vo.getAmount());
+		pstmt.setString(i++, vo.getBankAccount());
+		pstmt.setLong(i++, vo.getDepositUser());
+		pstmt.setString(i++, vo.getDepositno());
+		pstmt.setDouble(i++, vo.getFee());
+		pstmt.setString(i++, vo.getBusinessCompanyNodeCode());
+		pstmt.setLong(i++, vo.getCashier());
+		pstmt.setString(i++, vo.getBusinessCompanyCode());
+		pstmt.setLong(i++, vo.getCurrency());
+		pstmt.setLong(i++, vo.getCheckBook());
+		pstmt.setString(i++, vo.getCheckNumber());
+		pstmt.setString(i++, vo.getUserCompanyCode());
+		pstmt.setString(i++, vo.getUserCompanyNodeCode());
+		pstmt.setLong(i++, vo.getBatId());
+		pstmt.setLong(i++, vo.getObjectId());
+		pstmt.setString(i++, vo.getObjectType());
+		pstmt.setDate(i++, vo.getTimeStamp());
+		pstmt.execute();
+		pstmt.close();
+
+	}
+
+	/**
+	 * 银行转帐
+	 */
+	public void insertStgAccBanktransfer(Connection conn, StgAccBanktransfer vo) throws SQLException, Exception {
+		if (vo == null) {
+			throw new Exception("Class of AccBankDAOimpl mothed insertStgAccBanktransfer param StgAccBanktransfer is null!");
+		}
+		int i = 1;
+		StringBuilder sqlSB = new StringBuilder();
+		sqlSB.append("insert into STG_ACC_BANKTRANSFER(");
+		sqlSB.append(" BANKTRANSFER_ID, ");
+		sqlSB.append(" REMOVED, ");
+		sqlSB.append(" BATCH_NO, ");
+		sqlSB.append(" TOTAL_TIMES, ");
+		sqlSB.append(" SUCCESS_TIMES, ");
+		sqlSB.append(" CREATE_DATE, ");
+		sqlSB.append(" CREATE_USER, ");
+		sqlSB.append(" RETURN_DATE, ");
+		sqlSB.append(" AFFIRM_DATE, ");
+		sqlSB.append(" AFFIRM_USER, ");
+		sqlSB.append(" TOTAL_AMOUNT, ");
+		sqlSB.append(" SUCCESS_AMOUNT, ");
+		sqlSB.append(" STATUS, ");
+		sqlSB.append(" BANK_ACCOUNT_CODE, ");
+		sqlSB.append(" TIME_STAMP, ");
+		sqlSB.append(" BAT_ID, ");
+		sqlSB.append(" OBJECT_ID, ");
+		sqlSB.append(" OBJECT_TYPE ");
+		sqlSB.append(") values (");
+		sqlSB.append("?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+		pstmt = conn.prepareStatement(sqlSB.toString());
+		pstmt.setLong(i++, vo.getBanktransferId());
+		pstmt.setLong(i++, vo.getRemoved());
+		pstmt.setString(i++, vo.getBatchNo());
+		pstmt.setLong(i++, vo.getTotalTimes());
+		pstmt.setLong(i++, vo.getSuccessTimes());
+		pstmt.setDate(i++, vo.getCreateDate());
+		pstmt.setLong(i++, vo.getCreateUser());
+		pstmt.setDate(i++, vo.getReturnDate());
+		pstmt.setDate(i++, vo.getAffirmDate());
+		pstmt.setLong(i++, vo.getAffirmUser());
+		pstmt.setString(i++, vo.getTotalAmount());
+		pstmt.setString(i++, vo.getSuccessAmount());
+		pstmt.setLong(i++, vo.getStatus());
+		pstmt.setLong(i++, vo.getBankAccountCode());
+		pstmt.setDate(i++, vo.getTimeStamp());
+		pstmt.setLong(i++, vo.getBatId());
+		pstmt.setLong(i++, vo.getObjectId());
+		pstmt.setString(i++, vo.getObjectType());
+		pstmt.execute();
+		pstmt.close();
+
+	}
+
+	/**
+	 * 银行转帐明细
+	 */
+	public void insertStgAccBanktransferdetail(Connection conn, StgAccBanktransferdetail vo) throws SQLException, Exception {
+
+		if (vo == null) {
+			throw new Exception("Class of AccBankDAOimpl mothed insertStgAccBanktransferdetail param StgAccBanktransferdetail is null!");
+		}
+		int i = 1;
+		StringBuilder sqlSB = new StringBuilder();
+		sqlSB.append("insert into STG_ACC_BANKTRANSFERDETAIL(");
+		sqlSB.append("BANKTRANSFERDETAIL_ID, ");
+		sqlSB.append("REMOVED, ");
+		sqlSB.append("SER_NO, ");
+		sqlSB.append("DUE_AMOUNT, ");
+		sqlSB.append("CURRENCY, ");
+		sqlSB.append("TRANSFER_AMOUNT, ");
+		sqlSB.append("TRANSFER_CURRENCY, ");
+		sqlSB.append("DUE_DATE, ");
+		sqlSB.append("TRANSCATION_NO, ");
+		sqlSB.append("ACCOUNT, ");
+		sqlSB.append("ACCOUNT_NAME, ");
+		sqlSB.append("RESULT, ");
+		sqlSB.append("FAILURE_REASON, ");
+		sqlSB.append("STATUS, ");
+		sqlSB.append("PARTY, ");
+		sqlSB.append("REF_ID, ");
+		sqlSB.append("CASH_TRANSCATION, ");
+		sqlSB.append("PRIORITY, ");
+		sqlSB.append("SLICE_ID, ");
+		sqlSB.append("REF_NO, ");
+		sqlSB.append("INSTALL_ID, ");
+		sqlSB.append("BANKTRANSFER_ID, ");
+		sqlSB.append("BAT_ID, ");
+		sqlSB.append("OBJECT_ID, ");
+		sqlSB.append("OBJECT_TYPE, ");
+		sqlSB.append("TIME_STAMP");
+		sqlSB.append(") values (");
+		sqlSB.append("?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+		pstmt = conn.prepareStatement(sqlSB.toString());
+		pstmt.setLong(i++, vo.getBanktransferdetailId());
+		pstmt.setLong(i++, vo.getRemoved());
+		pstmt.setLong(i++, vo.getSerNo());
+		pstmt.setDouble(i++, vo.getDueAmount());
+		pstmt.setLong(i++, vo.getCurrency());
+		pstmt.setDouble(i++, vo.getTransferAmount());
+		pstmt.setLong(i++, vo.getTransferCurrency());
+		pstmt.setDate(i++, vo.getDueDate());
+		pstmt.setString(i++, vo.getTranscationNo());
+		pstmt.setString(i++, vo.getAccount());
+		pstmt.setString(i++, vo.getAccountName());
+		pstmt.setLong(i++, vo.getResult());
+		pstmt.setLong(i++, vo.getFailureReason());
+		pstmt.setLong(i++, vo.getStatus());
+		pstmt.setString(i++, vo.getParty());
+		pstmt.setLong(i++, vo.getRefId());
+		pstmt.setString(i++, vo.getCashTranscation());
+		pstmt.setLong(i++, vo.getPriority());
+		pstmt.setLong(i++, vo.getSliceId());
+		pstmt.setString(i++, vo.getRefNo());
+		pstmt.setLong(i++, vo.getInstallId());
+		pstmt.setLong(i++, vo.getBanktransferId());
+		pstmt.setLong(i++, vo.getBatId());
+		pstmt.setLong(i++, vo.getObjectId());
+		pstmt.setString(i++, vo.getObjectType());
+		pstmt.setDate(i++, vo.getTimeStamp());
+		pstmt.execute();
+		pstmt.close();
+
+	}
+
+	/**
+	 * 银行转帐失败记录
+	 */
+	public void insertStgAccBanktransferfailurelog(Connection conn, StgAccBanktransferfailurelog vo) throws SQLException, Exception {
+
+		if (vo == null) {
+			throw new Exception("Class of AccBankDAOimpl mothed insertStgAccBanktransferfailurelog param StgAccBanktransferfailurelog is null!");
+		}
+		int i = 1;
+		StringBuilder sqlSB = new StringBuilder();
+		sqlSB.append("insert into STG_ACC_BANKTRANSFERFAILURELOG(");
+		sqlSB.append("BANKTRANSFERFAILURELOG_ID, ");
+		sqlSB.append("REMOVED, ");
+		sqlSB.append("TRANSCATION_NO, ");
+		sqlSB.append("DUE_AMOUNT, ");
+		sqlSB.append("CURRENCY, ");
+		sqlSB.append("FAILURE_TIMES, ");
+		sqlSB.append("FAILURE_REASON, ");
+		sqlSB.append("TRANSFER_DATE, ");
+		sqlSB.append("INSTALL_ID, ");
+		sqlSB.append("REF_ID, ");
+		sqlSB.append("PRIORITY, ");
+		sqlSB.append("BATCH_NO, ");
+		sqlSB.append("SLICE_ID, ");
+		sqlSB.append("OUT_DATE, ");
+		sqlSB.append("ISDO, ");
+		sqlSB.append("DUE_DATE, ");
+		sqlSB.append("OBJECT_TYPE, ");
+		sqlSB.append("TIME_STAMP, ");
+		sqlSB.append("BAT_ID, ");
+		sqlSB.append("OBJECT_ID");
+		sqlSB.append(") values (");
+		sqlSB.append("?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+		pstmt = conn.prepareStatement(sqlSB.toString());
+
+		pstmt.setLong(i++, vo.getBanktransferfailurelogId());
+		pstmt.setLong(i++, vo.getRemoved());
+		pstmt.setString(i++, vo.getTranscationNo());
+		pstmt.setDouble(i++, vo.getDueAmount());
+		pstmt.setLong(i++, vo.getCurrency());
+		pstmt.setLong(i++, vo.getFailureTimes());
+		pstmt.setLong(i++, vo.getFailureReason());
+		pstmt.setDate(i++, vo.getTransferDate());
+		pstmt.setLong(i++, vo.getInstallId());
+		pstmt.setLong(i++, vo.getRefId());
+		pstmt.setLong(i++, vo.getPriority());
+		pstmt.setString(i++, vo.getBatchNo());
+		pstmt.setLong(i++, vo.getSliceId());
+		pstmt.setDate(i++, vo.getOutDate());
+		pstmt.setLong(i++, vo.getIsdo());
+		pstmt.setDate(i++, vo.getDueDate());
+		pstmt.setString(i++, vo.getObjectType());
+		pstmt.setDate(i++, vo.getTimeStamp());
+		pstmt.setLong(i++, vo.getBatId());
+		pstmt.setLong(i++, vo.getObjectId());
+		pstmt.execute();
+		pstmt.close();
+
+	}
+
+	/**
+	 * 钱柜主表
+	 */
+	public void insertStgAccCashbox(Connection conn, StgAccCashbox vo) throws SQLException, Exception {
+		if (vo == null) {
+			throw new Exception("Class of AccBankDAOimpl mothed insertStgAccCashbox param StgAccCashbox is null!");
+		}
+		int i = 1;
+		StringBuilder sqlSB = new StringBuilder();
+		sqlSB.append("insert into STG_ACC_CASHBOX(");
+		sqlSB.append("CASHBOX_ID, ");
+		sqlSB.append("REMOVED, ");
+		sqlSB.append("SOURCE, ");
+		sqlSB.append("DOCUMENT_TYPE, ");
+		sqlSB.append("CASHIER, ");
+		sqlSB.append("BUSINESS_COMPANY_NODE_ID, ");
+		sqlSB.append("TRANSCATION_NO, ");
+		sqlSB.append("CURRENCY, ");
+		sqlSB.append("DUE_DATE, ");
+		sqlSB.append("STATUS, ");
+		sqlSB.append("BANK_ACCOUNT, ");
+		sqlSB.append("FEE_TRANSNO, ");
+		sqlSB.append("FEE_AMOUNT, ");
+		sqlSB.append("AMOUNT, ");
+		sqlSB.append("TOTAL_AMOUNT, ");
+		sqlSB.append("BOXNO, ");
+		sqlSB.append("BUSINESS_COMPANY_ID, ");
+		sqlSB.append("PAYMENT_TYPE, ");
+		sqlSB.append("CHECK_BOOK, ");
+		sqlSB.append("CHECK_NUMBER, ");
+		sqlSB.append("USER_COMPANY_ID, ");
+		sqlSB.append("USER_COMPANY_NODE_ID, ");
+		sqlSB.append("OBJECT_ID, ");
+		sqlSB.append("OBJECT_TYPE, ");
+		sqlSB.append("TIME_STAMP, ");
+		sqlSB.append("BAT_ID");
+		sqlSB.append(") values (");
+		sqlSB.append("?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+		pstmt = conn.prepareStatement(sqlSB.toString());
+
+		pstmt.setLong(i++, vo.getCashboxId());
+		pstmt.setLong(i++, vo.getRemoved());
+		pstmt.setLong(i++, vo.getSource());
+		pstmt.setLong(i++, vo.getDocumentType());
+		pstmt.setLong(i++, vo.getCashier());
+		pstmt.setString(i++, vo.getBusinessCompanyNodeCode());
+		pstmt.setString(i++, vo.getTransno());
+		pstmt.setLong(i++, vo.getCurrency());
+		pstmt.setDate(i++, vo.getDueDate());
+		pstmt.setLong(i++, vo.getStatus());
+		pstmt.setString(i++, vo.getBankAccount());
+		pstmt.setString(i++, vo.getFeeTransno());
+		pstmt.setDouble(i++, vo.getFeeAmount());
+		pstmt.setDouble(i++, vo.getAmount());
+		pstmt.setDouble(i++, vo.getTotalAmount());
+		pstmt.setString(i++, vo.getBoxno());
+		pstmt.setString(i++, vo.getBusinessCompanyCode());
+		pstmt.setLong(i++, vo.getPaymentType());
+		pstmt.setLong(i++, vo.getCheckBook());
+		pstmt.setString(i++, vo.getCheckNumber());
+		pstmt.setString(i++, vo.getUserCompanyCode());
+		pstmt.setString(i++, vo.getUserCompanyNodeCode());
+		pstmt.setLong(i++, vo.getObjectId());
+		pstmt.setString(i++, vo.getObjectType());
+		pstmt.setDate(i++, vo.getTimeStamp());
+		pstmt.setLong(i++, vo.getBatId());
+		pstmt.execute();
+		pstmt.close();
+
+	}
+
+	/**
+	 * 操作员日结记录
+	 */
+	public void insertStgAccCashierClose(Connection conn, StgAccCashierClose vo) throws SQLException, Exception {
+		if (vo == null) {
+			throw new Exception("Class of AccBankDAOimpl mothed insertStgAccCashierClose param StgAccCashierClose is null!");
+		}
+		int i = 1;
+		StringBuilder sqlSB = new StringBuilder();
+		sqlSB.append("insert into STG_ACC_CASHIER_CLOSE(");
+		sqlSB.append("CASHIER_CLOSE_ID, ");
+		sqlSB.append("CASHIER, ");
+		sqlSB.append("CLOSE_DATE, ");
+		sqlSB.append("IS_REOPEN, ");
+		sqlSB.append("REOPEN_USER, ");
+		sqlSB.append("REOPEN_DATE, ");
+		sqlSB.append("REMOVED, ");
+		sqlSB.append("OBJECT_TYPE, ");
+		sqlSB.append("TIME_STAMP, ");
+		sqlSB.append("BAT_ID, ");
+		sqlSB.append("OBJECT_ID");
+
+		sqlSB.append(") values (");
+		sqlSB.append("?,?,?,?,?,?,?,?,?,?,?)");
+		pstmt = conn.prepareStatement(sqlSB.toString());
+
+		pstmt.setLong(i++, vo.getCashierCloseId());
+		pstmt.setLong(i++, vo.getCashier());
+		pstmt.setDate(i++, vo.getCloseDate());
+		pstmt.setLong(i++, vo.getIsReopen());
+		pstmt.setLong(i++, vo.getReopenUser());
+		pstmt.setDate(i++, vo.getReopenDate());
+		pstmt.setLong(i++, vo.getRemoved());
+		pstmt.setString(i++, vo.getObjectType());
+		pstmt.setDate(i++, vo.getTimeStamp());
+		pstmt.setLong(i++, vo.getBatId());
+		pstmt.setLong(i++, vo.getObjectId());
+		pstmt.execute();
+		pstmt.close();
+
+	}
+
+	/**
+	 * 操作员月结记录
+	 */
+	public void insertStgAccMonthclose(Connection conn, StgAccMonthclose vo) throws SQLException, Exception {
+		if (vo == null) {
+			throw new Exception("Class of AccBankDAOimpl mothed insertStgAccMonthclose param StgAccMonthclose is null!");
+		}
+		int i = 1;
+		StringBuilder sqlSB = new StringBuilder();
+		sqlSB.append("insert into STG_ACC_MONTHCLOSE(");
+		sqlSB.append("MONTHCLOSE_ID, ");
+		sqlSB.append("REMOVED, ");
+		sqlSB.append("YEAR_ITEM, ");
+		sqlSB.append("MONTH_ITEM, ");
+		sqlSB.append("STATUS, ");
+		sqlSB.append("UPDATE_DATE, ");
+		sqlSB.append("UPDATE_USER, ");
+		sqlSB.append("TIME_STAMP, ");
+		sqlSB.append("BAT_ID, ");
+		sqlSB.append("OBJECT_ID, ");
+		sqlSB.append("OBJECT_TYPE");
+
+		sqlSB.append(") values (");
+		sqlSB.append("?,?,?,?,?,?,?,?,?,?,?)");
+		pstmt = conn.prepareStatement(sqlSB.toString());
+		pstmt.setLong(i++, vo.getMonthcloseId());
+		pstmt.setLong(i++, vo.getRemoved());
+		pstmt.setLong(i++, vo.getYearItem());
+		pstmt.setLong(i++, vo.getMonthItem());
+		pstmt.setLong(i++, vo.getStatus());
+		pstmt.setDate(i++, vo.getUpdateDate());
+		pstmt.setLong(i++, vo.getUpdateUser());
+		pstmt.setDate(i++, vo.getTimeStamp());
+		pstmt.setLong(i++, vo.getBatId());
+		pstmt.setLong(i++, vo.getObjectId());
+		pstmt.setString(i++, vo.getObjectType());
+		pstmt.execute();
+		pstmt.close();
+
+	}
+}

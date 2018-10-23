@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition description="雇主责任险标的表">
+	<mapping>
+		<area description="雇主责任险标的表">
+			<table tableName="T_SubjEmployerDuty" dataProviderType="CSNODE" as="Contract">
+				<item fieldName="PolicyNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="policyno" /> <!-- 保单号 -->
+				<item fieldName="EndorseNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="endorseno" /> <!-- 批单号 -->
+				<item fieldName="NodeNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="nodeno" /> <!-- 节点号 -->
+				<item fieldName="ContractNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="contractno" /> <!-- 合同号 -->
+				<item fieldName="SubVersionNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="version" /> <!-- 版本号 -->
+				<item fieldName="ProposalNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="proposalno" /> <!-- 投保单号 -->
+				<item fieldName="ZipCode" fieldType="String" parameterType="CSNODE" parameter="SXU00014" method="getElementByCode.getValue" /> <!-- 邮政编码 -->
+				<item fieldName="BizQuality" fieldType="String" parameterType="CSNODE" parameter="SXU00112" method="getElementByCode.getValue" /> <!-- 营业性质 -->
+				<item fieldName="AreaRange" fieldType="String" parameterType="CSNODE" parameter="SXU00113" method="getElementByCode.getValue" /> <!-- 地区范围 -->
+				<item fieldName="PerPrsnDthDescript" fieldType="String" parameterType="CSNODE" parameter="SXU00118" method="getElementByCode.getValue" /> <!-- 死亡每人赔偿限额描述 -->
+				<item fieldName="PerPrsnDthStanard" fieldType="String" parameterType="CSNODE" parameter="SXU00114" method="getElementByCode.getValue" /> <!-- 死亡每人赔偿金额标准 -->
+				<item fieldName="PerPrsnPrmntDsblDescript" fieldType="String" parameterType="CSNODE" parameter="SXU00119" method="getElementByCode.getValue" /> <!-- 永久伤残每人赔偿限额描述 -->
+				<item fieldName="PerPrsnPrmntDsblStanard" fieldType="String" parameterType="CSNODE" parameter="SXU00115" method="getElementByCode.getValue" /> <!-- 永久伤残每人赔偿金额标准 -->
+				<item fieldName="PerPrsnTmpLbrDsblDescript" fieldType="String" parameterType="CSNODE" parameter="SXU00120" method="getElementByCode.getValue" /> <!-- 暂时失去劳动能力每人限额描述 -->
+				<item fieldName="PerPrsnTmpWrkDsblDescript" fieldType="String" parameterType="CSNODE" parameter="SXU00116" method="getElementByCode.getValue" /> <!-- 暂时失去工作能力每人限额描述 -->
+				<item fieldName="PerPrsnAccdMdclDescript" fieldType="String" parameterType="CSNODE" parameter="SXU00117" method="getElementByCode.getValue" /> <!-- 意外伤害每人医疗费用描述 -->
+				<item fieldName="PerAccdLmtCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00055" method="getElementByCode.getValue.getCurrency" /> <!-- 每次事故赔偿限额币种 -->
+				<item fieldName="PerAccdLimit" fieldType="Float" parameterType="CSNODE" parameter="SXU00055" method="getElementByCode.getValue.getAmount" /> <!-- 每次事故赔偿限额 -->
+				<item fieldName="AggrCmpnstLmtCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00107" method="getElementByCode.getValue.getCurrency" /> <!-- 累计赔偿限额币种 -->
+				<item fieldName="AggrCmpnstLimit" fieldType="Float" parameterType="CSNODE" parameter="SXU00107" method="getElementByCode.getValue.getAmount" /> <!-- 累计赔偿限额 -->
+				<item fieldName="PerPrsnLmtCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00125" method="getElementByCode.getValue.getCurrency" /> <!-- 每人赔偿限额币种 -->
+				<item fieldName="PerPrsnLimit" fieldType="Float" parameterType="CSNODE" parameter="SXU00125" method="getElementByCode.getValue.getAmount" /> <!-- 每人赔偿限额 -->
+				<item fieldName="AnnSlryTtlCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00123" method="getElementByCode.getValue.getCurrency" /> <!-- 年工资总额合计币种 -->
+				<item fieldName="AnnSalaryTotal" fieldType="Float" parameterType="CSNODE" parameter="SXU00123" method="getElementByCode.getValue.getAmount" /> <!-- 年工资总额合计 -->
+				<item fieldName="Num" fieldType="Long" parameterType="CSNODE" parameter="SXU00122" method="getElementByCode.getValue" /> <!-- 雇员数量 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="objectno" /> <!-- 对象号 -->
+			</table>
+		</area>
+	</mapping>
+</definition>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition description="商铺保险标的表">
+	<mapping>
+		<area description="商铺保险标的表">
+			<table tableName="T_SubjMarketDuty" dataProviderType="CSNODE" as="Contract">
+				<item fieldName="PolicyNo" fieldType="String" parameterType="GLOBAL" parameter="policyno" /> <!-- 保单号 -->
+				<item fieldName="EndorseNo" fieldType="String" parameterType="GLOBAL" parameter="endorseno" /> <!-- 批单号 -->
+				<item fieldName="NodeNo" fieldType="String" parameterType="GLOBAL" parameter="nodeno" /> <!-- 节点号 -->
+				<item fieldName="ContractNo" fieldType="String" parameterType="GLOBAL" parameter="contractno" /> <!-- 合同号 -->
+				<item fieldName="SubVersionNo" fieldType="String" parameterType="GLOBAL" parameter="version" /> <!-- 版本号 -->
+				<item fieldName="ProposalNo" fieldType="String" parameterType="GLOBAL" parameter="proposalno" /> <!-- 投保单号 -->
+				<!--<item fieldName="StoreName" fieldType="String" />--> <!-- 商铺名称 -->
+				<!--<item fieldName="BizRange" fieldType="String" />--> <!-- 经营范围 -->
+				<!--<item fieldName="PrptSbjctName" fieldType="String" />--> <!-- 财产险标的名称 -->
+				<!--<item fieldName="PrptsbjctAdress" fieldType="String" />--> <!-- 财险标的地址 -->
+				<!--<item fieldName="BusinessArea" fieldType="Float" />--> <!-- 营业场所面积 -->
+				<!--<item fieldName="PrptCvrgStandard" fieldType="String" />--> <!-- 财险保险金额标准 -->
+				<!--<item fieldName="PrptAbstctDdctDescript" fieldType="String" />--> <!-- 财险每次绝对免赔描述 -->
+				<!--<item fieldName="PrptPrmmStandard" fieldType="String" />--> <!-- 财险保费标准 -->
+				<!--<item fieldName="EmplDthDsblLmtStandard" fieldType="String" />--> <!-- 雇主责任死亡永残限额标准 -->
+				<!--<item fieldName="EmplNonDthDsblLmtDescript" fieldType="String" />--> <!-- 雇主责任非死亡永残限额描述 -->
+				<!--<item fieldName="EmplAccdMdclLmtStandard" fieldType="String" />--> <!-- 雇主责任意外医疗限额标准 -->
+				<!--<item fieldName="EmplAggrgLmtStandard" fieldType="String" />--> <!-- 雇主责任累计赔偿限额标准 -->
+				<!--<item fieldName="EmplPrsnList" fieldType="String" />--> <!-- 雇主责任人员名单 -->
+				<!--<item fieldName="EmplPrsnLstExtend" fieldType="String" />--> <!-- 雇主责任人员名单续 -->
+				<!--<item fieldName="EmpolyeeNumber" fieldType="Long" />--> <!-- 雇员人数 -->
+				<!--<item fieldName="EmplManageArea" fieldType="String" />--> <!-- 雇主责任承保区域 -->
+				<!--<item fieldName="EmplNDDAbstrctDdctDescript" fieldType="String" />--> <!-- 雇主责任非死亡永残绝对免赔描述 -->
+				<!--<item fieldName="EmplPrmmStandard" fieldType="String" />--> <!-- 雇主责任保费标准 -->
+				<!--<item fieldName="PblcManageArea" fieldType="String" />--> <!-- 公众责任承保区域 -->
+				<!--<item fieldName="PblcAggrgLmtStandard" fieldType="String" />--> <!-- 公众责任累计赔偿限额标准 -->
+				<!--<item fieldName="PblcPreAccdAbstrctDdctDescript" fieldType="String" />--> <!-- 公众责任每次事故绝对免赔额描述 -->
+				<!--<item fieldName="PblcPreAccdLmtStandard" fieldType="String" />--> <!-- 公众责任每次事故赔偿限额标准 -->
+				<!--<item fieldName="PblcPrmmStandard" fieldType="String" />--> <!-- 公众责任保费标准 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" parameter="objectno" /> <!-- 对象号 -->
+				<!--<item fieldName="Remark" fieldType="String" />--> <!-- 备注 -->
+				<!--<item fieldName="CrtTime" fieldType="Date" />--> <!-- 创建时间 -->
+				<!--<item fieldName="MdfTime" fieldType="Date" />--> <!-- 修改时间 -->
+			</table>
+		</area>
+	</mapping>
+</definition>

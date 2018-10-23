@@ -1,0 +1,140 @@
+package com.sysnet.poc.service.collection.acc;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import pharos.account.bo.IReferenceServiceBO;
+import pharos.account.vo.accountstructure.AccountReference;
+import pharos.account.vo.accountstructure.PaymentMechanism;
+import pharos.account.vo.accountstructure.PaymentSlice;
+
+import com.sysnet.poc.control.manage.vo.EtlPharosIncrAcc;
+import com.sysnet.poc.util.DateHelper;
+import com.sysnet.poc.util.PharosServiceContainer;
+import com.sysnet.poc.vo.StgAccPaymentmech;
+import com.sysnet.poc.vo.StgAccPaymentslice;
+import com.sysnet.poc.vo.StgAccReference;
+
+public class AccReferenceCollection {
+
+	private StgAccReference stgAccReference;
+	private ArrayList<StgAccPaymentslice> stgAccPaymentsliceList;
+	private ArrayList<StgAccPaymentmech> stgAccPaymentmechList;
+
+	public AccReferenceCollection(EtlPharosIncrAcc ec) {
+		PharosServiceContainer pc = PharosServiceContainer.Instance();
+		IReferenceServiceBO referenceServiceBO = pc.getIReferenceServiceBO();
+		AccountReference accountReferencen = referenceServiceBO.getAccountReference(ec.getObjectNo());
+		this.setAccreference(accountReferencen, ec);
+
+	}
+
+	private void setAccreference(AccountReference accountReferencen, EtlPharosIncrAcc ec) {
+		if (accountReferencen != null) {
+			this.stgAccReference = new StgAccReference();
+			this.stgAccReference.setRefId(accountReferencen.getId());
+			this.stgAccReference.setOwnerCode(accountReferencen.getOwnerId());
+			this.stgAccReference.setRoleCode(accountReferencen.getRoleId());
+			this.stgAccReference.setOwnerType(new Long(accountReferencen.getOwnerType()));
+			this.stgAccReference.setStatus(new Long(accountReferencen.getStatus()));
+			// this.stgAccReference.setStartDate(accountReferencen);
+			// this.stgAccReference.setEndDate(accountReferencen);
+			this.stgAccReference.setElementType(new Long(accountReferencen.getElementType()));
+			// this.stgAccReference.setRefNo(accountReferencen.get);
+			this.stgAccReference.setRemoved("1");
+			this.stgAccReference.setCreateUserId(accountReferencen.getCreateUserId());
+			this.stgAccReference.setCreateDateTime(DateHelper.getSqlDate(accountReferencen.getChangeDate()));
+			this.stgAccReference.setChangeUserId(accountReferencen.getChangeUserId());
+			this.stgAccReference.setChangeDateTime(DateHelper.getSqlDate(accountReferencen.getChangeDate()));
+			this.stgAccReference.setBusinessCompanyCode(accountReferencen.getBusinessCompanyCode());
+			this.stgAccReference.setBusinessCompanyNodeCode(accountReferencen.getBusinessCompanyNodeCode());
+			this.stgAccReference.setUserCompanyCode(accountReferencen.getUserCompanyCode());
+			this.stgAccReference.setUserCompanyNodeCode(accountReferencen.getUserCompanyNodeCode());
+			this.stgAccReference.setObjectType(String.valueOf(ec.getObjectType()));
+			this.stgAccReference.setTimeStamp(ec.getTimeStamp());
+			this.stgAccReference.setBatId(ec.getBatId());
+			this.stgAccReference.setObjectId(ec.getObjectId());
+			this.setAccpaymentslice(accountReferencen, ec);
+		}
+
+	}
+
+	private void setAccpaymentslice(AccountReference accountReferencen, EtlPharosIncrAcc ec) {
+		this.stgAccPaymentsliceList = new ArrayList<StgAccPaymentslice>();
+		List<PaymentSlice> payList = accountReferencen.getPaymentSlice();
+		if (payList == null || payList.size() == 0) {
+			return;
+		} else {
+			for (PaymentSlice vo : payList) {
+				StgAccPaymentslice pay = new StgAccPaymentslice();
+				pay.setSliceId(vo.getId());
+				pay.setPercentage(vo.getPercentage());
+				pay.setPartyCode(vo.getPartyid());
+				pay.setRoleId(vo.getRoleId());
+				pay.setPaymentMode(new Long(vo.getPaymentMode()));
+				pay.setRemoved(new Long(0));
+				pay.setObjectId(ec.getObjectId());
+				pay.setObjectType(String.valueOf(ec.getObjectType()));
+				pay.setBatId(ec.getBatId());
+				pay.setTimeStamp(ec.getTimeStamp());
+				pay.setRefId(accountReferencen.getId());
+				this.stgAccPaymentsliceList.add(pay);
+				this.setAccpaymentmech(vo, ec);
+			}
+		}
+
+	}
+
+	private void setAccpaymentmech(PaymentSlice pay, EtlPharosIncrAcc ec) {
+		this.stgAccPaymentmechList = new ArrayList<StgAccPaymentmech>();
+		List<PaymentMechanism> mechList = pay.getPaymentMechanism();
+		if (mechList == null || mechList.size() == 0) {
+			return;
+		} else {
+			for (PaymentMechanism vo : mechList) {
+				StgAccPaymentmech mech = new StgAccPaymentmech();
+				mech.setPaymentmechId(vo.getId());
+				mech.setPaymentType(new Long(vo.getPaymentType()));
+				mech.setAccountNumber(vo.getAccountNumber());
+				mech.setInstrumentNum(vo.getInstrumentNumber());
+				mech.setPartyCode(vo.getPartyId());
+				mech.setRoleId(vo.getRoleId());
+				mech.setRemoved(new Long(0));
+				mech.setPriority(new Long(vo.getPriority()));
+				mech.setAccountName(vo.getAccountName());
+				mech.setBatId(ec.getBatId());
+				mech.setObjectId(ec.getObjectId());
+				mech.setObjectType(String.valueOf(ec.getObjectType()));
+				mech.setTimeStamp(ec.getTimeStamp());
+				mech.setSliceId(pay.getId());
+				this.stgAccPaymentmechList.add(mech);
+
+			}
+
+		}
+	}
+
+	public StgAccReference getStgAccReference() {
+		return stgAccReference;
+	}
+
+	public void setStgAccReference(StgAccReference stgAccReference) {
+		this.stgAccReference = stgAccReference;
+	}
+
+	public ArrayList<StgAccPaymentslice> getStgAccPaymentsliceList() {
+		return stgAccPaymentsliceList;
+	}
+
+	public void setStgAccPaymentsliceList(ArrayList<StgAccPaymentslice> stgAccPaymentsliceList) {
+		this.stgAccPaymentsliceList = stgAccPaymentsliceList;
+	}
+
+	public ArrayList<StgAccPaymentmech> getStgAccPaymentmechList() {
+		return stgAccPaymentmechList;
+	}
+
+	public void setStgAccPaymentmechList(ArrayList<StgAccPaymentmech> stgAccPaymentmechList) {
+		this.stgAccPaymentmechList = stgAccPaymentmechList;
+	}
+}

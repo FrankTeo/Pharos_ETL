@@ -1,0 +1,162 @@
+package com.sysnet.poc.util;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import com.sysnet.poc.service.dao.dbc.ConnDB;
+
+import pharos.ctm.bo.BContractBO;
+import pharos.ctm.vo.BContract;
+import pharos.ctm.vo.BContractNode;
+import pharos.framework.element.vo.IElement;
+import pharos.framework.servicectrl.ServiceLocator;
+
+/**
+ * ODS接口组单独实现的BContract对象助手类
+ * 
+ * @author SYSNET
+ * 
+ */
+public class BContractHelper {
+
+	private static BContractHelper bc = null;
+
+	private BContractHelper() {
+
+	}
+
+	public static BContractHelper instance() {
+		if (bc == null)
+			bc = new BContractHelper();
+		return bc;
+	}
+
+	/**
+	 * 针对利宝POC的车险，为了适应车队类似团队的处理，将所有的车队下的车打平，放到List中返回
+	 * 
+	 * @return
+	 */
+	@SuppressWarnings("finally")
+	public List<BContract> getBContractList(BContract bcontract) {
+		BContract bc = bcontract.clone();
+		List<BContract> rstbcList = new ArrayList<BContract>();
+		try {
+			Date dt1 = new Date();
+			// BContractNode node = (BContractNode)
+			// bcn.getElementByName(ElementEnum.BCONTRACTNODE_CODE,"vehicle");
+			BContractNode bcn = (BContractNode) bc.getRootNode();
+			List list = bcn.getChildContractNodes();
+			int nodeSize = list.size();
+			// 如果只有一个节点，可以直接返回
+			if (nodeSize <= 1) {
+				rstbcList.add(bc);
+				return rstbcList;
+			}
+			System.out.println("当前车险节点的车队下面，添加的车险数：" + nodeSize);
+			// 克隆一个BC
+			BContract bcNEW = bc.clone();
+			// 得到这个BC下面的所有车
+			List bcnListNEW = bcNEW.getRootNode().getChildContractNodes();
+			// 移除车队下面的所有车辆
+			while (!list.isEmpty()) {
+				bcn.removeChild((IElement) list.get(0));
+			}
+			System.out.println("当前的车队下面，把车辆移除后的数目(正确应为0)：" + bc.getRootNode().getChildContractNodes().size());
+			// 没一个车都没有BC节，根据车辆数目克隆对应的个数
+			List<BContract> bcListNew = new ArrayList<BContract>();
+			for (int i = 0; i < nodeSize; i++) {
+				bcListNew.add(bc.clone());
+			}
+			System.out.println("已经准备好没有车的节点数：" + bcListNew.size());
+			// 如果不一致，还是按原来的结构返回吧
+			if (bcListNew.size() != bcnListNEW.size()) {
+				System.out.println("程序错误！取出来的车辆数目和克隆出来的BC数目不一致!");
+				rstbcList.add(bcNEW);
+				return rstbcList;
+			}
+			// 开始组织把车一个个组装
+			int newSize = bcListNew.size();
+			for (int i = 0; i < newSize; i++) {
+				BContract _bc = bcListNew.get(i);
+				_bc.getRootNode().addChild((IElement) bcnListNEW.get(i));
+				rstbcList.add(_bc);
+			}
+			Date dt2 = new Date();
+			System.out.println("最后返回的完整结构的车辆数目：" + rstbcList.size() + "耗时：" + (dt2.getTime() - dt1.getTime()));
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			return rstbcList;
+		}
+	}
+
+	/**
+	 * 通过一个投保单号，从Pharos表中得到相应的节点（5位），然后通过节点号和合同号，
+	 * 分别取得完整结构的BContract对象，并放入List对象中。供外部数据抽取循环使用。
+	 * 
+	 * @return
+	 */
+//	public List<BContract> getBContractListForNode(String objectNo, String nodeNo) {
+//
+//		List<BContract> rstBCList = new ArrayList<BContract>();
+//		Connection pharosConn = null;
+//		try {
+//			String NODE_NO = "";
+//			String sql = "select CONTRACT_NO,NODE_NO from t_bcontractnode where proposal_no='" + objectNo + "' and policy_no is not null and node_no like '" + nodeNo + "%'";
+//			pharosConn = ConnDB.getPharosConn();
+//			Statement state = pharosConn.createStatement();
+//			ResultSet rs = state.executeQuery(sql);
+//			BContractBO bo = PharosServiceContainer.Instance().getBContractBO();
+//			while (rs.next()) {
+//				String _NODE_NO = rs.getString("NODE_NO");
+//				String _CONTRACT_NO = rs.getString("CONTRACT_NO");
+//				try {
+//					BContract bc = bo.getVersion2(_CONTRACT_NO, _NODE_NO, 1, Integer.parseInt("1")); // 取保单
+//					if (bc != null)
+//						rstBCList.add(bc);
+//				} catch (Exception ex) {
+//					ex.printStackTrace();
+//				}
+//			}
+//		} catch (Exception ex) {
+//			ex.printStackTrace();
+//			return rstBCList;
+//		} finally {
+//			try {
+//				if (pharosConn != null) {
+//					pharosConn.close();
+//				}
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//		}
+//		return rstBCList;
+//	}
+
+//	public static void main(String[] args) {
+//		try {
+//			// 把车险中的多辆车，重新组装为多个BContract，并以List返回
+//			System.getProperties().put("defaultServerAddress", "192.168.10.196:1099");
+//			System.getProperties().put("isStartCache", "true");
+//			ServiceLocator.initClient();
+//			// BContractBO bo =
+//			// PharosServiceContainer.Instance().getBContractBO();
+//			// BContract bc =
+//			// bo.getContractByProposalNo("TDAA200900000000001057");
+//			// List<BContract> bclist =
+//			// BContractHelper.instance().getBContractList(bc);
+//			// System.out.println("size = " + bclist.size());
+//			BContractHelper BCHelp = BContractHelper.instance();
+//			List<BContract> list = BCHelp.getBContractListForNode("TDAA200900000000001144", "1");
+//			System.out.println("size = " + list.size());
+//		} catch (Exception ex) {
+//			ex.printStackTrace();
+//		}
+//	}
+
+}

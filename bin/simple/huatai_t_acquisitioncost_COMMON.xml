@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition description="展业成本表">
+	<mapping>
+		<area description="展业成本表">
+			<table tableName="T_AcquisitionCost" dataProviderType="CSNODE" as="Contract">
+				<item fieldName="PolicyNo" fieldType="String" parameterType="GLOBAL" parameter="policyno" /> <!-- 保单号 -->
+				<item fieldName="EndorseNo" fieldType="String" parameterType="GLOBAL" parameter="endorseno" /> <!-- 批单号 -->
+				<item fieldName="ContractNo" fieldType="String" parameterType="GLOBAL" parameter="contractno" /> <!-- 合同号 -->
+				<item fieldName="NodeNo" fieldType="String" parameterType="GLOBAL" parameter="nodeno" /> <!-- 节点号 -->
+				<item fieldName="SubVersionNo" fieldType="String" parameterType="GLOBAL" parameter="version" /> <!-- 版本号 -->
+				<item fieldName="ProposalNo" fieldType="String" parameterType="GLOBAL" parameter="proposalno" /> <!-- 投保单号 -->
+				<item fieldName="Currency" fieldType="String" parameterType="CSNODE" method="getPremiumValueMoney.getCurrency" /> <!-- 币种 -->
+				<item fieldName="Premium" fieldType="Float" parameterType="CSNODE" method="getPremiumValueMoney.getAmount" /> <!-- 保费 -->
+				<item fieldName="MeritPayRate" fieldType="Float" parameterType="CSNODE" method="getSalaryRate" /> <!-- 绩效工资比例 -->
+				<item fieldName="MeritPay" fieldType="Float" parameterType="CSNODE" method="getSalary" /> <!-- 绩效工资 -->
+				<item fieldName="meritPayVariance" fieldType="Float" parameterType="CSNODE" method="getSalaryChanged" /> <!-- 绩效工资变化量 -->
+				<item fieldName="AcquisitionExpenseRate" fieldType="Float" parameterType="CSNODE" method="getSalesFeeRate" /> <!-- 展业费用比例 -->
+				<item fieldName="AcquisitionExpense" fieldType="Float" parameterType="CSNODE" method="getSalesFee" /> <!-- 展业费用 -->
+				<item fieldName="AcquisitionExpensesVariance" fieldType="Float" parameterType="CSNODE" method="getSalesFeeChanged" /> <!-- 展业费用变化量 -->
+				<item fieldName="CommissionRate" fieldType="Float" parameterType="CSNODE" method="getAgentFeeRate" /> <!-- 佣金比例 -->
+				<item fieldName="Commission" fieldType="Float" parameterType="CSNODE" method="getAgentFee" /> <!-- 佣金 -->
+				<item fieldName="commissionChargeVariance" fieldType="Float" parameterType="CSNODE" method="getAgentFeeChanged" /> <!-- 佣金变化量 -->
+				<item fieldName="BrokerageRate" fieldType="Float" parameterType="CSNODE" method="getBrokerFeeRate" /> <!-- 经纪费比例 -->
+				<item fieldName="Brokerage" fieldType="Float" parameterType="CSNODE" method="getBrokerFee" /> <!-- 经纪费 -->
+				<item fieldName="BrokerageVariance" fieldType="Float" parameterType="CSNODE" method="getBrokerFeeChanged" /> <!-- 经纪费变化量 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" parameter="objectno" /> <!-- 对象号 -->
+				<!--<item fieldName="Remark" fieldType="String" />--> <!-- 备注 -->
+				<!--<item fieldName="CrtTime" fieldType="Date" />--> <!-- 创建时间 -->
+				<!--<item fieldName="MdfTime" fieldType="Date" />--> <!-- 修改时间 -->
+			</table>
+		</area>
+	</mapping>
+</definition>

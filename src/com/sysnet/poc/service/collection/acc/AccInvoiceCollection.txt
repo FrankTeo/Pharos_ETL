@@ -1,0 +1,158 @@
+package com.sysnet.poc.service.collection.acc;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.commons.logging.Log;
+
+import pharos.account.bo.IAccountInvoiceBO;
+import pharos.account.vo.invoice.AccInvoice;
+import pharos.account.vo.invoice.AccInvoiceBaseDetail;
+import pharos.account.vo.invoice.AccInvoiceDetail;
+
+import com.sysnet.poc.control.manage.vo.EtlPharosIncrAcc;
+import com.sysnet.poc.util.DateHelper;
+import com.sysnet.poc.util.OdsLogger;
+import com.sysnet.poc.util.PharosServiceContainer;
+import com.sysnet.poc.vo.StgAccInvoice;
+import com.sysnet.poc.vo.StgAccInvoicebasedetail;
+import com.sysnet.poc.vo.StgAccInvoicedetail;
+
+public class AccInvoiceCollection {
+
+	private static final Log log = OdsLogger.getLog("accLog4j", "ACC");
+	private StgAccInvoice stgAccInvoice;
+	private ArrayList<StgAccInvoicedetail> stgAccInvoicedetailList;
+	private ArrayList<StgAccInvoicebasedetail> stgAccInvoicebasedetailList;
+
+	public AccInvoiceCollection(EtlPharosIncrAcc ec) {
+
+		PharosServiceContainer pc = PharosServiceContainer.Instance();
+		// long times = System.currentTimeMillis();
+		// log.info(times);
+		IAccountInvoiceBO accountInvoicBO = pc.getIAccountInvoiceBO();
+		AccInvoice accInvoice = accountInvoicBO.getInvoice(ec.getObjectNo());
+		this.setAccinvoice(accInvoice, ec);
+		// log.info(System.currentTimeMillis() - times);
+	}
+
+	private void setAccinvoice(AccInvoice invoice, EtlPharosIncrAcc ec) {
+		if (invoice != null) {
+			this.stgAccInvoice = new StgAccInvoice();
+			this.stgAccInvoice.setInvoiceId(invoice.getId());
+			this.stgAccInvoice.setRemoved(new Long(0));
+			this.stgAccInvoice.setCollectorAgent(invoice.getCollectorAgent());
+			this.stgAccInvoice.setInvoiceNumber(invoice.getInvoiceNumber());
+			this.stgAccInvoice.setAmount(invoice.getAmount());
+			this.stgAccInvoice.setCurrency(new Long(invoice.getCurrency()));
+			// this.stgAccInvoice.setDueDate(invoice.);
+			this.stgAccInvoice.setUpdateDate(DateHelper.getSqlDate(invoice.getUpdateDate()));
+			this.stgAccInvoice.setInvoiceType(new Long(invoice.getType()));
+			this.stgAccInvoice.setStatus(new Long(invoice.getStatus()));
+			this.stgAccInvoice.setIsgenerateCommission(new Long(invoice.isGenerateCommission() ? 1 : 0));
+			this.stgAccInvoice.setTransNo(invoice.getTransNo());
+			this.stgAccInvoice.setUserCompanyCode(invoice.getUserCompanyCode());
+			this.stgAccInvoice.setUserCompanyNodeCode(invoice.getUserCompanyNodeCode());
+			this.stgAccInvoice.setTimeStamp(ec.getTimeStamp());
+			this.stgAccInvoice.setBatId(ec.getBatId());
+			this.stgAccInvoice.setObjectId(ec.getObjectId());
+			this.stgAccInvoice.setObjectType(String.valueOf(ec.getObjectType()));
+			this.stgAccInvoice.setInvoiceBookId(invoice.getInvoiceBookId());
+			this.setAccinvoicedetail(invoice, ec);
+		}
+
+	}
+
+	/**
+	 * T_ACCINVOICEDETAIL 发票明细表
+	 * 
+	 * @param invoice
+	 * @param ec
+	 */
+	private void setAccinvoicedetail(AccInvoice invoice, EtlPharosIncrAcc ec) {
+
+		this.stgAccInvoicedetailList = new ArrayList<StgAccInvoicedetail>();
+
+		List<AccInvoiceDetail> detailList = invoice.getInvoiceDetails();
+
+		if (detailList == null || detailList.size() == 0) {
+			return;
+		} else {
+			for (AccInvoiceDetail vo : detailList) {
+				StgAccInvoicedetail detail = new StgAccInvoicedetail();
+				detail.setInvoiceDetailId(vo.getId());
+				detail.setRemoved(new Long(0));
+				detail.setTransId(vo.getTransId());
+				detail.setTransNo(vo.getTransNo());
+				detail.setAmount(vo.getAmount());
+				detail.setCurrency(new Long(vo.getCurrency()));
+				detail.setAccountSource(new Long(vo.getAccountSource()));
+				detail.setDocumentType(new Long(vo.getDocumentType()));
+				detail.setCreateDate(DateHelper.getSqlDate(vo.getCreateDate()));
+				detail.setTimeStamp(ec.getTimeStamp());
+				detail.setBatId(ec.getBatId());
+				detail.setObjectId(ec.getObjectId());
+				detail.setObjectType(String.valueOf(ec.getObjectType()));
+				detail.setInvoiceId(invoice.getId());
+				this.stgAccInvoicedetailList.add(detail);
+				this.setAccinvoicebasedetail(vo, ec);
+			}
+
+		}
+
+	}
+
+	/**
+	 * T_ACCINVOICEBASEDETAIL 发票基本信息表
+	 * 
+	 * @param detail
+	 * @param ec
+	 */
+	private void setAccinvoicebasedetail(AccInvoiceDetail detail, EtlPharosIncrAcc ec) {
+		this.stgAccInvoicebasedetailList = new ArrayList<StgAccInvoicebasedetail>();
+
+		List<AccInvoiceBaseDetail> baseDetailList = detail.getBaseDetails();
+		if (baseDetailList == null || baseDetailList.size() == 0) {
+			return;
+		} else {
+			for (AccInvoiceBaseDetail vo : baseDetailList) {
+				StgAccInvoicebasedetail baseDetail = new StgAccInvoicebasedetail();
+
+				baseDetail.setInvoiceBaseDetailId(vo.getId());
+				baseDetail.setRemoved(new Long(0));
+				baseDetail.setAmountType(new Long(vo.getAmountType()));
+				baseDetail.setAmount(vo.getAmount());
+				baseDetail.setBatId(ec.getBatId());
+				baseDetail.setTimeStamp(ec.getTimeStamp());
+				baseDetail.setObjectId(ec.getObjectId());
+				baseDetail.setObjectType(String.valueOf(ec.getObjectType()));
+				baseDetail.setInvoiceDetailId(detail.getId());
+			}
+		}
+
+	}
+
+	public StgAccInvoice getStgAccInvoice() {
+		return stgAccInvoice;
+	}
+
+	public void setStgAccInvoice(StgAccInvoice stgAccInvoice) {
+		this.stgAccInvoice = stgAccInvoice;
+	}
+
+	public ArrayList<StgAccInvoicedetail> getStgAccInvoicedetailList() {
+		return stgAccInvoicedetailList;
+	}
+
+	public void setStgAccInvoicedetailList(ArrayList<StgAccInvoicedetail> stgAccInvoicedetailList) {
+		this.stgAccInvoicedetailList = stgAccInvoicedetailList;
+	}
+
+	public ArrayList<StgAccInvoicebasedetail> getStgAccInvoicebasedetailList() {
+		return stgAccInvoicebasedetailList;
+	}
+
+	public void setStgAccInvoicebasedetailList(ArrayList<StgAccInvoicebasedetail> stgAccInvoicebasedetailList) {
+		this.stgAccInvoicebasedetailList = stgAccInvoicebasedetailList;
+	}
+}

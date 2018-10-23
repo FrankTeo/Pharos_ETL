@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition description="企财险标的表">
+	<mapping>
+		<area description="企财险标的表">
+			<table tableName="t_subjenterprise" dataProviderType="CSNODE" as="Contract">
+				<item fieldName="PolicyNo" fieldType="String" parameterType="GLOBAL" parameter="policyno" /> <!-- 保单号 -->
+				<item fieldName="EndorseNo" fieldType="String" parameterType="GLOBAL" parameter="endorseno" /> <!-- 批单号 -->
+				<item fieldName="NodeNo" fieldType="String" parameterType="GLOBAL" parameter="nodeno" /> <!-- 节点号 -->
+				<item fieldName="ContractNo" fieldType="String" parameterType="GLOBAL" parameter="contractno" /> <!-- 合同号 -->
+				<item fieldName="SubVersionNo" fieldType="String" parameterType="GLOBAL" parameter="version" /> <!-- 版本号 -->
+				<item fieldName="ProposalNo" fieldType="String" parameterType="GLOBAL" parameter="proposalno" /> <!-- 投保单号 -->
+				<item fieldName="QuotaExplain" fieldType="String" parameterType="CSNODE" parameter="SXU00087" method="getElementByCode.getValue" /> <!-- 保单限额说明 -->
+				<item fieldName="PerAccdCmpnstLmtCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00121" method="getElementByCode.getValue.getCurrency" /> <!-- 每次事故赔偿限额币种 -->
+				<item fieldName="PerAccdCmpnstLimit" fieldType="Float" parameterType="CSNODE" parameter="SXU00121" method="getElementByCode.getValue.getAmount" /> <!-- 每次事故赔偿限额 -->
+				<item fieldName="AggrCmpnstLmtCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00155" method="getElementByCode.getValue.getCurrency" /> <!-- 年度累计赔偿限额 -->
+				<item fieldName="AggregCmpnstLimit" fieldType="Float" parameterType="CSNODE" parameter="SXU00155" method="getElementByCode.getValue.getAmount" /> <!-- 年度累计赔偿限额 -->
+				<item fieldName="MachineExplain" fieldType="String" parameterType="CSNODE" parameter="SXU00406" method="getElementByCode.getValue" /> <!-- 机器设备说明 -->
+				<item fieldName="IncludeEngineBase" fieldType="String" parameterType="CSNODE" parameter="SXU00402" method="getElementByCode.getValue" /> <!-- 是否投保机座 -->
+				<item fieldName="IncludeHoliday" fieldType="String" parameterType="CSNODE" parameter="SXU00405" method="getElementByCode.getValue" /> <!-- 是否含假日工资 -->
+				<item fieldName="IncludeExtra" fieldType="String" parameterType="CSNODE" parameter="SXU00404" method="getElementByCode.getValue" /> <!-- 是否含加班费 -->
+				<item fieldName="IncludeTransExpense" fieldType="String" parameterType="CSNODE" parameter="SXU00403" method="getElementByCode.getValue" /> <!-- 是否含运费 -->
+				<item fieldName="SubjectAddress" fieldType="String" parameterType="CSNODE" parameter="SXU00013" method="getElementByCode.getValue" /> <!-- 标的地址 -->
+				<item fieldName="ZipCode" fieldType="String" parameterType="CSNODE" parameter="SXU00014" method="getElementByCode.getValue" /> <!-- 邮政编码 -->
+				<item fieldName="CleanExpensiveCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00407" method="getElementByCode.getValue.getCurrency" /> <!-- 清理残骸费用币种 -->
+				<item fieldName="CleanExpensive" fieldType="Float" parameterType="CSNODE" parameter="SXU00407" method="getElementByCode.getValue.getAmount" /> <!-- 清理残骸费用 -->
+				<item fieldName="OutfireExpnsvCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00408" method="getElementByCode.getValue.getCurrency" /> <!-- 灭火费用币种 -->
+				<item fieldName="OutfireExpensive" fieldType="Float" parameterType="CSNODE" parameter="SXU00408" method="getElementByCode.getValue.getAmount" /> <!-- 灭火费用 -->
+				<item fieldName="PrfssnlExpnsvCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00409" method="getElementByCode.getValue.getCurrency" /> <!-- 专业费用币种 -->
+				<item fieldName="PrfssnlExpensive" fieldType="Float" parameterType="CSNODE" parameter="SXU00409" method="getElementByCode.getValue.getAmount" /> <!-- 专业费用币 -->
+				<item fieldName="OtherExpnsvCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00410" method="getElementByCode.getValue.getCurrency" /> <!-- 其他费用币种 -->
+				<item fieldName="OtherExpensive" fieldType="Float" parameterType="CSNODE" parameter="SXU00410" method="getElementByCode.getValue.getAmount" /> <!-- 其他费用 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" parameter="objectno" /> <!-- 对象号 -->
+			</table>
+		</area>
+	</mapping>
+</definition>

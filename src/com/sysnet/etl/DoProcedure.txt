@@ -1,0 +1,228 @@
+package com.sysnet.etl;
+
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import org.apache.log4j.Logger;
+
+import com.sysnet.poc.service.dao.dbc.ConnDB;
+
+/**
+ * 按批次的抽取执行
+ * 
+ * @author Administrator
+ * 
+ */
+public class DoProcedure {
+	private Logger log = Logger.getLogger(DoProcedure.class.getName());
+
+	/**
+	 * 传入topic，按topic的信息执行
+	 * 
+	 * @param topic
+	 * @return
+	 */
+	public boolean runProcedure(Topic topic) {
+		boolean result = false;
+		ResultSet rs = null;
+		String proName = null;
+		PreparedStatement pst = null;
+		PreparedStatement pst1 = null;
+		ResultSet rs1 = null;
+		Connection conn = null;
+		try {
+			conn = ConnDB.getODSConn();
+			String sql = "select  prdname from prd_config where  dealstype =" + topic.getCode();
+			pst = conn.prepareStatement(sql);
+			rs = pst.executeQuery();
+
+			while (rs.next())
+				proName = rs.getString(1);
+
+			if (rs != null) {
+				rs.close();
+			}
+			String sql1 = "select  bat_id  from  " + topic.getTableName() + "  where stage_date_ready_status = '1'  and (ods_data_deal_status = 0 or ods_data_deal_status is null)  order  by BAT_ID asc";
+
+			pst1 = conn.prepareStatement(sql1);
+			rs1 = pst1.executeQuery();
+			List<Integer> batId = new ArrayList<Integer>();
+
+			while (rs1.next())
+				batId.add(Integer.valueOf(rs1.getInt("BAT_ID")));
+
+			if (rs1 != null) {
+				rs1.close();
+			}
+
+			if ((batId != null) && (batId.size() > 0) && (proName != null) && (proName.length() > 0)) {
+				boolean status = check(topic.getCode());
+				if (!status) {
+					boolean flag = executeProcedure(proName, batId, topic);
+					if (!(flag))
+						return false;
+					boolean af = update(topic.getCode(), "0");
+					if (af)
+						return true;
+
+					this.log.info(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()) + "\n" + "----->status Update False!" + topic.getName() + "\n");
+					return false;
+				} else {
+
+					System.out.println("-----该模块由于出错，已停止数据抽取，请及时查看原因---\n");
+					return false;
+				}
+			}
+
+			result = true;
+			this.log.info(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()) + "\n" + "-------当前没有增量数据！" + "\n");
+			return result;
+		} catch (Exception e) {
+			this.log.info(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()) + "\n" + e.toString() + "\n");
+		} finally {
+			conClose(conn);
+		}
+
+		return result;
+	}
+
+	private boolean check(int dealType) {
+		boolean result2 = false;
+		Connection conn = null;
+		PreparedStatement pst = null;
+		ResultSet rs = null;
+		String statusSql = "select  status  from prd_config where dealstype =  " + dealType;
+		try {
+			conn = ConnDB.getODSConn();
+			pst = conn.prepareStatement(statusSql);
+			rs = pst.executeQuery();
+			int b = 3;
+			while (rs.next())
+				b = rs.getInt(1);
+
+			if (b != 0)
+
+				result2 = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			conClose(conn);
+		}
+		return result2;
+	}
+
+	private boolean update(int dealType, String status) {
+		boolean result = false;
+		Connection conn = null;
+		PreparedStatement pst = null;
+		String statusSql = "update  prd_config  set   status = " + status + "  where  dealstype =  " + dealType;
+		try {
+			conn = ConnDB.getODSConn();
+			pst = conn.prepareStatement(statusSql);
+			pst.executeUpdate();
+			result = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			conClose(conn);
+		}
+		return result;
+	}
+
+	private void conClose(Connection conn) {
+		if (conn != null) {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	private boolean executeProcedure(String proName, List<Integer> batId, Topic topic) {
+		boolean result = false;
+
+		boolean m = update(topic.getCode(), "1");
+		if (m) {
+			String model = topic.getName();
+			Connection conn = null;
+			CallableStatement cs = null;
+			if ((proName != null) && (proName.length() > 1) && (batId != null) && (batId.size() > 0)) {
+				int flag = 3;
+				String errorString = null;
+				for (int i = 0; i < batId.size(); ++i) {
+					try {
+						conn = ConnDB.getODSConn();
+						conn.setAutoCommit(false);
+						String callString = "call  " + proName + "(?,?,?,?)";
+						cs = conn.prepareCall(callString);
+						cs.setInt(1, ((Integer) batId.get(i)).intValue());// batID
+						cs.registerOutParameter(2, 4);// 返回标志字段 0成功，非0失败
+						cs.registerOutParameter(3, 4);// 错误代码
+						cs.registerOutParameter(4, 12);// 错误日志
+						cs.executeUpdate();
+						this.log.info(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()) + "\n" + "=====正在执行 " + model + " 第 " + batId.get(i) + "   批次=====" + "\n");
+						flag = cs.getInt(2);
+						errorString = cs.getString(4);
+						if (flag != 0) {
+							this.log.info(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()) + "\n" + "----->回滚 " + model + " 第 " + batId.get(i) + "  批次数据!回滚原因是：" + errorString + "\n");
+							conn.rollback();
+						}
+						boolean b = backWrite(conn, topic.getTableName(), ((Integer) batId.get(i)).intValue()).booleanValue();
+
+						if (b) {
+							result = true;
+							conn.commit();
+						} else {
+							conn.rollback();
+							this.log.info(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()) + "\n" + "===标志位回写失败！" + "\n");
+						}
+					} catch (Exception e) {
+						this.log.info(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()) + "\n" + e.toString() + "\n");
+					} finally {
+						conClose(conn);
+					}
+				}
+			}
+			return result;
+		}
+		this.log.info(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()) + "\n" + "=====status Update False!" + topic.getName() + "\n");
+
+		return result;
+	}
+
+	private Boolean backWrite(Connection conn, String tableName, int batId) {
+		boolean b = false;
+		PreparedStatement pst = null;
+		try {
+			String sql = "update   " + tableName + "   set  ods_data_deal_status = '1' where bat_id=" + batId;
+			pst = conn.prepareStatement(sql);
+			pst.executeUpdate();
+			b = true;
+			conn.commit();
+		} catch (Exception e) {
+			this.log.info(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()) + "\n" + e.toString() + "\n");
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+		} finally {
+			if (pst != null) {
+				try {
+					pst.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return Boolean.valueOf(b);
+	}
+}

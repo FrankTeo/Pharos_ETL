@@ -1,0 +1,113 @@
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/BizCore/!svn/ver/9475/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/mapping/action
+END
+DeclarationMappingAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/mapping/action/DeclarationMappingAction.java
+END
+DFLAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/mapping/action/DFLAction.java
+END
+ObjectAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/BizCore/!svn/ver/14512/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/mapping/action/ObjectAction.java
+END
+PaymentScheduleMappingAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/mapping/action/PaymentScheduleMappingAction.java
+END
+GlobalMappingAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/mapping/action/GlobalMappingAction.java
+END
+BContractManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/BizCore/!svn/ver/6839/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/mapping/action/BContractManager.java
+END
+RoleMappingAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/mapping/action/RoleMappingAction.java
+END
+DeclarationFormListMappingAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/mapping/action/DeclarationFormListMappingAction.java
+END
+CSMappingAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/mapping/action/CSMappingAction.java
+END
+ActionPlus.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/mapping/action/ActionPlus.java
+END
+DeclarationFormMappingAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/mapping/action/DeclarationFormMappingAction.java
+END
+CustomMappingAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/mapping/action/CustomMappingAction.java
+END
+CSNodeMappingAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/mapping/action/CSNodeMappingAction.java
+END
+MappingAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/mapping/action/MappingAction.java
+END
+ConditionSurplusMappingAction.txt
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/mapping/action/ConditionSurplusMappingAction.txt
+END
+AbsPharosMappingAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/mapping/action/AbsPharosMappingAction.java
+END
+ConditionMappingAction.txt
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/mapping/action/ConditionMappingAction.txt
+END
+ConditionLifeMappingAction.txt
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/mapping/action/ConditionLifeMappingAction.txt
+END

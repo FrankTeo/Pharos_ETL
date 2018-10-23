@@ -1,0 +1,77 @@
+package com.sysnet.poc.control.manage;
+
+import org.apache.commons.logging.Log;
+
+import com.sysnet.etl.Work;
+import com.sysnet.poc.control.manage.vo.ConfigureBean;
+import com.sysnet.poc.control.manage.vo.StopBean;
+import com.sysnet.poc.control.manage.vo.ThreadContral;
+import com.sysnet.poc.service.dao.EtlBatDAO;
+import com.sysnet.poc.util.OdsLogger;
+
+/**
+ * Etl抽取服务
+ * 
+ * @verison 1.1
+ * @author 段成伟
+ * @since 2009-07-06 修改日期：2010-10-18 修改内容：添加接口，添加自动控制开关 修改人：段成伟
+ */
+public class EtlBatScheduleThread extends ThreadContral {
+	private StopBean s;
+	private static final Log log = OdsLogger.getLog("rLog4j", "R");
+
+	public EtlBatScheduleThread(StopBean s) {
+		this.s = s;
+		si.setName("ETL批次");
+		si.setDivName("etlBat");
+	}
+
+	/**
+	 * etl调度
+	 */
+	protected void schedule() {
+		si.setShowMassageStart();
+		while (true) {
+			try {
+				synchronized (this) {
+					while (suspendFlag) {
+						si.setShowMassageSuspended();
+						wait();
+					}
+				}
+				StopBean sb = new StopBean();
+				EtlBatDAO ebd = new EtlBatDAO();
+				ConfigureBean cb = ebd.getConfigure();
+				if (s.getStop() == 1) {
+					Work w = new Work();
+					w.setSb(sb);
+					w.start();
+
+					while (true) {
+						// log.debug("============stopBean.getStop()=="+stopBean.getStop());
+						if (sb.getStop() == 1) {
+							si.setShowMassageDormancy();
+							Thread.sleep(cb.getGENERAL_SLEEP_MILLIS_COUNT());
+							// Thread.sleep(1000);
+							si.setShowMassageResume();
+							if (Runtime.getRuntime().freeMemory() < 10 * 1024 * 1024) {
+								System.out.println("内存不足10M");
+								System.gc();
+							}
+							break;
+						}
+					}
+				} else {
+					si.setShowMassage("等待PUBLIC部分完成");
+					Thread.sleep(cb.getGENERAL_SLEEP_MILLIS_COUNT());
+				}
+			} catch (Exception e) {
+				log.error("etl调度线程抛出异常", e);
+
+				// begin = false; // 主线程停止运行
+				suspendFlag = true;
+				si.setExceptionMessage(e.getMessage());
+			}
+		}
+	}
+}

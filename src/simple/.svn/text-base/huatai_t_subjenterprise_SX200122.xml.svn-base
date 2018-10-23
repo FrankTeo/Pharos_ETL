@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition description="企财险标的表">
+	<mapping>
+		<area description="企财险标的表">
+			<table tableName="t_subjenterprise" dataProviderType="CSNODE" as="Contract">
+				<item fieldName="PolicyNo" fieldType="String" parameterType="GLOBAL" parameter="policyno" /> <!-- 保单号 -->
+				<item fieldName="EndorseNo" fieldType="String" parameterType="GLOBAL" parameter="endorseno" /> <!-- 批单号 -->
+				<item fieldName="NodeNo" fieldType="String" parameterType="GLOBAL" parameter="nodeno" /> <!-- 节点号 -->
+				<item fieldName="ContractNo" fieldType="String" parameterType="GLOBAL" parameter="contractno" /> <!-- 合同号 -->
+				<item fieldName="SubVersionNo" fieldType="String" parameterType="GLOBAL" parameter="version" /> <!-- 版本号 -->
+				<item fieldName="ProposalNo" fieldType="String" parameterType="GLOBAL" parameter="proposalno" /> <!-- 投保单号 -->
+				<item fieldName="Material" fieldType="String" parameterType="CSNODE" parameter="SXU00001" method="getElementByCode.getValue" /> <!-- 原材料 -->
+				<item fieldName="Technology" fieldType="String" parameterType="CSNODE" parameter="SXU00002" method="getElementByCode.getValue" /> <!-- 生产工艺 -->
+				<item fieldName="BuildingType" fieldType="String" parameterType="CSNODE" parameter="SXU00003" method="getElementByCode.getValue" /> <!-- 建筑类型 -->
+				<item fieldName="RecentLossing" fieldType="String" parameterType="CSNODE" parameter="SXU00630" method="getElementByCode.getValue" /> <!-- 以往损失记录 -->
+				<item fieldName="QuotaExplain" fieldType="String" parameterType="CSNODE" parameter="SXU00087" method="getElementByCode.getValue" /> <!-- 保单限额说明 -->
+				<item fieldName="PerAccdCmpnstLmtCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00121" method="getElementByCode.getValue.getCurrency" /> <!-- 每次事故赔偿限额币种 -->
+				<item fieldName="PerAccdCmpnstLimit" fieldType="Float" parameterType="CSNODE" parameter="SXU00121" method="getElementByCode.getValue.getAmount" /> <!-- 每次事故赔偿限额 -->
+				<item fieldName="AggrCmpnstLmtCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00155" method="getElementByCode.getValue.getCurrency" /> <!-- 年度累计赔偿限额 -->
+				<item fieldName="AggregCmpnstLimit" fieldType="Float" parameterType="CSNODE" parameter="SXU00155" method="getElementByCode.getValue.getAmount" /> <!-- 年度累计赔偿限额 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" parameter="objectno" /> <!-- 对象号 -->
+			</table>
+		</area>
+	</mapping>
+</definition>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition description="企财险标的表">
+	<mapping>
+		<area description="企财险标的表">
+			<table tableName="t_subjenterprise" dataProviderType="CSNODE" as="Contract">
+				<item fieldName="PolicyNo" fieldType="String" parameterType="GLOBAL" parameter="policyno" /> <!-- 保单号 -->
+				<item fieldName="EndorseNo" fieldType="String" parameterType="GLOBAL" parameter="endorseno" /> <!-- 批单号 -->
+				<item fieldName="NodeNo" fieldType="String" parameterType="GLOBAL" parameter="nodeno" /> <!-- 节点号 -->
+				<item fieldName="ContractNo" fieldType="String" parameterType="GLOBAL" parameter="contractno" /> <!-- 合同号 -->
+				<item fieldName="SubVersionNo" fieldType="String" parameterType="GLOBAL" parameter="version" /> <!-- 版本号 -->
+				<item fieldName="ProposalNo" fieldType="String" parameterType="GLOBAL" parameter="proposalno" /> <!-- 投保单号 -->
+				<item fieldName="SubjectAddress" fieldType="String" parameterType="CSNODE" parameter="SXU00100" method="getElementByCode.getValue" /> <!-- 标的地址 -->
+				<item fieldName="ZipCode" fieldType="String" parameterType="CSNODE" parameter="SXU00014" method="getElementByCode.getValue" /> <!-- 邮政编码 -->
+				<item fieldName="BizQuality" fieldType="String" parameterType="CSNODE" parameter="SXU00149" method="getElementByCode.getValue" /> <!-- 营业性质 -->
+				<item fieldName="SubjectName" fieldType="String" parameterType="CSNODE" parameter="SXU00635" method="getElementByCode.getValue" /> <!-- 标的名称 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" parameter="objectno" /> <!-- 对象号 -->
+			</table>
+		</area>
+	</mapping>
+</definition>

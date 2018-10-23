@@ -1,0 +1,87 @@
+package com.sysnet.poc.control.manage;
+
+import org.apache.commons.logging.Log;
+
+import com.sysnet.etl_all.work.Work;
+import com.sysnet.poc.control.manage.vo.ConfigureBean;
+import com.sysnet.poc.control.manage.vo.StopBean;
+import com.sysnet.poc.control.manage.vo.ThreadContral;
+import com.sysnet.poc.service.dao.EtlPublicDAO;
+import com.sysnet.poc.util.OdsLogger;
+
+/**
+ * Etl抽取服务
+ * 
+ * @verison 1.1
+ * @author 段成伟
+ * @since 2009-07-06 修改日期：2010-10-18 修改内容：添加接口，添加自动控制开关 修改人：段成伟
+ */
+public class EtlScheduleThread extends ThreadContral {
+
+	private static final Log log = OdsLogger.getLog("rLog4j", "R");
+	private static boolean etlFinFlag = false;
+	private StopBean s;
+
+	public EtlScheduleThread(StopBean s) {
+		this.s = s;
+		si.setName("ETL公共部分");
+		si.setDivName("etlPublic");
+	}
+
+	/**
+	 * etl调度
+	 */
+	protected void schedule() {
+		si.setShowMassageStart();
+		etlFinFlag = false;
+		while (true) {
+			try {
+				synchronized (this) {
+					while (suspendFlag) {
+						si.setShowMassageSuspended();
+						wait();
+					}
+				}
+				StopBean sb = new StopBean();
+				EtlPublicDAO epd = new EtlPublicDAO();
+				ConfigureBean cb = epd.getConfigure();
+				Work w = new Work();
+				s.setStop(0);
+				w.setSb(sb);
+				w.start();
+				while (true) {
+					// log.debug("============stopBean.getStop()=="+stopBean.getStop());
+					if (sb.getStop() == 1) {
+						s.setStop(1);
+						etlFinFlag = true;
+						si.setShowMassageDormancy();
+						Thread.sleep(cb.getGENERAL_SLEEP_MILLIS_COUNT());
+						// Thread.sleep(1000);
+						si.setShowMassageResume();
+						if (Runtime.getRuntime().freeMemory() < 10 * 1024 * 1024) {
+							System.out.println("内存不足10M");
+							System.gc();
+						}
+						break;
+					} else {
+						etlFinFlag = false;
+					}
+				}
+			} catch (Exception e) {
+				log.error("etl调度线程抛出异常", e);
+
+				// begin = false; // 主线程停止运行
+				suspendFlag = true;
+				si.setExceptionMessage(e.getMessage());
+			}
+		}
+	}
+
+	public static boolean isEtlFinFlag() {
+		return etlFinFlag;
+	}
+
+	public static void setEtlFinFlag(boolean etlFinFlag) {
+		EtlScheduleThread.etlFinFlag = etlFinFlag;
+	}
+}

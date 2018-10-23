@@ -1,0 +1,83 @@
+package com.sysnet.poc.service.dao.impl;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+
+public class TextAccDAOimpl {
+
+	public void TestInsertStgAccAmontloi(Connection conn) throws SQLException, Exception {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void TestInsertStgAccApplication(Connection conn) throws SQLException, Exception {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void TestInsertStgAccApplicationdetail(Connection conn) throws SQLException, Exception {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void TestInsertStgAccDyinstallment(Connection conn) throws SQLException, Exception {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void TestInsertStgAccGeneralledger(Connection conn) throws SQLException, Exception {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void TestInsertStgAccGeneralledgerhistory(Connection conn) throws SQLException, Exception {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void TestInsertStgAccGldefinition(Connection conn) throws SQLException, Exception {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void TestInsertStgAccInstall(Connection conn) throws SQLException, Exception {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void TestInsertStgAccInstalldetail(Connection conn) throws SQLException, Exception {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void TestInsertStgAccInstrument(Connection conn) throws SQLException, Exception {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void TestInsertStgAccRisk(Connection conn) throws SQLException, Exception {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void TestInsertStgAccTrans(Connection conn) throws SQLException, Exception {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void TestInsertStgAccTranscostcentre(Connection conn) throws SQLException, Exception {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void TestInsertStgAccTransdetail(Connection conn) throws SQLException, Exception {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void TestInsertStgGlbasedefinition(Connection conn) throws SQLException, Exception {
+		// TODO Auto-generated method stub
+
+	}
+
+}

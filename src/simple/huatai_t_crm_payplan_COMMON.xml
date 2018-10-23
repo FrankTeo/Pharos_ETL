@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition description="CRM缴费计划表">
+	<mapping>
+		<area description="CRM缴费计划表">
+			<table tableName="T_CRM_PayPlan" dataProviderType="PAYMENTSCHEDULE" as="Contract">
+				<item fieldName="ID" fieldType="String" parameterType="PAYMENTSCHEDULE" method="getDetailId" /> <!-- ID -->
+				<item fieldName="PolicyNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="policyno" /> <!-- 保单号 -->
+				<item fieldName="EndorseNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="endorseno" /> <!-- 批单号 -->
+				<item fieldName="SerialNo" fieldType="Long" parameterType="PAYMENTSCHEDULE" method="getIndex" /> <!-- 序号 -->
+				<item fieldName="PayWay" fieldType="String" parameterType="PAYMENTSCHEDULE" method="getPayWay" /> <!-- 支付方式 -->
+				<item fieldName="PayAmount" fieldType="Float" parameterType="PAYMENTSCHEDULE" method="getDuePremium" /> <!-- 金额 -->
+				<item fieldName="PayDate" fieldType="Date" parameterType="PAYMENTSCHEDULE" method="getDueDate" /> <!-- 缴费日期 -->
+				<item fieldName="AccountName" fieldType="String" parameterType="INSTALLMENT" method="getAccountOwner" /> <!-- 户名 -->
+				<item fieldName="BankName" fieldType="String" parameterType="INSTALLMENT" method="getBankName" /> <!-- 开户银行 -->
+				<item fieldName="AccountNo" fieldType="String" parameterType="INSTALLMENT" method="getAccountNo" /> <!-- 银行帐号 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="objectno" /> <!-- 对象号 -->
+			</table>
+		</area>
+	</mapping>
+</definition>

@@ -1,0 +1,285 @@
+package com.sysnet.poc.control.servlet;
+
+import java.io.IOException;
+
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.logging.Log;
+
+import com.sysnet.poc.control.manage.AccScheduleThreadLHB;
+import com.sysnet.poc.control.manage.AutoContralThread;
+import com.sysnet.poc.control.manage.ClaimScheduleThread;
+import com.sysnet.poc.control.manage.ErrorLog;
+import com.sysnet.poc.control.manage.EtlBatScheduleThread;
+import com.sysnet.poc.control.manage.EtlScheduleThread;
+import com.sysnet.poc.control.manage.InsureScheduleThread;
+import com.sysnet.poc.control.manage.PartyScheduleThread;
+import com.sysnet.poc.control.manage.vo.StopBean;
+import com.sysnet.poc.util.OdsLogger;
+
+/**
+ * 入口程序
+ * 
+ * @author Li_yanpeng
+ * @since 2009-07-06
+ */
+public class PortalServlet extends HttpServlet {
+
+	private static final Log log = OdsLogger.getLog("insureLog4j", "Insure");
+
+	private static final long serialVersionUID = 1L;
+
+	InsureScheduleThread insureThread = null;
+
+	ClaimScheduleThread ctThread = null;
+
+	AccScheduleThreadLHB accThread = null;
+
+	PartyScheduleThread partyScheduleThread = null;
+
+	EtlScheduleThread etlScheduleThread = null;
+
+	EtlBatScheduleThread etlBatScheduleThread = null;
+
+	ErrorLog el = null;
+
+	public void init(ServletConfig config) throws ServletException {
+
+		log.info("入口程序程序开始执行================================================");
+		// super.init(config);
+
+		// 承保信息获取服务
+		log.info("承保信息获取服务开始启动=====");
+		insureThread = new InsureScheduleThread();
+		 insureThread.start();
+		log.info("承保信息获取服务启动完毕=====");
+//
+//		log.info("理赔信息获取服务开始启动=====");
+//		ctThread = new ClaimScheduleThread();
+//		 ctThread.start();
+//		log.info("理赔信息获取服务启动完毕=====");
+//
+//		log.info("收付费信息获取服务开始启动=====");
+//		accThread = new AccScheduleThreadLHB();
+//		 accThread.start();
+//		log.info("收付费信息获取服务启动完毕=====");
+
+//		log.info("当事方信息获取服务开始启动=====");
+//		partyScheduleThread = new PartyScheduleThread();
+//		 partyScheduleThread.start();
+//		log.info("当事方信息获取服务启动完毕=====");
+//		StopBean s = new StopBean();
+//		log.info("ETL信息获取服务开始启动=====");
+//		etlScheduleThread = new EtlScheduleThread(s);
+//		 etlScheduleThread.start();
+//		log.info("ETL信息获取服务启动完毕=====");
+//
+//		log.info("EtlBat信息获取服务开始启动=====");
+//		etlBatScheduleThread = new EtlBatScheduleThread(s);
+//		 etlBatScheduleThread.start();
+//		log.info("EtlBat信息获取服务启动完毕=====");
+
+		el = new ErrorLog();
+		AutoContralThread a = new AutoContralThread();
+		a.getL().add(insureThread);
+//		a.getL().add(ctThread);
+		// a.getL().add(accThread);
+//		a.getL().add(partyScheduleThread);
+		// a.getL().add(etlScheduleThread);
+		// a.getL().add(etlBatScheduleThread);
+		a.start();
+	}
+
+	// protected void doGet(HttpServletRequest req, HttpServletResponse
+	// response) throws ServletException, IOException {
+	// response.reset();
+	// response.setContentType("text/html");
+	// String ip = req.getLocalAddr();
+	// log.info("访问电脑 IP:" + ip);
+	//
+	// // 控制承保线程
+	//
+	// if (req.getParameter("insure") != null) {
+	// String insureControl = req.getParameter("insure");
+	//
+	// if ("0".equals(insureControl)) {
+	// // 暂停线程
+	//
+	// InsureScheduleThread.setInsureSuspendFlag(true);
+	// } else {
+	// // 继续执行线程
+	// insureThread.sheduleContinue();
+	// }
+	//
+	// }
+	//
+	// // 控制etl线程
+	// if (req.getParameter("etl") != null) {
+	// String insureControl = req.getParameter("etl");
+	//
+	// if ("0".equals(insureControl)) {
+	// // 暂停线程
+	//
+	// EtlScheduleThread.setEtlSuspendFlag(true);
+	// EtlScheduleThread.setEtlFinFlag(false);
+	// } else {
+	// // 继续执行线程
+	// etlScheduleThread.sheduleContinue();
+	// }
+	//
+	// }
+	//
+	// // 控制etlBat线程
+	// if (req.getParameter("etlBat") != null) {
+	// String insureControl = req.getParameter("etlBat");
+	//
+	// if ("0".equals(insureControl)) {
+	// // 暂停线程
+	//
+	// EtlBatScheduleThread.setEtlBatSuspendFlag(true);
+	// } else {
+	// // 继续执行线程
+	// etlBatScheduleThread.sheduleContinue();
+	// }
+	//
+	// }
+	//
+	// // 控制理赔线程
+	// if (req.getParameter("claim") != null) {
+	//
+	// String claimControl = req.getParameter("claim");
+	//
+	// if ("0".equals(claimControl)) {
+	// // 暂停线程
+	//
+	// ClaimScheduleThread.setClaimSuspendFlag(true);
+	// } else {
+	// // 继续执行线程
+	// ctThread.sheduleContinue();
+	// }
+	// }
+	// if (req.getParameter("acc") != null) {
+	// // 收付费线程
+	// String accControl = req.getParameter("acc");
+	//
+	// if ("0".equals(accControl)) {
+	// // 暂停线程
+	//
+	// // accSuspendFlag = true;
+	// // ServletContext application =
+	// // req.getSession().getServletContext();
+	// // application.setAttribute("accSuspendFlag", accSuspendFlag);
+	//
+	// AccScheduleThreadLHB.setAccSuspendFlag(true);
+	// } else {
+	// // 继续执行线程
+	// accThread.sheduleContinue();
+	// }
+	//
+	// }
+	// // 当事方线程
+	// if (req.getParameter("party") != null) {
+	// String partyControl = req.getParameter("party");
+	//
+	// if ("0".equals(partyControl)) {
+	// // 暂停线程
+	//
+	// partyScheduleThread.setPartySuspendFlag(true);
+	// } else {
+	// // 继续执行线程
+	// partyScheduleThread.sheduleContinue();
+	// }
+	// }
+	// if (req.getParameter("elf") != null) {
+	// String efControl = req.getParameter("elf");
+	// ErrorLog.setS(null);
+	// if ("0".equals(efControl)) {
+	// // 暂停线程
+	//
+	// ErrorLog.setB(false);
+	// } else {
+	// ErrorLog.setB(true);
+	// el.reset();
+	// }
+	// }
+	// if (req.getParameter("page") != null) {
+	// try {
+	// Integer temp = Integer.parseInt(req.getParameter("page"));
+	// el.part(temp);
+	// ErrorLog.setI(temp);
+	// } catch (NumberFormatException e) {
+	// el.part(0);
+	// ErrorLog.setI(0);
+	// }
+	//
+	// }
+	// if (req.getParameter("update") != null) {
+	// String efUpdate = req.getParameter("update");
+	// el.elUpdate(efUpdate);
+	// }
+	// if (req.getParameter("print") != null) {
+	// el.print();
+	// response.reset();
+	// response.setContentType("application/vnd.ms-excel");
+	// response.addHeader("Content-Disposition", "attachment; filename=" +
+	// ResourceBundleUtil.getProperty("printName") + ".csv");
+	// PrintWriter pw = response.getWriter();
+	// pw.write(el.print());
+	// pw.flush();
+	// pw.close();
+	// pw = null;
+	//
+	// }
+	// if ("select".equals(req.getParameter("select"))) {
+	// Select s = new Select();
+	// if (req.getParameter("objectId") != null &&
+	// !req.getParameter("objectId").equals("")) {
+	// s.setObjectId(req.getParameter("objectId"));
+	// s.setB(true);
+	// }
+	// if (req.getParameter("objectNo") != null &&
+	// !req.getParameter("objectNo").equals("")) {
+	// s.setObjectNo(req.getParameter("objectNo"));
+	// s.setB(true);
+	// }
+	// if (req.getParameter("errorCode") != null &&
+	// !req.getParameter("errorCode").equals("")) {
+	// s.setErrorCode(req.getParameter("errorCode"));
+	// s.setB(true);
+	// }
+	// String format = "yyyy-MM-dd";
+	// SimpleDateFormat sdf = new SimpleDateFormat(format);
+	// Date sd = null;
+	// Date ed = null;
+	// try {
+	// sd = sdf.parse(req.getParameter("startTime"));
+	// s.setB(true);
+	// } catch (ParseException e) {
+	// }
+	//
+	// try {
+	// ed = sdf.parse(req.getParameter("endTime"));
+	// s.setB(true);
+	// } catch (ParseException e) {
+	// }
+	// s.setStartTime(sd == null ? null : sd.getTime());
+	// s.setEndTime(ed == null ? null : ed.getTime());
+	// ErrorLog.setS(s);
+	// el.select();
+	// }
+	// try {
+	// Thread.sleep(1000);
+	// } catch (InterruptedException e) {
+	// e.printStackTrace();
+	// }
+	// response.sendRedirect("index.jsp");
+	// }
+
+	protected void doPost(HttpServletRequest req, HttpServletResponse response) throws ServletException, IOException {
+		doGet(req, response);
+	}
+}

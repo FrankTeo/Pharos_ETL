@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition description="责任险标的表">
+	<mapping>
+		<area description="责任险标的表">
+			<table tableName="T_SubjDuty" dataProviderType="CSNODE" as="Contract">
+				<item fieldName="PolicyNo" fieldType="String" parameterType="GLOBAL" parameter="policyno" /> <!-- 保单号 -->
+				<item fieldName="EndorseNo" fieldType="String" parameterType="GLOBAL" parameter="endorseno" /> <!-- 批单号 -->
+				<item fieldName="NodeNo" fieldType="String" parameterType="GLOBAL" parameter="nodeno" /> <!-- 节点号 -->
+				<item fieldName="ContractNo" fieldType="String" parameterType="GLOBAL" parameter="contractno" /> <!-- 合同号 -->
+				<item fieldName="SubVersionNo" fieldType="String" parameterType="GLOBAL" parameter="version" /> <!-- 版本号 -->
+				<item fieldName="ProposalNo" fieldType="String" parameterType="GLOBAL" parameter="proposalno" /> <!-- 投保单号 -->
+				<item fieldName="BizQuality" fieldType="String" parameterType="CSNODE" parameter="SXU00850" method="getElementByCode.getValue" /> <!-- 营业性质 -->
+				<item fieldName="PreAccdLimitCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00055" method="getElementByCode.getValue.getCurrency" /> <!-- 每次事故责任限额币种 -->
+				<item fieldName="PreAccdLimit" fieldType="Float" parameterType="CSNODE" parameter="SXU00055" method="getElementByCode.getValue.getAmount" /> <!-- 每次事故责任限额 -->
+				<item fieldName="NtnPerPrsnLmtCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00106" method="getElementByCode.getValue.getCurrency" /> <!-- 国内每人限额币种 -->
+				<item fieldName="NtnPerPrsnLimit" fieldType="Float" parameterType="CSNODE" parameter="SXU00106" method="getElementByCode.getValue.getAmount" /> <!-- 国内每人限额 -->
+				<item fieldName="ManageArea" fieldType="String" parameterType="CSNODE" parameter="SXU00101" method="getElementByCode.getValue" /> <!-- 承保区域 -->
+				<item fieldName="PastAccident" fieldType="String" parameterType="CSNODE" parameter="SXU00630" method="getElementByCode.getValue" /> <!-- 以往发生何事故 -->
+				<item fieldName="AggrgLmtCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00107" method="getElementByCode.getValue.getCurrency" /> <!-- 累计赔偿限额币种 -->
+				<item fieldName="AggrgLimit" fieldType="Float" parameterType="CSNODE" parameter="SXU00107" method="getElementByCode.getValue.getAmount" /> <!-- 累计赔偿限额 -->
+				<item fieldName="AnnBasePrmmCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00025" method="getElementByCode.getValue.getCurrency" /> <!-- 年度基本保费币种 -->
+				<item fieldName="AnnBasePremium" fieldType="Float" parameterType="CSNODE" parameter="SXU00025" method="getElementByCode.getValue.getAmount" /> <!-- 年度基本保费 -->
+				<item fieldName="AnnBaseRate" fieldType="Float" parameterType="CSNODE" parameter="SXU00006" method="getElementByCode.getValue" /> <!-- 年度基本费率 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" parameter="objectno" /> <!-- 对象号 -->
+			</table>
+		</area>
+	</mapping>
+</definition>

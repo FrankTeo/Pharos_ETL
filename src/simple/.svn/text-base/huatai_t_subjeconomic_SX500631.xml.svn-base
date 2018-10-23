@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition description="金融责任险标的表">
+	<mapping>
+		<area description="金融责任险标的表">
+			<table tableName="T_SubjEconomic" dataProviderType="CSNODE" as="Contract">
+				<item fieldName="PolicyNo" fieldType="String" parameterType="GLOBAL" parameter="policyno" /> <!-- 保单号 -->
+				<item fieldName="EndorseNo" fieldType="String" parameterType="GLOBAL" parameter="endorseno" /> <!-- 批单号 -->
+				<item fieldName="NodeNo" fieldType="String" parameterType="GLOBAL" parameter="nodeno" /> <!-- 节点号 -->
+				<item fieldName="ContractNo" fieldType="String" parameterType="GLOBAL" parameter="contractno" /> <!-- 合同号 -->
+				<item fieldName="SubVersionNo" fieldType="String" parameterType="GLOBAL" parameter="version" /> <!-- 版本号 -->
+				<item fieldName="ProposalNo" fieldType="String" parameterType="GLOBAL" parameter="proposalno" /> <!-- 投保单号 -->
+				<item fieldName="ListLocale" fieldType="String" parameterType="CSNODE" parameter="SXP00050" method="getElementByCode.getValue" /> <!-- 上市地点 -->
+				<item fieldName="DedicateDuration" fieldType="String" parameterType="CSNODE" parameter="SXU00181" method="getElementByCode.getValue" /> <!-- 公司经营目前业务年数 -->
+				<item fieldName="AccusedHistory" fieldType="String" parameterType="CSNODE" parameter="SXU00867" method="getElementByCode.getValue" /> <!-- 历史控诉 -->
+				<item fieldName="LdClmStuatnDescript" fieldType="String" parameterType="CSNODE" parameter="SXU00864" method="getElementByCode.getValue" /> <!-- 可能导致索赔情况描述 -->
+				<item fieldName="TtlAsstValue" fieldType="Float" parameterType="CSNODE" parameter="SXP00053" method="getElementByCode.getValue" /> <!-- 总资产 -->
+				<item fieldName="LitigationDeadLine" fieldType="String" parameterType="CSNODE" parameter="SXU00893" method="getElementByCode.getValue" /> <!-- 此前及待决的诉讼日 -->
+				<item fieldName="PreAccdLimit" fieldType="Float" parameterType="CSNODE" parameter="SXU00055" method="getElementByCode.getValue.getAmount" /> <!-- 每次事故责任限额 -->
+				<item fieldName="PreAccdLimitCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00055" method="getElementByCode.getValue.getCurrency" /> <!-- 每次事故责任限额币种 -->
+				<item fieldName="AggrgRqstLimit" fieldType="Float" parameterType="CSNODE" parameter="SXU00107" method="getElementByCode.getValue.getAmount" /> <!-- 累计赔偿请求限额 -->
+				<item fieldName="AggrgRqstLmtCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00107" method="getElementByCode.getValue.getCurrency" /> <!-- 累计赔偿请求限额币种 -->
+				<item fieldName="USACNDProperty" fieldType="String" parameterType="CSNODE" parameter="SXU00861" method="getElementByCode.getValue" /> <!-- 美加地区资产描述 -->
+				<item fieldName="PostInstituteDescript" fieldType="String" parameterType="CSNODE" parameter="SXU00866" method="getElementByCode.getValue" /> <!-- 职务相关惩罚及调查描述 -->
+				<item fieldName="RefusePIDescript" fieldType="String" parameterType="CSNODE" parameter="SXU00890" method="getElementByCode.getValue" /> <!-- 退保或拒保PI描述 -->
+				<item fieldName="ClaimPIDescript" fieldType="String" parameterType="CSNODE" parameter="SXU00891" method="getElementByCode.getValue" /> <!-- PI被提起赔偿请求描述 -->
+				<item fieldName="ExtrnlOrgnzDuty" fieldType="String" parameterType="CSNODE" parameter="SXU00892" method="getElementByCode.getValue" /> <!-- 加保外部组织董监事会责任 -->
+				<item fieldName="RetrspctDateDescription" fieldType="String" parameterType="CSNODE" parameter="SXU00772" method="getElementByCode.getValue" /> <!-- 追溯日说明 -->
+				<item fieldName="ObserveTerm" fieldType="String" parameterType="CSNODE" parameter="SXU00920" method="getElementByCode.getValue" /> <!-- 发现期 -->
+				<item fieldName="ExtendReportTerm" fieldType="Date" parameterType="CSNODE" parameter="SXU00894" method="getElementByCode.getValue" /> <!-- 延长报告期限 -->
+				<item fieldName="PerAccdPerPrsnLmtCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00058" method="getElementByCode.getValue.getCurrency" /> <!-- 每次事故每人赔偿限额币种 -->
+				<item fieldName="PerAccdPerPrsnLimt" fieldType="Float" parameterType="CSNODE" parameter="SXU00058" method="getElementByCode.getValue.getAmount" /> <!-- 每次事故每人赔偿限额 -->
+				<item fieldName="PerAccdPrptyLmtCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00190" method="getElementByCode.getValue.getCurrency" /> <!-- 每次事故财产赔偿限额币种 -->
+				<item fieldName="PerAccdPrptyLimt" fieldType="Float" parameterType="CSNODE" parameter="SXU00190" method="getElementByCode.getValue.getAmount" /> <!-- 每次事故财产赔偿限额 -->
+				<item fieldName="CmpnyPerAccdDdtDescription" fieldType="String" parameterType="CSNODE" method="getDeductible" /> <!-- 被保险公司每次事故免赔额 -->
+				<item fieldName="PrsnPerAccdDdtDecription" fieldType="String" parameterType="CSNODE" parameter="SXU00895" method="getElementByCode.getValue" /> <!-- 被保险人每次事故免赔额 -->
+				<item fieldName="HasSubCompany" fieldType="String" parameterType="CSNODE" parameter="SXU00781" method="getElementByCode.getValue" /> <!-- 是否有国内外附属公司 -->
+				<item fieldName="IsList" fieldType="String" parameterType="CSNODE" parameter="SXU00782" method="getElementByCode.getValue" /> <!-- 是否上市交易 -->
+				<item fieldName="ClaimStartDate" fieldType="Date" parameterType="CSNODE" parameter="SXU00783" method="getElementByCode.getValue" /> <!-- 保险索赔起算日 -->
+				<item fieldName="ClaimHistory" fieldType="String" parameterType="CSNODE" parameter="SXU00786" method="getElementByCode.getValue" /> <!-- 理赔记录 -->
+				<item fieldName="OurCmpnyLmtDescription" fieldType="String" parameterType="CSNODE" parameter="SXU00784" method="getElementByCode.getValue" /> <!-- 我司承保层数及赔偿限额 -->
+				<item fieldName="PolicyInfoDescription" fieldType="String" parameterType="CSNODE" parameter="SXU00785" method="getElementByCode.getValue" /> <!-- 承保公司及保单基本信息描述 -->
+				<item fieldName="LoseReason" fieldType="String" parameterType="CSNODE" parameter="SXU00787" method="getElementByCode.getValue" /> <!-- 损失原因 -->
+				<item fieldName="ApplicateArea" fieldType="String" parameterType="CSNODE" parameter="SXU00101" method="getElementByCode.getValue" /> <!-- 承保区域 -->
+				<item fieldName="ApplicateRange" fieldType="String" parameterType="CSNODE" parameter="SXU00080" method="getElementByCode.getValue" /> <!-- 承保范围 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" parameter="objectno" /> <!-- 对象号 -->
+			</table>
+		</area>
+	</mapping>
+</definition>

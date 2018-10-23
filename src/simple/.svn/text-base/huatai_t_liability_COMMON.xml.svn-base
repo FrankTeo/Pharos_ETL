@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition description="责任表">
+	<mapping>
+		<area description="责任表">
+			<table tableName="T_Liability" dataProviderType="NONCONDITION" as="Contract">
+				<item fieldName="PolicyNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="policyno" /> <!-- 保单号 -->
+				<item fieldName="EndorseNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="endorseno" /> <!-- 批单号 -->
+				<item fieldName="NodeNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="nodeno" /> <!-- 节点号 -->
+				<item fieldName="LiabilityCode" fieldType="String" parameterType="NONCONDITION" method="getCode" /> <!-- 责任代码 -->
+				<item fieldName="ItemGroup" fieldType="String" parameterType="NONCONDITION" parameter="SXU00010" method="getElementByCode.getValue" ifNull="NUL" /> <!-- 项目类别 -->
+				<item fieldName="SerialNumber" fieldType="Long" parameterType="NONCONDITION" method="getSerialNumber" /> <!-- 序号 -->
+				<item fieldName="ContractNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="contractno" /> <!-- 合同号 -->
+				<item fieldName="SubVersionNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="version" /> <!-- 版本号 -->
+				<item fieldName="ProposalNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="proposalno" /> <!-- 投保单号 -->
+				<item fieldName="IsMainRisk" fieldType="String" parameterType="NONCONDITION" method="isMainRisk" /> <!-- 是否主险 -->
+				<!--<item fieldName="IsSelected" fieldType="String" />--> <!-- 是否选中 -->
+				<!--<item fieldName="LossType" fieldType="String" />--> <!-- 损失类型 -->
+				<!--<item fieldName="PayDays" fieldType="Long" />--> <!-- 赔偿天数 -->
+				<!--<item fieldName="PayDaysTotal" fieldType="Long" />--> <!-- 累计赔偿天数 -->
+				<item fieldName="DeductDays" fieldType="Long" parameterType="NONCONDITION" method="getEffectivePeriod" /> <!-- 免赔天数 -->
+				<item fieldName="Percentage" fieldType="Float" parameterType="NONCONDITION" method="getDeductiblePctg" /> <!-- 赔付比例 -->
+				<item fieldName="DeductibleOnce" fieldType="Float" parameterType="NONCONDITION" method="getDeductibleAmount.getAmount" /> <!-- 每次免赔额 -->
+				<!--<item fieldName="DeductibleTotal" fieldType="Float" />--> <!-- 累计免赔额 -->
+				<item fieldName="DdctnDescription" fieldType="String" parameterType="NONCONDITION" method="getLoadDescription" /> <!-- 免赔说明 -->
+				<item fieldName="CoverageCurrency" fieldType="String" parameterType="NONCONDITION" method="getInsuredValue.getCurrency" /> <!-- 保额币种 -->
+				<item fieldName="Coverage" fieldType="Float" parameterType="NONCONDITION" method="getInsuredValue.getAmount" /> <!-- 保额 -->
+				<item fieldName="LoadingPctg" fieldType="Float" parameterType="NONCONDITION" method="getLoadingPctg" /> <!-- 加费比例 -->
+				<item fieldName="LoadingAmount" fieldType="Float" parameterType="NONCONDITION" method="getLoadingAmount.getAmount" /> <!-- 加费金额 -->
+				<item fieldName="DiscountingPctg" fieldType="Float" parameterType="NONCONDITION" method="getDiscountingPctg" /> <!-- 折扣比例 -->
+				<item fieldName="DiscountingAmount" fieldType="Float" parameterType="NONCONDITION" method="getDiscountingAmount.getAmount" /> <!-- 折扣金额 -->
+				<item fieldName="InsuredLimitEvent" fieldType="Float" parameterType="NONCONDITION" method="getInsuredLimitEvent.getAmount" /> <!-- 每次赔偿限额 -->
+				<item fieldName="InsuredLimitTerm" fieldType="Float" parameterType="NONCONDITION" method="getInsuredLimitTerm.getAmount" /> <!-- 每期保限额 -->
+				<item fieldName="PremiumRate" fieldType="Float" parameterType="NONCONDITION" method="getRate" /> <!-- 费率 -->
+				<item fieldName="PremiumCurrency" fieldType="String" parameterType="NONCONDITION" method="getPremium.getCurrency" /> <!-- 保费币种 -->
+				<item fieldName="AnnualPremium" fieldType="Float" parameterType="NONCONDITION" method="getAnnualPremium.getAmount" /> <!-- 年度保费 -->
+				<item fieldName="StandardPremium" fieldType="Float" parameterType="NONCONDITION" method="getStandardPremium" /> <!-- 标准保费 -->
+				<item fieldName="TotalPremium" fieldType="Float" parameterType="NONCONDITION" method="getTotalPremium" /> <!-- 总保费 -->
+				<item fieldName="TermStandardPremium" fieldType="Float" parameterType="NONCONDITION" method="getTermStandardPremium" /> <!-- 整期标准保费 -->
+				<item fieldName="TotalStandardPremium" fieldType="Float" parameterType="NONCONDITION" method="getTotalStandardPremium" /> <!-- 总标准保费 -->
+				<item fieldName="TermRealPremium" fieldType="Float" parameterType="NONCONDITION" method="getTermRealPremium" /> <!-- 整期实际保费 -->
+				<item fieldName="TotalRealPremium" fieldType="Float" parameterType="NONCONDITION" method="getTotalRealPremium" /> <!-- 总实际保费 -->
+				<item fieldName="FinalPremium" fieldType="Float" parameterType="NONCONDITION" method="getFinalPremium" /> <!-- 最终保费 -->
+				<item fieldName="Premium" fieldType="Float" parameterType="NONCONDITION" method="getPremium" /> <!-- 保费 -->
+				<item fieldName="StartDate" fieldType="Date" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="startdate" /> <!-- 保险起期 -->
+				<item fieldName="EndDate" fieldType="Date" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="enddate" /> <!-- 保险止期 -->
+				<!--<item fieldName="CoverageEndorseChange" fieldType="Float" />--> <!-- 保额批改变化 -->
+				<!--<item fieldName="PremiumEndorseChange" fieldType="Float" />--> <!-- 保费批改变化 -->
+				<item fieldName="isSummaryIV" fieldType="String" parameterType="NONCONDITION" method="isSummaryIV" /> <!-- 是否汇总保额 -->
+				<item fieldName="IsSummaryPremim" fieldType="String" parameterType="NONCONDITION" method="isSummaryPremium" /> <!-- 是否汇总保费 -->
+				<item fieldName="HugeLossType" fieldType="String" parameterType="NONCONDITION" method="getCatAccumulateType" /> <!-- 巨灾类型 -->
+				<!--<item fieldName="Country" fieldType="String" />--> <!-- 国家地区 -->
+				<!--<item fieldName="Province" fieldType="String" />--> <!-- 省 -->
+				<!--<item fieldName="City" fieldType="String" />--> <!-- 市 -->
+				<!--<item fieldName="Area" fieldType="String" />--> <!-- 区县 -->
+				<!--<item fieldName="Address" fieldType="String" />--> <!-- 地址 -->
+				<!--<item fieldName="ZipCode" fieldType="String" />--> <!-- 邮编 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="objectno" /> <!-- 对象号 -->
+				<!--<item fieldName="Remark" fieldType="String" />--> <!-- 备注 -->
+				<!--<item fieldName="CrtTime" fieldType="Date" />--> <!-- 创建时间 -->
+				<!--<item fieldName="MdfTime" fieldType="Date" />--> <!-- 修改时间 -->
+			</table>
+		</area>
+	</mapping>
+</definition>

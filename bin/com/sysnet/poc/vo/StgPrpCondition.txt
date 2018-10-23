@@ -1,0 +1,794 @@
+package com.sysnet.poc.vo;
+
+import java.sql.*;
+
+/**
+ * StgPrpCondition entity.
+ * 
+ * @author MyEclipse Persistence Tools
+ */
+
+public class StgPrpCondition implements java.io.Serializable {
+
+	// Fields
+
+	// 保单CD
+	private String policyNo;
+	// 标的序列号
+	private Long itemNo;
+	// 投保单号
+	private String proposalNo;
+	// 标的责任CD
+	private Long conditionId;
+	// 定义的条款的ID
+	private Long dconditionId;
+	// 是否有效
+	private Long include;
+	// 是否续保
+	private String isRenew;
+	// 理赔的代码
+	private String claimCode;
+	// 条款是否可用
+	private String isUse;
+	// 费率
+	private Double rate;
+	// 原始保费或者是调整后的保费
+	private Double premiumAmount;
+	// 年化保费
+	private String premiumYear;
+	// 保额
+	private Double insuredValueAmount;
+	// 加费比例
+	private Double loadingPctg;
+	// 折扣比例
+	private Double discountingPctg;
+	// 再保费率
+	private Double reiRate;
+	// 再保险保费
+	private Double reiPremiumAmount;
+	// 加费额
+	private Double loadingAmount;
+	// 折扣额
+	private Double discountAmount;
+	// 共保比例
+	private Double coiPctg;
+	// 佣金率
+	private Double commissionRate;
+	// 佣金
+	private Double commissionAmount;
+	// 是否终止
+	private String exhausted;
+	// 理赔限额
+	private String quota;
+	// 费率基础（年，月，半年。。。。）
+	private String rateBasis;
+	// 费率类型（百分比，千分比等）
+	private String rateType;
+	// 保费的计算方式（时间比例，短期费率，none）
+	private String prorate;
+	// 免赔金额
+	private Double deductibleAmount;
+	// 免赔比例
+	private Double deductiblePctg;
+	// 已赚保费
+	private Double earnedPremiumAmount;
+	// 未赚保费
+	private Double unearnedPremiumAmount;
+	// 每事故保额限额
+	private Double insuredLimitEventAmount;
+	// 每期保额限额
+	private Double insuredLimitTermAmount;
+	// 每次理赔绝对免赔额限额
+	private Double franchinseLimitEventAmount;
+	// 保额类型
+	private String insuredType;
+	// 理赔保额类型
+	private Long variableIndexType;
+	// 条款文本
+	private String conditionText;
+	// 加费说明
+	private String loadDescription;
+	// 险种代码
+	private String insuranceCode;
+	// 险别代码
+	private String riskCode;
+	// Condition种类
+	private Long conditionClass;
+	// 分配类型
+	private Long prorateType;
+	// 产品线
+	private Long loi;
+	// 起保日期
+	private Date startDate;
+	// 终保日期
+	private Date endDate;
+	// 终止日期
+	private Date outDate;
+	// 保费币种
+	private Long premiumCurrency;
+	// 保额币种
+	private Long insuredValueCurrency;
+	// 再保险保费币种
+	private Long reiPremiumCurrency;
+	// 已赚保费币种
+	private Long earnedPremiumCurrency;
+	// 未赚保费币种
+	private Long unearnedPremiumCurrency;
+	// 每事故保额限额币种
+	private Long insuredLimitEventCurrency;
+	// 每期保额限额币种
+	private Long insuredLimitTermCurrency;
+	// 加费币种
+	private Long loadingCurrency;
+	// 折扣币种
+	private Long discountCurrency;
+	// 风险累计区域
+	private Long catAccumulateZone;
+	// 等待期
+	private Long waitingPeriod;
+	// 免责期
+	private Long effectivePeriod;
+	// 再保已赚保费币种
+	private Long reiEarnedPremiumCurrency;
+	// 再保已赚保费金额
+	private Double reiEarnedPremiumAmount;
+	// 再保未赚保费币种
+	private Long reiUnearnedPremiumCurrency;
+	// 再保未赚保费金额
+	private Double reiUnearnedPremiumAmount;
+	// 共同给付比例
+	private Double copaymentPctg;
+	// 共同给付币种
+	private Long copaymentCurrency;
+	// 共同给付金额
+	private Double copaymentAmount;
+	// 免赔币种
+	private Long deductibleCurrency;
+	// 佣金币种
+	private Long commissionCurrency;
+	// 保单当前版本号
+	private Long version;
+	// 主版本号
+	private Long mainVersion;
+	// 对象序号
+	private Long objectId;
+	// 对象类型
+	private String objectType;
+	// 批次序号
+	private Long batId;
+	// 时间戳
+	private Timestamp timeStamp;
+	// 扩展区域半径
+	private String additionalArea;
+	// 停驶险约定赔偿天数
+	private Long parkDays;
+	// 约定区域通行费用特约事故类型
+	private String areaEventType;
+	// 协商实际价值
+	private String negotiation;
+
+	// Constructors
+
+	/** default constructor */
+	public StgPrpCondition() {
+	}
+
+	// Property accessors
+
+	public String getPolicyNo() {
+		return policyNo;
+	}
+
+	public void setPolicyNo(String policyNo) {
+		this.policyNo = policyNo;
+	}
+
+	public Long getItemNo() {
+		return itemNo;
+	}
+
+	public void setItemNo(Long itemNo) {
+		this.itemNo = itemNo;
+	}
+
+	public String getProposalNo() {
+		return proposalNo;
+	}
+
+	public void setProposalNo(String proposalNo) {
+		this.proposalNo = proposalNo;
+	}
+
+	public Long getConditionId() {
+		return conditionId;
+	}
+
+	public void setConditionId(Long conditionId) {
+		this.conditionId = conditionId;
+	}
+
+	public Long getDconditionId() {
+		return this.dconditionId;
+	}
+
+	public void setDconditionId(Long dconditionId) {
+		this.dconditionId = dconditionId;
+	}
+
+	public Long getInclude() {
+		return this.include;
+	}
+
+	public void setInclude(Long include) {
+		this.include = include;
+	}
+
+	public String getIsRenew() {
+		return this.isRenew;
+	}
+
+	public void setIsRenew(String isRenew) {
+		this.isRenew = isRenew;
+	}
+
+	public String getClaimCode() {
+		return this.claimCode;
+	}
+
+	public void setClaimCode(String claimCode) {
+		this.claimCode = claimCode;
+	}
+
+	public String getIsUse() {
+		return this.isUse;
+	}
+
+	public void setIsUse(String isUse) {
+		this.isUse = isUse;
+	}
+
+	public Double getRate() {
+		return this.rate;
+	}
+
+	public void setRate(Double rate) {
+		this.rate = rate;
+	}
+
+	public Double getPremiumAmount() {
+		return this.premiumAmount;
+	}
+
+	public void setPremiumAmount(Double premiumAmount) {
+		this.premiumAmount = premiumAmount;
+	}
+
+	public String getPremiumYear() {
+		return this.premiumYear;
+	}
+
+	public void setPremiumYear(String premiumYear) {
+		this.premiumYear = premiumYear;
+	}
+
+	public Double getInsuredValueAmount() {
+		return this.insuredValueAmount;
+	}
+
+	public void setInsuredValueAmount(Double insuredValueAmount) {
+		this.insuredValueAmount = insuredValueAmount;
+	}
+
+	public Double getLoadingPctg() {
+		return this.loadingPctg;
+	}
+
+	public void setLoadingPctg(Double loadingPctg) {
+		this.loadingPctg = loadingPctg;
+	}
+
+	public Double getDiscountingPctg() {
+		return this.discountingPctg;
+	}
+
+	public void setDiscountingPctg(Double discountingPctg) {
+		this.discountingPctg = discountingPctg;
+	}
+
+	public Double getReiRate() {
+		return this.reiRate;
+	}
+
+	public void setReiRate(Double reiRate) {
+		this.reiRate = reiRate;
+	}
+
+	public Double getReiPremiumAmount() {
+		return this.reiPremiumAmount;
+	}
+
+	public void setReiPremiumAmount(Double reiPremiumAmount) {
+		this.reiPremiumAmount = reiPremiumAmount;
+	}
+
+	public Double getLoadingAmount() {
+		return this.loadingAmount;
+	}
+
+	public void setLoadingAmount(Double loadingAmount) {
+		this.loadingAmount = loadingAmount;
+	}
+
+	public Double getDiscountAmount() {
+		return this.discountAmount;
+	}
+
+	public void setDiscountAmount(Double discountAmount) {
+		this.discountAmount = discountAmount;
+	}
+
+	public Double getCoiPctg() {
+		return this.coiPctg;
+	}
+
+	public void setCoiPctg(Double coiPctg) {
+		this.coiPctg = coiPctg;
+	}
+
+	public Double getCommissionRate() {
+		return this.commissionRate;
+	}
+
+	public void setCommissionRate(Double commissionRate) {
+		this.commissionRate = commissionRate;
+	}
+
+	public Double getCommissionAmount() {
+		return this.commissionAmount;
+	}
+
+	public void setCommissionAmount(Double commissionAmount) {
+		this.commissionAmount = commissionAmount;
+	}
+
+	public String getExhausted() {
+		return this.exhausted;
+	}
+
+	public void setExhausted(String exhausted) {
+		this.exhausted = exhausted;
+	}
+
+	public String getQuota() {
+		return this.quota;
+	}
+
+	public void setQuota(String quota) {
+		this.quota = quota;
+	}
+
+	public String getRateBasis() {
+		return this.rateBasis;
+	}
+
+	public void setRateBasis(String rateBasis) {
+		this.rateBasis = rateBasis;
+	}
+
+	public String getRateType() {
+		return this.rateType;
+	}
+
+	public void setRateType(String rateType) {
+		this.rateType = rateType;
+	}
+
+	public String getProrate() {
+		return this.prorate;
+	}
+
+	public void setProrate(String prorate) {
+		this.prorate = prorate;
+	}
+
+	public Double getDeductibleAmount() {
+		return this.deductibleAmount;
+	}
+
+	public void setDeductibleAmount(Double deductibleAmount) {
+		this.deductibleAmount = deductibleAmount;
+	}
+
+	public Double getDeductiblePctg() {
+		return this.deductiblePctg;
+	}
+
+	public void setDeductiblePctg(Double deductiblePctg) {
+		this.deductiblePctg = deductiblePctg;
+	}
+
+	public Double getEarnedPremiumAmount() {
+		return this.earnedPremiumAmount;
+	}
+
+	public void setEarnedPremiumAmount(Double earnedPremiumAmount) {
+		this.earnedPremiumAmount = earnedPremiumAmount;
+	}
+
+	public Double getUnearnedPremiumAmount() {
+		return this.unearnedPremiumAmount;
+	}
+
+	public void setUnearnedPremiumAmount(Double unearnedPremiumAmount) {
+		this.unearnedPremiumAmount = unearnedPremiumAmount;
+	}
+
+	public Double getInsuredLimitEventAmount() {
+		return this.insuredLimitEventAmount;
+	}
+
+	public void setInsuredLimitEventAmount(Double insuredLimitEventAmount) {
+		this.insuredLimitEventAmount = insuredLimitEventAmount;
+	}
+
+	public Double getInsuredLimitTermAmount() {
+		return this.insuredLimitTermAmount;
+	}
+
+	public void setInsuredLimitTermAmount(Double insuredLimitTermAmount) {
+		this.insuredLimitTermAmount = insuredLimitTermAmount;
+	}
+
+	public Double getFranchinseLimitEventAmount() {
+		return this.franchinseLimitEventAmount;
+	}
+
+	public void setFranchinseLimitEventAmount(Double franchinseLimitEventAmount) {
+		this.franchinseLimitEventAmount = franchinseLimitEventAmount;
+	}
+
+	public String getInsuredType() {
+		return this.insuredType;
+	}
+
+	public void setInsuredType(String insuredType) {
+		this.insuredType = insuredType;
+	}
+
+	public Long getVariableIndexType() {
+		return this.variableIndexType;
+	}
+
+	public void setVariableIndexType(Long variableIndexType) {
+		this.variableIndexType = variableIndexType;
+	}
+
+	public String getConditionText() {
+		return this.conditionText;
+	}
+
+	public void setConditionText(String conditionText) {
+		this.conditionText = conditionText;
+	}
+
+	public String getLoadDescription() {
+		return this.loadDescription;
+	}
+
+	public void setLoadDescription(String loadDescription) {
+		this.loadDescription = loadDescription;
+	}
+
+	public String getInsuranceCode() {
+		return this.insuranceCode;
+	}
+
+	public void setInsuranceCode(String insuranceCode) {
+		this.insuranceCode = insuranceCode;
+	}
+
+	public String getRiskCode() {
+		return this.riskCode;
+	}
+
+	public void setRiskCode(String riskCode) {
+		this.riskCode = riskCode;
+	}
+
+	public Long getConditionClass() {
+		return this.conditionClass;
+	}
+
+	public void setConditionClass(Long conditionClass) {
+		this.conditionClass = conditionClass;
+	}
+
+	public Long getProrateType() {
+		return this.prorateType;
+	}
+
+	public void setProrateType(Long prorateType) {
+		this.prorateType = prorateType;
+	}
+
+	public Long getLoi() {
+		return this.loi;
+	}
+
+	public void setLoi(Long loi) {
+		this.loi = loi;
+	}
+
+	public Date getStartDate() {
+		return this.startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	public Date getEndDate() {
+		return this.endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+
+	public Date getOutDate() {
+		return this.outDate;
+	}
+
+	public void setOutDate(Date outDate) {
+		this.outDate = outDate;
+	}
+
+	public Long getPremiumCurrency() {
+		return this.premiumCurrency;
+	}
+
+	public void setPremiumCurrency(Long premiumCurrency) {
+		this.premiumCurrency = premiumCurrency;
+	}
+
+	public Long getInsuredValueCurrency() {
+		return this.insuredValueCurrency;
+	}
+
+	public void setInsuredValueCurrency(Long insuredValueCurrency) {
+		this.insuredValueCurrency = insuredValueCurrency;
+	}
+
+	public Long getReiPremiumCurrency() {
+		return this.reiPremiumCurrency;
+	}
+
+	public void setReiPremiumCurrency(Long reiPremiumCurrency) {
+		this.reiPremiumCurrency = reiPremiumCurrency;
+	}
+
+	public Long getEarnedPremiumCurrency() {
+		return this.earnedPremiumCurrency;
+	}
+
+	public void setEarnedPremiumCurrency(Long earnedPremiumCurrency) {
+		this.earnedPremiumCurrency = earnedPremiumCurrency;
+	}
+
+	public Long getUnearnedPremiumCurrency() {
+		return this.unearnedPremiumCurrency;
+	}
+
+	public void setUnearnedPremiumCurrency(Long unearnedPremiumCurrency) {
+		this.unearnedPremiumCurrency = unearnedPremiumCurrency;
+	}
+
+	public Long getInsuredLimitEventCurrency() {
+		return this.insuredLimitEventCurrency;
+	}
+
+	public void setInsuredLimitEventCurrency(Long insuredLimitEventCurrency) {
+		this.insuredLimitEventCurrency = insuredLimitEventCurrency;
+	}
+
+	public Long getInsuredLimitTermCurrency() {
+		return this.insuredLimitTermCurrency;
+	}
+
+	public void setInsuredLimitTermCurrency(Long insuredLimitTermCurrency) {
+		this.insuredLimitTermCurrency = insuredLimitTermCurrency;
+	}
+
+	public Long getLoadingCurrency() {
+		return this.loadingCurrency;
+	}
+
+	public void setLoadingCurrency(Long loadingCurrency) {
+		this.loadingCurrency = loadingCurrency;
+	}
+
+	public Long getDiscountCurrency() {
+		return this.discountCurrency;
+	}
+
+	public void setDiscountCurrency(Long discountCurrency) {
+		this.discountCurrency = discountCurrency;
+	}
+
+	public Long getCatAccumulateZone() {
+		return this.catAccumulateZone;
+	}
+
+	public void setCatAccumulateZone(Long catAccumulateZone) {
+		this.catAccumulateZone = catAccumulateZone;
+	}
+
+	public Long getWaitingPeriod() {
+		return this.waitingPeriod;
+	}
+
+	public void setWaitingPeriod(Long waitingPeriod) {
+		this.waitingPeriod = waitingPeriod;
+	}
+
+	public Long getEffectivePeriod() {
+		return this.effectivePeriod;
+	}
+
+	public void setEffectivePeriod(Long effectivePeriod) {
+		this.effectivePeriod = effectivePeriod;
+	}
+
+	public Long getReiEarnedPremiumCurrency() {
+		return this.reiEarnedPremiumCurrency;
+	}
+
+	public void setReiEarnedPremiumCurrency(Long reiEarnedPremiumCurrency) {
+		this.reiEarnedPremiumCurrency = reiEarnedPremiumCurrency;
+	}
+
+	public Double getReiEarnedPremiumAmount() {
+		return this.reiEarnedPremiumAmount;
+	}
+
+	public void setReiEarnedPremiumAmount(Double reiEarnedPremiumAmount) {
+		this.reiEarnedPremiumAmount = reiEarnedPremiumAmount;
+	}
+
+	public Long getReiUnearnedPremiumCurrency() {
+		return this.reiUnearnedPremiumCurrency;
+	}
+
+	public void setReiUnearnedPremiumCurrency(Long reiUnearnedPremiumCurrency) {
+		this.reiUnearnedPremiumCurrency = reiUnearnedPremiumCurrency;
+	}
+
+	public Double getReiUnearnedPremiumAmount() {
+		return this.reiUnearnedPremiumAmount;
+	}
+
+	public void setReiUnearnedPremiumAmount(Double reiUnearnedPremiumAmount) {
+		this.reiUnearnedPremiumAmount = reiUnearnedPremiumAmount;
+	}
+
+	public Double getCopaymentPctg() {
+		return this.copaymentPctg;
+	}
+
+	public void setCopaymentPctg(Double copaymentPctg) {
+		this.copaymentPctg = copaymentPctg;
+	}
+
+	public Long getCopaymentCurrency() {
+		return this.copaymentCurrency;
+	}
+
+	public void setCopaymentCurrency(Long copaymentCurrency) {
+		this.copaymentCurrency = copaymentCurrency;
+	}
+
+	public Double getCopaymentAmount() {
+		return this.copaymentAmount;
+	}
+
+	public void setCopaymentAmount(Double copaymentAmount) {
+		this.copaymentAmount = copaymentAmount;
+	}
+
+	public Long getDeductibleCurrency() {
+		return this.deductibleCurrency;
+	}
+
+	public void setDeductibleCurrency(Long deductibleCurrency) {
+		this.deductibleCurrency = deductibleCurrency;
+	}
+
+	public Long getCommissionCurrency() {
+		return this.commissionCurrency;
+	}
+
+	public void setCommissionCurrency(Long commissionCurrency) {
+		this.commissionCurrency = commissionCurrency;
+	}
+
+	public Long getVersion() {
+		return this.version;
+	}
+
+	public void setVersion(Long version) {
+		this.version = version;
+	}
+
+	public Long getMainVersion() {
+		return this.mainVersion;
+	}
+
+	public void setMainVersion(Long mainVersion) {
+		this.mainVersion = mainVersion;
+	}
+
+	public Long getObjectId() {
+		return this.objectId;
+	}
+
+	public void setObjectId(Long objectId) {
+		this.objectId = objectId;
+	}
+
+	public String getObjectType() {
+		return this.objectType;
+	}
+
+	public void setObjectType(String objectType) {
+		this.objectType = objectType;
+	}
+
+	public Long getBatId() {
+		return this.batId;
+	}
+
+	public void setBatId(Long batId) {
+		this.batId = batId;
+	}
+
+	public Timestamp getTimeStamp() {
+		return this.timeStamp;
+	}
+
+	public void setTimeStamp(Timestamp timeStamp) {
+		this.timeStamp = timeStamp;
+	}
+
+	public String getAdditionalArea() {
+		return this.additionalArea;
+	}
+
+	public void setAdditionalArea(String additionalArea) {
+		this.additionalArea = additionalArea;
+	}
+
+	public Long getParkDays() {
+		return this.parkDays;
+	}
+
+	public void setParkDays(Long parkDays) {
+		this.parkDays = parkDays;
+	}
+
+	public String getAreaEventType() {
+		return this.areaEventType;
+	}
+
+	public void setAreaEventType(String areaEventType) {
+		this.areaEventType = areaEventType;
+	}
+
+	public String getNegotiation() {
+		return this.negotiation;
+	}
+
+	public void setNegotiation(String negotiation) {
+		this.negotiation = negotiation;
+	}
+
+}

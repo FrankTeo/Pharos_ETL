@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition description="医疗责任险标的表">
+	<mapping>
+		<area description="医疗责任险标的表">
+			<table tableName="t_subjmedliab" dataProviderType="CSNODE" as="Contract">
+				<item fieldName="PolicyNo" fieldType="String" parameterType="GLOBAL" parameter="policyno" /> <!-- 保单号 -->
+				<item fieldName="EndorseNo" fieldType="String" parameterType="GLOBAL" parameter="endorseno" /> <!-- 批单号 -->
+				<item fieldName="NodeNo" fieldType="String" parameterType="GLOBAL" parameter="nodeno" /> <!-- 节点号 -->
+				<item fieldName="ContractNo" fieldType="String" parameterType="GLOBAL" parameter="contractno" /> <!-- 合同号 -->
+				<item fieldName="SubVersionNo" fieldType="String" parameterType="GLOBAL" parameter="version" /> <!-- 版本号 -->
+				<item fieldName="ProposalNo" fieldType="String" parameterType="GLOBAL" parameter="proposalno" /> <!-- 投保单号 -->
+				<item fieldName="AggrCmpnLmtCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00107" method="getElementByCode.getValue.getCurrency" /> <!-- 累计赔偿限额币种 -->
+				<item fieldName="AggregCmpnstLimit" fieldType="Float" parameterType="CSNODE" parameter="SXU00107" method="getElementByCode.getValue.getAmount" /> <!-- 累计赔偿限额 -->
+				<item fieldName="RetroactiveDate" fieldType="Date" parameterType="CSNODE" parameter="SXU00188" method="getElementByCode.getValue" /> <!-- 追溯日 -->
+				<item fieldName="LossRecord" fieldType="String" parameterType="CSNODE" parameter="SXU00630" method="getElementByCode.getValue" /> <!-- 以往损失记录 -->
+				<item fieldName="PerPrsnLimitCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00124" method="getElementByCode.getValue.getCurrency" /> <!-- 每人责任限额币种 -->
+				<item fieldName="PerPrsnLimit" fieldType="Float" parameterType="CSNODE" parameter="SXU00124" method="getElementByCode.getValue.getAmount" /> <!-- 每人责任限额 -->
+				<item fieldName="DeductDescription" fieldType="String" parameterType="CSNODE" method="getDeductible" /> <!-- 免赔额 -->
+				<item fieldName="AnnPrsnPrmmCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00277" method="getElementByCode.getValue.getCurrency" /> <!-- 年度人员保费币种 -->
+				<item fieldName="AnnPrsnPremium" fieldType="Float" parameterType="CSNODE" parameter="SXU00277" method="getElementByCode.getValue.getAmount" /> <!-- 年度人员保费 -->
+				<item fieldName="PreAccdLimitCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00055" method="getElementByCode.getValue.getCurrency" /> <!-- 每次事故责任限额币种 -->
+				<item fieldName="PreAccdLimit" fieldType="Float" parameterType="CSNODE" parameter="SXU00055" method="getElementByCode.getValue.getAmount" /> <!-- 每次事故责任限额 -->
+				<item fieldName="InsureNumber" fieldType="Long" parameterType="CSNODE" parameter="SXU00128" method="getElementByCode.getValue" /> <!-- 被保险人人数 -->
+				<item fieldName="School" fieldType="String" parameterType="CSNODE" parameter="SXU00373" method="getElementByCode.getValue" /> <!-- 被保险人注册院校 -->
+				<item fieldName="SchoolAddress" fieldType="String" parameterType="CSNODE" parameter="SXU00374" method="getElementByCode.getValue" /> <!-- 注册院校地址 -->
+				<item fieldName="PracticeName" fieldType="String" parameterType="CSNODE" parameter="SXU00375" method="getElementByCode.getValue" /> <!-- 实习基地名称 -->
+				<item fieldName="PracticeAdress" fieldType="String" parameterType="CSNODE" parameter="SXU00376" method="getElementByCode.getValue" /> <!-- 实习基地地址 -->
+				<item fieldName="PracticeType" fieldType="String" parameterType="CSNODE" parameter="SXU00377" method="getElementByCode.getValue" /> <!-- 实习类型 -->
+				<item fieldName="GuideDoctor" fieldType="String" parameterType="CSNODE" parameter="SXU00378" method="getElementByCode.getValue" /> <!-- 指导医师 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" parameter="objectno" /> <!-- 对象号 -->
+			</table>
+		</area>
+	</mapping>
+</definition>

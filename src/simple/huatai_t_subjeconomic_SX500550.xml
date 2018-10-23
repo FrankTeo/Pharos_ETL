@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition description="金融责任险标的表">
+	<mapping>
+		<area description="金融责任险标的表">
+			<table tableName="T_SubjEconomic" dataProviderType="CSNODE" as="Contract">
+				<item fieldName="PolicyNo" fieldType="String" parameterType="GLOBAL" parameter="policyno" /> <!-- 保单号 -->
+				<item fieldName="EndorseNo" fieldType="String" parameterType="GLOBAL" parameter="endorseno" /> <!-- 批单号 -->
+				<item fieldName="NodeNo" fieldType="String" parameterType="GLOBAL" parameter="nodeno" /> <!-- 节点号 -->
+				<item fieldName="ContractNo" fieldType="String" parameterType="GLOBAL" parameter="contractno" /> <!-- 合同号 -->
+				<item fieldName="SubVersionNo" fieldType="String" parameterType="GLOBAL" parameter="version" /> <!-- 版本号 -->
+				<item fieldName="ProposalNo" fieldType="String" parameterType="GLOBAL" parameter="proposalno" /> <!-- 投保单号 -->
+				<item fieldName="PreAccdLimitCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00121" method="getElementByCode.getValue.getCurrency" /> <!-- 每次事故责任限额币种 -->
+				<item fieldName="PreAccdLimit" fieldType="Float" parameterType="CSNODE" parameter="SXU00121" method="getElementByCode.getValue.getAmount" /> <!-- 每次事故责任限额 -->
+				<item fieldName="BizRange" fieldType="String" parameterType="CSNODE" parameter="SXU00300" method="getElementByCode.getValue" /> <!-- 业务范围 -->
+				<item fieldName="DedicateDuration" fieldType="String" parameterType="CSNODE" parameter="SXU00859" method="getElementByCode.getValue" /> <!-- 公司经营目前业务年数 -->
+				<item fieldName="ListLocale" fieldType="String" parameterType="CSNODE" parameter="SXP00050" method="getElementByCode.getValue" /> <!-- 上市地点 -->
+				<item fieldName="TtlIncmLstYear" fieldType="Float" parameterType="CSNODE" parameter="SXU00860" method="getElementByCode.getValue" /> <!-- 上一年度总收入 -->
+				<item fieldName="USACNDProperty" fieldType="String" parameterType="CSNODE" parameter="SXU00861" method="getElementByCode.getValue" /> <!-- 美加地区资产描述 -->
+				<item fieldName="RefusePIDescript" fieldType="String" parameterType="CSNODE" parameter="SXU00862" method="getElementByCode.getValue" /> <!-- 退保或拒保PI描述 -->
+				<item fieldName="ClaimPIDescript" fieldType="String" parameterType="CSNODE" parameter="SXU00863" method="getElementByCode.getValue" /> <!-- PI被提起赔偿请求描述 -->
+				<item fieldName="LdClmStuatnDescript" fieldType="String" parameterType="CSNODE" parameter="SXU00864" method="getElementByCode.getValue" /> <!-- 可能导致索赔情况描述 -->
+				<item fieldName="PostInstituteDescript" fieldType="String" parameterType="CSNODE" parameter="SXU00866" method="getElementByCode.getValue" /> <!-- 职务相关惩罚及调查描述 -->
+				<item fieldName="AccusedHistory" fieldType="String" parameterType="CSNODE" parameter="SXU00867" method="getElementByCode.getValue" /> <!-- 历史控诉 -->
+				<item fieldName="AggrgRqstLmtCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00107" method="getElementByCode.getValue.getCurrency" /> <!-- 累计赔偿请求限额币种 -->
+				<item fieldName="AggrgRqstLimit" fieldType="Float" parameterType="CSNODE" parameter="SXU00107" method="getElementByCode.getValue.getAmount" /> <!-- 累计赔偿请求限额 -->
+				<item fieldName="DeductCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00017" method="getElementByCode.getValue.getCurrency" /> <!-- 免赔额币种 -->
+				<item fieldName="Deduct" fieldType="Float" parameterType="CSNODE" parameter="SXU00017" method="getElementByCode.getValue.getAmount" /> <!-- 免赔额 -->
+				<item fieldName="RetrospectDate" fieldType="String" parameterType="CSNODE" parameter="SXU00772" method="getElementByCode.getValue" /> <!-- 追溯日 -->
+				<item fieldName="LitigationDeadLine" fieldType="String" parameterType="CSNODE" parameter="SXU00893" method="getElementByCode.getValue" /> <!-- 此前及待决的诉讼日 -->
+				<item fieldName="RegionRange" fieldType="String" parameterType="CSNODE" parameter="SXU00761" method="getElementByCode.getValue" /> <!-- 地域范围 -->
+				<item fieldName="ClaimableNotice" fieldType="String" parameterType="CSNODE" parameter="SXU00869" method="getElementByCode.getValue" /> <!-- 索赔/可赔偿情形的通知 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" parameter="objectno" /> <!-- 对象号 -->
+			</table>
+		</area>
+	</mapping>
+</definition>

@@ -1,0 +1,354 @@
+package com.sysnet.poc.vo;
+
+import java.sql.*;
+
+/**
+ * StgPlcVehicleShipTaxInfo entity.
+ * 
+ * @author MyEclipse Persistence Tools
+ */
+
+public class StgPlcVehicleShipTaxInfo implements java.io.Serializable {
+
+	// Fields
+
+	// 保单CD
+	private String policyNo;
+	// 序列号
+	private Long vsTaxId;
+	// 整备质量
+	private Float equipmentQuality;
+	// 纳税人代码
+	private String taxPayerCode;
+	// 纳税人类型
+	private String taxPayerType;
+	// 纳税人名称
+	private String taxPayerName;
+	// 纳税人身份证号
+	private String taxPayerCert;
+	// 纳税人识别码
+	private String taxPayerIdentification;
+	// 纳税类型
+	private String taxPayType;
+	// 纳税说明
+	private String taxPayNote;
+	// 减免税原因
+	private String minusTaxReason;
+	// 减免税方案
+	private String minusTaxPlan;
+	// 减免税比例
+	private Float minusTaxPctg;
+	// 减免税金额
+	private String minusTaxAmount;
+	// 开具税务机关代码
+	private String taxOrgnizationCode;
+	// 开具税务机关名称
+	private String taxOrgnizationName;
+	// 完税凭证号/减免税证明号
+	private String taxOffCert;
+	// 完税证明号
+	private String taxOffIdentification;
+	// 计税单位
+	private String taxUnit;
+	// 年单位税额
+	private String taxAmountPeryear;
+	// 前次缴费年度
+	private Date taxPaidAnnual;
+	// 前次保单止期
+	private Date lastPolicyEndDate;
+	// 本次缴税起期
+	private Date thisTaxStartDate;
+	// 本次缴税止期
+	private Date thisTaxEndDate;
+	// 当年应缴
+	private String thisYearTaxPayableAmount;
+	// 往年补缴
+	private String addPayment;
+	// 滞纳金
+	private String lateFee;
+	// 总缴付税额
+	private String totalTaxAmount;
+	// 时间戳
+	private Date timeStamp;
+	// 对象序号
+	private Long objectId;
+	// 对象类型
+	private String objectType;
+	// 批次序号
+	private Long batId;
+	// 标的序列号
+	private Long itemNo;
+
+	// Constructors
+
+	/** default constructor */
+	public StgPlcVehicleShipTaxInfo() {
+	}
+
+	// Property accessors
+
+	public String getPolicyNo() {
+		return policyNo;
+	}
+
+	public void setPolicyNo(String policyNo) {
+		this.policyNo = policyNo;
+	}
+
+	public Long getVsTaxId() {
+		return vsTaxId;
+	}
+
+	public void setVsTaxId(Long vsTaxId) {
+		this.vsTaxId = vsTaxId;
+	}
+
+	public Float getEquipmentQuality() {
+		return this.equipmentQuality;
+	}
+
+	public void setEquipmentQuality(Float equipmentQuality) {
+		this.equipmentQuality = equipmentQuality;
+	}
+
+	public String getTaxPayerCode() {
+		return this.taxPayerCode;
+	}
+
+	public void setTaxPayerCode(String taxPayerCode) {
+		this.taxPayerCode = taxPayerCode;
+	}
+
+	public String getTaxPayerType() {
+		return this.taxPayerType;
+	}
+
+	public void setTaxPayerType(String taxPayerType) {
+		this.taxPayerType = taxPayerType;
+	}
+
+	public String getTaxPayerName() {
+		return this.taxPayerName;
+	}
+
+	public void setTaxPayerName(String taxPayerName) {
+		this.taxPayerName = taxPayerName;
+	}
+
+	public String getTaxPayerCert() {
+		return this.taxPayerCert;
+	}
+
+	public void setTaxPayerCert(String taxPayerCert) {
+		this.taxPayerCert = taxPayerCert;
+	}
+
+	public String getTaxPayerIdentification() {
+		return this.taxPayerIdentification;
+	}
+
+	public void setTaxPayerIdentification(String taxPayerIdentification) {
+		this.taxPayerIdentification = taxPayerIdentification;
+	}
+
+	public String getTaxPayType() {
+		return this.taxPayType;
+	}
+
+	public void setTaxPayType(String taxPayType) {
+		this.taxPayType = taxPayType;
+	}
+
+	public String getTaxPayNote() {
+		return this.taxPayNote;
+	}
+
+	public void setTaxPayNote(String taxPayNote) {
+		this.taxPayNote = taxPayNote;
+	}
+
+	public String getMinusTaxReason() {
+		return this.minusTaxReason;
+	}
+
+	public void setMinusTaxReason(String minusTaxReason) {
+		this.minusTaxReason = minusTaxReason;
+	}
+
+	public String getMinusTaxPlan() {
+		return this.minusTaxPlan;
+	}
+
+	public void setMinusTaxPlan(String minusTaxPlan) {
+		this.minusTaxPlan = minusTaxPlan;
+	}
+
+	public Float getMinusTaxPctg() {
+		return this.minusTaxPctg;
+	}
+
+	public void setMinusTaxPctg(Float minusTaxPctg) {
+		this.minusTaxPctg = minusTaxPctg;
+	}
+
+	public String getMinusTaxAmount() {
+		return this.minusTaxAmount;
+	}
+
+	public void setMinusTaxAmount(String minusTaxAmount) {
+		this.minusTaxAmount = minusTaxAmount;
+	}
+
+	public String getTaxOrgnizationCode() {
+		return this.taxOrgnizationCode;
+	}
+
+	public void setTaxOrgnizationCode(String taxOrgnizationCode) {
+		this.taxOrgnizationCode = taxOrgnizationCode;
+	}
+
+	public String getTaxOrgnizationName() {
+		return this.taxOrgnizationName;
+	}
+
+	public void setTaxOrgnizationName(String taxOrgnizationName) {
+		this.taxOrgnizationName = taxOrgnizationName;
+	}
+
+	public String getTaxOffCert() {
+		return this.taxOffCert;
+	}
+
+	public void setTaxOffCert(String taxOffCert) {
+		this.taxOffCert = taxOffCert;
+	}
+
+	public String getTaxOffIdentification() {
+		return this.taxOffIdentification;
+	}
+
+	public void setTaxOffIdentification(String taxOffIdentification) {
+		this.taxOffIdentification = taxOffIdentification;
+	}
+
+	public String getTaxUnit() {
+		return this.taxUnit;
+	}
+
+	public void setTaxUnit(String taxUnit) {
+		this.taxUnit = taxUnit;
+	}
+
+	public String getTaxAmountPeryear() {
+		return this.taxAmountPeryear;
+	}
+
+	public void setTaxAmountPeryear(String taxAmountPeryear) {
+		this.taxAmountPeryear = taxAmountPeryear;
+	}
+
+	public Date getTaxPaidAnnual() {
+		return this.taxPaidAnnual;
+	}
+
+	public void setTaxPaidAnnual(Date taxPaidAnnual) {
+		this.taxPaidAnnual = taxPaidAnnual;
+	}
+
+	public Date getLastPolicyEndDate() {
+		return this.lastPolicyEndDate;
+	}
+
+	public void setLastPolicyEndDate(Date lastPolicyEndDate) {
+		this.lastPolicyEndDate = lastPolicyEndDate;
+	}
+
+	public Date getThisTaxStartDate() {
+		return this.thisTaxStartDate;
+	}
+
+	public void setThisTaxStartDate(Date thisTaxStartDate) {
+		this.thisTaxStartDate = thisTaxStartDate;
+	}
+
+	public Date getThisTaxEndDate() {
+		return this.thisTaxEndDate;
+	}
+
+	public void setThisTaxEndDate(Date thisTaxEndDate) {
+		this.thisTaxEndDate = thisTaxEndDate;
+	}
+
+	public String getThisYearTaxPayableAmount() {
+		return this.thisYearTaxPayableAmount;
+	}
+
+	public void setThisYearTaxPayableAmount(String thisYearTaxPayableAmount) {
+		this.thisYearTaxPayableAmount = thisYearTaxPayableAmount;
+	}
+
+	public String getAddPayment() {
+		return this.addPayment;
+	}
+
+	public void setAddPayment(String addPayment) {
+		this.addPayment = addPayment;
+	}
+
+	public String getLateFee() {
+		return this.lateFee;
+	}
+
+	public void setLateFee(String lateFee) {
+		this.lateFee = lateFee;
+	}
+
+	public String getTotalTaxAmount() {
+		return this.totalTaxAmount;
+	}
+
+	public void setTotalTaxAmount(String totalTaxAmount) {
+		this.totalTaxAmount = totalTaxAmount;
+	}
+
+	public Date getTimeStamp() {
+		return this.timeStamp;
+	}
+
+	public void setTimeStamp(Date timeStamp) {
+		this.timeStamp = timeStamp;
+	}
+
+	public Long getObjectId() {
+		return this.objectId;
+	}
+
+	public void setObjectId(Long objectId) {
+		this.objectId = objectId;
+	}
+
+	public String getObjectType() {
+		return this.objectType;
+	}
+
+	public void setObjectType(String objectType) {
+		this.objectType = objectType;
+	}
+
+	public Long getBatId() {
+		return this.batId;
+	}
+
+	public void setBatId(Long batId) {
+		this.batId = batId;
+	}
+
+	public Long getItemNo() {
+		return itemNo;
+	}
+
+	public void setItemNo(Long itemNo) {
+		this.itemNo = itemNo;
+	}
+
+}

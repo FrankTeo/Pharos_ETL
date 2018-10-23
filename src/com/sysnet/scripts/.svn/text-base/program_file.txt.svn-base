@@ -1,0 +1,612 @@
+else if (insrncCde.equals("2501") ) { 
+	if (false) {} 
+	/*契约责任条款*/
+	else if(rdrCode.equals("53")) {
+		nonlife = node.getConditionNonLife("SX500139");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*不受控制条款*/
+	else if(rdrCode.equals("05")) {
+		nonlife = node.getConditionNonLife("SX200206");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*石棉绝对除外条款*/
+	else if(rdrCode.equals("62")) {
+		nonlife = node.getConditionNonLife("SX500148");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*工人施工责任条款（每一合同限额:RMB2,000,000-8,000,000）*/
+	else if(rdrCode.equals("79")) {
+		nonlife = node.getConditionNonLife("SX500164");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*指定损失公估人条款 (损失额RMB 100,000 以上)*/
+	else if(rdrCode.equals("75")) {
+		nonlife = node.getConditionNonLife("SX500161");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*董事及高级管理人员个人第三者责任条款*/
+	else if(rdrCode.equals("52")) {
+		nonlife = node.getConditionNonLife("SX500138");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*衣帽间条款*/
+	else if(rdrCode.equals("16")) {
+		nonlife = node.getConditionNonLife("SX500106");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*罢工、暴乱、民众骚动及恶意破坏条款*/
+	else if(rdrCode.equals("46")) {
+		nonlife = node.getConditionNonLife("SX500133");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*罚金、罚款除外条款*/
+	else if(rdrCode.equals("92")) {
+		nonlife = node.getConditionNonLife("SX500177");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*网络责任除外条款*/
+	else if(rdrCode.equals("80")) {
+		nonlife = node.getConditionNonLife("SX500165");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*供应中断除外条款*/
+	else if(rdrCode.equals("64")) {
+		nonlife = node.getConditionNonLife("SX500150");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*计算机风险责任除外条款*/
+	else if(rdrCode.equals("68")) {
+		nonlife = node.getConditionNonLife("SX500154");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*交叉责任条款*/
+	else if(rdrCode.equals("17")) {
+		nonlife = node.getConditionNonLife("SX500107");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*电梯、机器及大厦自动装置条款*/
+	else if(rdrCode.equals("35")) {
+		nonlife = node.getConditionNonLife("SX500122");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*监管之财产条款*/
+	else if(rdrCode.equals("59")) {
+		nonlife = node.getConditionNonLife("SX500145");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*赔款受益人条款*/
+	else if(rdrCode.equals("04")) {
+		nonlife = node.getConditionNonLife("SX200205");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*理赔诉讼费用在赔偿限额内，且适用相同免赔额*/
+	else if(rdrCode.equals("96")) {
+		nonlife = node.getConditionNonLife("SX500181");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*金融活动除外条款*/
+	else if(rdrCode.equals("67")) {
+		nonlife = node.getConditionNonLife("SX500153");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*急救费用条款*/
+	else if(rdrCode.equals("27")) {
+		nonlife = node.getConditionNonLife("SX500115");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*境内外商务差旅责任条款*/
+	else if(rdrCode.equals("86")) {
+		nonlife = node.getConditionNonLife("SX500171");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*医疗故意责任除外条款*/
+	else if(rdrCode.equals("81")) {
+		nonlife = node.getConditionNonLife("SX500166");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*食品、饮料责任条款*/
+	else if(rdrCode.equals("28")) {
+		nonlife = node.getConditionNonLife("SX500116");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*业主和管理者责任条款*/
+	else if(rdrCode.equals("78")) {
+		nonlife = node.getConditionNonLife("SX500163");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*战争、恐怖主义责任除外条款*/
+	else if(rdrCode.equals("90")) {
+		nonlife = node.getConditionNonLife("SX500175");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*承租人责任条款*/
+	else if(rdrCode.equals("48")) {
+		nonlife = node.getConditionNonLife("SX500135");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*租用汽车责任条款*/
+	else if(rdrCode.equals("39")) {
+		nonlife = node.getConditionNonLife("SX500126");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/**酒类责任条款*/
+	else if(rdrCode.equals("36")) {
+		nonlife = node.getConditionNonLife("SX500123");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*被保险方及赔款受益人条款*/
+	else if(rdrCode.equals("07")) {
+		nonlife = node.getConditionNonLife("SX200208");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*机动车辆超额责任条款*/
+	else if(rdrCode.equals("74")) {
+		nonlife = node.getConditionNonLife("SX500160");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*性骚扰除外条款*/
+	else if(rdrCode.equals("65")) {
+		nonlife = node.getConditionNonLife("SX500151");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*恐怖活动条款*/
+	else if(rdrCode.equals("10")) {
+		nonlife = node.getConditionNonLife("SX500428");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*停车场责任条款*/
+	else if(rdrCode.equals("15")) {
+		nonlife = node.getConditionNonLife("SX500105");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*灭火及所致水损责任条款*/
+	else if(rdrCode.equals("25")) {
+		nonlife = node.getConditionNonLife("SX500113");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*火灾和爆炸责任条款*/
+	else if(rdrCode.equals("23")) {
+		nonlife = node.getConditionNonLife("SX500111");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*雇主及合伙人为被保险人条款*/
+	else if(rdrCode.equals("55")) {
+		nonlife = node.getConditionNonLife("SX500141");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*社交或体育活动责任条款*/
+	else if(rdrCode.equals("45")) {
+		nonlife = node.getConditionNonLife("SX500132");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*外籍员工个人财物条款 （赔偿限额:每人RMB50,000）*/
+	else if(rdrCode.equals("71")) {
+		nonlife = node.getConditionNonLife("SX500157");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*场所或经营条款*/
+	else if(rdrCode.equals("44")) {
+		nonlife = node.getConditionNonLife("SX500131");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*租用财产条款*/
+	else if(rdrCode.equals("56")) {
+		nonlife = node.getConditionNonLife("SX500142");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*职业赔偿除外条款*/
+	else if(rdrCode.equals("66")) {
+		nonlife = node.getConditionNonLife("SX500152");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/**车辆中行李条款*/
+	else if(rdrCode.equals("38")) {
+		nonlife = node.getConditionNonLife("SX500125");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*火灾及爆炸法律责任条款*/
+	else if(rdrCode.equals("24")) {
+		nonlife = node.getConditionNonLife("SX500112");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*提供物品及服务条款*/
+	else if(rdrCode.equals("29")) {
+		nonlife = node.getConditionNonLife("SX500117");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*错误和遗漏条款*/
+	else if(rdrCode.equals("03")) {
+		nonlife = node.getConditionNonLife("SX200204");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*展览会条款*/
+	else if(rdrCode.equals("21")) {
+		nonlife = node.getConditionNonLife("SX500109");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*独立承包人责任条款*/
+	else if(rdrCode.equals("33")) {
+		nonlife = node.getConditionNonLife("SX500120");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*违反条件条款*/
+	else if(rdrCode.equals("02")) {
+		nonlife = node.getConditionNonLife("SX200203");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*纯经济损失除外*/
+	else if(rdrCode.equals("87")) {
+		nonlife = node.getConditionNonLife("SX500172");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*传染病除外条款*/
+	else if(rdrCode.equals("98")) {
+		nonlife = node.getConditionNonLife("SX500183");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*卫生设施缺陷条款*/
+	else if(rdrCode.equals("70")) {
+		nonlife = node.getConditionNonLife("SX500156");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*意外渗漏及污染条款*/
+	else if(rdrCode.equals("60")) {
+		nonlife = node.getConditionNonLife("SX500146");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*自动承保新地点条款*/
+	else if(rdrCode.equals("13")) {
+		nonlife = node.getConditionNonLife("SX500103");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*海外差旅责任条款*/
+	else if(rdrCode.equals("76")) {
+		nonlife = node.getConditionNonLife("SX500170");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*海外差旅责任条款*/
+	else if(rdrCode.equals("85")) {
+		nonlife = node.getConditionNonLife("SX500170");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*海外差旅责任条款*/
+	else if(rdrCode.equals("77")) {
+		nonlife = node.getConditionNonLife("SX500170");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*健身俱乐部责任条款*/
+	else if(rdrCode.equals("72")) {
+		nonlife = node.getConditionNonLife("SX500158");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*客人财产责任条款*/
+	else if(rdrCode.equals("50")) {
+		nonlife = node.getConditionNonLife("SX500136");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*急救责任扩展条款*/
+	else if(rdrCode.equals("26")) {
+		nonlife = node.getConditionNonLife("SX500114");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*责任险2000年除外责任条款*/
+	else if(rdrCode.equals("01")) {
+		nonlife = node.getConditionNonLife("SX400051");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*电梯责任条款*/
+	else if(rdrCode.equals("18")) {
+		nonlife = node.getConditionNonLife("SX500140");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*电梯责任条款*/
+	else if(rdrCode.equals("54")) {
+		nonlife = node.getConditionNonLife("SX500140");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*超额保险条款*/
+	else if(rdrCode.equals("20")) {
+		nonlife = node.getConditionNonLife("SX500108");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/**赔偿委托人条款*/
+	else if(rdrCode.equals("32")) {
+		nonlife = node.getConditionNonLife("SX500119");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*电子资料除外责任条款Electronic Data & Media Exclusion*/
+	else if(rdrCode.equals("84")) {
+		nonlife = node.getConditionNonLife("SX500169");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*停车责任条款*/
+	else if(rdrCode.equals("42")) {
+		nonlife = node.getConditionNonLife("SX500129");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*飞行器产品除外条款*/
+	else if(rdrCode.equals("91")) {
+		nonlife = node.getConditionNonLife("SX500176");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*境外理算条款*/
+	else if(rdrCode.equals("06")) {
+		nonlife = node.getConditionNonLife("SX200207");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*污染法律责任条款*/
+	else if(rdrCode.equals("58")) {
+		nonlife = node.getConditionNonLife("SX500144");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*绝对污染除外条款*/
+	else if(rdrCode.equals("89")) {
+		nonlife = node.getConditionNonLife("SX500174");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*火灾、爆炸、烟熏与水损责任条款*/
+	else if(rdrCode.equals("94")) {
+		nonlife = node.getConditionNonLife("SX500179");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*预先支付条款*/
+	else if(rdrCode.equals("08")) {
+		nonlife = node.getConditionNonLife("SX200209");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*恐怖扩展条款*/
+	else if(rdrCode.equals("69")) {
+		nonlife = node.getConditionNonLife("SX500155");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*其他*/
+	else if(rdrCode.equals("99")) {
+		nonlife = node.getConditionNonLife("SX200256");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*被保险人照料、保管或控制下的业主家具、装置及设施条款*/
+	else if(rdrCode.equals("57")) {
+		nonlife = node.getConditionNonLife("SX500143");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*自有车辆责任条款*/
+	else if(rdrCode.equals("41")) {
+		nonlife = node.getConditionNonLife("SX500128");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*职业责任除外条款*/
+	else if(rdrCode.equals("82")) {
+		nonlife = node.getConditionNonLife("SX500167");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*海外差旅责任条款*/
+	else if(rdrCode.equals("76")) {
+		nonlife = node.getConditionNonLife("SX500162");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*海外差旅责任条款*/
+	else if(rdrCode.equals("85")) {
+		nonlife = node.getConditionNonLife("SX500162");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*海外差旅责任条款*/
+	else if(rdrCode.equals("77")) {
+		nonlife = node.getConditionNonLife("SX500162");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*起重机械及不需注册的车辆责任条款*/
+	else if(rdrCode.equals("31")) {
+		nonlife = node.getConditionNonLife("SX500118");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*租户责任条款*/
+	else if(rdrCode.equals("95")) {
+		nonlife = node.getConditionNonLife("SX500180");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*货物与服务销售/供应条款*/
+	else if(rdrCode.equals("73")) {
+		nonlife = node.getConditionNonLife("SX500159");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*非典及其他传染病除外责任*/
+	else if(rdrCode.equals("83")) {
+		nonlife = node.getConditionNonLife("SX500168");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/**放弃代位追偿权利条款*/
+	else if(rdrCode.equals("49")) {
+		nonlife = node.getConditionNonLife("SX200247");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*锅炉及压力容器爆炸扩展条款*/
+	else if(rdrCode.equals("22")) {
+		nonlife = node.getConditionNonLife("SX500110");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*真菌和霉菌除外条款*/
+	else if(rdrCode.equals("63")) {
+		nonlife = node.getConditionNonLife("SX500149");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*救火费用条款*/
+	else if(rdrCode.equals("51")) {
+		nonlife = node.getConditionNonLife("SX500137");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*广告招牌及装饰物责任条款*/
+	else if(rdrCode.equals("12")) {
+		nonlife = node.getConditionNonLife("SX500102");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*人身侵害责任条款*/
+	else if(rdrCode.equals("43")) {
+		nonlife = node.getConditionNonLife("SX500130");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*硅石绝对除外条款*/
+	else if(rdrCode.equals("61")) {
+		nonlife = node.getConditionNonLife("SX500147");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*政府罚款、惩罚性损害赔偿除外责任条款*/
+	else if(rdrCode.equals("97")) {
+		nonlife = node.getConditionNonLife("SX500182");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*出租人责任条款*/
+	else if(rdrCode.equals("34")) {
+		nonlife = node.getConditionNonLife("SX500121");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*车辆装卸责任条款*/
+	else if(rdrCode.equals("37")) {
+		nonlife = node.getConditionNonLife("SX500124");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*游泳池责任条款*/
+	else if(rdrCode.equals("47")) {
+		nonlife = node.getConditionNonLife("SX500134");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*恐怖主义责任除外条款*/
+	else if(rdrCode.equals("93")) {
+		nonlife = node.getConditionNonLife("SX500178");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*附加被保险人条款*/
+	else if(rdrCode.equals("11")) {
+		nonlife = node.getConditionNonLife("SX500101");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*非自有机动车辆责任条款*/
+	else if(rdrCode.equals("40")) {
+		nonlife = node.getConditionNonLife("SX500127");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*建筑物改变条款*/
+	else if(rdrCode.equals("14")) {
+		nonlife = node.getConditionNonLife("SX500104");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	/*Nuclear, Biological and Chemical Exclusion*/
+	else if(rdrCode.equals("88")) {
+		nonlife = node.getConditionNonLife("SX500173");
+		nonlife.setInclude(true);
+		return nonlife;
+	}
+	else{
+		throwrdrCode(rdrCode,node);
+	}
+}
+//	/*Nuclear, Biological and Chemical Exclusion*/
+//	else if(rdrCode.equals("09")) {
+//		nonlife = node.getConditionNonLife("undefined");
+//		nonlife.setInclude(true);
+//		return nonlife;
+//	}
+//	/*Nuclear, Biological and Chemical Exclusion*/
+//	else if(rdrCode.equals("19")) {
+//		nonlife = node.getConditionNonLife("undefined");
+//		nonlife.setInclude(true);
+//		return nonlife;
+//	}

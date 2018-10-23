@@ -1,0 +1,125 @@
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/BizCore/!svn/ver/7116/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/service/business
+END
+QuotationBusiness.java
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/BizCore/!svn/ver/14512/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/service/business/QuotationBusiness.java
+END
+NonRiskNodeThead.java
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/BizCore/!svn/ver/11927/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/service/business/NonRiskNodeThead.java
+END
+ClaimBusiness.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/BizCore/!svn/ver/12055/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/service/business/ClaimBusiness.java
+END
+ProductService.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/service/business/ProductService.java
+END
+ProposalRiskNodeThead.txt
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/service/business/ProposalRiskNodeThead.txt
+END
+AccBusiness.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/service/business/AccBusiness.java
+END
+EndorseRiskNodeThead.txt
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/service/business/EndorseRiskNodeThead.txt
+END
+QuotationNonRiskNodeThead.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/BizCore/!svn/ver/14512/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/service/business/QuotationNonRiskNodeThead.java
+END
+EndorPayPlanBusiness.txt
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/service/business/EndorPayPlanBusiness.txt
+END
+ProcedureService.java
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/service/business/ProcedureService.java
+END
+EndorseBusiness.java
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/BizCore/!svn/ver/11927/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/service/business/EndorseBusiness.java
+END
+PartyBusiness.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/BizCore/!svn/ver/11927/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/service/business/PartyBusiness.java
+END
+PolicyBusiness.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/BizCore/!svn/ver/11927/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/service/business/PolicyBusiness.java
+END
+ProposalBusiness.java
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/BizCore/!svn/ver/14512/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/service/business/ProposalBusiness.java
+END
+ProposalNonRiskNodeThead.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/BizCore/!svn/ver/14512/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/service/business/ProposalNonRiskNodeThead.java
+END
+EndorseNonRiskNodeThead.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svn/BizCore/!svn/ver/14512/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/service/business/EndorseNonRiskNodeThead.java
+END
+RiskNodeThead.txt
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/service/business/RiskNodeThead.txt
+END
+CompanyService.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/service/business/CompanyService.java
+END
+ProposalPayPlanBusiness.txt
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/service/business/ProposalPayPlanBusiness.txt
+END
+PolicyPayPlanBusiness.txt
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/service/business/PolicyPayPlanBusiness.txt
+END

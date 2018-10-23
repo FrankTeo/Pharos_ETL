@@ -1,0 +1,86 @@
+package com.sysnet.poc.service.storage.test;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.sysnet.poc.mapping.vo.Item;
+import com.sysnet.poc.mapping.vo.Table;
+
+import com.sysnet.poc.service.storage.SColumn;
+import com.sysnet.poc.service.storage.StorageTransAction;
+
+public class TestStorage {
+
+	public void test() {
+
+	}
+
+	public static SColumn getColumns(int i) {
+		Table table1 = new Table();
+		table1.setTableName("STG_REI_RISK");
+		List<Item> items = new ArrayList<Item>();
+
+		Item item1 = new Item();
+		item1.setFieldName("RISK_ID");
+		item1.setFieldType("int");
+		item1.setValue(String.valueOf(i));
+		items.add(item1);
+
+		Item item2 = new Item();
+		item2.setFieldName("ACCUMULATION_CODE");
+		item2.setFieldType("String");
+		item2.setValue("CODE0001");
+		items.add(item2);
+
+		Item item3 = new Item();
+		item3.setFieldName("START_DATE");
+		item3.setFieldType("date");
+		item3.setValue("2009-04-03");
+		items.add(item3);
+
+		Item item4 = new Item();
+		item4.setFieldName("PREMIUM");
+		item4.setFieldType("float");
+		item4.setValue("1259.34");
+		items.add(item4);
+
+		table1.setItems(items);
+
+		return table1;
+	}
+
+	public static List<SColumn> getTestData() {
+		List<SColumn> table = new ArrayList<SColumn>();
+		for (int i = 0; i < 5; i++) {
+			table.add(getColumns(i));
+		}
+		return table;
+	}
+
+	public static void main(String[] args) {
+		Connection conn = null;
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			conn = DriverManager.getConnection("jdbc:oracle:thin:@192.168.10.193:1522:orcl", "ya_stage", "ya_stage");
+
+			StorageTransAction storage = new StorageTransAction();
+			storage.setConnection(conn);
+			storage.setSColumns(getTestData());
+			storage.buildStatement();
+			storage.commit();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (Exception ex) {
+					ex.printStackTrace();
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,56 @@
+package com.sysnet.poc.service.collection.acc;
+
+import pharos.account.bo.IBankAccountBO;
+import pharos.account.vo.banks.AccCheckBook;
+
+import com.sysnet.poc.control.manage.vo.EtlPharosIncrAcc;
+import com.sysnet.poc.util.DateHelper;
+import com.sysnet.poc.util.PharosServiceContainer;
+import com.sysnet.poc.vo.StgAccCheckbook;
+
+public class AccCheckBookCollection {
+
+	private StgAccCheckbook stgAccCheckbook;
+
+	public AccCheckBookCollection(EtlPharosIncrAcc ec) {
+		PharosServiceContainer pc = PharosServiceContainer.Instance();
+		IBankAccountBO bankAccuntBO = pc.getIBankAccountBO();
+		AccCheckBook accCheckBook = bankAccuntBO.getCheckBookById(ec.getObjectId());
+		this.setAcccheckbook(accCheckBook, ec);
+	}
+
+	private void setAcccheckbook(AccCheckBook accCheckBook, EtlPharosIncrAcc ec) {
+		if (accCheckBook != null) {
+			this.stgAccCheckbook = new StgAccCheckbook();
+			this.stgAccCheckbook.setCheckbookId(accCheckBook.getId());
+			this.stgAccCheckbook.setRemoved(new Long(0));
+			this.stgAccCheckbook.setReference(accCheckBook.getReference());
+			this.stgAccCheckbook.setBookNumber(accCheckBook.getBookNumber());
+			this.stgAccCheckbook.setCreateDate(DateHelper.getSqlDate(accCheckBook.getCreateDate()));
+			this.stgAccCheckbook.setStartNumber(new Long(accCheckBook.getStartNumber()));
+			this.stgAccCheckbook.setEndNumber(new Long(accCheckBook.getEndNumber()));
+			this.stgAccCheckbook.setIssueType(new Long(accCheckBook.getIssueType()));
+			this.stgAccCheckbook.setIssueDate(DateHelper.getSqlDate(accCheckBook.getIssueDate()));
+			this.stgAccCheckbook.setCreateUserId(accCheckBook.getCreateUserId());
+			this.stgAccCheckbook.setBusinessCompanyCode(accCheckBook.getBusinessCompanyCode());
+			this.stgAccCheckbook.setBusinessCompanyNodeCode(accCheckBook.getBusinessCompanyNodeCode());
+			this.stgAccCheckbook.setNumberPrefix(accCheckBook.getBookNumberPrefix());
+			// this.stgAccCheckbook.setStatus(accCheckBook.get);
+			this.stgAccCheckbook.setCurrentNumber(new Long(accCheckBook.getCurrentNumber()));
+			this.stgAccCheckbook.setUserCompanyCode(accCheckBook.getUserCompanyCode());
+			this.stgAccCheckbook.setUserCompanyNodeCode(accCheckBook.getUserCompanyNodeCode());
+			this.stgAccCheckbook.setObjectId(ec.getObjectId());
+			this.stgAccCheckbook.setObjectType(String.valueOf(ec.getObjectType()));
+			this.stgAccCheckbook.setTimeStamp(ec.getTimeStamp());
+			this.stgAccCheckbook.setBatId(ec.getBatId());
+		}
+	}
+
+	public StgAccCheckbook getStgAccCheckbook() {
+		return stgAccCheckbook;
+	}
+
+	public void setStgAccCheckbook(StgAccCheckbook stgAccCheckbook) {
+		this.stgAccCheckbook = stgAccCheckbook;
+	}
+}

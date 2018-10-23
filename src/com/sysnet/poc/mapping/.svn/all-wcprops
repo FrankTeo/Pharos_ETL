@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/BizCore/!svn/ver/9475/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/mapping
+END
+MappingBuilder.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/mapping/MappingBuilder.java
+END
+ReflectUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/mapping/ReflectUtil.java
+END
+ProductMappingBuilder.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/BizCore/!svn/ver/12158/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/mapping/ProductMappingBuilder.java
+END
+NodesMapping.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/mapping/NodesMapping.java
+END
+PharosNodeType.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/BizCore/!svn/ver/3360/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/mapping/PharosNodeType.java
+END
+FieldType.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/mapping/FieldType.java
+END
+SequenceUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/mapping/SequenceUtil.java
+END
+ParameterTypeMappingManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/BizCore/!svn/ver/3360/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/mapping/ParameterTypeMappingManager.java
+END
+MappingCacheManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/mapping/MappingCacheManager.java
+END
+MappingHelper.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/BizCore/!svn/ver/14512/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/mapping/MappingHelper.java
+END
+TotalPremiumAndInsure.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/BizCore/!svn/ver/3360/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/mapping/TotalPremiumAndInsure.java
+END
+NodesMappingThread.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/mapping/NodesMappingThread.java
+END

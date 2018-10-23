@@ -1,0 +1,114 @@
+package com.sysnet.poc.vo;
+
+import java.sql.*;
+
+/**
+ * StgPrdCondition entity.
+ * 
+ * @author MyEclipse Persistence Tools
+ */
+
+public class StgPrdCondition implements java.io.Serializable {
+
+	// Fields
+
+	// 责任Id
+	private Long itemId;
+	// 责任代码
+	private Long itemNo;
+	// 中文名称
+	private String itemName;
+	// 时间戳
+	private Date timeStamp;
+	// 对象类型
+	private String objectType;
+	// 批次序号
+	private Long batId;
+	// 对象序号
+	private Long objectId;
+	// 当前数据在源系统中，生效的时间，例：源系统中记录出现的时间
+	private Date soucSysStartDate;
+	// 当前数据在源系统中，生效的时间，例：源系统中记录删除的时间、记录修改的时间
+	private Date soucSysEndDate;
+
+	// Constructors
+
+	/** default constructor */
+	public StgPrdCondition() {
+	}
+
+	// Property accessors
+
+	public Long getItemId() {
+		return this.itemId;
+	}
+
+	public void setItemId(Long itemId) {
+		this.itemId = itemId;
+	}
+
+	public Long getItemNo() {
+		return this.itemNo;
+	}
+
+	public void setItemNo(Long itemNo) {
+		this.itemNo = itemNo;
+	}
+
+	public String getItemName() {
+		return this.itemName;
+	}
+
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
+	}
+
+	public Date getTimeStamp() {
+		return this.timeStamp;
+	}
+
+	public void setTimeStamp(Date timeStamp) {
+		this.timeStamp = timeStamp;
+	}
+
+	public String getObjectType() {
+		return this.objectType;
+	}
+
+	public void setObjectType(String objectType) {
+		this.objectType = objectType;
+	}
+
+	public Long getBatId() {
+		return this.batId;
+	}
+
+	public void setBatId(Long batId) {
+		this.batId = batId;
+	}
+
+	public Long getObjectId() {
+		return this.objectId;
+	}
+
+	public void setObjectId(Long objectId) {
+		this.objectId = objectId;
+	}
+
+	public Date getSoucSysStartDate() {
+		return this.soucSysStartDate;
+	}
+
+	public void setSoucSysStartDate(Date soucSysStartDate) {
+		this.soucSysStartDate = soucSysStartDate;
+	}
+
+	public Date getSoucSysEndDate() {
+		return this.soucSysEndDate;
+	}
+
+	public void setSoucSysEndDate(Date soucSysEndDate) {
+		this.soucSysEndDate = soucSysEndDate;
+	}
+
+}

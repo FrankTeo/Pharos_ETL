@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition description="财产清单表">
+	<mapping>
+		<area description="财产清单表">
+			<table tableName="T_PropertyList" dataProviderType="CSNODE" as="Contract">
+				<item fieldName="PolicyNo" fieldType="String" parameterType="GLOBAL" parameter="policyno" /> <!-- 保单号 -->
+				<item fieldName="EndorseNo" fieldType="String" parameterType="GLOBAL" parameter="endorseno" /> <!-- 批单号 -->
+				<item fieldName="NodeNo" fieldType="String" parameterType="GLOBAL" parameter="nodeno" /> <!-- 节点号 -->
+				<item fieldName="SerialNo" fieldType="String" parameterType="CSNODE" method="getNodeNo" /> <!-- 序号 -->
+				<item fieldName="ContractNo" fieldType="String" parameterType="GLOBAL" parameter="contractno" /> <!-- 合同号 -->
+				<item fieldName="SubVersionNo" fieldType="String" parameterType="GLOBAL" parameter="version" /> <!-- 版本号 -->
+				<item fieldName="ProposalNo" fieldType="String" parameterType="GLOBAL" parameter="proposalno" /> <!-- 投保单号 -->
+				<!--<item fieldName="PropertyType" fieldType="String" />--> <!-- 财产类型 -->
+				<!--<item fieldName="PropertyName" fieldType="String" />--> <!-- 财产名称 -->
+				<!--<item fieldName="PropertyMode" fieldType="String" />--> <!-- 产品型号 -->
+				<!--<item fieldName="PropertyNumber" fieldType="Long" />--> <!-- 产品数量 -->
+				<!--<item fieldName="ExceptSaleArea" fieldType="String" />--> <!-- 预计销售区域 -->
+				<!--<item fieldName="SaleArea" fieldType="String" />--> <!-- 销售区域 -->
+				<!--<item fieldName="Address" fieldType="String" />--> <!-- 座落地址 -->
+				<!--<item fieldName="PropertyVaule" fieldType="Float" />--> <!-- 财产价值 -->
+				<!--<item fieldName="DriveArea" fieldType="String" />--> <!-- 行驶区域及其他 -->
+				<!--<item fieldName="PreVehiclePrmmCurrency" fieldType="String" />--> <!-- 每车保费币种 -->
+				<!--<item fieldName="PreVehiclePremium" fieldType="Float" />--> <!-- 每车保费 -->
+				<!--<item fieldName="DepreciationRate" fieldType="Float" />--> <!-- 折旧率 -->
+				<!--<item fieldName="LicenseNo" fieldType="String" />--> <!-- 车牌号 -->
+				<!--<item fieldName="VinNo" fieldType="String" />--> <!-- 车架号 -->
+				<!--<item fieldName="EngineNo" fieldType="String" />--> <!-- 发动机号 -->
+				<!--<item fieldName="SeatNum" fieldType="Long" />--> <!-- 车座位数 -->
+				<!--<item fieldName="PerSeatPrmmCurrency" fieldType="String" />--> <!-- 每座保费币种 -->
+				<!--<item fieldName="PerSeatPremium" fieldType="Float" />--> <!-- 每座保费 -->
+				<!--<item fieldName="TotalPrmmCurrency" fieldType="String" />--> <!-- 总保费币种 -->
+				<!--<item fieldName="TotalPremium" fieldType="Float" />--> <!-- 总保费 -->
+				<!--<item fieldName="PrePrsnLmtCurrency" fieldType="String" />--> <!-- 每人责任限额币种 -->
+				<!--<item fieldName="PrePrsnLimit" fieldType="Float" />--> <!-- 每人责任限额 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" parameter="objectno" /> <!-- 对象号 -->
+				<!--<item fieldName="Remark" fieldType="String" />--> <!-- 备注 -->
+				<!--<item fieldName="CrtTime" fieldType="Date" />--> <!-- 创建时间 -->
+				<!--<item fieldName="MdfTime" fieldType="Date" />--> <!-- 修改时间 -->
+			</table>
+		</area>
+	</mapping>
+</definition>

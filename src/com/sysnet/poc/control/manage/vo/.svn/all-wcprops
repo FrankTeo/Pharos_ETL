@@ -1,0 +1,89 @@
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/control/manage/vo
+END
+ThreadCatchDB.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/control/manage/vo/ThreadCatchDB.java
+END
+ShowInfoMessage.java
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/control/manage/vo/ShowInfoMessage.java
+END
+EtlPharosIncrClaim.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svn/BizCore/!svn/ver/11927/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/control/manage/vo/EtlPharosIncrClaim.java
+END
+EtlPharosIncrAcc.java
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/control/manage/vo/EtlPharosIncrAcc.java
+END
+ShowInfoThread.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/control/manage/vo/ShowInfoThread.java
+END
+ConfigureBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/BizCore/!svn/ver/11927/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/control/manage/vo/ConfigureBean.java
+END
+EtlPharosIncrWorkflow.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/control/manage/vo/EtlPharosIncrWorkflow.java
+END
+StatusBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/control/manage/vo/StatusBean.java
+END
+InsideProcess.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/control/manage/vo/InsideProcess.java
+END
+ThreadCatch.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/control/manage/vo/ThreadCatch.java
+END
+ThreadContral.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/control/manage/vo/ThreadContral.java
+END
+StopBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/control/manage/vo/StopBean.java
+END
+ShowInfo.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/BizCore/!svn/ver/11927/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/control/manage/vo/ShowInfo.java
+END
+EveryThreadInfo.java
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/BizCore/!svn/ver/1837/trunk/Code/BizOds/HuaTai_ODS_GA_NOWEB/src/com/sysnet/poc/control/manage/vo/EveryThreadInfo.java
+END

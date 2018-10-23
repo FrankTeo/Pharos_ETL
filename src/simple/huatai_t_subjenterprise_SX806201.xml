@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition description="企财险标的表">
+	<mapping>
+		<area description="企财险标的表">
+			<table tableName="t_subjenterprise" dataProviderType="CSNODE" as="Contract">
+				<item fieldName="PolicyNo" fieldType="String" parameterType="GLOBAL" parameter="policyno" /> <!-- 保单号 -->
+				<item fieldName="EndorseNo" fieldType="String" parameterType="GLOBAL" parameter="endorseno" /> <!-- 批单号 -->
+				<item fieldName="NodeNo" fieldType="String" parameterType="GLOBAL" parameter="nodeno" /> <!-- 节点号 -->
+				<item fieldName="ContractNo" fieldType="String" parameterType="GLOBAL" parameter="contractno" /> <!-- 合同号 -->
+				<item fieldName="SubVersionNo" fieldType="String" parameterType="GLOBAL" parameter="version" /> <!-- 版本号 -->
+				<item fieldName="ProposalNo" fieldType="String" parameterType="GLOBAL" parameter="proposalno" /> <!-- 投保单号 -->
+				<item fieldName="SubjectAddress" fieldType="String" parameterType="CSNODE" parameter="SXU00013" method="getElementByCode.getValue" /> <!-- 标的地址 -->
+				<item fieldName="ZipCode" fieldType="String" parameterType="CSNODE" parameter="SXU00014" method="getElementByCode.getValue" /> <!-- 邮政编码 -->
+				<item fieldName="BizQuality" fieldType="String" parameterType="CSNODE" parameter="SXU00149" method="getElementByCode.getValue" /> <!-- 营业性质 -->
+				<item fieldName="TradeType" fieldType="String" parameterType="CSNODE" parameter="SXU00673" method="getElementByCode.getValue" /> <!-- 行业类型 -->
+				<item fieldName="HrdWrCvrgCurrency" fieldType="String" parameterType="CSNODE" method="getInsuredValueCurrency" /> <!-- 计算机硬件保险金额币种 -->
+				<item fieldName="HrdWrCoverage" fieldType="Float" parameterType="CSNODE" method="getFinalMainIV" /> <!-- 计算机硬件保险金额 -->
+				<item fieldName="HrdWrRate" fieldType="Float" parameterType="CSNODE" parameter="SXU00006" method="getElementByCode.getValue" /> <!-- 计算机硬件费率 -->
+				<item fieldName="HrdWrPrmmCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00212" method="getElementByCode.getValue.getCurrency" /> <!-- 计算机硬件保费币种 -->
+				<item fieldName="HrdWrPremium" fieldType="Float" parameterType="CSNODE" parameter="SXU00212" method="getElementByCode.getValue.getAmount" /> <!-- 计算机硬件保费 -->
+				<item fieldName="DtrplctCvrgCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00210" method="getElementByCode.getValue.getCurrency" /> <!-- 数据复制费用保险金额币种 -->
+				<item fieldName="DtrplctCoverage" fieldType="Float" parameterType="CSNODE" parameter="SXU00210" method="getElementByCode.getValue.getAmount" /> <!-- 数据复制费用保险金额 -->
+				<item fieldName="DtrplctRate" fieldType="Float" parameterType="CSNODE" parameter="SXU00678" method="getElementByCode.getValue" /> <!-- 数据复制费用费率 -->
+				<item fieldName="DtrplctPrmmCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00679" method="getElementByCode.getValue.getCurrency" /> <!-- 数据复制费用保费币种 -->
+				<item fieldName="DtrplctPremium" fieldType="Float" parameterType="CSNODE" parameter="SXU00679" method="getElementByCode.getValue.getAmount" /> <!-- 数据复制费用保费 -->
+				<item fieldName="AddCvrgCurrecny" fieldType="String" parameterType="CSNODE" parameter="SXU00680" method="getElementByCode.getValue.getCurrency" /> <!-- 增加费用保险金额币种 -->
+				<item fieldName="AddCoverage" fieldType="Float" parameterType="CSNODE" parameter="SXU00680" method="getElementByCode.getValue.getAmount" /> <!-- 增加费用保险金额 -->
+				<item fieldName="AddRate" fieldType="Float" parameterType="CSNODE" parameter="SXU00681" method="getElementByCode.getValue" /> <!-- 增加费用费率 -->
+				<item fieldName="AddPrmmCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00682" method="getElementByCode.getValue.getCurrency" /> <!-- 增加费用保费币种 -->
+				<item fieldName="AddPremium" fieldType="Float" parameterType="CSNODE" parameter="SXU00682" method="getElementByCode.getValue.getAmount" /> <!-- 增加费用保费 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" parameter="objectno" /> <!-- 对象号 -->
+			</table>
+		</area>
+	</mapping>
+</definition>

@@ -1,0 +1,39 @@
+package com.sysnet.poc.service.dao;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+
+import com.sysnet.poc.vo.StgAccCheckbook;
+import com.sysnet.poc.vo.StgAccInvoice;
+import com.sysnet.poc.vo.StgAccInvoicebasedetail;
+import com.sysnet.poc.vo.StgAccInvoicebook;
+import com.sysnet.poc.vo.StgAccInvoicedetail;
+import com.sysnet.poc.vo.StgAccPaymentmech;
+import com.sysnet.poc.vo.StgAccPaymentslice;
+import com.sysnet.poc.vo.StgAccReference;
+
+/**
+ * 收付费发票DAO
+ * 
+ * @author Administrator
+ * 
+ */
+public interface AccInvoiceDAO {
+
+	public void insertStgAccInvoiceBook(Connection conn, StgAccInvoicebook stgAccInvoicebook) throws SQLException, Exception;
+
+	public void insertStgAccInvoice(Connection conn, StgAccInvoice stgAccInvoice) throws SQLException, Exception;
+
+	public void insertStgAccInvoiceDetal(Connection conn, StgAccInvoicedetail stgAccInvoicedetail) throws SQLException, Exception;
+
+	public void insertStgAccInvoicebasedetail(Connection conn, StgAccInvoicebasedetail stgAccInvoicebasedetail) throws SQLException, Exception;
+
+	public void insertStgAccReference(Connection conn, StgAccReference stgAccReference) throws SQLException, Exception;
+
+	public void insertStgAccPaymentslice(Connection conn, StgAccPaymentslice stgAccPaymentslice) throws SQLException, Exception;
+
+	public void insertStgAccPaymentmech(Connection conn, StgAccPaymentmech stgAccPaymentmech) throws SQLException, Exception;
+
+	public void insertStgAccCheckbook(Connection conn, StgAccCheckbook stgAccCheckbook) throws SQLException, Exception;
+
+}

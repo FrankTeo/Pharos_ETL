@@ -1,0 +1,18 @@
+package com.sysnet.poc.service.dao;
+
+import java.io.Serializable;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.List;
+
+public interface CustomDAO {
+
+	/**
+	 * 保单入库
+	 * 
+	 * @param conn
+	 * @param vo
+	 * @return
+	 */
+	public void insertCustom(Connection conn, List<Serializable> list) throws SQLException, Exception;
+}

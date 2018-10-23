@@ -1,0 +1,106 @@
+package com.sysnet.poc.service.collection;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.apache.log4j.Logger;
+import pharos.account.bo.IODSBO;
+import pharos.account.vo.ODS.PolicyInstallment;
+import pharos.account.vo.accountstructure.AccountDetail;
+import pharos.framework.constparameter.constant.ConstAmountType;
+import com.sysnet.poc.control.config.Constants;
+import com.sysnet.poc.util.DateHelper;
+import com.sysnet.poc.util.PharosServiceContainer;
+import com.sysnet.poc.vo.StgPlcPayPlan;
+
+/**
+ * 访问pharos服务,采集数据
+ * 
+ * @author Ma_Ke
+ * @since 2009-07-14
+ * 
+ */
+public class PolicPayPlanCollection {
+
+	private Logger log = Logger.getLogger(PolicPayPlanCollection.class);
+
+	/**
+	 * 获取保单信息，供servic调用
+	 * 
+	 * @param contract_No
+	 * @param version
+	 * @param document
+	 * @param bat_Id
+	 * @param object_Id
+	 * @param object_Type
+	 * @return map
+	 */
+	public Map<String, List<Serializable>> getAllPolicyPayPlanInfo(String objectId, String objectType, int batId) {
+
+		Map<String, List<Serializable>> map = new HashMap<String, List<Serializable>>();
+		List<Serializable> list = new ArrayList<Serializable>();
+		log.info("进入单个增量处理方法");
+
+		// 取得pharos服务
+		PharosServiceContainer service = PharosServiceContainer.Instance();
+		IODSBO IODSBO = service.getIODSBO();
+
+		List<PolicyInstallment> logs = IODSBO.getInstallmentLog(Long.parseLong(objectId));
+
+		// 临时
+		// List<PolicyInstallment> logs = IODSBO.getInstallmentLog(1);
+
+		int i = 0;
+		for (PolicyInstallment log : logs) {
+
+			i++;
+			StgPlcPayPlan vo = new StgPlcPayPlan();
+			// vo.setPolicyNo(log.getPolicyNo());问题
+			vo.setPolicyNo(log.getProposalNo());
+			vo.setPayPlanId(Long.valueOf(i));
+			vo.setDueDate(DateHelper.getSqlDate(log.getDueDate()));
+			vo.setCurrency(0L);
+
+			double originalamount = 0.0;
+			double loading = 0.0;
+			double discount = 0.0;
+			double surcharge = 0.0;
+			double dueamount = 0.0;
+			vo.setPreminum(0.0);
+
+			for (AccountDetail detail : log.getInstallmentDetails()) {
+
+				if (ConstAmountType.PREMIUM == detail.getAmountType().getType()) {
+					// 保费
+					originalamount = detail.getOriginalAmount();
+				} else if (ConstAmountType.LOADING == detail.getAmountType().getType()) {
+					// 加费
+					loading = detail.getOriginalAmount();
+				} else if (ConstAmountType.DISCOUNT == detail.getAmountType().getType()) {
+					// 折扣
+					discount = detail.getOriginalAmount();
+				} else if (ConstAmountType.SURCHARGE == detail.getAmountType().getType()) {
+					// 分期付款手续费
+					surcharge = detail.getOriginalAmount();
+				}
+
+			}
+
+			dueamount = log.getDueAmount();
+			vo.setOvercharge(originalamount);
+			vo.setDiscount(discount);
+			vo.setSurcharge(surcharge);
+			vo.setTimeStamp(DateHelper.sqlCurrentlyDate());
+			vo.setTotal(dueamount);
+			vo.setVersion(Long.valueOf(log.getVersion()));
+			vo.setObjectType(objectType);
+			vo.setBatId(Long.valueOf(batId));
+			vo.setObjectId(Long.valueOf(objectId));
+			list.add(vo);
+		}
+		map.put(Constants.STG_PLC_PAY_PLAN, list);
+		return map;
+	}
+}

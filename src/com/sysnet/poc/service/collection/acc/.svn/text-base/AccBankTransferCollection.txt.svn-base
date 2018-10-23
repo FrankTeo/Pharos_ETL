@@ -1,0 +1,110 @@
+package com.sysnet.poc.service.collection.acc;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import pharos.account.bo.IBankTranferBO;
+import pharos.account.vo.banktransfer.BankTransfer;
+import pharos.account.vo.upDown.UpDownVO;
+
+import com.sysnet.poc.control.manage.vo.EtlPharosIncrAcc;
+import com.sysnet.poc.util.DateHelper;
+import com.sysnet.poc.util.PharosServiceContainer;
+import com.sysnet.poc.vo.StgAccBanktransfer;
+import com.sysnet.poc.vo.StgAccBanktransferdetail;
+
+public class AccBankTransferCollection {
+
+	private StgAccBanktransfer stgAccBanktransfer;
+	private List<StgAccBanktransferdetail> stgAccBanktransferdetailList;
+
+	public AccBankTransferCollection(EtlPharosIncrAcc ec) {
+		PharosServiceContainer pc = PharosServiceContainer.Instance();
+		IBankTranferBO bankTranFerBO = pc.getIBankTranferBO();
+		BankTransfer bankTransfer = bankTranFerBO.getBankTransfer(ec.getObjectNo());
+		this.setAccBankTransfer(bankTransfer, ec);
+	}
+
+	private void setAccBankTransfer(BankTransfer bankTransfer, EtlPharosIncrAcc ec) {
+		if (bankTransfer != null) {
+			this.stgAccBanktransfer = new StgAccBanktransfer();
+			this.stgAccBanktransfer.setBanktransferId(bankTransfer.getId());
+			this.stgAccBanktransfer.setRemoved(new Long(0));
+			this.stgAccBanktransfer.setBatchNo(bankTransfer.getBatchno());
+			this.stgAccBanktransfer.setTotalTimes(bankTransfer.getTotaltimes());
+			this.stgAccBanktransfer.setSuccessTimes(bankTransfer.getSuccesstimes());
+			this.stgAccBanktransfer.setCreateDate(DateHelper.getSqlDate(bankTransfer.getCreatedate()));
+			this.stgAccBanktransfer.setCreateUser(bankTransfer.getCreateuser());
+			this.stgAccBanktransfer.setReturnDate(DateHelper.getSqlDate(bankTransfer.getReturndate()));
+			this.stgAccBanktransfer.setAffirmDate(DateHelper.getSqlDate(bankTransfer.getAffirdate()));
+			this.stgAccBanktransfer.setAffirmUser(bankTransfer.getAffirmuser());
+			// this.stgAccBanktransfer.setTotalAmount(bankTransfer.getTotalamount());
+			// this.stgAccBanktransfer.setSuccessAmount(bankTransfer
+			// .getSuccessamount());
+			this.stgAccBanktransfer.setStatus(new Long(bankTransfer.getStatus()));
+			this.stgAccBanktransfer.setBankAccountCode(new Long(bankTransfer.getBankaccountcode()));
+			this.stgAccBanktransfer.setTimeStamp(ec.getTimeStamp());
+			this.stgAccBanktransfer.setBatId(ec.getBatId());
+			this.stgAccBanktransfer.setObjectId(ec.getObjectId());
+			this.stgAccBanktransfer.setObjectType(String.valueOf(ec.getObjectType()));
+			this.setStgAccBankTransferDetail(bankTransfer, ec);
+
+		}
+	}
+
+	private void setStgAccBankTransferDetail(BankTransfer bankTransfer, EtlPharosIncrAcc ec) {
+		this.stgAccBanktransferdetailList = new ArrayList<StgAccBanktransferdetail>();
+		List<UpDownVO> UpDownVOList = bankTransfer.getUpDownList();
+		if (UpDownVOList == null || UpDownVOList.size() == 0) {
+			return;
+		} else {
+			for (UpDownVO vo : UpDownVOList) {
+				StgAccBanktransferdetail detail = new StgAccBanktransferdetail();
+				detail.setBanktransferdetailId(vo.getId());
+				detail.setRemoved(new Long(0));
+				// detail.setSerNo(vo.gets);
+				detail.setDueAmount(vo.getDueAmount());
+				detail.setCurrency(new Long(vo.getCurrency()));
+				detail.setTransferAmount(vo.getTransferAmount());
+				detail.setTransferCurrency(new Long(vo.getTransferCurrency()));
+				detail.setDueDate(DateHelper.getSqlDate(vo.getDueDate()));
+				detail.setTranscationNo(vo.getTransactionNo());
+				detail.setAccount(vo.getAccount());
+				detail.setAccountName(vo.getAccountName());
+				detail.setResult(new Long(vo.getResult()));
+				detail.setFailureReason(new Long(vo.getFailureReason()));
+				detail.setStatus(new Long(vo.getStatus()));
+				detail.setParty(vo.getParty());
+				detail.setRefId(vo.getRefId());
+				detail.setCashTranscation(vo.getCashtranscation());
+				detail.setPriority(new Long(vo.getPriority()));
+				detail.setSliceId(vo.getSliceId());
+				detail.setRefNo(vo.getRefNo());
+				detail.setInstallId(vo.getInstallId());
+				detail.setBanktransferId(vo.getBanktransferid());
+				detail.setBatId(ec.getBatId());
+				detail.setObjectId(ec.getObjectId());
+				detail.setObjectType(String.valueOf(ec.getObjectType()));
+				detail.setTimeStamp(ec.getTimeStamp());
+				this.stgAccBanktransferdetailList.add(detail);
+			}
+		}
+
+	}
+
+	public StgAccBanktransfer getStgAccBanktransfer() {
+		return stgAccBanktransfer;
+	}
+
+	public void setStgAccBanktransfer(StgAccBanktransfer stgAccBanktransfer) {
+		this.stgAccBanktransfer = stgAccBanktransfer;
+	}
+
+	public List<StgAccBanktransferdetail> getStgAccBanktransferdetailList() {
+		return stgAccBanktransferdetailList;
+	}
+
+	public void setStgAccBanktransferdetailList(List<StgAccBanktransferdetail> stgAccBanktransferdetailList) {
+		this.stgAccBanktransferdetailList = stgAccBanktransferdetailList;
+	}
+}

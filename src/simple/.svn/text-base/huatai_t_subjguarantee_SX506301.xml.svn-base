@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition description="保证保险标的表">
+	<mapping>
+		<area description="保证保险标的表">
+			<table tableName="t_subjguarantee" dataProviderType="CSNODE" as="Contract">
+				<item fieldName="PolicyNo" fieldType="String" parameterType="GLOBAL" parameter="policyno" /> <!-- 保单号 -->
+				<item fieldName="EndorseNo" fieldType="String" parameterType="GLOBAL" parameter="endorseno" /> <!-- 批单号 -->
+				<item fieldName="NodeNo" fieldType="String" parameterType="GLOBAL" parameter="nodeno" /> <!-- 节点号 -->
+				<item fieldName="ContractNo" fieldType="String" parameterType="GLOBAL" parameter="contractno" /> <!-- 合同号 -->
+				<item fieldName="SubVersionNo" fieldType="String" parameterType="GLOBAL" parameter="version" /> <!-- 版本号 -->
+				<item fieldName="ProposalNo" fieldType="String" parameterType="GLOBAL" parameter="proposalno" /> <!-- 投保单号 -->
+				<item fieldName="LossRecord" fieldType="String" parameterType="CSNODE" parameter="SXU00630" method="getElementByCode.getValue" /> <!-- 以往损失记录 -->
+				<item fieldName="ManageArea" fieldType="String" parameterType="CSNODE" parameter="SXU00101" method="getElementByCode.getValue" /> <!-- 承保区域 -->
+				<item fieldName="OrganizationForm" fieldType="String" parameterType="CSNODE" parameter="SXU00269" method="getElementByCode.getValue" /> <!-- 企业组织形式 -->
+				<item fieldName="PreAccdLmtCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00121" method="getElementByCode.getValue.getCurrency" /> <!-- 每次事件赔偿限额币种 -->
+				<item fieldName="PreAccdLimit" fieldType="Float" parameterType="CSNODE" parameter="SXU00121" method="getElementByCode.getValue.getAmount" /> <!-- 每次事件赔偿限额 -->
+				<item fieldName="AggrgLmtCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00155" method="getElementByCode.getValue.getCurrency" /> <!-- 保险期累计赔偿限额币种 -->
+				<item fieldName="AggrgLimt" fieldType="Float" parameterType="CSNODE" parameter="SXU00155" method="getElementByCode.getValue.getAmount" /> <!-- 保险期累计赔偿限额 -->
+				<item fieldName="BizRange" fieldType="String" parameterType="CSNODE" parameter="SXU00283" method="getElementByCode.getValue" /> <!-- 经营范围 -->
+				<item fieldName="RetrospectStartDate" fieldType="Date" parameterType="CSNODE" parameter="SXU00631" method="getElementByCode.getValue" /> <!-- 追溯期起始日 -->
+				<item fieldName="MiniPrmmCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00142" method="getElementByCode.getValue.getCurrency" /> <!-- 最低保险费币种 -->
+				<item fieldName="MiniPremium" fieldType="Float" parameterType="CSNODE" parameter="SXU00142" method="getElementByCode.getValue.getAmount" /> <!-- 最低保险费 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" parameter="objectno" /> <!-- 对象号 -->
+			</table>
+		</area>
+	</mapping>
+</definition>

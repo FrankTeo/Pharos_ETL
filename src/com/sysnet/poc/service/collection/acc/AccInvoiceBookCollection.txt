@@ -1,0 +1,59 @@
+package com.sysnet.poc.service.collection.acc;
+
+import pharos.account.bo.IAccountInvoiceBO;
+import pharos.account.vo.invoice.AccInvoiceBook;
+
+import com.sysnet.poc.control.manage.vo.EtlPharosIncrAcc;
+import com.sysnet.poc.util.DateHelper;
+import com.sysnet.poc.util.PharosServiceContainer;
+import com.sysnet.poc.vo.StgAccInvoicebook;
+
+public class AccInvoiceBookCollection {
+
+	private StgAccInvoicebook stgAccInvoicebook = null;
+
+	public AccInvoiceBookCollection(EtlPharosIncrAcc ec) {
+		PharosServiceContainer pc = PharosServiceContainer.Instance();
+		IAccountInvoiceBO accountInvoicBO = pc.getIAccountInvoiceBO();
+		AccInvoiceBook accInvoiceBook = accountInvoicBO.getInvoiceBookByID(ec.getObjectId());
+		this.setAccinvoicebook(accInvoiceBook, ec);
+	}
+
+	/**
+	 * 发票本
+	 * 
+	 * @param book
+	 * @param ec
+	 */
+	private void setAccinvoicebook(AccInvoiceBook book, EtlPharosIncrAcc ec) {
+
+		if (book != null) {
+			this.stgAccInvoicebook = new StgAccInvoicebook();
+			this.stgAccInvoicebook.setInvoiceBookId(book.getId());
+			this.stgAccInvoicebook.setRemoved(new Long(0));
+			this.stgAccInvoicebook.setCollectorAgent(book.getCollectorAgent());
+			this.stgAccInvoicebook.setBookName(book.getBookName());
+			this.stgAccInvoicebook.setStatus(new Long(book.getStatus()));
+			this.stgAccInvoicebook.setPrefixNumber(book.getPreNumber());
+			this.stgAccInvoicebook.setStartNumber(new Long(book.getStartNumber()));
+			this.stgAccInvoicebook.setCurrentNumber(new Long(book.getCurrentNumber()));
+			this.stgAccInvoicebook.setEndNumber(new Long(book.getEndNumber()));
+			this.stgAccInvoicebook.setStartDate(DateHelper.getSqlDate(book.getStartDate()));
+			this.stgAccInvoicebook.setUpdateDate(DateHelper.getSqlDate(book.getUpdateDate()));
+			this.stgAccInvoicebook.setCreateUser(book.getCreateUser());
+			this.stgAccInvoicebook.setEndDate(DateHelper.getSqlDate(book.getEndDate()));
+			this.stgAccInvoicebook.setTimeStamp(ec.getTimeStamp());
+			this.stgAccInvoicebook.setBatId(ec.getBatId());
+			this.stgAccInvoicebook.setObjectId(ec.getObjectId());
+			this.stgAccInvoicebook.setObjectType(String.valueOf(ec.getObjectType()));
+		}
+	}
+
+	public StgAccInvoicebook getStgAccInvoicebook() {
+		return stgAccInvoicebook;
+	}
+
+	public void setStgAccInvoicebook(StgAccInvoicebook stgAccInvoicebook) {
+		this.stgAccInvoicebook = stgAccInvoicebook;
+	}
+}

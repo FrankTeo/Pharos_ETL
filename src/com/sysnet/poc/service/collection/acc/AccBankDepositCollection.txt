@@ -1,0 +1,60 @@
+package com.sysnet.poc.service.collection.acc;
+
+import pharos.account.bo.IBankAccountBO;
+import pharos.account.vo.banks.AccBankDeposit;
+
+import com.sysnet.poc.control.manage.vo.EtlPharosIncrAcc;
+import com.sysnet.poc.util.DateHelper;
+import com.sysnet.poc.util.PharosServiceContainer;
+import com.sysnet.poc.vo.StgAccBankdeposit;
+
+public class AccBankDepositCollection {
+
+	private StgAccBankdeposit stgAccBankdeposit;
+
+	public AccBankDepositCollection(EtlPharosIncrAcc ec) {
+		PharosServiceContainer pc = PharosServiceContainer.Instance();
+		IBankAccountBO bankAccuntBO = pc.getIBankAccountBO();
+		AccBankDeposit bankDeposit = bankAccuntBO.getBankDeposit(ec.getObjectNo());
+		this.setAccbankDeposit(bankDeposit, ec);
+	}
+
+	private void setAccbankDeposit(AccBankDeposit bankDeposit, EtlPharosIncrAcc ec) {
+
+		if (bankDeposit != null) {
+			this.stgAccBankdeposit = new StgAccBankdeposit();
+			this.stgAccBankdeposit.setBankdepositId(bankDeposit.getId());
+			this.stgAccBankdeposit.setRemoved(new Long(0));
+			this.stgAccBankdeposit.setTransno(bankDeposit.getTransNo());
+			this.stgAccBankdeposit.setTransDate(DateHelper.getSqlDate(bankDeposit.getTransDate()));
+			this.stgAccBankdeposit.setDepositDate(DateHelper.getSqlDate(bankDeposit.getDepositDate()));
+			this.stgAccBankdeposit.setPaymentType(new Long(bankDeposit.getType()));
+			this.stgAccBankdeposit.setAmount(bankDeposit.getAmount());
+			this.stgAccBankdeposit.setBankAccount(bankDeposit.getBankAccount());
+			this.stgAccBankdeposit.setDepositUser(bankDeposit.getDepositUser());
+			this.stgAccBankdeposit.setDepositno(bankDeposit.getDepositNo());
+			this.stgAccBankdeposit.setFee(bankDeposit.getFee());
+			this.stgAccBankdeposit.setBusinessCompanyNodeCode(bankDeposit.getBusinessCompanyNodeCode());
+			this.stgAccBankdeposit.setCashier(bankDeposit.getCashier());
+			this.stgAccBankdeposit.setBusinessCompanyCode(bankDeposit.getBusinessCompanyCode());
+			this.stgAccBankdeposit.setCurrency(new Long(bankDeposit.getCurrency()));
+			this.stgAccBankdeposit.setCheckBook(bankDeposit.getCheckBook());
+			this.stgAccBankdeposit.setCheckNumber(bankDeposit.getCheckNumber());
+			this.stgAccBankdeposit.setUserCompanyCode(bankDeposit.getUserCompanyCode());
+			this.stgAccBankdeposit.setUserCompanyNodeCode(bankDeposit.getUserCompanyNodeCode());
+			this.stgAccBankdeposit.setBatId(ec.getBatId());
+			this.stgAccBankdeposit.setObjectId(ec.getObjectId());
+			this.stgAccBankdeposit.setObjectType(String.valueOf(ec.getObjectType()));
+			this.stgAccBankdeposit.setTimeStamp(ec.getTimeStamp());
+		}
+	}
+
+	public StgAccBankdeposit getStgAccBankdeposit() {
+		return stgAccBankdeposit;
+	}
+
+	public void setStgAccBankdeposit(StgAccBankdeposit stgAccBankdeposit) {
+		this.stgAccBankdeposit = stgAccBankdeposit;
+	}
+
+}

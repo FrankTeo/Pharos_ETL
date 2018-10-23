@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition description="医疗责任险标的表">
+	<mapping>
+		<area description="医疗责任险标的表">
+			<table tableName="t_subjmedliab" dataProviderType="CSNODE" as="Contract">
+				<item fieldName="PolicyNo" fieldType="String" parameterType="GLOBAL" parameter="policyno" /> <!-- 保单号 -->
+				<item fieldName="EndorseNo" fieldType="String" parameterType="GLOBAL" parameter="endorseno" /> <!-- 批单号 -->
+				<item fieldName="NodeNo" fieldType="String" parameterType="GLOBAL" parameter="nodeno" /> <!-- 节点号 -->
+				<item fieldName="ContractNo" fieldType="String" parameterType="GLOBAL" parameter="contractno" /> <!-- 合同号 -->
+				<item fieldName="SubVersionNo" fieldType="String" parameterType="GLOBAL" parameter="version" /> <!-- 版本号 -->
+				<item fieldName="ProposalNo" fieldType="String" parameterType="GLOBAL" parameter="proposalno" /> <!-- 投保单号 -->
+				<item fieldName="HospitalClass" fieldType="String" parameterType="CSNODE" parameter="SXU00299" method="getElementByCode.getValue" /> <!-- 医院等级 -->
+				<item fieldName="BizRange" fieldType="String" parameterType="CSNODE" parameter="SXU00300" method="getElementByCode.getValue" /> <!-- 医疗业务范围 -->
+				<item fieldName="Years" fieldType="Long" parameterType="CSNODE" parameter="SXU00181" method="getElementByCode.getValue" /> <!-- 目前业务的年数 -->
+				<item fieldName="BedNumber" fieldType="Long" parameterType="CSNODE" parameter="SXU00301" method="getElementByCode.getValue" /> <!-- 床位数 -->
+				<item fieldName="OutpatientNum" fieldType="Long" parameterType="CSNODE" parameter="SXU00351" method="getElementByCode.getValue" /> <!-- 年门诊量 -->
+				<item fieldName="SurgeryNum" fieldType="Long" parameterType="CSNODE" parameter="SXU00352" method="getElementByCode.getValue" /> <!-- 年手术量 -->
+				<item fieldName="NurseNumHR" fieldType="Long" parameterType="CSNODE" parameter="SXU00353" method="getElementByCode.getValue" /> <!-- 高风险护士人数 -->
+				<item fieldName="NurseNumGR" fieldType="Long" parameterType="CSNODE" parameter="SXU00354" method="getElementByCode.getValue" /> <!-- 一般风险护士人数 -->
+				<item fieldName="NurseNumLR" fieldType="Long" parameterType="CSNODE" parameter="SXU00355" method="getElementByCode.getValue" /> <!-- 低风险护士人数 -->
+				<item fieldName="DoctorNumHR" fieldType="Long" parameterType="CSNODE" parameter="SXU00356" method="getElementByCode.getValue" /> <!-- 高风险医技人数 -->
+				<item fieldName="DoctorNumGR" fieldType="Long" parameterType="CSNODE" parameter="SXU00357" method="getElementByCode.getValue" /> <!-- 一般风险医技人数 -->
+				<item fieldName="DoctorNumLR" fieldType="Long" parameterType="CSNODE" parameter="SXU00358" method="getElementByCode.getValue" /> <!-- 低风险医技人数 -->
+				<item fieldName="AggrCmpnLmtCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00155" method="getElementByCode.getValue.getCurrency" /> <!-- 累计赔偿限额币种 -->
+				<item fieldName="AggregCmpnstLimit" fieldType="Float" parameterType="CSNODE" parameter="SXU00155" method="getElementByCode.getValue.getAmount" /> <!-- 累计赔偿限额 -->
+				<item fieldName="PerLegalLimitCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00360" method="getElementByCode.getValue.getCurrency" /> <!-- 法律费用每次限额币种 -->
+				<item fieldName="PerLegalLimit" fieldType="Float" parameterType="CSNODE" parameter="SXU00360" method="getElementByCode.getValue.getAmount" /> <!-- 法律费用每次限额 -->
+				<item fieldName="RetroactiveDate" fieldType="Date" parameterType="CSNODE" parameter="SXU00188" method="getElementByCode.getValue" /> <!-- 追溯日 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" parameter="objectno" /> <!-- 对象号 -->
+			</table>
+		</area>
+	</mapping>
+</definition>

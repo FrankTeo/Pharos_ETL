@@ -1,0 +1,91 @@
+package com.sysnet.poc.service.collection;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.apache.log4j.Logger;
+import pharos.account.bo.IODSBO;
+import pharos.account.vo.ODS.PolicyInstallment;
+import pharos.account.vo.accountstructure.AccountDetail;
+import pharos.framework.constparameter.constant.ConstAmountType;
+import com.sysnet.poc.control.config.Constants;
+import com.sysnet.poc.util.DateHelper;
+import com.sysnet.poc.util.PharosServiceContainer;
+import com.sysnet.poc.vo.StgEdrPayPlan;
+
+/**
+ * 访问pharos服务,采集数据
+ * 
+ * @author Ma_Ke
+ * @since 2009-07-17
+ * 
+ */
+public class EndorPayPlanCollection {
+
+	private Logger log = Logger.getLogger(EndorPayPlanCollection.class);
+
+	public Map<String, List<Serializable>> getAllEndorPayPlanInfo(String objectId, String objectType, int batId) {
+
+		Map<String, List<Serializable>> map = new HashMap<String, List<Serializable>>();
+		List<Serializable> list = new ArrayList<Serializable>();
+		log.info("进入单个增量处理方法");
+
+		// 取得pharos服务
+		PharosServiceContainer service = PharosServiceContainer.Instance();
+		IODSBO IODSBO = service.getIODSBO();
+
+		List<PolicyInstallment> logs = IODSBO.getInstallmentLog(Long.valueOf(objectId));
+		int i = 0;
+		for (PolicyInstallment log : logs) {
+
+			i++;
+			StgEdrPayPlan vo = new StgEdrPayPlan();
+			vo.setEndorseNo(log.getProposalNo());
+			vo.setPayPlanId(Long.valueOf(i));
+			vo.setDueDate(DateHelper.getSqlDate(log.getDueDate()));
+			vo.setCurrency(0L);
+
+			double originalamount = 0.0;
+			double loading = 0.0;
+			double discount = 0.0;
+			double surcharge = 0.0;
+			double dueamount = 0.0;
+			vo.setPreminum(0.0);
+
+			for (AccountDetail detail : log.getInstallmentDetails()) {
+
+				if (ConstAmountType.PREMIUM == detail.getAmountType().getType()) {
+					// 保费
+					originalamount = detail.getOriginalAmount();
+				} else if (ConstAmountType.LOADING == detail.getAmountType().getType()) {
+					// 加费
+					loading = detail.getOriginalAmount();
+				} else if (ConstAmountType.DISCOUNT == detail.getAmountType().getType()) {
+					// 折扣
+					discount = detail.getOriginalAmount();
+				} else if (ConstAmountType.SURCHARGE == detail.getAmountType().getType()) {
+					// 分期付款手续费
+					surcharge = detail.getOriginalAmount();
+				}
+
+			}
+
+			dueamount = log.calcDueAmount();
+			vo.setOvercharge(originalamount);
+			vo.setDiscount(discount);
+			vo.setSurcharge(surcharge);
+			vo.setTimeStamp(DateHelper.sqlCurrentlyDate());
+			vo.setTotal(dueamount);
+			vo.setVersion(Long.valueOf(log.getVersion()));
+			vo.setObjectType(objectType);
+			vo.setBatId(Long.valueOf(batId));
+			vo.setObjectId(Long.valueOf(objectId));
+			// vo.setPolicyNo(log.getPolicyNo());问题
+			list.add(vo);
+		}
+		map.put(Constants.STG_EDR_PAY_PLAN, list);
+		return map;
+	}
+}

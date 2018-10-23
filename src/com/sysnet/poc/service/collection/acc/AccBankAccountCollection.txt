@@ -1,0 +1,57 @@
+package com.sysnet.poc.service.collection.acc;
+
+import pharos.account.bo.IBankAccountBO;
+import pharos.account.vo.banks.AccBankAccount;
+
+import com.sysnet.poc.control.manage.vo.EtlPharosIncrAcc;
+import com.sysnet.poc.util.PharosServiceContainer;
+import com.sysnet.poc.vo.StgAccBankaccount;
+
+public class AccBankAccountCollection {
+
+	private StgAccBankaccount stgAccBankaccount;
+
+	@SuppressWarnings("unused")
+	private AccBankAccountCollection() {
+
+	}
+
+	public AccBankAccountCollection(EtlPharosIncrAcc ec) {
+		PharosServiceContainer pc = PharosServiceContainer.Instance();
+		IBankAccountBO bankAccuntBO = pc.getIBankAccountBO();
+		AccBankAccount bankAccount = bankAccuntBO.getBankAccount(ec.getObjectNo());
+		this.setAccbankAccount(bankAccount, ec);
+	}
+
+	private void setAccbankAccount(AccBankAccount bankAccount, EtlPharosIncrAcc ec) {
+		if (bankAccount != null) {
+			this.stgAccBankaccount = new StgAccBankaccount();
+			this.stgAccBankaccount.setBankaccountId(bankAccount.getId());
+			this.stgAccBankaccount.setRemoved(new Long(0));
+			this.stgAccBankaccount.setAccountCode(bankAccount.getAccountCode());
+			this.stgAccBankaccount.setAccountName(bankAccount.getAccountName());
+			this.stgAccBankaccount.setAccountNumber(bankAccount.getAccountNumber());
+			this.stgAccBankaccount.setBank(bankAccount.getBank());
+			this.stgAccBankaccount.setAlllevel(new Long(bankAccount.getAllLevel() ? 1 : 0));
+			this.stgAccBankaccount.setBusinessCompanyNodeCode(bankAccount.getBusinessCompanyNodeCode());
+			this.stgAccBankaccount.setCurrency(new Long(bankAccount.getCurrency()));
+			this.stgAccBankaccount.setBusinessCompanyCode(bankAccount.getBusinessCompanyCode());
+			this.stgAccBankaccount.setStatus(new Long(bankAccount.getStatus()));
+			this.stgAccBankaccount.setUserCompanyCode(bankAccount.getUserCompanyCode());
+			this.stgAccBankaccount.setUserCompanyNodeCode(bankAccount.getUserCompanyNodeCode());
+			this.stgAccBankaccount.setTimeStamp(ec.getTimeStamp());
+			this.stgAccBankaccount.setBatId(ec.getBatId());
+			this.stgAccBankaccount.setObjectId(ec.getObjectId());
+			this.stgAccBankaccount.setObjectType(String.valueOf(ec.getObjectType()));
+		}
+	}
+
+	public StgAccBankaccount getStgAccBankaccount() {
+		return stgAccBankaccount;
+	}
+
+	public void setStgAccBankaccount(StgAccBankaccount stgAccBankaccount) {
+		this.stgAccBankaccount = stgAccBankaccount;
+	}
+
+}

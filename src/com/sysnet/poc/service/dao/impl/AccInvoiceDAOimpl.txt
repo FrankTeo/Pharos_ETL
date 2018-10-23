@@ -1,0 +1,525 @@
+package com.sysnet.poc.service.dao.impl;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import com.sysnet.poc.service.dao.AccInvoiceDAO;
+import com.sysnet.poc.util.ResourceBundleUtil;
+import com.sysnet.poc.vo.StgAccCheckbook;
+import com.sysnet.poc.vo.StgAccInvoice;
+import com.sysnet.poc.vo.StgAccInvoicebasedetail;
+import com.sysnet.poc.vo.StgAccInvoicebook;
+import com.sysnet.poc.vo.StgAccInvoicedetail;
+import com.sysnet.poc.vo.StgAccPaymentmech;
+import com.sysnet.poc.vo.StgAccPaymentslice;
+import com.sysnet.poc.vo.StgAccReference;
+
+public class AccInvoiceDAOimpl implements AccInvoiceDAO {
+
+	private PreparedStatement pstmt = null;
+
+	/**
+	 * 发票本
+	 */
+	public void insertStgAccInvoiceBook(Connection conn, StgAccInvoicebook vo) throws SQLException, Exception {
+		if (vo == null) {
+			throw new Exception("Class of AccBankDAOimpl method insertStgAccInvoiceBook param StgAccInvoicebook is null!");
+		}
+		// 判断数据库当前是否有此条记录
+		String sql = "select count(INVOICE_BOOK_ID) from  STG_ACC_INVOICEBOOK where INVOICE_BOOK_ID=" + vo.getInvoiceBookId() + "";
+		int count = 0;
+		java.sql.Statement st = conn.createStatement();
+		ResultSet rs = st.executeQuery(sql);
+		while (rs.next()) {
+			count = rs.getInt(1);
+		}
+		rs.close();
+		st.close();
+		StringBuilder sqlSB = new StringBuilder();
+		int i = 1;
+		// 如果有当前记录做更新操作，没有做插入操作
+		if (count == 0) {
+
+			sqlSB.append("insert into STG_ACC_INVOICEBOOK(");
+			sqlSB.append(" INVOICE_BOOK_ID,");
+			sqlSB.append(" REMOVED,");
+			sqlSB.append(" COLLECTOR_AGENT,");
+			sqlSB.append(" BOOK_NAME,");
+			sqlSB.append(" STATUS,");
+			sqlSB.append(" PREFIX_NUMBER,");
+			sqlSB.append(" START_NUMBER,");
+			sqlSB.append(" CURRENT_NUMBER,");
+			sqlSB.append(" END_NUMBER,");
+			sqlSB.append(" START_DATE,");
+			sqlSB.append(" UPDATE_DATE,");
+			sqlSB.append(" CREATE_USER,");
+			sqlSB.append(" END_DATE,");
+			sqlSB.append(" TIME_STAMP,");
+			sqlSB.append(" BAT_ID,");
+			sqlSB.append(" OBJECT_ID,");
+			sqlSB.append(" OBJECT_TYPE, ");
+			sqlSB.append(" INSURE_COMPANY_ID, ");
+			sqlSB.append(" INSURE_COMPANY_CODE ");
+			sqlSB.append(") values (");
+			sqlSB.append("?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+			pstmt = conn.prepareStatement(sqlSB.toString());
+
+			pstmt.setLong(i++, vo.getInvoiceBookId());
+			pstmt.setLong(i++, vo.getRemoved());
+			pstmt.setString(i++, vo.getCollectorAgent());
+			pstmt.setString(i++, vo.getBookName());
+			pstmt.setLong(i++, vo.getStatus());
+			pstmt.setString(i++, vo.getPrefixNumber());
+			pstmt.setLong(i++, vo.getStartNumber());
+			pstmt.setLong(i++, vo.getCurrentNumber());
+			pstmt.setLong(i++, vo.getEndNumber());
+			pstmt.setDate(i++, vo.getStartDate());
+			pstmt.setDate(i++, vo.getUpdateDate());
+			pstmt.setLong(i++, vo.getCreateUser());
+			pstmt.setDate(i++, vo.getEndDate());
+			pstmt.setDate(i++, vo.getTimeStamp());
+			pstmt.setLong(i++, vo.getBatId());
+			pstmt.setLong(i++, vo.getObjectId());
+			pstmt.setString(i++, vo.getObjectType());
+			pstmt.setLong(i++, Long.parseLong(ResourceBundleUtil.getCompanyId()));
+			pstmt.setString(i++, ResourceBundleUtil.getCompanyCd());
+
+			pstmt.execute();
+			pstmt.close();
+		} else {
+			sqlSB.append("update STG_ACC_INVOICEBOOK set ");
+			sqlSB.append(" REMOVED=?,");
+			sqlSB.append(" COLLECTOR_AGENT=?,");
+			sqlSB.append(" BOOK_NAME=?,");
+			sqlSB.append(" STATUS=?,");
+			sqlSB.append(" PREFIX_NUMBER=?,");
+			sqlSB.append(" START_NUMBER=?,");
+			sqlSB.append(" CURRENT_NUMBER=?,");
+			sqlSB.append(" END_NUMBER=?,");
+			sqlSB.append(" START_DATE=?,");
+			sqlSB.append(" UPDATE_DATE=?,");
+			sqlSB.append(" CREATE_USER=?,");
+			sqlSB.append(" END_DATE=?,");
+			sqlSB.append(" TIME_STAMP=?,");
+			sqlSB.append(" BAT_ID=?,");
+			sqlSB.append(" OBJECT_ID=?,");
+			sqlSB.append(" OBJECT_TYPE=? ");
+			sqlSB.append(" where INVOICE_BOOK_ID=? ");
+			pstmt = conn.prepareStatement(sqlSB.toString());
+
+			pstmt.setLong(i++, vo.getRemoved());
+			pstmt.setString(i++, vo.getCollectorAgent());
+			pstmt.setString(i++, vo.getBookName());
+			pstmt.setLong(i++, vo.getStatus());
+			pstmt.setString(i++, vo.getPrefixNumber());
+			pstmt.setLong(i++, vo.getStartNumber());
+			pstmt.setLong(i++, vo.getCurrentNumber());
+			pstmt.setLong(i++, vo.getEndNumber());
+			pstmt.setDate(i++, vo.getStartDate());
+			pstmt.setDate(i++, vo.getUpdateDate());
+			pstmt.setLong(i++, vo.getCreateUser());
+			pstmt.setDate(i++, vo.getEndDate());
+			pstmt.setDate(i++, vo.getTimeStamp());
+			pstmt.setLong(i++, vo.getBatId());
+			pstmt.setLong(i++, vo.getObjectId());
+			pstmt.setString(i++, vo.getObjectType());
+			pstmt.setLong(i++, vo.getInvoiceBookId());
+
+			pstmt.execute();
+			pstmt.close();
+
+		}
+
+	}
+
+	/**
+	 * 发票信息表
+	 */
+	public void insertStgAccInvoice(Connection conn, StgAccInvoice vo) throws SQLException, Exception {
+
+		if (vo == null) {
+			throw new Exception("Class of AccBankDAOimpl mothed insertStgAccInvoice param StgAccInvoice is null!");
+		}
+		int i = 1;
+		StringBuilder sqlSB = new StringBuilder();
+		sqlSB.append("insert into STG_ACC_INVOICE(");
+		sqlSB.append(" INVOICE_ID,");
+		sqlSB.append(" REMOVED,");
+		sqlSB.append(" COLLECTOR_AGENT,");
+		sqlSB.append(" INVOICE_NUMBER,");
+		sqlSB.append(" AMOUNT,");
+		sqlSB.append(" CURRENCY,");
+		sqlSB.append(" DUE_DATE,");
+		sqlSB.append(" UPDATE_DATE,");
+		sqlSB.append(" INVOICE_TYPE,");
+		sqlSB.append(" STATUS,");
+		sqlSB.append(" ISGENERATE_COMMISSION,");
+		sqlSB.append(" TRANS_NO,");
+		sqlSB.append(" USER_COMPANY_ID,");
+		sqlSB.append(" USER_COMPANY_NODE_ID,");
+		sqlSB.append(" TIME_STAMP,");
+		sqlSB.append(" BAT_ID,");
+		sqlSB.append(" OBJECT_ID,");
+		sqlSB.append(" OBJECT_TYPE,");
+		sqlSB.append(" INVOICE_BOOK_ID, ");
+		sqlSB.append(" INSURE_COMPANY_ID, ");
+		sqlSB.append(" INSURE_COMPANY_CODE ");
+		sqlSB.append(") values (");
+		sqlSB.append("?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+		pstmt = conn.prepareStatement(sqlSB.toString());
+
+		pstmt.setLong(i++, vo.getInvoiceId());
+		pstmt.setLong(i++, vo.getRemoved());
+		pstmt.setString(i++, vo.getCollectorAgent());
+		pstmt.setString(i++, vo.getInvoiceNumber());
+		pstmt.setDouble(i++, vo.getAmount());
+		pstmt.setLong(i++, vo.getCurrency());
+		pstmt.setDate(i++, vo.getDueDate());
+		pstmt.setDate(i++, vo.getUpdateDate());
+		pstmt.setLong(i++, vo.getInvoiceType());
+		pstmt.setLong(i++, vo.getStatus());
+		pstmt.setLong(i++, vo.getIsgenerateCommission());
+		pstmt.setString(i++, vo.getTransNo());
+		pstmt.setString(i++, vo.getUserCompanyCode());
+		pstmt.setString(i++, vo.getUserCompanyNodeCode());
+		pstmt.setDate(i++, vo.getTimeStamp());
+		pstmt.setLong(i++, vo.getBatId());
+		pstmt.setLong(i++, vo.getObjectId());
+		pstmt.setString(i++, vo.getObjectType());
+		pstmt.setLong(i++, vo.getInvoiceBookId());
+		pstmt.setLong(i++, Long.parseLong(ResourceBundleUtil.getCompanyId()));
+		pstmt.setString(i++, ResourceBundleUtil.getCompanyCd());
+		pstmt.execute();
+		pstmt.close();
+
+	}
+
+	/**
+	 * 发票明细表
+	 */
+	public void insertStgAccInvoiceDetal(Connection conn, StgAccInvoicedetail vo) throws SQLException, Exception {
+
+		if (vo == null) {
+			throw new Exception("Class of AccBankDAOimpl mothed insertStgAccInvoiceDetal param StgAccInvoicedetail is null!");
+		}
+		int i = 1;
+		StringBuilder sqlSB = new StringBuilder();
+		sqlSB.append("insert into STG_ACC_INVOICEDETAIL(");
+		sqlSB.append(" INVOICE_DETAIL_ID,");
+		sqlSB.append(" REMOVED,");
+		sqlSB.append(" TRANS_ID,");
+		sqlSB.append(" TRANS_NO,");
+		sqlSB.append(" AMOUNT,");
+		sqlSB.append(" CURRENCY,");
+		sqlSB.append(" ACCOUNT_SOURCE,");
+		sqlSB.append(" DOCUMENT_TYPE,");
+		sqlSB.append(" CREATE_DATE,");
+		sqlSB.append(" TIME_STAMP,");
+		sqlSB.append(" BAT_ID,");
+		sqlSB.append(" OBJECT_ID,");
+		sqlSB.append(" OBJECT_TYPE,");
+		sqlSB.append(" INVOICE_ID, ");
+		sqlSB.append(" INSURE_COMPANY_ID, ");
+		sqlSB.append(" INSURE_COMPANY_CODE ");
+
+		sqlSB.append(") values (");
+		sqlSB.append("?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+		pstmt = conn.prepareStatement(sqlSB.toString());
+		pstmt.setLong(i++, vo.getInvoiceDetailId());
+		pstmt.setLong(i++, vo.getRemoved());
+		pstmt.setLong(i++, vo.getTransId());
+		pstmt.setString(i++, vo.getTransNo());
+		pstmt.setDouble(i++, vo.getAmount());
+		pstmt.setLong(i++, vo.getCurrency());
+		pstmt.setLong(i++, vo.getAccountSource());
+		pstmt.setLong(i++, vo.getDocumentType());
+		pstmt.setDate(i++, vo.getCreateDate());
+		pstmt.setDate(i++, vo.getTimeStamp());
+		pstmt.setLong(i++, vo.getBatId());
+		pstmt.setLong(i++, vo.getObjectId());
+		pstmt.setString(i++, vo.getObjectType());
+		pstmt.setLong(i++, vo.getInvoiceId());
+		pstmt.setLong(i++, Long.parseLong(ResourceBundleUtil.getCompanyId()));
+		pstmt.setString(i++, ResourceBundleUtil.getCompanyCd());
+		pstmt.execute();
+		pstmt.close();
+
+	}
+
+	/**
+	 * 发票基本信息表
+	 */
+	public void insertStgAccInvoicebasedetail(Connection conn, StgAccInvoicebasedetail vo) throws SQLException, Exception {
+
+		if (vo == null) {
+			throw new Exception("Class of AccBankDAOimpl mothed StgAccInvoicebasedetail param StgAccInvoicebasedetail is null!");
+		}
+		int i = 1;
+		StringBuilder sqlSB = new StringBuilder();
+		sqlSB.append("insert into STG_ACC_INVOICEBASEDETAIL(");
+		sqlSB.append(" INVOICE_BASE_DETAIL_ID,");
+		sqlSB.append(" REMOVED,");
+		sqlSB.append(" AMOUNT_TYPE,");
+		sqlSB.append(" AMOUNT,");
+		sqlSB.append(" BAT_ID,");
+		sqlSB.append(" TIME_STAMP,");
+		sqlSB.append(" OBJECT_ID,");
+		sqlSB.append(" OBJECT_TYPE,");
+		sqlSB.append(" INVOICE_DETAIL_ID, ");
+		sqlSB.append(" INSURE_COMPANY_ID, ");
+		sqlSB.append(" INSURE_COMPANY_CODE ");
+
+		sqlSB.append(") values (");
+		sqlSB.append("?,?,?,?,?,?,?,?,?,?,?)");
+		pstmt = conn.prepareStatement(sqlSB.toString());
+		pstmt.setLong(i++, vo.getInvoiceBaseDetailId());
+		pstmt.setLong(i++, vo.getRemoved());
+		pstmt.setLong(i++, vo.getAmountType());
+		pstmt.setDouble(i++, vo.getAmount());
+		pstmt.setLong(i++, vo.getBatId());
+		pstmt.setDate(i++, vo.getTimeStamp());
+		pstmt.setLong(i++, vo.getObjectId());
+		pstmt.setString(i++, vo.getObjectType());
+		pstmt.setLong(i++, vo.getInvoiceDetailId());
+		pstmt.setLong(i++, Long.parseLong(ResourceBundleUtil.getCompanyId()));
+		pstmt.setString(i++, ResourceBundleUtil.getCompanyCd());
+		pstmt.execute();
+		pstmt.close();
+
+	}
+
+	/**
+	 * 收付机制表
+	 */
+	public void insertStgAccPaymentmech(Connection conn, StgAccPaymentmech vo) throws SQLException, Exception {
+
+		if (vo == null) {
+			throw new Exception("Class of AccBankDAOimpl mothed insertStgAccPaymentmech param StgAccPaymentmech is null!");
+		}
+		int i = 1;
+		StringBuilder sqlSB = new StringBuilder();
+		sqlSB.append("insert into STG_ACC_PAYMENTMECH(");
+		sqlSB.append(" PAYMENTMECH_ID ,");
+		sqlSB.append(" PAYMENT_TYPE ,");
+		sqlSB.append(" ACCOUNT_NUMBER ,");
+		sqlSB.append(" INSTRUMENT_NUM ,");
+		sqlSB.append(" PARTY_CODE ,");
+		sqlSB.append(" ROLE_ID ,");
+		sqlSB.append(" REMOVED ,");
+		sqlSB.append(" PRIORITY ,");
+		sqlSB.append(" ACCOUNT_NAME ,");
+		sqlSB.append(" BAT_ID ,");
+		sqlSB.append(" OBJECT_ID ,");
+		sqlSB.append(" OBJECT_TYPE ,");
+		sqlSB.append(" TIME_STAMP ,");
+		sqlSB.append(" SLICE_ID, ");
+		sqlSB.append(" INSURE_COMPANY_ID, ");
+		sqlSB.append(" INSURE_COMPANY_CODE ");
+		sqlSB.append(") values (");
+		sqlSB.append("?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+		pstmt = conn.prepareStatement(sqlSB.toString());
+
+		pstmt.setLong(i++, vo.getPaymentmechId());
+		pstmt.setLong(i++, vo.getPaymentType());
+		pstmt.setString(i++, vo.getAccountNumber());
+		pstmt.setString(i++, vo.getInstrumentNum());
+		pstmt.setString(i++, vo.getPartyCode());
+		pstmt.setString(i++, vo.getRoleId());
+		pstmt.setLong(i++, vo.getRemoved());
+		pstmt.setLong(i++, vo.getPriority());
+		pstmt.setString(i++, vo.getAccountName());
+		pstmt.setLong(i++, vo.getBatId());
+		pstmt.setLong(i++, vo.getObjectId());
+		pstmt.setString(i++, vo.getObjectType());
+		pstmt.setDate(i++, vo.getTimeStamp());
+		pstmt.setLong(i++, vo.getSliceId());
+		pstmt.setLong(i++, Long.parseLong(ResourceBundleUtil.getCompanyId()));
+		pstmt.setString(i++, ResourceBundleUtil.getCompanyCd());
+		pstmt.execute();
+		pstmt.close();
+
+	}
+
+	/**
+	 * 收付比例
+	 */
+	public void insertStgAccPaymentslice(Connection conn, StgAccPaymentslice vo) throws SQLException, Exception {
+
+		if (vo == null) {
+			throw new Exception("Class of AccBankDAOimpl mothed insertStgAccPaymentslice param StgAccPaymentslice is null!");
+		}
+		int i = 1;
+		StringBuilder sqlSB = new StringBuilder();
+		sqlSB.append("insert into STG_ACC_PAYMENTSLICE(");
+		sqlSB.append(" SLICE_ID,");
+		sqlSB.append(" PERCENTAGE,");
+		sqlSB.append(" PARTY_CODE,");
+		sqlSB.append(" ROLE_ID,");
+		sqlSB.append(" PAYMENT_MODE,");
+		sqlSB.append(" REMOVED,");
+		sqlSB.append(" OBJECT_ID,");
+		sqlSB.append(" OBJECT_TYPE,");
+		sqlSB.append(" BAT_ID,");
+		sqlSB.append(" TIME_STAMP,");
+		sqlSB.append(" REF_ID, ");
+		sqlSB.append(" INSURE_COMPANY_ID, ");
+		sqlSB.append(" INSURE_COMPANY_CODE ");
+
+		sqlSB.append(") values (");
+		sqlSB.append("?,?,?,?,?,?,?,?,?,?,?,?,?)");
+		pstmt = conn.prepareStatement(sqlSB.toString());
+
+		pstmt.setLong(i++, vo.getSliceId());
+		pstmt.setDouble(i++, vo.getPercentage());
+		pstmt.setString(i++, vo.getPartyCode());
+		pstmt.setString(i++, vo.getRoleId());
+		pstmt.setLong(i++, vo.getPaymentMode());
+		pstmt.setLong(i++, vo.getRemoved());
+		pstmt.setLong(i++, vo.getObjectId());
+		pstmt.setString(i++, vo.getObjectType());
+		pstmt.setLong(i++, vo.getBatId());
+		pstmt.setDate(i++, vo.getTimeStamp());
+		pstmt.setLong(i++, vo.getRefId());
+		pstmt.setLong(i++, Long.parseLong(ResourceBundleUtil.getCompanyId()));
+		pstmt.setString(i++, ResourceBundleUtil.getCompanyCd());
+		pstmt.execute();
+		pstmt.close();
+
+	}
+
+	/**
+	 * 收付方案
+	 */
+	public void insertStgAccReference(Connection conn, StgAccReference vo) throws SQLException, Exception {
+
+		if (vo == null) {
+			throw new Exception("Class of AccBankDAOimpl mothed insertStgAccReference param StgAccReference is null!");
+		}
+		int i = 1;
+		StringBuilder sqlSB = new StringBuilder();
+		sqlSB.append("insert into STG_ACC_REFERENCE(");
+		sqlSB.append(" REF_ID,");
+		sqlSB.append(" OWNER_CODE,");
+		sqlSB.append(" ROLE_CODE,");
+		sqlSB.append(" OWNER_TYPE,");
+		sqlSB.append(" STATUS,");
+		sqlSB.append(" START_DATE,");
+		sqlSB.append(" END_DATE,");
+		sqlSB.append(" ELEMENT_TYPE,");
+		sqlSB.append(" REF_NO,");
+		sqlSB.append(" REMOVED,");
+		sqlSB.append(" CREATE_USER_ID,");
+		sqlSB.append(" CREATE_DATE_TIME,");
+		sqlSB.append(" CHANGE_USER_ID,");
+		sqlSB.append(" CHANGE_DATE_TIME,");
+		sqlSB.append(" BUSINESS_COMPANY_ID,");
+		sqlSB.append(" BUSINESS_COMPANY_NODE_ID,");
+		sqlSB.append(" USER_COMPANY_ID,");
+		sqlSB.append(" USER_COMPANY_NODE_ID,");
+		sqlSB.append(" OBJECT_TYPE,");
+		sqlSB.append(" TIME_STAMP,");
+		sqlSB.append(" BAT_ID,");
+		sqlSB.append(" OBJECT_ID, ");
+		sqlSB.append(" INSURE_COMPANY_ID, ");
+		sqlSB.append(" INSURE_COMPANY_CODE ");
+		sqlSB.append(") values (");
+		sqlSB.append("?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+		pstmt = conn.prepareStatement(sqlSB.toString());
+
+		pstmt.setLong(i++, vo.getRefId());
+		pstmt.setString(i++, vo.getOwnerCode());
+		pstmt.setString(i++, vo.getRoleCode());
+		pstmt.setLong(i++, vo.getOwnerType());
+		pstmt.setLong(i++, vo.getStatus());
+		pstmt.setDate(i++, vo.getStartDate());
+		pstmt.setDate(i++, vo.getEndDate());
+		pstmt.setLong(i++, vo.getElementType());
+		pstmt.setString(i++, vo.getRefNo());
+		pstmt.setString(i++, vo.getRemoved());
+		pstmt.setLong(i++, vo.getCreateUserId());
+		pstmt.setDate(i++, vo.getCreateDateTime());
+		pstmt.setLong(i++, vo.getChangeUserId());
+		pstmt.setDate(i++, vo.getChangeDateTime());
+		pstmt.setString(i++, vo.getBusinessCompanyCode());
+		pstmt.setString(i++, vo.getBusinessCompanyNodeCode());
+		pstmt.setString(i++, vo.getUserCompanyCode());
+		pstmt.setString(i++, vo.getUserCompanyNodeCode());
+		pstmt.setString(i++, vo.getObjectType());
+		pstmt.setDate(i++, vo.getTimeStamp());
+		pstmt.setLong(i++, vo.getBatId());
+		pstmt.setLong(i++, vo.getObjectId());
+		pstmt.setLong(i++, Long.parseLong(ResourceBundleUtil.getCompanyId()));
+		pstmt.setString(i++, ResourceBundleUtil.getCompanyCd());
+		pstmt.execute();
+		pstmt.close();
+
+	}
+
+	/**
+	 * 支票本
+	 */
+	public void insertStgAccCheckbook(Connection conn, StgAccCheckbook vo) throws SQLException, Exception {
+
+		if (vo == null) {
+			throw new Exception("Class of AccBankDAOimpl mothed insertStgAccCheckbook param StgAccCheckbook is null!");
+		}
+		int i = 1;
+		StringBuilder sqlSB = new StringBuilder();
+		sqlSB.append("insert into STG_ACC_CHECKBOOK(");
+		sqlSB.append(" CHECKBOOK_ID,");
+		sqlSB.append(" REMOVED,");
+		sqlSB.append(" REFERENCE,");
+		sqlSB.append(" BOOK_NUMBER,");
+		sqlSB.append(" CREATE_DATE,");
+		sqlSB.append(" START_NUMBER,");
+		sqlSB.append(" END_NUMBER,");
+		sqlSB.append(" ISSUE_TYPE,");
+		sqlSB.append(" ISSUE_DATE,");
+		sqlSB.append(" CREATE_USER_ID,");
+		sqlSB.append(" BUSINESS_COMPANY_ID,");
+		sqlSB.append(" BUSINESS_COMPANY_NODE_ID,");
+		sqlSB.append(" NUMBER_PREFIX,");
+		sqlSB.append(" STATUS,");
+		sqlSB.append(" CURRENT_NUMBER,");
+		sqlSB.append(" USER_COMPANY_ID,");
+		sqlSB.append(" USER_COMPANY_NODE_ID,");
+		sqlSB.append(" OBJECT_ID,");
+		sqlSB.append(" OBJECT_TYPE,");
+		sqlSB.append(" TIME_STAMP,");
+		sqlSB.append(" BAT_ID, ");
+		sqlSB.append(" INSURE_COMPANY_ID, ");
+		sqlSB.append(" INSURE_COMPANY_CODE ");
+		sqlSB.append(") values (");
+		sqlSB.append("?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+		pstmt = conn.prepareStatement(sqlSB.toString());
+
+		pstmt.setLong(i++, vo.getCheckbookId());
+		pstmt.setLong(i++, vo.getRemoved());
+		pstmt.setString(i++, vo.getReference());
+		pstmt.setString(i++, vo.getBookNumber());
+		pstmt.setDate(i++, vo.getCreateDate());
+		pstmt.setLong(i++, vo.getStartNumber());
+		pstmt.setLong(i++, vo.getEndNumber());
+		pstmt.setLong(i++, vo.getIssueType());
+		pstmt.setDate(i++, vo.getIssueDate());
+		pstmt.setLong(i++, vo.getCreateUserId());
+		pstmt.setString(i++, vo.getBusinessCompanyCode());
+		pstmt.setString(i++, vo.getBusinessCompanyNodeCode());
+		pstmt.setString(i++, vo.getNumberPrefix());
+		pstmt.setLong(i++, vo.getStatus());
+		pstmt.setLong(i++, vo.getCurrentNumber());
+		pstmt.setString(i++, vo.getUserCompanyCode());
+		pstmt.setString(i++, vo.getUserCompanyNodeCode());
+		pstmt.setLong(i++, vo.getObjectId());
+		pstmt.setString(i++, vo.getObjectType());
+		pstmt.setDate(i++, vo.getTimeStamp());
+		pstmt.setLong(i++, vo.getBatId());
+		pstmt.setLong(i++, Long.parseLong(ResourceBundleUtil.getCompanyId()));
+		pstmt.setString(i++, ResourceBundleUtil.getCompanyCd());
+		pstmt.execute();
+		pstmt.close();
+
+	}
+}

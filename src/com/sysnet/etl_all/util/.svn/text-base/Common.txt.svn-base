@@ -1,0 +1,11 @@
+package com.sysnet.etl_all.util;
+
+/**
+ * 设置间隔时间
+ * 
+ * @author DBC
+ * 
+ */
+public final class Common {
+	public static final int TIMES = 1800000;
+}

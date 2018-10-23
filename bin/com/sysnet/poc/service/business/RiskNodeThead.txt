@@ -1,0 +1,302 @@
+package com.sysnet.poc.service.business;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.naming.NamingException;
+
+import org.apache.commons.logging.Log;
+
+import pharos.ctm.bo.BContractBO;
+import pharos.ctm.vo.BContract;
+import pharos.ctm.vo.BContractNode;
+
+import com.sysnet.poc.control.config.Constants;
+import com.sysnet.poc.control.manage.vo.InsideProcess;
+import com.sysnet.poc.control.manage.vo.StopBean;
+import com.sysnet.poc.mapping.MappingCacheManager;
+import com.sysnet.poc.mapping.ProductMappingBuilder;
+import com.sysnet.poc.service.dao.PlCIncrementDAO;
+import com.sysnet.poc.service.dao.RunLogDAO;
+import com.sysnet.poc.service.dao.daoFactory.DAOFactory;
+import com.sysnet.poc.service.dao.dbc.ConnDB;
+import com.sysnet.poc.service.storage.StorageTransAction;
+import com.sysnet.poc.util.OdsLogger;
+import com.sysnet.poc.vo.StgRunLog;
+
+public class RiskNodeThead extends Thread {
+	InsideProcess j = new InsideProcess();
+
+	public RiskNodeThead(List<InsideProcess> a) {
+		super();
+		j.setName("风险");
+		a.add(j);
+	}
+
+	private static final Log log = OdsLogger.getLog("insureLog4j", "Insure");
+
+	private String productCode;
+
+	public String getProductCode() {
+		return productCode;
+	}
+
+	public void setProductCode(String productCode) {
+		this.productCode = productCode;
+	}
+
+	private List<Long> riskNodeIDlist = null;
+
+	private int countChar = 0;
+
+	private BContractBO bContractBo;
+
+	private String PRODUCT_CD;
+
+	private String PRODUCT_NODE_CD;
+
+	private String object_Id;
+
+	private String policyNo;
+
+	private String endorseNo;
+
+	private String contractNo;
+
+	private String proposalNo;
+
+	private String enddate;
+
+	private String startdate;
+
+	private boolean write;
+
+	private String object_no;
+
+	public boolean isWrite() {
+		return write;
+	}
+
+	public void setWrite(boolean write) {
+		this.write = write;
+	}
+
+	public String getObject_no() {
+		return object_no;
+	}
+
+	public void setObject_no(String object_no) {
+		this.object_no = object_no;
+	}
+
+	public String getContractNo() {
+		return contractNo;
+	}
+
+	public void setContractNo(String contractNo) {
+		this.contractNo = contractNo;
+	}
+
+	public String getPolicyNo() {
+		return policyNo;
+	}
+
+	public void setPolicyNo(String policyNo) {
+		this.policyNo = policyNo;
+	}
+
+	public String getObject_Id() {
+		return object_Id;
+	}
+
+	public void setObject_Id(String object_Id) {
+		this.object_Id = object_Id;
+	}
+
+	// private TotalPremiumAndInsure totalPremiumAndInsure;
+
+	private StopBean stopBean;
+
+	public StopBean getStopBean() {
+		return stopBean;
+	}
+
+	public void setStopBean(StopBean stopBean) {
+		this.stopBean = stopBean;
+	}
+
+	public List<Long> getRiskNodeIDlist() {
+		return riskNodeIDlist;
+	}
+
+	public void setRiskNodeIDlist(List<Long> riskNodeIDlist) {
+		this.riskNodeIDlist = riskNodeIDlist;
+	}
+
+	public int getCountChar() {
+		return countChar;
+	}
+
+	public void setCountChar(int countChar) {
+		this.countChar = countChar;
+	}
+
+	public BContractBO getBContractBo() {
+		return bContractBo;
+	}
+
+	public void setBContractBo(BContractBO contractBo) {
+		bContractBo = contractBo;
+	}
+
+	public String getPRODUCT_CD() {
+		return PRODUCT_CD;
+	}
+
+	public void setPRODUCT_CD(String product_cd) {
+		PRODUCT_CD = product_cd;
+	}
+
+	public String getPRODUCT_NODE_CD() {
+		return PRODUCT_NODE_CD;
+	}
+
+	public void setPRODUCT_NODE_CD(String product_node_cd) {
+		PRODUCT_NODE_CD = product_node_cd;
+	}
+
+	public Connection getConn() {
+		return conn;
+	}
+
+	public void setConn(Connection conn) {
+		this.conn = conn;
+	}
+
+	public String getEnddate() {
+		return enddate;
+	}
+
+	public void setEnddate(String enddate) {
+		this.enddate = enddate;
+	}
+
+	public String getStartdate() {
+		return startdate;
+	}
+
+	public void setStartdate(String startdate) {
+		this.startdate = startdate;
+	}
+
+	public String getEndorseNo() {
+		return endorseNo;
+	}
+
+	public void setEndorseNo(String endorseNo) {
+		this.endorseNo = endorseNo;
+	}
+
+	public String getProposalNo() {
+		return proposalNo;
+	}
+
+	public void setProposalNo(String proposalNo) {
+		this.proposalNo = proposalNo;
+	}
+
+	private Connection conn = null;
+
+	@Override
+	public void run() {
+		try {
+			this.toProcessRiskNode();
+		} catch (Exception e) {
+			write = false;
+			PlCIncrementDAO plCIncrementDAO = DAOFactory.getPlcIncrecentDAO();
+			Connection conp = null;
+			try {
+				conp = ConnDB.getPharosConn();
+				plCIncrementDAO.updateStatus(conp, Long.valueOf(object_Id), Constants.INCREMENT_WRITE_BACK_STATUS_2);
+
+			} catch (Exception e2) {
+				log.error("", e2);
+			} finally {
+				if (conp != null) {
+					try {
+						conp.close();
+					} catch (SQLException e1) {
+						e1.printStackTrace();
+					}
+				}
+			}
+			log.error("", e);
+			// 记录日志到 stg_run_log 表中
+			StgRunLog stgLog = new StgRunLog();
+			stgLog.setErrorCode("1");
+			stgLog.setErrorMessage(e.toString());
+			stgLog.setObjectId(object_Id);
+			stgLog.setObjectNo(object_no);
+			RunLogDAO rld = new RunLogDAO();
+			try {
+				rld.insertLog(stgLog);
+			} catch (SQLException e2) {
+				log.error("log error:", e2);
+			} catch (NamingException e2) {
+				log.error("log error:", e2);
+			}
+		}
+
+		stopBean.setStop(stopBean.getStop() + 1);
+	}
+
+	@SuppressWarnings("unchecked")
+	public void toProcessRiskNode() throws Exception {
+		int countsOfRiskNode = riskNodeIDlist.size();
+		for (int temp = 0; temp < countsOfRiskNode; temp++) {
+			Long riskNodeid = riskNodeIDlist.get(temp);
+			BContractNode node = bContractBo.getContractNode(riskNodeid);
+			long contractId = node.getContractId();
+			// String policyNo = node.getPolicyNo();
+			String dcsNodeId = node.getDcsNodeCode();
+
+			ProductMappingBuilder singleProductMappingBuilder = new ProductMappingBuilder(PRODUCT_CD);
+			singleProductMappingBuilder.setMapDocument(MappingCacheManager.getMapping(PRODUCT_CD, PRODUCT_NODE_CD, "1_1_" + dcsNodeId));
+			BContract singleBContract = bContractBo.getContractSingleBranch(contractId, riskNodeid);
+			Map<String, String> globalDataMap = new HashMap<String, String>();
+			globalDataMap.put("policyno", policyNo);
+			globalDataMap.put("proposalno", proposalNo);
+			globalDataMap.put("endorseno", endorseNo);
+			globalDataMap.put("contractno", contractNo);
+			globalDataMap.put("nodeno", node.getNodeNo());
+			globalDataMap.put("objectid", object_Id);
+			globalDataMap.put("mainversion", node.getMainVersion() + "");
+			globalDataMap.put("version", node.getVersion() + "");
+			globalDataMap.put("subjectno", node.getDcsNodeCode());
+			globalDataMap.put("startdate", startdate);
+			globalDataMap.put("enddate", enddate);
+			globalDataMap.put("productcode", productCode);
+			singleProductMappingBuilder.setBContract(singleBContract);
+			singleProductMappingBuilder.setGlobalDataMap(globalDataMap);
+			singleProductMappingBuilder.execute();
+
+			StorageTransAction storage = new StorageTransAction();
+			storage.setConnection(conn);
+			storage.setSColumns(singleProductMappingBuilder.getResult());
+			storage.buildStatement();
+			storage.execute();
+			singleProductMappingBuilder = null;
+
+			if (Runtime.getRuntime().freeMemory() < 50 * 1024 * 1024) {
+				log.info("垃圾回收后freeMemory==========" + Runtime.getRuntime().freeMemory() / (1024 * 1024) + "M");
+				System.gc();
+			}
+			j.setNow(++countChar);
+			j.setTotal(countsOfRiskNode);
+		}
+	}
+
+}

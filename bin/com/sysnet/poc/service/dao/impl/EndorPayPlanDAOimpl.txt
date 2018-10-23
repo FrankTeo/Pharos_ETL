@@ -1,0 +1,45 @@
+package com.sysnet.poc.service.dao.impl;
+
+import java.io.Serializable;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.List;
+import com.sysnet.poc.service.dao.EndorPayPlanDAO;
+import com.sysnet.poc.vo.StgEdrPayPlan;
+
+/**
+ * 
+ * @author li_yanpeng
+ * 
+ */
+public class EndorPayPlanDAOimpl implements EndorPayPlanDAO {
+
+	private PreparedStatement pstmt = null;
+
+	public void insertEndorPayPlan(Connection conn, List<Serializable> list) throws SQLException, Exception {
+		if (list == null) {
+			throw new Exception("Class of EndorPayPlanDAOimpl mothed insertEndorPayPlan param list is null!");
+		}
+		String sql = "insert into STG_EDR_PAY_PLAN ( ENDORSE_NO, PAY_PLAN_ID, DUE_DATE, CURRENCY, PREMINUM, OVERCHARGE, " + "DISCOUNT, SURCHARGE, TIME_STAMP, TOTAL, VERSION, OBJECT_TYPE, BAT_ID, OBJECT_ID,POLICY_NO ) values ( ?, ?, ?, ?, " + "?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,?)";
+
+		StgEdrPayPlan vo = (StgEdrPayPlan) list.get(0);
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, vo.getEndorseNo());
+		pstmt.setLong(2, vo.getPayPlanId());
+		pstmt.setDate(3, vo.getDueDate());
+		pstmt.setLong(4, vo.getCurrency());
+		pstmt.setDouble(5, vo.getPreminum());
+		pstmt.setDouble(6, vo.getOvercharge());
+		pstmt.setDouble(7, vo.getDiscount());
+		pstmt.setDouble(8, vo.getSurcharge());
+		pstmt.setTimestamp(9, vo.getTimeStamp());
+		pstmt.setDouble(10, vo.getTotal());
+		pstmt.setLong(11, vo.getVersion());
+		pstmt.setString(12, vo.getObjectType());
+		pstmt.setLong(13, vo.getBatId());
+		pstmt.setLong(14, vo.getObjectId());
+		pstmt.setString(15, vo.getPolicyNo());
+		pstmt.execute();
+	}
+}

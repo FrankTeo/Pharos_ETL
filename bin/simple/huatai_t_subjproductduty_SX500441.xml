@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition description="产品责任险标的表">
+	<mapping>
+		<area description="产品责任险标的表">
+			<table tableName="T_SubjProductDuty" dataProviderType="CSNODE" as="Contract">
+				<item fieldName="PolicyNo" fieldType="String" parameterType="GLOBAL" parameter="policyno" /> <!-- 保单号 -->
+				<item fieldName="EndorseNo" fieldType="String" parameterType="GLOBAL" parameter="endorseno" /> <!-- 批单号 -->
+				<item fieldName="NodeNo" fieldType="String" parameterType="GLOBAL" parameter="nodeno" /> <!-- 节点号 -->
+				<item fieldName="ContractNo" fieldType="String" parameterType="GLOBAL" parameter="contractno" /> <!-- 合同号 -->
+				<item fieldName="SubVersionNo" fieldType="String" parameterType="GLOBAL" parameter="version" /> <!-- 版本号 -->
+				<item fieldName="ProposalNo" fieldType="String" parameterType="GLOBAL" parameter="proposalno" /> <!-- 投保单号 -->
+				<item fieldName="SubjectAddress" fieldType="String" parameterType="CSNODE" parameter="SXU00131" method="getElementByCode.getValue" /> <!-- 标的地址 -->
+				<item fieldName="InsureDistrict" fieldType="String" parameterType="CSNODE" parameter="SXU00101" method="getElementByCode.getValue" /> <!-- 承保区域 -->
+				<item fieldName="BizQuality" fieldType="String" parameterType="CSNODE" parameter="SXU00132" method="getElementByCode.getValue" /> <!-- 被保人营业性质 -->
+				<item fieldName="ProductUsage" fieldType="String" parameterType="CSNODE" parameter="SXU00133" method="getElementByCode.getValue" /> <!-- 产品用途 -->
+				<item fieldName="QualityStandard" fieldType="String" parameterType="CSNODE" parameter="SXU00134" method="getElementByCode.getValue" /> <!-- 质量标准 -->
+				<item fieldName="CertificationKind" fieldType="String" parameterType="CSNODE" parameter="SXU00135" method="getElementByCode.getValue" /> <!-- 获得何种认证 -->
+				<item fieldName="ProductDate" fieldType="Date" parameterType="CSNODE" parameter="SXU00136" method="getElementByCode.getValue" /> <!-- 投产日期 -->
+				<item fieldName="HistoryAccident" fieldType="String" parameterType="CSNODE" parameter="SXU00137" method="getElementByCode.getValue" /> <!-- 以前发生过何种事故 -->
+				<item fieldName="InsureWay" fieldType="String" parameterType="CSNODE" parameter="SXU00138" method="getElementByCode.getValue" /> <!-- 承保方式 -->
+				<item fieldName="ExceptAnnQuantity" fieldType="String" parameterType="CSNODE" parameter="SXU00140" method="getElementByCode.getValue" /> <!-- 预计年销售量 -->
+				<item fieldName="ExceptTtlCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00141" method="getElementByCode.getValue.getCurrency" /> <!-- 预计销售总额币种 -->
+				<item fieldName="ExceptTtlAmount" fieldType="Float" parameterType="CSNODE" parameter="SXU00141" method="getElementByCode.getValue.getAmount" /> <!-- 预计销售总额 -->
+				<item fieldName="AggrCmpnLmtCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00107" method="getElementByCode.getValue.getCurrency" /> <!-- 累计赔偿限额币种 -->
+				<item fieldName="AggregCmpnstLimit" fieldType="Float" parameterType="CSNODE" parameter="SXU00107" method="getElementByCode.getValue.getAmount" /> <!-- 累计赔偿限额 -->
+				<item fieldName="PerAccdLimitCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00055" method="getElementByCode.getValue.getCurrency" /> <!-- 每次事故责任限额币种 -->
+				<item fieldName="PerAccdLimit" fieldType="Float" parameterType="CSNODE" parameter="SXU00055" method="getElementByCode.getValue.getAmount" /> <!-- 每次事故责任限额 -->
+				<item fieldName="PerPrsnDthLmtCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00106" method="getElementByCode.getValue.getCurrency" /> <!-- 每人人身伤亡责任限额币种 -->
+				<item fieldName="PerPrsnDeathLimit" fieldType="Float" parameterType="CSNODE" parameter="SXU00106" method="getElementByCode.getValue.getAmount" /> <!-- 每人人身伤亡责任限额 -->
+				<item fieldName="PrePrmmDescript" fieldType="String" parameterType="CSNODE" parameter="SXU00108" method="getElementByCode.getValue" /> <!-- 预收保费描述 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" parameter="objectno" /> <!-- 对象号 -->
+			</table>
+		</area>
+	</mapping>
+</definition>

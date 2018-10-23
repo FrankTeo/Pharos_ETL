@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definition description="" productCode="506" prodectNodeCode="" version="" author="" createDate="">
+	<dataProviders>
+		<dataProvider name="root" nodeName="" providerType="CSNODE" /> <!-- CSNODE -->
+
+		<dataProvider name="Assessor" nodeName="root/Assessor" providerType="ROLE" /> <!-- 保单公估人 -->
+		<dataProvider name="PolicyOwner" nodeName="root/SXU00001" providerType="ROLE" /> <!-- 保单投保人 -->
+		<dataProvider name="Insured" nodeName="root/SXU00002" providerType="ROLE" /> <!-- 保单被保人 -->
+		<dataProvider name="Beneficiary" nodeName="root/SXU00003" providerType="ROLE" /> <!-- 保单受益人 -->
+		<dataProvider name="Payer" nodeName="root/SXU00006" providerType="ROLE" /> <!-- 保单缴款人 -->
+		<dataProvider name="SurveyAgency" nodeName="root/SXU00005" providerType="ROLE" /> <!-- 查勘代理人 -->
+		<dataProvider name="Boat" nodeName="root/SXU00005" providerType="ROLE" /> <!-- 船舶 -->
+		<dataProvider name="INSTALLMENT" nodeName="root" providerType="INSTALLMENT" />	<!-- 缴费计划 -->
+		<dataProvider name="PAYMENTSCHEDULE" nodeName="root" providerType="PAYMENTSCHEDULE" /> <!-- 缴费计划清单 -->
+		
+		<dataProvider name="SALESFEEDETAIL" nodeName="root" providerType="SALESFEEDETAIL" /> <!-- 展业费明细 -->
+		<dataProvider name="MULTICHANNELINFO" nodeName="root" providerType="MULTICHANNELINFO" /> <!-- 多渠道 -->
+		<dataProvider name="COINSURANCES" nodeName="root" providerType="COINSURANCES" /> <!-- 共保人 -->
+		<dataProvider name="JOINSURANCES" nodeName="root" providerType="JOINSURANCES" /> <!-- 联保人 -->
+		<dataProvider name="UWHISTORY" nodeName="root" providerType="UWHISTORY" /> <!-- 联保人 -->
+		<dataProvider name="NONCONDITION" nodeName="root" providerType="NONCONDITION" /> <!-- 联保人 -->
+		
+	</dataProviders>
+	<mapping>
+		<area description="合同表" include="huatai_t_contract_COMMON.xml" replace="true">
+			<table tableName="t_contract" dataProvider="BCONTRACT=publicPlaceFireLiability;CSNODE=root" as="contract" />
+		</area>
+		<area description="节点表" include="huatai_t_node_COMMON.xml" replace="true">
+			<table tableName="t_node" dataProvider="CSNODE=root" dependent="contract"></table>
+		</area>
+		<area description="CRM保单表" include="huatai_t_crm_policy_COMMON.xml" replace="true">
+			<table tableName="t_crm_policy" dataProvider="CSNODE=root;INSURED=Insured;APPLICANT=PolicyOwner" as="policy" />
+		</area>
+		<area description="CRM缴费计划表" include="huatai_t_crm_payplan_COMMON.xml" replace="true" >
+			<table tableName="t_crm_payplan" dataProvider="PAYMENTSCHEDULE=PAYMENTSCHEDULE;INSTALLMENT=INSTALLMENT" as="policy" />
+		</area>
+		<area description="保单表" include="huatai_t_policy_COMMON.xml" replace="true">
+			<table tableName="t_policy" dataProvider="CSNODE=root;INSURED=Insured;APPLICANT=PolicyOwner" as="policy" />
+		</area>
+		<area description="保单投保人表" include="huatai_t_policyapplicant_COMMON.xml" replace="true">
+			<table tableName="t_policyapplicant" dataProvider="ROLE=PolicyOwner" as="policy" />
+		</area>
+		<area description="保单被保人表" include="huatai_t_policyinsure_COMMON.xml" replace="true">
+			<table tableName="t_policyinsure" dataProvider="ROLE=Insured" as="policy" />
+		</area>
+		<area description="保单受益人表" include="huatai_t_policybeneficiary_COMMON.xml" replace="true">
+			<table tableName="t_policybeneficiary" dataProvider="ROLE=Beneficiary" as="policy" />
+		</area>
+		<area description="展业成本表" include="huatai_t_acquisitioncost_COMMON.xml" replace="true">
+			<table tableName="t_acquisitioncost" dataProvider="CSNODE=root" as="policy" />
+		</area>
+		<area description="展业成本明细表" include="huatai_t_acquisitioncostdetail_COMMON.xml" replace="true">
+			<table tableName="t_acquisitioncostdetail" dataProvider="SALESFEEDETAIL=SALESFEEDETAIL" as="policy" />
+		</area>
+		<area description="保单代理表" include="huatai_t_policyagency_COMMON.xml" replace="true">
+			<table tableName="t_policyagency" dataProvider="MULTICHANNELINFO=MULTICHANNELINFO" as="policy" />
+		</area>
+		<area description="缴费计划表" include="huatai_t_payplan_COMMON.xml" replace="true">
+			<table tableName="t_payplan" dataProvider="PAYMENTSCHEDULE=PAYMENTSCHEDULE;INSTALLMENT=INSTALLMENT" as="policy" />
+		</area>
+		<area description="共保表" include="huatai_t_coinsurance_COMMON.xml" replace="true">
+			<table tableName="t_coinsurance" dataProvider="COINSURANCES=COINSURANCES" as="policy" />
+		</area>
+		<area description="联保表" include="huatai_t_joinsurance_COMMON.xml" replace="true">
+			<table tableName="t_joinsurance" dataProvider="JOINSURANCES=JOINSURANCES" as="policy" />
+		</area>
+		<area description="标的表" include="huatai_t_subject_COMMON.xml" replace="true">
+			<table tableName="t_subject" dataProvider="CSNODE=root" as="policy" />
+		</area>
+		<area description="责任险标的表" include="huatai_t_subjduty_SX500181.xml" replace="true">
+			<table tableName="t_subjduty" dataProvider="CSNODE=root" as="policy" />
+		</area>
+		<area description="责任表" include="huatai_t_liability_COMMON.xml" replace="true">
+			<table tableName="t_liability" dataProvider="NONCONDITION=NONCONDITION" as="policy" />
+		</area>
+		<area description="保单核保表" include="huatai_t_policyunderwrite_COMMON.xml" replace="true">
+			<table tableName="t_policyunderwrite" dataProvider="UWHISTORY=UWHISTORY" as="policy" />
+		</area>
+	</mapping>
+</definition>
+

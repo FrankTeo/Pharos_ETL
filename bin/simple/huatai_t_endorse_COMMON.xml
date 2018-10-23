@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition description="批单表">
+	<mapping>
+		<area description="批单表">
+			<table tableName="T_Endorse" dataProviderType="CSNODE" as="Contract">
+				<item fieldName="EndorseNo" fieldType="String" parameterType="GLOBAL" parameter="endorseno" /> <!-- 批单号 -->
+				<item fieldName="NodeNo" fieldType="String" parameterType="GLOBAL" parameter="nodeno" /> <!-- 节点号 -->
+				<item fieldName="VersionNo" fieldType="Long" parameterType="GLOBAL" parameter="version" /> <!-- 版本号 -->
+				<item fieldName="ProposalNo" fieldType="String" parameterType="GLOBAL" parameter="proposalno" /> <!-- 投保单号 -->
+				<item fieldName="PolicyNo" fieldType="String" parameterType="GLOBAL" parameter="policyno" /> <!-- 保单号 -->
+				<item fieldName="EndorseDate" fieldType="Date" parameterType="CSNODE" method="getEndorseApplyInfo.getApplyDate" /> <!-- 批改日期 -->
+				<item fieldName="EndorseType" fieldType="String" parameterType="CSNODE" method="getEndorseApplyInfo.getEndorseType" /> <!-- 批改类型 -->
+				<!--<item fieldName="EndorseTypeA" fieldType="String" />--> <!-- 批改类型A -->
+				<item fieldName="EndorseIndex" fieldType="Long" parameterType="CSNODE" method="getEndorseIndex" /> <!-- 批改序号 -->
+				<item fieldName="ApplyName" fieldType="String" parameterType="CSNODE" method="getEndorseApplyInfo.getApplyPerson" /> <!-- 申请人 -->
+				<item fieldName="ApplyPhone" fieldType="String" parameterType="CSNODE" method="getEndorseApplyInfo.getApplyPersonTel" /> <!-- 申请人电话 -->
+				<item fieldName="ApplyReason" fieldType="String" parameterType="CSNODE" method="getEndorseApplyInfo.getApplyReason" /> <!-- 申请原因 -->
+				<item fieldName="UnderWriteDate" fieldType="Date" parameterType="CSNODE" method="getFinalUnderwriteTime" /> <!-- 核保日期 -->
+				<item fieldName="IssueDate" fieldType="Date" parameterType="CSNODE" method="getIssueDate" /> <!-- 签单日期 -->
+				<item fieldName="EffectDate" fieldType="Date" parameterType="CSNODE" method="getEndorseApplyInfo.getValidDate" /> <!-- 生效日期 -->
+				<!--<item fieldName="PreStartDate" fieldType="Date" />--> <!-- 批改前起期 -->
+				<!--<item fieldName="PreEndDate" fieldType="Date" />--> <!-- 批改前止期 -->
+				<item fieldName="PostStartDate" fieldType="Date" parameterType="CSNODE" method="getOriginalDate" /> <!-- 批改后起期 -->
+				<item fieldName="PostEndDate" fieldType="Date" parameterType="GLOBAL" parameter="enddate" /> <!-- 批改后止期 -->
+				<item fieldName="PreCoverage" fieldType="Float" parameterType="CSNODE" method="getPreInsuredValueMoney.getAmount" /> <!-- 批改前保额 -->
+				<item fieldName="PostCoverage" fieldType="Float" parameterType="CSNODE" method="getInsuredValueMoney.getAmount" /> <!-- 批改后保额 -->
+				<item fieldName="PreQuota" fieldType="Float" parameterType="CSNODE" method="getPreInsuredValueMoney.getAmount" /> <!-- 批改前限额 -->
+				<item fieldName="PostQuota" fieldType="Float" parameterType="CSNODE" method="getInsuredValueMoney.getAmount" /> <!-- 批改后限额 -->
+				<item fieldName="PrePermium" fieldType="Float" parameterType="CSNODE" method="getPrePremiumValueMoney.getAmount" /> <!-- 批改前保费 -->
+				<item fieldName="PostPermium" fieldType="Float" parameterType="CSNODE" method="getPremiumValueMoney.getAmount" /> <!-- 批改后保费 -->
+				<item fieldName="CoverageChange" fieldType="Float" parameterType="CSNODE" method="getChangeInsuredValueMoney.getAmount" /> <!-- 保额变化 -->
+				<item fieldName="QuotaChange" fieldType="Float" parameterType="CSNODE" method="getChangeInsuredValueMoney.getAmount" /> <!-- 限额变化 -->
+				<item fieldName="PermiumChange" fieldType="Float" parameterType="CSNODE" method="getChangePremiumValueMoney.getAmount" /> <!-- 保费变化 -->
+				<item fieldName="EndorseContext" fieldType="String" parameterType="CSNODE" method="getEndorseText" /> <!-- 批文 -->
+				<item fieldName="AcquisitionBranch" fieldType="String" parameterType="CSNODE" method="getBizCompanyNodeCode" /> <!-- 保单归属机构 -->
+				<!--<item fieldName="TRANSFER_EDR_TYP" fieldType="String" />--> <!-- 批改类型 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" parameter="objectno" /> <!-- 对象号 -->
+				<!--<item fieldName="Remark" fieldType="String" />--> <!-- 备注 -->
+				<!--<item fieldName="CrtTime" fieldType="Date" />--> <!-- 创建时间 -->
+				<!--<item fieldName="MdfTime" fieldType="Date" />--> <!-- 修改时间 -->
+			</table>
+		</area>
+	</mapping>
+</definition>

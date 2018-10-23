@@ -1,0 +1,61 @@
+package com.sysnet.poc.service.dao;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import javax.naming.NamingException;
+
+import org.apache.commons.logging.Log;
+
+import com.sysnet.poc.control.manage.vo.ConfigureBean;
+import com.sysnet.poc.service.dao.dbc.ConnDB;
+import com.sysnet.poc.util.DateHelper;
+import com.sysnet.poc.util.OdsLogger;
+
+public class EtlBatDAO {
+	private static final Log log = OdsLogger.getLog("rLog4j", "R");
+
+	public ConfigureBean getConfigure() throws NamingException, SQLException {
+		Connection conn = null;
+		Statement stmt = null;
+		ConfigureBean configureBean = null;
+		try {
+
+			int currentHour = DateHelper.getHour();
+			conn = ConnDB.getODSConn();
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("select * from ETL_STAGE_ETL_BAT_CONFIG where START_TIME<=" + currentHour + " and END_TIME>" + currentHour);
+			while (rs.next()) {
+				configureBean = new ConfigureBean();
+				configureBean.setSTART_TIME(rs.getString("start_time"));
+				configureBean.setEND_TIME(rs.getString("end_time"));
+				configureBean.setDEAL_COUNT(rs.getString("deal_count"));
+				configureBean.setEXCEPT_MAX_THREAD_COUNT(rs.getInt("except_max_thread_count"));
+				configureBean.setGENERAL_MAX_THREAD_COUNT(rs.getInt("general_max_thread_count"));
+				configureBean.setEXCEPT_SLEEP_MILLIS_COUNT(rs.getInt("except_sleep_millis_count"));
+				configureBean.setGENERAL_SLEEP_MILLIS_COUNT(rs.getInt("general_sleep_millis_count"));
+			}
+			return configureBean;
+		} catch (NamingException ex) {
+
+			throw ex;
+		} catch (SQLException ex) {
+			throw ex;
+		} finally {
+			try {
+
+				if (stmt != null) {
+					stmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e) {
+				log.error("查询数据库,根据数据库的配置表ETL_STAGE_ETL_BAT_CONFIG决定取到处理多少个处理线程等信息出错!", e);
+				e.printStackTrace();
+			}
+		}
+	}
+}

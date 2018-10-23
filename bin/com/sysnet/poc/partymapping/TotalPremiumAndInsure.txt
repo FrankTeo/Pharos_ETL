@@ -1,0 +1,66 @@
+ package com.sysnet.poc.partymapping;
+
+ import java.util.List;
+ import pharos.ctm.vo.BContractNode;
+ import pharos.framework.base.Money;
+ import pharos.framework.base.MultiMoney;
+
+ public class TotalPremiumAndInsure {
+ /**
+ * 得到所有风险结点
+ * @param startNode
+ * @param riskNodeList
+ */
+ public void getRiskNode(BContractNode startNode, List<BContractNode>
+ riskNodeList) {
+ if(startNode.getRiskLevelFlag() == 0) {
+ riskNodeList.add(startNode);
+ }
+ for(BContractNode child : startNode.getChildContractNodes()) {
+ this.getRiskNode(child, riskNodeList);
+ }
+ }
+	
+	
+ /**
+ * 汇总保费
+ * @param riskNodeList
+ * @return
+ */
+ public MultiMoney getTotalPremiumValue(List<BContractNode> riskNodeList) {
+ MultiMoney totalPremium = new MultiMoney();
+ for(BContractNode riskNode : riskNodeList) {
+ totalPremium.addMultiMoney(riskNode.getTotal().getPremium());
+ }
+		
+ return totalPremium;
+ }
+	
+	
+ /**
+ * 汇总保额
+ * @param riskNodeList
+ * @return
+ */
+ public MultiMoney getTotalInsuredValue(List<BContractNode> riskNodeList) {
+ MultiMoney totalPremium = new MultiMoney();
+ for(BContractNode riskNode : riskNodeList) {
+ totalPremium.addMultiMoney(riskNode.getTotal().getInsuredValue());
+ }
+		
+ return totalPremium;
+ }
+	
+ /**
+ * 取总保费或总保额
+ * @param riskNodeList
+ * @return
+ */
+ public double getTotalP_I(MultiMoney totalPremium )
+ {
+ Money m = totalPremium.total();
+ return m.getAmount();
+ }
+	
+
+ }

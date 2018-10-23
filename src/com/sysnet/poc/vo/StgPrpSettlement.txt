@@ -1,0 +1,234 @@
+package com.sysnet.poc.vo;
+
+import java.sql.*;
+
+/**
+ * StgPrpSettlement entity.
+ * 
+ * @author MyEclipse Persistence Tools
+ */
+
+public class StgPrpSettlement implements java.io.Serializable {
+
+	// Fields
+
+	// 采购单位地址
+	private String buyerUnitAddress;
+	// 采购单位联系人
+	private String buyerLinker;
+	// 采购单位联系人电话
+	private String buyerPhone;
+	// 采购单位联系人手机
+	private String buyerMobile;
+	// 采购单位级别
+	private Long buyerUnitRank;
+	// 采购单位传真
+	private String buyerFax;
+	// 保险联系人代码
+	private Long contractorCode;
+	// 保险联系人姓名
+	private String contractorName;
+	// 保险联系人电话
+	private String contractorTele;
+	// 保险联系人手机
+	private String contractorMobile;
+	// 保险联系人传真
+	private String contractorFax;
+	// 1：预算内 2：预算外 3：自筹 4：其他
+	private String capitalStructure;
+	// 采购单位代码/名称
+	private String buyerUnitCodeName;
+	// 采购单位上级代码/名称
+	private String upperUnitCodeName;
+	// 对象序号
+	private Long objectId;
+	// 对象类型
+	private String objectType;
+	// 批次序号
+	private Long batId;
+	// 时间戳
+	private Date timeStamp;
+	// 保单CD
+	private String policyNo;
+	// 标的序列号
+	private Long itemNo;
+	// 投保单号
+	private String proposalNo;
+
+	// Constructors
+
+	/** default constructor */
+	public StgPrpSettlement() {
+	}
+
+	// Property accessors
+
+	public String getBuyerUnitAddress() {
+		return this.buyerUnitAddress;
+	}
+
+	public void setBuyerUnitAddress(String buyerUnitAddress) {
+		this.buyerUnitAddress = buyerUnitAddress;
+	}
+
+	public String getBuyerLinker() {
+		return this.buyerLinker;
+	}
+
+	public void setBuyerLinker(String buyerLinker) {
+		this.buyerLinker = buyerLinker;
+	}
+
+	public String getBuyerPhone() {
+		return this.buyerPhone;
+	}
+
+	public void setBuyerPhone(String buyerPhone) {
+		this.buyerPhone = buyerPhone;
+	}
+
+	public String getBuyerMobile() {
+		return this.buyerMobile;
+	}
+
+	public void setBuyerMobile(String buyerMobile) {
+		this.buyerMobile = buyerMobile;
+	}
+
+	public Long getBuyerUnitRank() {
+		return this.buyerUnitRank;
+	}
+
+	public void setBuyerUnitRank(Long buyerUnitRank) {
+		this.buyerUnitRank = buyerUnitRank;
+	}
+
+	public String getBuyerFax() {
+		return this.buyerFax;
+	}
+
+	public void setBuyerFax(String buyerFax) {
+		this.buyerFax = buyerFax;
+	}
+
+	public Long getContractorCode() {
+		return this.contractorCode;
+	}
+
+	public void setContractorCode(Long contractorCode) {
+		this.contractorCode = contractorCode;
+	}
+
+	public String getContractorName() {
+		return this.contractorName;
+	}
+
+	public void setContractorName(String contractorName) {
+		this.contractorName = contractorName;
+	}
+
+	public String getContractorTele() {
+		return this.contractorTele;
+	}
+
+	public void setContractorTele(String contractorTele) {
+		this.contractorTele = contractorTele;
+	}
+
+	public String getContractorMobile() {
+		return this.contractorMobile;
+	}
+
+	public void setContractorMobile(String contractorMobile) {
+		this.contractorMobile = contractorMobile;
+	}
+
+	public String getContractorFax() {
+		return this.contractorFax;
+	}
+
+	public void setContractorFax(String contractorFax) {
+		this.contractorFax = contractorFax;
+	}
+
+	public String getCapitalStructure() {
+		return this.capitalStructure;
+	}
+
+	public void setCapitalStructure(String capitalStructure) {
+		this.capitalStructure = capitalStructure;
+	}
+
+	public String getBuyerUnitCodeName() {
+		return this.buyerUnitCodeName;
+	}
+
+	public void setBuyerUnitCodeName(String buyerUnitCodeName) {
+		this.buyerUnitCodeName = buyerUnitCodeName;
+	}
+
+	public String getUpperUnitCodeName() {
+		return this.upperUnitCodeName;
+	}
+
+	public void setUpperUnitCodeName(String upperUnitCodeName) {
+		this.upperUnitCodeName = upperUnitCodeName;
+	}
+
+	public Long getObjectId() {
+		return this.objectId;
+	}
+
+	public void setObjectId(Long objectId) {
+		this.objectId = objectId;
+	}
+
+	public String getObjectType() {
+		return this.objectType;
+	}
+
+	public void setObjectType(String objectType) {
+		this.objectType = objectType;
+	}
+
+	public Long getBatId() {
+		return this.batId;
+	}
+
+	public void setBatId(Long batId) {
+		this.batId = batId;
+	}
+
+	public Date getTimeStamp() {
+		return this.timeStamp;
+	}
+
+	public void setTimeStamp(Date timeStamp) {
+		this.timeStamp = timeStamp;
+	}
+
+	public String getPolicyNo() {
+		return policyNo;
+	}
+
+	public void setPolicyNo(String policyNo) {
+		this.policyNo = policyNo;
+	}
+
+	public Long getItemNo() {
+		return itemNo;
+	}
+
+	public void setItemNo(Long itemNo) {
+		this.itemNo = itemNo;
+	}
+
+	public String getProposalNo() {
+		return proposalNo;
+	}
+
+	public void setProposalNo(String proposalNo) {
+		this.proposalNo = proposalNo;
+	}
+
+}

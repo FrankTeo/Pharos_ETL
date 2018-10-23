@@ -1,0 +1,464 @@
+package com.sysnet.poc.service.collection.acc;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.commons.logging.Log;
+
+import pharos.account.bo.ITransactionBO;
+import pharos.account.vo.accountstructure.AccountCostCenter;
+import pharos.account.vo.accountstructure.AccountDetail;
+import pharos.account.vo.accountstructure.AccountInstallment;
+import pharos.account.vo.accountstructure.AccountLOI;
+import pharos.account.vo.accountstructure.AccountRisk;
+import pharos.account.vo.accountstructure.AccountTransaction;
+import pharos.account.vo.accountstructure.DynamicInstallment;
+import pharos.account.vo.accountstructure.InstallmentDetail;
+import pharos.account.vo.accountstructure.Instrument;
+
+import com.sysnet.poc.control.manage.vo.EtlPharosIncrAcc;
+import com.sysnet.poc.util.DateHelper;
+import com.sysnet.poc.util.OdsLogger;
+import com.sysnet.poc.util.PharosServiceContainer;
+import com.sysnet.poc.vo.StgAccAmontloi;
+import com.sysnet.poc.vo.StgAccDyinstallment;
+import com.sysnet.poc.vo.StgAccInstall;
+import com.sysnet.poc.vo.StgAccInstalldetail;
+import com.sysnet.poc.vo.StgAccInstrument;
+import com.sysnet.poc.vo.StgAccRisk;
+import com.sysnet.poc.vo.StgAccTrans;
+import com.sysnet.poc.vo.StgAccTranscostcentre;
+import com.sysnet.poc.vo.StgAccTransdetail;
+
+public class AccTransCollection {
+
+	private static final Log log = OdsLogger.getLog("accLog4j", "ACC");
+	private StgAccTrans stgAccTrans = null;
+	private ArrayList<StgAccTransdetail> stgAccTransdetail = null;
+	private ArrayList<StgAccAmontloi> stgAccAmontloiList;
+	private ArrayList<StgAccRisk> stgAccRiskList;
+	private StgAccDyinstallment stgAccDyinstallment;
+	private ArrayList<StgAccInstall> stgAccInstallList;
+	private ArrayList<StgAccInstalldetail> stgAccInstalldetailList;
+	private ArrayList<StgAccInstrument> stgAccInstrumentList;
+	private ArrayList<StgAccTranscostcentre> stgAccTranscostcentreList;
+
+	public StgAccTrans getStgAccTrans() {
+		return stgAccTrans;
+	}
+
+	public void setStgAccTrans(StgAccTrans stgAccTrans) {
+		this.stgAccTrans = stgAccTrans;
+	}
+
+	public ArrayList<StgAccTransdetail> getStgAccTransdetail() {
+		return stgAccTransdetail;
+	}
+
+	public void setStgAccTransdetail(ArrayList<StgAccTransdetail> stgAccTransdetail) {
+		this.stgAccTransdetail = stgAccTransdetail;
+	}
+
+	public ArrayList<StgAccAmontloi> getStgAccAmontloiList() {
+		return stgAccAmontloiList;
+	}
+
+	public void setStgAccAmontloiList(ArrayList<StgAccAmontloi> stgAccAmontloiList) {
+		this.stgAccAmontloiList = stgAccAmontloiList;
+	}
+
+	public ArrayList<StgAccRisk> getStgAccRiskList() {
+		return stgAccRiskList;
+	}
+
+	public void setStgAccRiskList(ArrayList<StgAccRisk> stgAccRiskList) {
+		this.stgAccRiskList = stgAccRiskList;
+	}
+
+	public StgAccDyinstallment getStgAccDyinstallment() {
+		return stgAccDyinstallment;
+	}
+
+	public void setStgAccDyinstallment(StgAccDyinstallment stgAccDyinstallment) {
+		this.stgAccDyinstallment = stgAccDyinstallment;
+	}
+
+	public ArrayList<StgAccInstall> getStgAccInstallList() {
+		return stgAccInstallList;
+	}
+
+	public void setStgAccInstallList(ArrayList<StgAccInstall> stgAccInstallList) {
+		this.stgAccInstallList = stgAccInstallList;
+	}
+
+	public ArrayList<StgAccInstalldetail> getStgAccInstalldetailList() {
+		return stgAccInstalldetailList;
+	}
+
+	public void setStgAccInstalldetailList(ArrayList<StgAccInstalldetail> stgAccInstalldetailList) {
+		this.stgAccInstalldetailList = stgAccInstalldetailList;
+	}
+
+	public ArrayList<StgAccInstrument> getStgAccInstrumentList() {
+		return stgAccInstrumentList;
+	}
+
+	public void setStgAccInstrumentList(ArrayList<StgAccInstrument> stgAccInstrumentList) {
+		this.stgAccInstrumentList = stgAccInstrumentList;
+	}
+
+	public ArrayList<StgAccTranscostcentre> getStgAccTranscostcentreList() {
+		return stgAccTranscostcentreList;
+	}
+
+	public void setStgAccTranscostcentreList(ArrayList<StgAccTranscostcentre> stgAccTranscostcentreList) {
+		this.stgAccTranscostcentreList = stgAccTranscostcentreList;
+	}
+
+	public AccTransCollection(EtlPharosIncrAcc ec) {
+		String objNo = ec.getObjectNo();
+
+		PharosServiceContainer pc = PharosServiceContainer.Instance();
+		// 首付费主表服务
+		// long times = System.currentTimeMillis();
+		// log.info(times);
+		ITransactionBO transactionBO = pc.getITransactionBO();
+		AccountTransaction account = transactionBO.getTransactionAllByTransNo(objNo);
+		// log.info(System.currentTimeMillis() - times);
+		this.setAccTrans(account, ec);
+		this.setAcctrandetail(account, ec);
+		this.setAccamountLoi(account, ec);
+		this.setAccrisk(account, ec);
+		this.setDynamicinstallments(account, ec);
+		this.setAccinstallment(account, ec);
+		this.setAccinstrument(account, ec);
+		this.setAcctranscostcentre(account, ec);
+
+	}
+
+	private void setAccTrans(AccountTransaction account, EtlPharosIncrAcc ec) {
+
+		this.stgAccTrans = new StgAccTrans();
+		this.stgAccTrans.setTransId(account.getId());
+		this.stgAccTrans.setAccountSource(new Long(account.getAccountSource()));
+		this.stgAccTrans.setTransactionType(new Long(account.getTransactionType()));
+		this.stgAccTrans.setStatus(new Long(account.getStatus()));
+		this.stgAccTrans.setIsincremental(new Long(account.isIncremental() ? 1 : 0));
+		this.stgAccTrans.setElementType(new Long(account.getElementType()));
+		this.stgAccTrans.setAccountDate(DateHelper.getSqlDate(account.getAccountDate()));
+		this.stgAccTrans.setTransactionNo(account.getTransactionNo());
+		this.stgAccTrans.setPrePrintedNum(account.getPrePrintedNumber());
+		this.stgAccTrans.setCurrency(new Long(account.getCurrency()));
+		this.stgAccTrans.setOriginalAmount(account.getOriginalAmount());
+		this.stgAccTrans.setAppliedAmount(account.getAppliedAmout());
+		this.stgAccTrans.setDocType(new Long(account.getDocument().getType()));
+		this.stgAccTrans.setContractNo(account.getContractNo());
+		this.stgAccTrans.setNodeNo(account.getNodeNo());
+		this.stgAccTrans.setProposalNo(account.getProposalNo());
+		this.stgAccTrans.setCertificationNo(account.getCertificationNo());
+		this.stgAccTrans.setIssueDate(DateHelper.getSqlDate(account.getIssueDate()));
+		this.stgAccTrans.setAppliedDate(DateHelper.getSqlDate(account.getAppliedDate()));
+		this.stgAccTrans.setRemoved(new Long(0));
+		this.stgAccTrans.setIncrementalNo(account.getIncrementalId());
+		this.stgAccTrans.setRefNo(account.getRefNo());
+		this.stgAccTrans.setAddParty(account.getAddParty());
+		this.stgAccTrans.setUserId(account.getCreateUserId());
+		this.stgAccTrans.setConceptFlag(new Long(account.getConcept()));
+		this.stgAccTrans.setProductCode(account.getProductCode());
+		this.stgAccTrans.setCsCode(account.getCsCode());
+		this.stgAccTrans.setCreateUserId(account.getCreateUserId());
+		this.stgAccTrans.setCreateDateTime(DateHelper.getSqlDate(account.getCreateDate()));
+		this.stgAccTrans.setChangeUserId(account.getChangeUserId());
+		this.stgAccTrans.setChangeDateTime(DateHelper.getSqlDate(account.getChangeDate()));
+		this.stgAccTrans.setBusinessCompanyCode(account.getBusinessCompanyCode());
+		this.stgAccTrans.setBusinessCompanyNodeCode(account.getBusinessCompanyNodeCode());
+		this.stgAccTrans.setClaimtransId(account.getClaimTranId());
+		this.stgAccTrans.setTaxZone(account.getTaxZone());
+		this.stgAccTrans.setAccountingNodeNo(account.getAccountingNodeNo());
+		this.stgAccTrans.setStartDate(DateHelper.getSqlDate(account.getStartDate()));
+		this.stgAccTrans.setEndDate(DateHelper.getSqlDate(account.getEndDate()));
+		// this.stgAccTrans.setOriginalStartDate(account);
+		// this.stgAccTrans.setOriginalEndDate(account.get);
+		this.stgAccTrans.setPaymentDay(new Long(account.getPaymentDay()));
+		this.stgAccTrans.setMainVersion(new Long(account.getMainVersion()));
+		this.stgAccTrans.setVersion(new Long(account.getVersion()));
+		this.stgAccTrans.setSecurity(new Long(account.isSecurity() ? 1 : 0));
+		// this.stgAccTrans.setAppliedRecall(account.getAppliedRecall());
+		this.stgAccTrans.setProductNodeCode(account.getProductNodeCode());
+		this.stgAccTrans.setClaimno(account.getClaimNo());
+		this.stgAccTrans.setMainCostCenter(new Long(account.getMainCostCenter()));
+		this.stgAccTrans.setExpenseTransno(account.getExpenseTransNo());
+		this.stgAccTrans.setIssimple(new Long(account.isSimple() ? 1 : 0));
+		this.stgAccTrans.setUpfront(new Long(account.isUpFront() ? 1 : 0));
+		this.stgAccTrans.setInterestCurrency(String.valueOf(account.getInterestCurrency()));
+		this.stgAccTrans.setInterestAmount(account.getInterestAmount());
+		this.stgAccTrans.setUserCompanyCode(account.getUserCompanyCode());
+		this.stgAccTrans.setUserCompanyNodeCode(account.getUserCompanyNodeCode());
+		this.stgAccTrans.setPolicyNo(account.getPolicyNo());
+		this.stgAccTrans.setPaymentMode(new Long(account.getPaymentmode()));
+		this.stgAccTrans.setOwnerId(account.getOwnerID());
+		this.stgAccTrans.setIsSendRei(new Long(account.isSendRei() ? 1 : 0));
+		this.stgAccTrans.setCommissionRate(account.getCommissionRate());
+		this.stgAccTrans.setExchangeDate(DateHelper.getSqlDate(account.getExchangeDate()));
+		this.stgAccTrans.setObjectType(String.valueOf(ec.getObjectType()));
+		this.stgAccTrans.setTimeStamp(ec.getTimeStamp());
+		this.stgAccTrans.setBatId(ec.getBatId());
+		this.stgAccTrans.setObjectId(ec.getObjectId());
+	}
+
+	private void setAcctrandetail(AccountTransaction account, EtlPharosIncrAcc ec) {
+
+		this.stgAccTransdetail = new ArrayList<StgAccTransdetail>();
+
+		List<AccountDetail> detailList = account.getTransDetails();
+		if (detailList == null || detailList.size() == 0) {
+			return;
+		} else {
+
+			for (AccountDetail vo : detailList) {
+				StgAccTransdetail detail = new StgAccTransdetail();
+				detail.setTransDetailId(vo.getId());
+				detail.setTransId(account.getId());
+				detail.setOriginalAmount(vo.getOriginalAmount());
+				detail.setAppliedAmount(vo.getAppliedAmount());
+				detail.setBaseAmount(vo.getBaseAmount());
+				detail.setAmountGroup(new Long(vo.getAmountType().getGroup()));
+				detail.setAmountType(new Long(vo.getAmountType().getType()));
+				detail.setRemoved(new Long(0));
+				detail.setTimeStamp(ec.getTimeStamp());
+				detail.setBatId(ec.getBatId());
+				detail.setObjectId(ec.getObjectId());
+				detail.setObjectType(String.valueOf(ec.getObjectType()));
+				this.stgAccTransdetail.add(detail);
+			}
+		}
+
+	}
+
+	private void setAccamountLoi(AccountTransaction account, EtlPharosIncrAcc ec) {
+
+		this.stgAccAmontloiList = new ArrayList<StgAccAmontloi>();
+
+		List<AccountLOI> loiList = account.getLOIs();
+		if (loiList == null || loiList.size() == 0) {
+			return;
+		} else {
+
+			for (AccountLOI vo : loiList) {
+				StgAccAmontloi loi = new StgAccAmontloi();
+				loi.setAmontloiId(String.valueOf(vo.getId()));
+				loi.setTransId(account.getId());
+				loi.setLoi(new Long(vo.getLOI()));
+				loi.setAmountType(new Long(vo.getAmountType()));
+				loi.setAmount(vo.getAmount());
+				loi.setRemoved(new Long(0));
+				loi.setBatId(ec.getBatId());
+				loi.setObjectId(ec.getObjectId());
+				loi.setObjectType(String.valueOf(ec.getObjectType()));
+				loi.setTimeStamp(ec.getTimeStamp());
+				this.stgAccAmontloiList.add(loi);
+			}
+		}
+
+	}
+
+	private void setAccrisk(AccountTransaction account, EtlPharosIncrAcc ec) {
+
+		this.stgAccRiskList = new ArrayList<StgAccRisk>();
+
+		List<AccountRisk> riskList = account.getRisks();
+		if (riskList == null || riskList.size() == 0) {
+			return;
+		} else {
+			for (AccountRisk vo : riskList) {
+				StgAccRisk risk = new StgAccRisk();
+				risk.setRiskId(vo.getId());
+				risk.setTransId(account.getId());
+				risk.setAmount(vo.getAmount());
+				risk.setAmountType(String.valueOf(vo.getAmountType()));
+				risk.setRisk(new Long(vo.getRisk()));
+				risk.setRemoved(new Long(0));
+				risk.setTimeStamp(ec.getTimeStamp());
+				risk.setBatId(ec.getBatId());
+				risk.setObjectId(ec.getObjectId());
+				risk.setObjectType(String.valueOf(ec.getObjectType()));
+				this.stgAccRiskList.add(risk);
+			}
+		}
+	}
+
+	/**
+	 * T_ACCDYINSTALLMENT 动态缴费
+	 * 
+	 * @param account
+	 * @param ec
+	 */
+	private void setDynamicinstallments(AccountTransaction account, EtlPharosIncrAcc ec) {
+		DynamicInstallment vo = account.getDynamicInstallment();
+		if (vo != null) {
+			this.stgAccDyinstallment.setDyinstallmentId(vo.getId());
+			this.stgAccDyinstallment.setTransId(account.getId());
+			this.stgAccDyinstallment.setDays(new Long(vo.getDays()));
+			this.stgAccDyinstallment.setAmount(vo.getAmount());
+			this.stgAccDyinstallment.setDailyAmount(vo.getDailyAmount());
+			this.stgAccDyinstallment.setDailyContract(vo.getDailyamountOfContract());
+			this.stgAccDyinstallment.setPartialAmount(vo.getPartialAmount());
+			this.stgAccDyinstallment.setTotalAmount(vo.getTotalAmount());
+			this.stgAccDyinstallment.setRemoved(new Long(0));
+			this.stgAccDyinstallment.setObjectId(ec.getObjectId());
+			this.stgAccDyinstallment.setObjectType(String.valueOf(ec.getObjectType()));
+			this.stgAccDyinstallment.setTimeStamp(ec.getTimeStamp());
+			this.stgAccDyinstallment.setBatId(ec.getBatId());
+		}
+
+	}
+
+	/**
+	 * T_ACCINSTRUMENT 收付方式
+	 * 
+	 * @param account
+	 * @param ec
+	 */
+	private void setAccinstallment(AccountTransaction account, EtlPharosIncrAcc ec) {
+
+		this.stgAccInstallList = new ArrayList<StgAccInstall>();
+
+		List<AccountInstallment> mentList = account.getInstallments();
+		if (mentList == null || mentList.size() == 0) {
+			return;
+		} else {
+
+			for (AccountInstallment vo : mentList) {
+				StgAccInstall install = new StgAccInstall();
+				install.setInstallId(vo.getId());
+				install.setTransId(account.getId());
+				install.setDueDate(DateHelper.getSqlDate(vo.getDueDate()));
+				install.setPaidDate(DateHelper.getSqlDate(vo.getPaidDate()));
+				install.setDueAmount(vo.getDueAmount());
+				install.setAppliedAmount(vo.getAppliedAmount());
+				install.setRemoved(new Long(0));
+				install.setPartyCode(String.valueOf(vo.getPayNo()));
+				install.setSeqNo(new Long(vo.getSeqNo()));
+				install.setObjectId(ec.getObjectId());
+				install.setObjectType(String.valueOf(ec.getObjectType()));
+				install.setTimeStamp(ec.getTimeStamp());
+				install.setBatId(ec.getBatId());
+				this.setAccinstalldetail(vo, ec);
+				this.stgAccInstallList.add(install);
+			}
+
+		}
+
+	}
+
+	/**
+	 * T_ACCINSTALLDETAIL 缴费计划明细
+	 * 
+	 * @param ment
+	 * @param ec
+	 */
+	private void setAccinstalldetail(AccountInstallment ment, EtlPharosIncrAcc ec) {
+
+		this.stgAccInstalldetailList = new ArrayList<StgAccInstalldetail>();
+
+		List<InstallmentDetail> detailList = ment.getInstallmentDetails();
+		if (detailList == null || detailList.size() == 0) {
+			return;
+		} else {
+
+			for (InstallmentDetail vo : detailList) {
+				StgAccInstalldetail detail = new StgAccInstalldetail();
+				detail.setInstallDetailId(String.valueOf(vo.getId()));
+				detail.setInstallId(ment.getId());
+				detail.setOriginalAmount(vo.getOriginalAmount());
+				detail.setAppliedAmount(vo.getAppliedAmount());
+				detail.setBaseAmount(vo.getBaseAmount());
+				detail.setAmountGroup(new Long(vo.getAmountType().getGroup()));
+				detail.setAmountType(new Long(vo.getAmountType().getType()));
+				detail.setRemoved(new Long(0));
+				detail.setObjectId(ec.getObjectId());
+				detail.setObjectType(String.valueOf(ec.getObjectType()));
+				detail.setTimeStamp(ec.getTimeStamp());
+				detail.setBatId(ec.getBatId());
+				this.stgAccInstalldetailList.add(detail);
+			}
+		}
+	}
+
+	/**
+	 * T_ACCINSTRUMENT 收付方式
+	 * 
+	 * @param account
+	 * @param ec
+	 */
+	private void setAccinstrument(AccountTransaction account, EtlPharosIncrAcc ec) {
+
+		this.stgAccInstrumentList = new ArrayList<StgAccInstrument>();
+
+		List<Instrument> instrList = account.getInstruments();
+		if (instrList == null || instrList.size() == 0) {
+			return;
+		} else {
+
+			for (Instrument vo : instrList) {
+				StgAccInstrument instr = new StgAccInstrument();
+				instr.setInstrumentId(vo.getId());
+				instr.setTransId(account.getId());
+				instr.setPaymentType(new Long(vo.getPaymentType()));
+				instr.setInstrumentNumber(vo.getInstrumntNumber());
+				instr.setRoleId(new Long(vo.getRoleId()));
+				instr.setPartyCode(vo.getPartyCode());
+				instr.setCurrency(new Long(vo.getCurrency()));
+				instr.setAmount(vo.getAmount());
+				instr.setCommision(vo.getCommision());
+				instr.setTaxBase(vo.getTaxBase());
+				instr.setAccountNumber(vo.getAccountNumber());
+				instr.setRemoved(new Long(0));
+				instr.setAccountName(vo.getAccountName());
+				instr.setIscashbox(new Long(vo.isCashBox() ? 1 : 0));
+				instr.setCheckBook(vo.getCheckBook());
+				instr.setObjectId(ec.getObjectId());
+				instr.setObjectType(String.valueOf(ec.getObjectType()));
+				instr.setTimeStamp(ec.getTimeStamp());
+				instr.setBatId(ec.getBatId());
+				this.stgAccInstrumentList.add(instr);
+			}
+		}
+
+	}
+
+	/**
+	 * T_ACCTRANSCOSTCENTRE 支付中心
+	 * 
+	 * @param account
+	 * @param ec
+	 */
+	private void setAcctranscostcentre(AccountTransaction account, EtlPharosIncrAcc ec) {
+
+		this.stgAccTranscostcentreList = new ArrayList<StgAccTranscostcentre>();
+
+		List<AccountCostCenter> centerList = account.getAccountCostCenter();
+
+		if (centerList == null || centerList.size() == 0) {
+			return;
+		} else {
+
+			for (AccountCostCenter vo : centerList) {
+				StgAccTranscostcentre center = new StgAccTranscostcentre();
+				center.setTranscostcentreId(vo.getId());
+				center.setTransId(account.getId());
+				center.setRemoved(new Long(0));
+				center.setSubCostCenter(new Long(vo.getSubCostCenter()));
+				center.setPercentage(vo.getPercentage());
+				center.setAmount(vo.getAmount());
+				center.setObjectType(String.valueOf(ec.getObjectType()));
+				center.setTimeStamp(ec.getTimeStamp());
+				center.setBatId(ec.getBatId());
+				center.setObjectId(ec.getObjectId());
+				this.stgAccTranscostcentreList.add(center);
+			}
+		}
+
+	}
+
+}

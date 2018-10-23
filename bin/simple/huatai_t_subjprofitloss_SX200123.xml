@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition description="利益损失标的表">
+	<mapping>
+		<area description="利益损失标的表">
+			<table tableName="T_SubjProfitLoss" dataProviderType="CSNODE" as="Contract">
+				<item fieldName="PolicyNo" fieldType="String" parameterType="GLOBAL" parameter="policyno" /> <!-- 保单号 -->
+				<item fieldName="EndorseNo" fieldType="String" parameterType="GLOBAL" parameter="endorseno" /> <!-- 批单号 -->
+				<item fieldName="NodeNo" fieldType="String" parameterType="GLOBAL" parameter="nodeno" /> <!-- 节点号 -->
+				<item fieldName="ContractNo" fieldType="String" parameterType="GLOBAL" parameter="contractno" /> <!-- 合同号 -->
+				<item fieldName="SubVersionNo" fieldType="String" parameterType="GLOBAL" parameter="version" /> <!-- 版本号 -->
+				<item fieldName="ProposalNo" fieldType="String" parameterType="GLOBAL" parameter="proposalno" /> <!-- 投保单号 -->
+				<item fieldName="InsureProjectName" fieldType="String" parameterType="CSNODE" parameter="SXU00642" method="getElementByCode.getValue" /> <!-- 保险项目名称 -->
+				<item fieldName="ProjectTrade" fieldType="String" parameterType="CSNODE" parameter="SXU00643" method="getElementByCode.getValue" /> <!-- 项目所属行业 -->
+				<item fieldName="ProjectExecuteArea" fieldType="String" parameterType="CSNODE" parameter="SXU00644" method="getElementByCode.getValue" /> <!-- 项目主要执行地 -->
+				<item fieldName="ProjectExecuteTerm" fieldType="String" parameterType="CSNODE" parameter="SXU00645" method="getElementByCode.getValue" /> <!-- 项目执行期 -->
+				<item fieldName="ProjectDocumentArea" fieldType="String" parameterType="CSNODE" parameter="SXU00646" method="getElementByCode.getValue" /> <!-- 项目资料备份地点 -->
+				<item fieldName="MainRiskPolicyNo" fieldType="String" parameterType="CSNODE" parameter="SXU00415" method="getElementByCode.getValue" /> <!-- 主险保单号 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" parameter="objectno" /> <!-- 对象号 -->
+			</table>
+		</area>
+	</mapping>
+</definition>

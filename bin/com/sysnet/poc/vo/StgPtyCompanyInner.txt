@@ -1,0 +1,181 @@
+package com.sysnet.poc.vo;
+
+import java.sql.*;
+
+/**
+ * StgPtyCompanyInner entity.
+ * 
+ * @author MyEclipse Persistence Tools
+ */
+
+public class StgPtyCompanyInner implements java.io.Serializable {
+
+	// Fields
+
+	// 机构CD
+	private String companyCd;
+	// 上级机构CD
+	private Long parentCode;
+	// 中文名称
+	private String companyName;
+	// 业务有效起始日期
+	private Date startDate;
+	// 业务有效终止日期
+	private Date endDate;
+	// 机构描述
+	private String companyDesc;
+	// 对象类型
+	private String objectType;
+	// 批次序号
+	private Long batId;
+	// 对象序号
+	private Long objectId;
+	// 时间戳
+	private Date timeStamp;
+	// 存放Pharos中的PARTY_CODE
+	private Long partyId;
+	// 公司所在税区
+	private Long taxZone;
+	// 公司是否有效
+	private Long available;
+	// 跟保单表中的“用户业务隶属分支机构 BIZ_COMPANY_NODE_ID”是同一个ID
+	private Long bizCompanyNodeId;
+
+	// Constructors
+
+	/** default constructor */
+	public StgPtyCompanyInner() {
+	}
+
+	/** full constructor */
+	public StgPtyCompanyInner(Long parentCode, String companyName, Date startDate, Date endDate, String companyDesc, String objectType, Long batId, Long objectId, Date timeStamp, Long partyId, Long taxZone, Long available, Long bizCompanyNodeId) {
+		this.parentCode = parentCode;
+		this.companyName = companyName;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.companyDesc = companyDesc;
+		this.objectType = objectType;
+		this.batId = batId;
+		this.objectId = objectId;
+		this.timeStamp = timeStamp;
+		this.partyId = partyId;
+		this.taxZone = taxZone;
+		this.available = available;
+		this.bizCompanyNodeId = bizCompanyNodeId;
+	}
+
+	// Property accessors
+
+	public String getCompanyCd() {
+		return this.companyCd;
+	}
+
+	public void setCompanyCd(String companyCd) {
+		this.companyCd = companyCd;
+	}
+
+	public Long getParentCode() {
+		return this.parentCode;
+	}
+
+	public void setParentCode(Long parentCode) {
+		this.parentCode = parentCode;
+	}
+
+	public String getCompanyName() {
+		return this.companyName;
+	}
+
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
+	}
+
+	public Date getStartDate() {
+		return this.startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	public Date getEndDate() {
+		return this.endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+
+	public String getCompanyDesc() {
+		return this.companyDesc;
+	}
+
+	public void setCompanyDesc(String companyDesc) {
+		this.companyDesc = companyDesc;
+	}
+
+	public String getObjectType() {
+		return this.objectType;
+	}
+
+	public void setObjectType(String objectType) {
+		this.objectType = objectType;
+	}
+
+	public Long getBatId() {
+		return this.batId;
+	}
+
+	public void setBatId(Long batId) {
+		this.batId = batId;
+	}
+
+	public Long getObjectId() {
+		return this.objectId;
+	}
+
+	public void setObjectId(Long objectId) {
+		this.objectId = objectId;
+	}
+
+	public Date getTimeStamp() {
+		return this.timeStamp;
+	}
+
+	public void setTimeStamp(Date timeStamp) {
+		this.timeStamp = timeStamp;
+	}
+
+	public Long getPartyId() {
+		return this.partyId;
+	}
+
+	public void setPartyId(Long partyId) {
+		this.partyId = partyId;
+	}
+
+	public Long getTaxZone() {
+		return this.taxZone;
+	}
+
+	public void setTaxZone(Long taxZone) {
+		this.taxZone = taxZone;
+	}
+
+	public Long getAvailable() {
+		return this.available;
+	}
+
+	public void setAvailable(Long available) {
+		this.available = available;
+	}
+
+	public Long getBizCompanyNodeId() {
+		return this.bizCompanyNodeId;
+	}
+
+	public void setBizCompanyNodeId(Long bizCompanyNodeId) {
+		this.bizCompanyNodeId = bizCompanyNodeId;
+	}
+
+}

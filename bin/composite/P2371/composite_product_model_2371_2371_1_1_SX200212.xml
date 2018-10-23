@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definition description="" productCode="506" prodectNodeCode="" version="" author="" createDate="">
+	<dataProviders>
+		<dataProvider name="node1" nodeName="" providerType="CSNODE" /> <!-- CSNODE -->
+		<dataProvider name="NONCONDITION" nodeName="node1" providerType="NONCONDITION" /> <!-- 责任 -->
+	</dataProviders>
+	<mapping>
+		<area description="节点表" include="huatai_t_node_COMMON.xml" replace="true">
+			<table tableName="t_node" dataProvider="CSNODE=node1" dependent="contract" />
+		</area>
+		<area description="标的表" include="huatai_t_subject_COMMON.xml" replace="true">
+			<table tableName="t_subject" dataProvider="CSNODE=node1" as="policy" />
+		</area>
+		<area description="企财险标的表" include="huatai_t_subjenterprise_SX200212.xml" replace="true">
+			<table tableName="t_subjenterprise" dataProvider="CSNODE=node1" as="policy" />
+		</area>
+		<area description="分保信息表" include="huatai_t_reinsureinfo_COMMON.xml" replace="true">
+			<table tableName="t_reinsureinfo" dataProvider="CSNODE=node1" as="policy" />
+		</area>
+		<area description="责任表" include="huatai_t_liability_COMMON.xml" replace="true">
+			<table tableName="t_liability" dataProvider="NONCONDITION=NONCONDITION" as="policy" />
+		</area>
+	</mapping>
+</definition>
+

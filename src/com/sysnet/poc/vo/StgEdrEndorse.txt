@@ -1,0 +1,694 @@
+package com.sysnet.poc.vo;
+
+import java.sql.*;
+
+/**
+ * StgEdrEndorse entity.
+ * 
+ * @author MyEclipse Persistence Tools
+ */
+
+public class StgEdrEndorse implements java.io.Serializable {
+
+	// Fields
+
+	// 批单CD
+	private String endorseNo;
+	// 保单CD
+	private String policyNo;
+	// 起保日期
+	private Date startDate;
+	// 终保日期
+	private Date endDate;
+	// 中止日期
+	private Date outDate;
+	// 投保单号
+	private String proposalNo;
+	// 当前版本号
+	private Long version;
+	// 税区
+	private Long taxZone;
+	// 从收付费抽取
+	private Long payType;
+	// 保费
+	private Double preminumValue;
+	// 保费币种
+	private Long premiumCurrency;
+	// 保额
+	private Double insuredValue;
+	// 保额币种
+	private Long insuredValueCurrency;
+	// 折扣金额
+	private Double discount;
+	// 折扣比例
+	private Double discountPctg;
+	// 风险加费
+	private Double loading;
+	// 风险加费比例
+	private Double loadingPctg;
+	// 支付日
+	private Long paymentDay;
+	// 备注
+	private String text;
+	// 续保日期
+	private Date lastRenewDate;
+	// 保障天数
+	private Long ensureDays;
+	// 合同ID
+	private Long contractId;
+	// 主版本号
+	private Long mainVersion;
+	// 交易类型
+	private Long transcatonType;
+	// 交易编号
+	private String transactionNo;
+	// 交易生效日期
+	private Date transactionDate;
+	// 纳税开始日期
+	private Date taxDate;
+	// 汇率
+	private Double xcgRate;
+	// 汇率日期
+	private Date xcgDate;
+	// 交费频率
+	private Long paymentType;
+	// 发票类型
+	private Long invoicingType;
+	// 发单日期
+	private Date issueDate;
+	// 共保类型
+	private Long coiType;
+	// 佣金
+	private Double commissionAmount;
+	// 记账日期
+	private Date accountDate;
+	// 共保佣金率
+	private Double coiCommissionRate;
+	// 共保合同号
+	private String coiContractNo;
+	// 续保状态
+	private Long renewStatus;
+	// 合同号
+	private String contractNo;
+	// 产品公司id
+	private Long proCompanyCode;
+	// 产品公司节点id
+	private Long proCompanyNodeCode;
+	// 理赔类型
+	private Long claimType;
+	// 分类
+	private Long category;
+	// 所占百分比
+	private Double ownPercentage;
+	// 公司id
+	private String companyCode;
+	// 公司节点id
+	private String companyNodeCode;
+	// 保单状态
+	private Long status;
+	// 产品CD
+	private String productCode;
+	// 显示名称
+	private String displayName;
+	// 账户授权号
+	private String refNo;
+	// 能否续保标志
+	private Long canRenew;
+	// 批次序号
+	private Long batId;
+	// 对象序号
+	private Long objectId;
+	// 对象类型
+	private String objectType;
+	// 时间戳
+	private Date timeStamp;
+	// 客户等级显示
+	private Long clientLv;
+	// 岗位状态
+	private String postStage;
+	// 表示本次批改内容
+	private String changeItem;
+	//
+	private String motorcadeType;
+	// 投保车辆数
+	private Long insureCarNumber;
+	// 实际车辆数
+	private Long acturlCarNumber;
+	// 折扣方式
+	private Long discountType;
+	// 手续费率（%）
+	private Double commissionRate;
+	// 经纪佣金率
+	private Double brokerCommissionRate;
+	// 经纪佣金
+	private Double brokerCommission;
+	// 对应的DCS的id
+	private Long dcsNodeId;
+	// 是否是续保
+	private Long isRenew;
+
+	// Constructors
+
+	/** default constructor */
+	public StgEdrEndorse() {
+	}
+
+	// Property accessors
+
+	public String getEndorseNo() {
+		return this.endorseNo;
+	}
+
+	public void setEndorseNo(String endorseNo) {
+		this.endorseNo = endorseNo;
+	}
+
+	public String getPolicyNo() {
+		return this.policyNo;
+	}
+
+	public void setPolicyNo(String policyNo) {
+		this.policyNo = policyNo;
+	}
+
+	public Date getStartDate() {
+		return this.startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	public Date getEndDate() {
+		return this.endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+
+	public Date getOutDate() {
+		return this.outDate;
+	}
+
+	public void setOutDate(Date outDate) {
+		this.outDate = outDate;
+	}
+
+	public String getProposalNo() {
+		return this.proposalNo;
+	}
+
+	public void setProposalNo(String proposalNo) {
+		this.proposalNo = proposalNo;
+	}
+
+	public Long getVersion() {
+		return this.version;
+	}
+
+	public void setVersion(Long version) {
+		this.version = version;
+	}
+
+	public Long getTaxZone() {
+		return this.taxZone;
+	}
+
+	public void setTaxZone(Long taxZone) {
+		this.taxZone = taxZone;
+	}
+
+	public Long getPayType() {
+		return this.payType;
+	}
+
+	public void setPayType(Long payType) {
+		this.payType = payType;
+	}
+
+	public Double getPreminumValue() {
+		return this.preminumValue;
+	}
+
+	public void setPreminumValue(Double preminumValue) {
+		this.preminumValue = preminumValue;
+	}
+
+	public Long getPremiumCurrency() {
+		return this.premiumCurrency;
+	}
+
+	public void setPremiumCurrency(Long premiumCurrency) {
+		this.premiumCurrency = premiumCurrency;
+	}
+
+	public Double getInsuredValue() {
+		return this.insuredValue;
+	}
+
+	public void setInsuredValue(Double insuredValue) {
+		this.insuredValue = insuredValue;
+	}
+
+	public Long getInsuredValueCurrency() {
+		return this.insuredValueCurrency;
+	}
+
+	public void setInsuredValueCurrency(Long insuredValueCurrency) {
+		this.insuredValueCurrency = insuredValueCurrency;
+	}
+
+	public Double getDiscount() {
+		return this.discount;
+	}
+
+	public void setDiscount(Double discount) {
+		this.discount = discount;
+	}
+
+	public Double getDiscountPctg() {
+		return this.discountPctg;
+	}
+
+	public void setDiscountPctg(Double discountPctg) {
+		this.discountPctg = discountPctg;
+	}
+
+	public Double getLoading() {
+		return this.loading;
+	}
+
+	public void setLoading(Double loading) {
+		this.loading = loading;
+	}
+
+	public Double getLoadingPctg() {
+		return this.loadingPctg;
+	}
+
+	public void setLoadingPctg(Double loadingPctg) {
+		this.loadingPctg = loadingPctg;
+	}
+
+	public Long getPaymentDay() {
+		return this.paymentDay;
+	}
+
+	public void setPaymentDay(Long paymentDay) {
+		this.paymentDay = paymentDay;
+	}
+
+	public String getText() {
+		return this.text;
+	}
+
+	public void setText(String text) {
+		this.text = text;
+	}
+
+	public Date getLastRenewDate() {
+		return this.lastRenewDate;
+	}
+
+	public void setLastRenewDate(Date lastRenewDate) {
+		this.lastRenewDate = lastRenewDate;
+	}
+
+	public Long getEnsureDays() {
+		return this.ensureDays;
+	}
+
+	public void setEnsureDays(Long ensureDays) {
+		this.ensureDays = ensureDays;
+	}
+
+	public Long getContractId() {
+		return this.contractId;
+	}
+
+	public void setContractId(Long contractId) {
+		this.contractId = contractId;
+	}
+
+	public Long getMainVersion() {
+		return this.mainVersion;
+	}
+
+	public void setMainVersion(Long mainVersion) {
+		this.mainVersion = mainVersion;
+	}
+
+	public Long getTranscatonType() {
+		return this.transcatonType;
+	}
+
+	public void setTranscatonType(Long transcatonType) {
+		this.transcatonType = transcatonType;
+	}
+
+	public String getTransactionNo() {
+		return this.transactionNo;
+	}
+
+	public void setTransactionNo(String transactionNo) {
+		this.transactionNo = transactionNo;
+	}
+
+	public Date getTransactionDate() {
+		return this.transactionDate;
+	}
+
+	public void setTransactionDate(Date transactionDate) {
+		this.transactionDate = transactionDate;
+	}
+
+	public Date getTaxDate() {
+		return this.taxDate;
+	}
+
+	public void setTaxDate(Date taxDate) {
+		this.taxDate = taxDate;
+	}
+
+	public Double getXcgRate() {
+		return this.xcgRate;
+	}
+
+	public void setXcgRate(Double xcgRate) {
+		this.xcgRate = xcgRate;
+	}
+
+	public Date getXcgDate() {
+		return this.xcgDate;
+	}
+
+	public void setXcgDate(Date xcgDate) {
+		this.xcgDate = xcgDate;
+	}
+
+	public Long getPaymentType() {
+		return this.paymentType;
+	}
+
+	public void setPaymentType(Long paymentType) {
+		this.paymentType = paymentType;
+	}
+
+	public Long getInvoicingType() {
+		return this.invoicingType;
+	}
+
+	public void setInvoicingType(Long invoicingType) {
+		this.invoicingType = invoicingType;
+	}
+
+	public Date getIssueDate() {
+		return this.issueDate;
+	}
+
+	public void setIssueDate(Date issueDate) {
+		this.issueDate = issueDate;
+	}
+
+	public Long getCoiType() {
+		return this.coiType;
+	}
+
+	public void setCoiType(Long coiType) {
+		this.coiType = coiType;
+	}
+
+	public Double getCommissionAmount() {
+		return this.commissionAmount;
+	}
+
+	public void setCommissionAmount(Double commissionAmount) {
+		this.commissionAmount = commissionAmount;
+	}
+
+	public Date getAccountDate() {
+		return this.accountDate;
+	}
+
+	public void setAccountDate(Date accountDate) {
+		this.accountDate = accountDate;
+	}
+
+	public Double getCoiCommissionRate() {
+		return this.coiCommissionRate;
+	}
+
+	public void setCoiCommissionRate(Double coiCommissionRate) {
+		this.coiCommissionRate = coiCommissionRate;
+	}
+
+	public String getCoiContractNo() {
+		return this.coiContractNo;
+	}
+
+	public void setCoiContractNo(String coiContractNo) {
+		this.coiContractNo = coiContractNo;
+	}
+
+	public Long getRenewStatus() {
+		return this.renewStatus;
+	}
+
+	public void setRenewStatus(Long renewStatus) {
+		this.renewStatus = renewStatus;
+	}
+
+	public String getContractNo() {
+		return this.contractNo;
+	}
+
+	public void setContractNo(String contractNo) {
+		this.contractNo = contractNo;
+	}
+
+	public Long getClaimType() {
+		return this.claimType;
+	}
+
+	public void setClaimType(Long claimType) {
+		this.claimType = claimType;
+	}
+
+	public Long getCategory() {
+		return this.category;
+	}
+
+	public void setCategory(Long category) {
+		this.category = category;
+	}
+
+	public Double getOwnPercentage() {
+		return this.ownPercentage;
+	}
+
+	public void setOwnPercentage(Double ownPercentage) {
+		this.ownPercentage = ownPercentage;
+	}
+
+	public Long getStatus() {
+		return this.status;
+	}
+
+	public void setStatus(Long status) {
+		this.status = status;
+	}
+
+	public Long getProCompanyCode() {
+		return proCompanyCode;
+	}
+
+	public void setProCompanyCode(Long proCompanyCode) {
+		this.proCompanyCode = proCompanyCode;
+	}
+
+	public Long getProCompanyNodeCode() {
+		return proCompanyNodeCode;
+	}
+
+	public void setProCompanyNodeCode(Long proCompanyNodeCode) {
+		this.proCompanyNodeCode = proCompanyNodeCode;
+	}
+
+	public String getCompanyCode() {
+		return companyCode;
+	}
+
+	public void setCompanyCode(String companyCode) {
+		this.companyCode = companyCode;
+	}
+
+	public String getCompanyNodeCode() {
+		return companyNodeCode;
+	}
+
+	public void setCompanyNodeCode(String companyNodeCode) {
+		this.companyNodeCode = companyNodeCode;
+	}
+
+	public String getProductCode() {
+		return productCode;
+	}
+
+	public void setProductCode(String productCode) {
+		this.productCode = productCode;
+	}
+
+	public String getDisplayName() {
+		return this.displayName;
+	}
+
+	public void setDisplayName(String displayName) {
+		this.displayName = displayName;
+	}
+
+	public String getRefNo() {
+		return this.refNo;
+	}
+
+	public void setRefNo(String refNo) {
+		this.refNo = refNo;
+	}
+
+	public Long getCanRenew() {
+		return this.canRenew;
+	}
+
+	public void setCanRenew(Long canRenew) {
+		this.canRenew = canRenew;
+	}
+
+	public Long getBatId() {
+		return this.batId;
+	}
+
+	public void setBatId(Long batId) {
+		this.batId = batId;
+	}
+
+	public Long getObjectId() {
+		return this.objectId;
+	}
+
+	public void setObjectId(Long objectId) {
+		this.objectId = objectId;
+	}
+
+	public String getObjectType() {
+		return this.objectType;
+	}
+
+	public void setObjectType(String objectType) {
+		this.objectType = objectType;
+	}
+
+	public Date getTimeStamp() {
+		return this.timeStamp;
+	}
+
+	public void setTimeStamp(Date timeStamp) {
+		this.timeStamp = timeStamp;
+	}
+
+	public Long getClientLv() {
+		return this.clientLv;
+	}
+
+	public void setClientLv(Long clientLv) {
+		this.clientLv = clientLv;
+	}
+
+	public String getPostStage() {
+		return this.postStage;
+	}
+
+	public void setPostStage(String postStage) {
+		this.postStage = postStage;
+	}
+
+	public String getChangeItem() {
+		return this.changeItem;
+	}
+
+	public void setChangeItem(String changeItem) {
+		this.changeItem = changeItem;
+	}
+
+	public String getMotorcadeType() {
+		return this.motorcadeType;
+	}
+
+	public void setMotorcadeType(String motorcadeType) {
+		this.motorcadeType = motorcadeType;
+	}
+
+	public Long getInsureCarNumber() {
+		return this.insureCarNumber;
+	}
+
+	public void setInsureCarNumber(Long insureCarNumber) {
+		this.insureCarNumber = insureCarNumber;
+	}
+
+	public Long getActurlCarNumber() {
+		return this.acturlCarNumber;
+	}
+
+	public void setActurlCarNumber(Long acturlCarNumber) {
+		this.acturlCarNumber = acturlCarNumber;
+	}
+
+	public Long getDiscountType() {
+		return this.discountType;
+	}
+
+	public void setDiscountType(Long discountType) {
+		this.discountType = discountType;
+	}
+
+	public Double getCommissionRate() {
+		return this.commissionRate;
+	}
+
+	public void setCommissionRate(Double commissionRate) {
+		this.commissionRate = commissionRate;
+	}
+
+	public Double getBrokerCommissionRate() {
+		return this.brokerCommissionRate;
+	}
+
+	public void setBrokerCommissionRate(Double brokerCommissionRate) {
+		this.brokerCommissionRate = brokerCommissionRate;
+	}
+
+	public Double getBrokerCommission() {
+		return this.brokerCommission;
+	}
+
+	public void setBrokerCommission(Double brokerCommission) {
+		this.brokerCommission = brokerCommission;
+	}
+
+	public Long getDcsNodeId() {
+		return this.dcsNodeId;
+	}
+
+	public void setDcsNodeId(Long dcsNodeId) {
+		this.dcsNodeId = dcsNodeId;
+	}
+
+	public Long getIsRenew() {
+		return this.isRenew;
+	}
+
+	public void setIsRenew(Long isRenew) {
+		this.isRenew = isRenew;
+	}
+
+}

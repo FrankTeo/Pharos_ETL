@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition description="金融责任险标的表">
+	<mapping>
+		<area description="金融责任险标的表">
+			<table tableName="T_SubjEconomic" dataProviderType="CSNODE" as="Contract">
+				<item fieldName="PolicyNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="policyno" /> <!-- 保单号 -->
+				<item fieldName="EndorseNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="endorseno" /> <!-- 批单号 -->
+				<item fieldName="NodeNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="nodeno" /> <!-- 节点号 -->
+				<item fieldName="ContractNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="contractno" /> <!-- 合同号 -->
+				<item fieldName="SubVersionNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="version" /> <!-- 版本号 -->
+				<item fieldName="ProposalNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="proposalno" /> <!-- 投保单号 -->
+				<!--<item fieldName="TradeSubCategory" fieldType="String" />--> <!-- 行业中类 -->
+				<!--<item fieldName="TradeSpecialRisk" fieldType="String" />--> <!-- 行业特殊风险 -->
+				<!--<item fieldName="TtlIncmLstYear" fieldType="Float" />--> <!-- 上一年度总收入 -->
+				<!--<item fieldName="ListLocale" fieldType="String" />--> <!-- 上市地点 -->
+				<!--<item fieldName="BizRange" fieldType="String" />--> <!-- 业务范围 -->
+				<!--<item fieldName="Deduct" fieldType="Float" />--> <!-- 免赔额 -->
+				<!--<item fieldName="DeductCurrency" fieldType="String" />--> <!-- 免赔额币种 -->
+				<!--<item fieldName="PblcReltnshpExpensive" fieldType="Float" />--> <!-- 公共关系费用 -->
+				<!--<item fieldName="PblcReltnshpExpnsvCurrency" fieldType="String" />--> <!-- 公共关系费用币种 -->
+				<!--<item fieldName="DedicateDuration" fieldType="String" />--> <!-- 公司经营目前业务年数 -->
+				<!--<item fieldName="AccusedHistory" fieldType="String" />--> <!-- 历史控诉 -->
+				<!--<item fieldName="LdClmStuatnDescript" fieldType="String" />--> <!-- 可能导致索赔情况描述 -->
+				<!--<item fieldName="RegionRange" fieldType="String" />--> <!-- 地域范围 -->
+				<!--<item fieldName="TtlAsstValue" fieldType="Float" />--> <!-- 总资产 -->
+				<!--<item fieldName="TtlAsstVluCurrency" fieldType="String" />--> <!-- 总资产币种 -->
+				<!--<item fieldName="CtlShrHldrScrtyDeduct" fieldType="Float" />--> <!-- 控股股东保障部分免赔 -->
+				<!--<item fieldName="CtlShrHldrScrtyDdctCurrency" fieldType="String" />--> <!-- 控股股东保障部分免赔币种 -->
+				<!--<item fieldName="LitigationDeadLine" fieldType="String" />--> <!-- 此前及待决的诉讼日 -->
+				<!--<item fieldName="PreAccdLimit" fieldType="Float" />--> <!-- 每次事故责任限额 -->
+				<!--<item fieldName="PreAccdLimitCurrency" fieldType="String" />--> <!-- 每次事故责任限额币种 -->
+				<!--<item fieldName="PlltCntstExpensive" fieldType="Float" />--> <!-- 污染抗辩费用 -->
+				<!--<item fieldName="PlltCntstExpnsvCurrency" fieldType="String" />--> <!-- 污染抗辩费用币种 -->
+				<!--<item fieldName="LglAgncyExpensive" fieldType="Float" />--> <!-- 法律代理费用 -->
+				<!--<item fieldName="LglAgncyExpnsvCurrency" fieldType="String" />--> <!-- 法律代理费用币种 -->
+				<!--<item fieldName="SllShrHldrScrtyDeduct" fieldType="Float" />--> <!-- 献售股东保障部分免赔 -->
+				<!--<item fieldName="SllShrHldrScrtyDdctCurrency" fieldType="String" />--> <!-- 献售股东保障部分免赔币种 -->
+				<!--<item fieldName="ClaimableNotice" fieldType="String" />--> <!-- 索赔/可赔偿情形的通知 -->
+				<!--<item fieldName="AggrgRqstLimit" fieldType="Float" />--> <!-- 累计赔偿请求限额 -->
+				<!--<item fieldName="AggrgRqstLmtCurrency" fieldType="String" />--> <!-- 累计赔偿请求限额币种 -->
+				<!--<item fieldName="USACNDProperty" fieldType="String" />--> <!-- 美加地区资产描述 -->
+				<!--<item fieldName="PostInstituteDescript" fieldType="String" />--> <!-- 职务相关惩罚及调查描述 -->
+				<!--<item fieldName="TradeClassify" fieldType="String" />--> <!-- 行业分类 -->
+				<!--<item fieldName="AgncyCmpnstDeduct" fieldType="Float" />--> <!-- 被保机构补偿责任保障免赔 -->
+				<!--<item fieldName="AgncyCmpnstDdctCurrency" fieldType="String" />--> <!-- 被保机构补偿责任免赔币种 -->
+				<!--<item fieldName="PrsnScrtyDeduct" fieldType="Float" />--> <!-- 被保险个人保障部分免赔 -->
+				<!--<item fieldName="PrsnScrtyDdctCurrency" fieldType="String" />--> <!-- 被保险个人保障部分免赔币种 -->
+				<!--<item fieldName="AgncyScrtyDeduct" fieldType="Float" />--> <!-- 被保险机构保障部分免赔 -->
+				<!--<item fieldName="AgncyScrtyDdctCurrency" fieldType="String" />--> <!-- 被保险机构保障部分免赔币种 -->
+				<!--<item fieldName="RetrospectDate" fieldType="String" />--> <!-- 追溯日 -->
+				<!--<item fieldName="RefusePIDescript" fieldType="String" />--> <!-- 退保或拒保PI描述 -->
+				<!--<item fieldName="ClaimPIDescript" fieldType="String" />--> <!-- PI被提起赔偿请求描述 -->
+				<!--<item fieldName="ExtrnlOrgnzDuty" fieldType="String" />--> <!-- 加保外部组织董监事会责任 -->
+				<!--<item fieldName="RetrspctDateDescription" fieldType="String" />--> <!-- 追溯日说明 -->
+				<!--<item fieldName="ObserveTerm" fieldType="String" />--> <!-- 发现期 -->
+				<!--<item fieldName="ExtendReportTerm" fieldType="Date" />--> <!-- 延长报告期限 -->
+				<!--<item fieldName="PerAccdPerPrsnLmtCurrency" fieldType="String" />--> <!-- 每次事故每人赔偿限额币种 -->
+				<!--<item fieldName="PerAccdPerPrsnLimt" fieldType="Float" />--> <!-- 每次事故每人赔偿限额 -->
+				<!--<item fieldName="PerAccdPrptyLmtCurrency" fieldType="String" />--> <!-- 每次事故财产赔偿限额币种 -->
+				<!--<item fieldName="PerAccdPrptyLimt" fieldType="Float" />--> <!-- 每次事故财产赔偿限额 -->
+				<!--<item fieldName="CmpnyPerAccdDdtDescription" fieldType="String" />--> <!-- 被保险公司每次事故免赔额 -->
+				<!--<item fieldName="PrsnPerAccdDdtDecription" fieldType="String" />--> <!-- 被保险人每次事故免赔额 -->
+				<!--<item fieldName="HasSubCompany" fieldType="String" />--> <!-- 是否有国内外附属公司 -->
+				<!--<item fieldName="IsList" fieldType="String" />--> <!-- 是否上市交易 -->
+				<!--<item fieldName="ClaimStartDate" fieldType="Date" />--> <!-- 保险索赔起算日 -->
+				<!--<item fieldName="ClaimHistory" fieldType="String" />--> <!-- 理赔记录 -->
+				<!--<item fieldName="OurCmpnyLmtDescription" fieldType="String" />--> <!-- 我司承保层数及赔偿限额 -->
+				<!--<item fieldName="PolicyInfoDescription" fieldType="String" />--> <!-- 承保公司及保单基本信息描述 -->
+				<!--<item fieldName="LoseReason" fieldType="String" />--> <!-- 损失原因 -->
+				<!--<item fieldName="ApplicateArea" fieldType="String" />--> <!-- 承保区域 -->
+				<!--<item fieldName="ApplicateRange" fieldType="String" />--> <!-- 承保范围 -->
+				<!--<item fieldName="CmptrCstLmtCurrency" fieldType="String" />--> <!-- 计算机成本分项限额币种 -->
+				<!--<item fieldName="CmptrcstLimit" fieldType="Float" />--> <!-- 计算机成本分项限额 -->
+				<!--<item fieldName="RiskPlate" fieldType="String" />--> <!-- 风险板块 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="objectno" /> <!-- 对象号 -->
+				<!--<item fieldName="Remark" fieldType="String" />--> <!-- 备注 -->
+				<!--<item fieldName="CrtTime" fieldType="Date" />--> <!-- 创建时间 -->
+				<!--<item fieldName="MdfTime" fieldType="Date" />--> <!-- 修改时间 -->
+			</table>
+		</area>
+	</mapping>
+</definition>

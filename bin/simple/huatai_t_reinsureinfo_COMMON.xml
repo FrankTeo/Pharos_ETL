@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition description="分保信息表">
+	<mapping>
+		<area description="分保信息表">
+			<table tableName="T_ReinsureInfo" dataProviderType="CSNODE" as="Contract">
+				<item fieldName="PolicyNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="policyno" /> <!-- 保单号 -->
+				<item fieldName="EndorseNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="endorseno" /> <!-- 批单号 -->
+				<item fieldName="NodeNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="nodeno" /> <!-- 节点号 -->
+				<item fieldName="FacId" fieldType="String" parameterType="CSNODE" parameter="SXU00801" method="getElementByCode.getValue" /> <!-- FACID -->
+				<item fieldName="OriginPolicyNo" fieldType="String" parameterType="CSNODE" parameter="SXU00802" method="getElementByCode.getValue" /> <!-- 原保单号 -->
+				<item fieldName="OriginCvrgCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00803" method="getElementByCode.getValue.getCurrency" /> <!-- 原保额币种 -->
+				<item fieldName="OriginCoverage" fieldType="Float" parameterType="CSNODE" parameter="SXU00803" method="getElementByCode.getValue.getAmount" /> <!-- 原保额 -->
+				<item fieldName="ReiCoverage" fieldType="Float" parameterType="CSNODE" parameter="SXU00804" method="getElementByCode.getValue" /> <!-- 分出份额 -->
+				<item fieldName="RcvCoverage" fieldType="Float" parameterType="CSNODE" parameter="SXU00805" method="getElementByCode.getValue" /> <!-- 接收份额 -->
+				<item fieldName="DutyLmtCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00806" method="getElementByCode.getValue.getCurrency" /> <!-- 责任限额币种 -->
+				<item fieldName="DutyLimit" fieldType="Float" parameterType="CSNODE" parameter="SXU00806" method="getElementByCode.getValue.getAmount" /> <!-- 责任限额 -->
+				<item fieldName="ApprovalCompany" fieldType="String" parameterType="CSNODE" parameter="SXU00898" method="getElementByCode.getValue" /> <!-- 分出公司 -->
+				<item fieldName="FstRcvReinsurer" fieldType="String" parameterType="CSNODE" parameter="SXU00899" method="getElementByCode.getValue" /> <!-- 首席接收人 -->
+				<item fieldName="NetPrmmCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00818" method="getElementByCode.getValue.getCurrency" /> <!-- 净保费币种 -->
+				<item fieldName="NetPremium" fieldType="Float" parameterType="CSNODE" parameter="SXU00818" method="getElementByCode.getValue.getAmount" /> <!-- 净保费 -->
+				<item fieldName="IsInware" fieldType="String" parameterType="CSNODE" parameter="SXU00807" method="getElementByCode.getValue" /> <!-- 分入标记 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="objectno" /> <!-- 对象号 -->
+				<!--<item fieldName="Remark" fieldType="String" />--> <!-- 备注 -->
+				<!--<item fieldName="CrtTime" fieldType="Date" />--> <!-- 创建时间 -->
+				<!--<item fieldName="MdfTime" fieldType="Date" />--> <!-- 修改时间 -->
+			</table>
+		</area>
+	</mapping>
+</definition>

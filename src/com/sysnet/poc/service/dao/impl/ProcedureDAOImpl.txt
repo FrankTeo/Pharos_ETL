@@ -1,0 +1,78 @@
+package com.sysnet.poc.service.dao.impl;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import com.sysnet.poc.service.dao.ProcedureDAO;
+import com.sysnet.poc.vo.StgProcedureDetail;
+import com.sysnet.poc.vo.StgProcedureGroup;
+
+/**
+ * 收费项目相关信息操作的DAO，实现ProcedureDAO接口
+ * 
+ * @author li_yanpeng
+ * 
+ */
+public class ProcedureDAOImpl implements ProcedureDAO {
+
+	public boolean insertStgProcedureDetail(Connection conn, StgProcedureDetail vo) throws SQLException {
+		boolean rs = false;
+		String sql = "insert into STG_PROCEDURE_DETAIL (" + "PROCEDUREDETAIL_ID," + "PROCEDURECODE," + "PROCEDUREROOTCODE," + "PROCEDUREGROUP_ID," + "COPAYMENT," + "DEDUCTIBLEPERCENTAGE," + "DEDUCTIBLEFIXAMOUNT," + "PERCENTAGE," + "START_DATE," + "END_DATE," + "CONINSUREANCE," + "CREATE_DATE," + "INSURE_COMPANY_ID," + "INSURE_COMPANY_CODE," + "SOUC_SYS_START_DATE," + "SOUC_SYS_END_DATE," + "BIZ_END_DATE," + "BIZ_START_DATE," + "LOAD_DATE," + "OBJECT_TYPE," + "BAT_ID," + "OBJECT_ID," + "SOUC_SYS_FLAG ) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		PreparedStatement pstmt = null;
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setLong(1, vo.getProceduredetail_id());
+		pstmt.setString(2, vo.getProcedurecode());
+		pstmt.setString(3, vo.getProcedurerootcode());
+		pstmt.setLong(4, vo.getProceduregroup_id());
+		pstmt.setString(5, vo.getCopayment());
+		pstmt.setDouble(6, vo.getDeductiblepercentage());
+		pstmt.setString(7, vo.getDeductiblefixamount());
+		pstmt.setDouble(8, vo.getPercentage());
+		pstmt.setDate(9, vo.getStart_date());
+		pstmt.setDate(10, vo.getEnd_date());
+		pstmt.setDouble(11, vo.getConinsureance());
+		pstmt.setDate(12, vo.getCreate_date());
+		pstmt.setInt(13, vo.getInsure_company_id());
+		pstmt.setString(14, vo.getInsure_company_code());
+		pstmt.setDate(15, vo.getSouc_sys_start_date());
+		pstmt.setDate(16, vo.getSouc_sys_end_date());
+		pstmt.setDate(17, vo.getBiz_end_date());
+		pstmt.setDate(18, vo.getBiz_start_date());
+		pstmt.setDate(19, vo.getLoad_date());
+		pstmt.setString(20, vo.getObject_type());
+		pstmt.setInt(21, vo.getBat_id());
+		pstmt.setInt(22, vo.getObject_id());
+		pstmt.setString(23, vo.getSouc_sys_flag());
+
+		return rs;
+	}
+
+	public boolean insertStgProcedureGroup(Connection conn, StgProcedureGroup vo) throws SQLException {
+		boolean rs = false;
+		String sql = "insert into STG_PROCEDURE_GROUP (" + "PROCEDUREGROUP_ID," + "CODE," + "NAME," + "PROCEDUREGROUP_TYPE," + "PROCEDURES," + "CREATE_DATE," + "INSURE_COMPANY_ID," + "INSURE_COMPANY_CODE," + "SOUC_SYS_START_DATE," + "SOUC_SYS_END_DATE," + "BIZ_END_DATE," + "BIZ_START_DATE," + "LOAD_DATE," + "OBJECT_TYPE," + "BAT_ID," + "OBJECT_ID," + "SOUC_SYS_FLAG) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		PreparedStatement pstmt = null;
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setLong(1, vo.getProceduregroup_id());
+		pstmt.setString(2, vo.getCode());
+		pstmt.setString(3, vo.getName());
+		pstmt.setLong(4, vo.getProceduregroup_type());
+		pstmt.setString(5, vo.getProcedures());
+		pstmt.setDate(6, vo.getCreate_date());
+		pstmt.setInt(7, vo.getInsure_company_id());
+		pstmt.setString(8, vo.getInsure_company_code());
+		pstmt.setDate(9, vo.getSouc_sys_start_date());
+		pstmt.setDate(10, vo.getSouc_sys_end_date());
+		pstmt.setDate(11, vo.getBiz_end_date());
+		pstmt.setDate(12, vo.getBiz_start_date());
+		pstmt.setDate(13, vo.getLoad_date());
+		pstmt.setString(14, vo.getObject_type());
+		pstmt.setInt(15, vo.getBat_id());
+		pstmt.setInt(16, vo.getObject_id());
+		pstmt.setString(17, vo.getSouc_sys_flag());
+		pstmt.execute();
+		rs = true;
+
+		return rs;
+	}
+
+}

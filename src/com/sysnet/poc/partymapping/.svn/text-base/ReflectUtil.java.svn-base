@@ -1,0 +1,198 @@
+package com.sysnet.poc.partymapping;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
+import org.apache.commons.logging.Log;
+
+import pharos.framework.p.ElementEnum;
+
+import com.sysnet.poc.util.OdsLogger;
+
+/**
+ * 反射工具类
+ * 
+ * @author
+ * 
+ */
+public class ReflectUtil {
+	private static final Log log = OdsLogger.getLog("partyLog4j", "Party");
+
+	/**
+	 * 通过反射得到对象
+	 * 
+	 * @param clazz
+	 * @param methodNm
+	 * @return
+	 * @throws ClassNotFoundException
+	 * @throws SecurityException
+	 * @throws NoSuchMethodException
+	 * @throws IllegalArgumentException
+	 * @throws IllegalAccessException
+	 * @throws InvocationTargetException
+	 */
+	public static Object getObjByReflect(Object clazz, String methodNm) throws ClassNotFoundException, SecurityException, NoSuchMethodException, IllegalArgumentException, IllegalAccessException, InvocationTargetException {
+		if (methodNm == null) {
+			log.error("Method name " + methodNm + " is null!");
+			return null;
+		}
+		if (clazz == null)
+			return null;
+		Class<?> myClass = clazz.getClass();
+		Method method = myClass.getMethod(methodNm);
+		if (method == null) {
+			log.error("Method " + methodNm + " is null!");
+			return null;
+		}
+		return method.invoke(clazz);
+	}
+
+	/**
+	 * 支持两个参数传参的反射
+	 * 
+	 * @param clazz
+	 * @param methodNm
+	 * @param parameters
+	 * @param args1
+	 * @param args2
+	 * @return
+	 * @throws ClassNotFoundException
+	 * @throws SecurityException
+	 * @throws NoSuchMethodException
+	 * @throws IllegalArgumentException
+	 * @throws IllegalAccessException
+	 * @throws InvocationTargetException
+	 */
+	public static Object getObjByReflectByParameters(Object clazz, String methodNm, Class<?>[] parameters, Object args1, Object args2) throws ClassNotFoundException, SecurityException, NoSuchMethodException, IllegalArgumentException, IllegalAccessException, InvocationTargetException {
+		if (methodNm == null) {
+			log.error("Method name " + methodNm + " is null!");
+			return null;
+		}
+		if (clazz == null)
+			return null;
+
+		Class<?> myClass = clazz.getClass();
+		Method method = myClass.getDeclaredMethod(methodNm, parameters);
+		if (method == null) {
+			log.error("Method " + methodNm + " is null!");
+			return null;
+		}
+		return method.invoke(clazz, args1, args2);
+	}
+
+	public static Object getObjByReflectByParameters(Object clazz, String methodNm, Class<?>[] parameters, Object args1) throws ClassNotFoundException, SecurityException, NoSuchMethodException, IllegalArgumentException, IllegalAccessException, InvocationTargetException {
+		if (methodNm == null) {
+			log.error("Method name " + methodNm + " is null!");
+			return null;
+		}
+		if (clazz == null)
+			return null;
+
+		Class<?> myClass = clazz.getClass();
+		Method method = myClass.getDeclaredMethod(methodNm, parameters);
+		if (method == null) {
+			log.error("Method " + methodNm + " is null!");
+			return null;
+		}
+		return method.invoke(clazz, args1);
+	}
+
+	/**
+	 * 获取数据项，原方法需要3个参数，这里只需要传入name即可 getElementByName
+	 * 
+	 * @param clazz
+	 * @param methodNm
+	 * @param parameters
+	 * @param args1
+	 * @return
+	 * @throws ClassNotFoundException
+	 * @throws SecurityException
+	 * @throws NoSuchMethodException
+	 * @throws IllegalArgumentException
+	 * @throws IllegalAccessException
+	 * @throws InvocationTargetException
+	 */
+	public static Object getObjByReflectByName(Object clazz, String methodNm, Class<?>[] parameters, Object args1) throws ClassNotFoundException, SecurityException, NoSuchMethodException, IllegalArgumentException, IllegalAccessException, InvocationTargetException {
+		if (methodNm == null) {
+			log.error("Method name " + methodNm + " is null!");
+			return null;
+		}
+		if (clazz == null)
+			return null;
+
+		Class<?> myClass = clazz.getClass();
+
+		Method method = myClass.getMethod(methodNm, parameters);
+		if (method == null) {
+			log.error("Method " + methodNm + " is null!");
+			return null;
+		}
+		Object o = method.invoke(clazz, ElementEnum.BDECLARATION_CODE, args1, false);
+		return o;
+	}
+	
+	public static Object getObjByReflectByCode(Object clazz, String methodNm, Class<?>[] parameters, Object args1) throws ClassNotFoundException, SecurityException, NoSuchMethodException, IllegalArgumentException, IllegalAccessException, InvocationTargetException {
+		if (methodNm == null) {
+			log.error("Method name " + methodNm + " is null!");
+			return null;
+		}
+		if (clazz == null)
+			return null;
+
+		Class<?> myClass = clazz.getClass();
+
+		Method method = myClass.getMethod(methodNm, parameters);
+		if (method == null) {
+			log.error("Method " + methodNm + " is null!");
+			return null;
+		}
+		Object o = method.invoke(clazz, ElementEnum.BDECLARATION_CODE, args1, false);
+		return o;
+	}
+		
+	
+	/*
+	 * declaration的方法getElementByCode(String, String)
+	 */
+	public static Object getObjByReflectByCodeDeclSS(Object clazz, String methodNm, Class<?>[] parameters, Object args1) throws ClassNotFoundException, SecurityException, NoSuchMethodException, IllegalArgumentException, IllegalAccessException, InvocationTargetException {
+		if (methodNm == null) {
+			log.error("Method name " + methodNm + " is null!");
+			return null;
+		}
+		if (clazz == null)
+			return null;
+
+		Class<?> myClass = clazz.getClass();
+
+		Method method = myClass.getMethod(methodNm, parameters);
+		if (method == null) {
+			log.error("Method " + methodNm + " is null!");
+			return null;
+		}
+		Object o = method.invoke(clazz, ElementEnum.BDECLARATION_CODE, args1);
+		return o;
+	}
+	
+	/*
+	 * role的方法getRoleByCode(String, Boolean);
+	 */
+	public static Object getObjByReflectByCodeRoleSB(Object clazz, String methodNm, Class<?>[] parameters, Object args1) throws ClassNotFoundException, SecurityException, NoSuchMethodException, IllegalArgumentException, IllegalAccessException, InvocationTargetException {
+		if (methodNm == null) {
+			log.error("Method name " + methodNm + " is null!");
+			return null;
+		}
+		if (clazz == null)
+			return null;
+
+		Class<?> myClass = clazz.getClass();
+
+		Method method = myClass.getMethod(methodNm, parameters);
+		if (method == null) {
+			log.error("Method " + methodNm + " is null!");
+			return null;
+		}
+		Object o = method.invoke(clazz, args1, false);
+		return o;
+	}
+	
+}

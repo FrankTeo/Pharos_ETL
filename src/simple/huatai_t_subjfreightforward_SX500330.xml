@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition description="货代责任险标的表">
+	<mapping>
+		<area description="货代责任险标的表">
+			<table tableName="T_SubjFreightForward" dataProviderType="CSNODE" as="Contract">
+				<item fieldName="PolicyNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="policyno" /> <!-- 保单号 -->
+				<item fieldName="EndorseNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="endorseno" /> <!-- 批单号 -->
+				<item fieldName="NodeNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="nodeno" /> <!-- 节点号 -->
+				<item fieldName="ContractNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="contractno" /> <!-- 合同号 -->
+				<item fieldName="SubVersionNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="version" /> <!-- 版本号 -->
+				<item fieldName="ProposalNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="proposalno" /> <!-- 投保单号 -->
+				<item fieldName="TradeSubCategory" fieldType="String" parameterType="CSNODE" parameter="SXU00556" method="getElementByCode.getValue" /> <!-- 行业中类 -->
+				<item fieldName="TradeSpecialRisk" fieldType="String" parameterType="CSNODE" parameter="SXU00558" method="getElementByCode.getValue" /> <!-- 行业特殊风险 -->
+				<item fieldName="ADutyRange" fieldType="String" parameterType="CSNODE" parameter="SXU00721" method="getElementByCode.getValue" /> <!-- 责任范围A-对货物的责任 -->
+				<item fieldName="ALimitCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00722" method="getElementByCode.getValue.getCurrency" /> <!-- A赔偿限额币种 -->
+				<item fieldName="ALimitAmount" fieldType="Float" parameterType="CSNODE" parameter="SXU00722" method="getElementByCode.getValue.getAmount" /> <!-- A赔偿限额 -->
+				<item fieldName="APreAccdDdctCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00723" method="getElementByCode.getValue.getCurrency" /> <!-- A每一事故的免赔额币种 -->
+				<item fieldName="APreAccdDeduct" fieldType="Float" parameterType="CSNODE" parameter="SXU00723" method="getElementByCode.getValue.getAmount" /> <!-- A每一事故的免赔额金额 -->
+				<item fieldName="BDutyRange" fieldType="String" parameterType="CSNODE" parameter="SXU00729" method="getElementByCode.getValue" /> <!-- 责任范围B-第三者责任 -->
+				<item fieldName="BPreAccdPrptyLossLmtCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00726" method="getElementByCode.getValue.getCurrency" /> <!-- B每一事故物损赔偿责任限额币种 -->
+				<item fieldName="BPreAccdPrptyLossLimit" fieldType="Float" parameterType="CSNODE" parameter="SXU00726" method="getElementByCode.getValue.getAmount" /> <!-- B每一事故物损赔偿责任限额金额 -->
+				<item fieldName="BPreAccdPrsnInjrLmtCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00727" method="getElementByCode.getValue.getCurrency" /> <!-- B每一事故人伤赔偿责任限额币种 -->
+				<item fieldName="BPreAccdPrsnInjrLimit" fieldType="Float" parameterType="CSNODE" parameter="SXU00727" method="getElementByCode.getValue.getAmount" /> <!-- B每一事故人伤赔偿责任限额金额 -->
+				<item fieldName="BPreAccdDdctCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00724" method="getElementByCode.getValue.getCurrency" /> <!-- B每一事故的免赔额币种 -->
+				<item fieldName="BPreAccdDeduct" fieldType="Float" parameterType="CSNODE" parameter="SXU00724" method="getElementByCode.getValue.getAmount" /> <!-- B每一事故的免赔额金额 -->
+				<item fieldName="CDutyRange" fieldType="String" parameterType="CSNODE" parameter="SXU00730" method="getElementByCode.getValue" /> <!-- 责任范围C-职业责任 -->
+				<item fieldName="CLimitCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00728" method="getElementByCode.getValue.getCurrency" /> <!-- C赔偿限额币种 -->
+				<item fieldName="CLimitAmount" fieldType="Float" parameterType="CSNODE" parameter="SXU00728" method="getElementByCode.getValue.getAmount" /> <!-- C赔偿限额 -->
+				<item fieldName="CDeductCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00725" method="getElementByCode.getValue.getCurrency" /> <!-- C免赔额币种 -->
+				<item fieldName="CDeductAmount" fieldType="Float" parameterType="CSNODE" parameter="SXU00725" method="getElementByCode.getValue.getAmount" /> <!-- C免赔额 -->
+				<item fieldName="AggrCmpnLmtCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00107" method="getElementByCode.getValue.getCurrency" /> <!-- 累计赔偿限额币种 -->
+				<item fieldName="AggregCmpnstLimit" fieldType="Float" parameterType="CSNODE" parameter="SXU00107" method="getElementByCode.getValue.getAmount" /> <!-- 累计赔偿限额金额 -->
+				<item fieldName="AnnFrghtIOVlmContainer" fieldType="Long" parameterType="CSNODE" parameter="SXU00731" method="getElementByCode.getValue" /> <!-- 年货物吞吐量(集装箱) -->
+				<item fieldName="AnnFrghtIOVlmCntnrRate" fieldType="Float" parameterType="CSNODE" parameter="SXU00732" method="getElementByCode.getValue" /> <!-- 年货物吞吐量(集装箱)费率 -->
+				<item fieldName="AnnFrghtIOVlmTon" fieldType="Long" parameterType="CSNODE" parameter="SXU00733" method="getElementByCode.getValue" /> <!-- 年货物吞吐量(公吨) -->
+				<item fieldName="AnnFrghtIOVlmTonRate" fieldType="Float" parameterType="CSNODE" parameter="SXU00734" method="getElementByCode.getValue" /> <!-- 年货物吞吐量(公吨)费率 -->
+				<item fieldName="BizIncomeRate" fieldType="Float" parameterType="CSNODE" parameter="SXU00735" method="getElementByCode.getValue" /> <!-- 年营业额基础费率 -->
+				<item fieldName="ExcessPointCurrency" fieldType="String" parameterType="CSNODE" method="getExcessPoint.getCurrency" /> <!-- 起赔点币种 -->
+				<item fieldName="ExcessPoint" fieldType="Float" parameterType="CSNODE" method="getExcessPoint.getAmount" /> <!-- 起赔点金额 -->
+				<item fieldName="BizIncomeCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00173" method="getElementByCode.getValue.getCurrency" /> <!-- 营业收入币种 -->
+				<item fieldName="BizIncomeAmount" fieldType="Float" parameterType="CSNODE" parameter="SXU00173" method="getElementByCode.getValue.getAmount" /> <!-- 营业收入额 -->
+				<item fieldName="ManageArea" fieldType="String" parameterType="CSNODE" parameter="SXU00690" method="getElementByCode.getValue" /> <!-- 承保区域 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="objectno" /> <!-- 对象号 -->
+			</table>
+		</area>
+	</mapping>
+</definition>

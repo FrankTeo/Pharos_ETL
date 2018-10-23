@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition description="企财险标的表">
+	<mapping>
+		<area description="企财险标的表">
+			<table tableName="t_subjenterprise" dataProviderType="CSNODE" as="Contract">
+				<item fieldName="PolicyNo" fieldType="String" parameterType="GLOBAL" parameter="policyno" /> <!-- 保单号 -->
+				<item fieldName="EndorseNo" fieldType="String" parameterType="GLOBAL" parameter="endorseno" /> <!-- 批单号 -->
+				<item fieldName="NodeNo" fieldType="String" parameterType="GLOBAL" parameter="nodeno" /> <!-- 节点号 -->
+				<item fieldName="ContractNo" fieldType="String" parameterType="GLOBAL" parameter="contractno" /> <!-- 合同号 -->
+				<item fieldName="SubVersionNo" fieldType="String" parameterType="GLOBAL" parameter="version" /> <!-- 版本号 -->
+				<item fieldName="ProposalNo" fieldType="String" parameterType="GLOBAL" parameter="proposalno" /> <!-- 投保单号 -->
+				<item fieldName="PerAccdCmpnstLmtCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00121" method="getElementByCode.getValue.getCurrency" /> <!-- 每次事故赔偿限额币种 -->
+				<item fieldName="PerAccdCmpnstLimit" fieldType="Float" parameterType="CSNODE" parameter="SXU00121" method="getElementByCode.getValue.getAmount" /> <!-- 每次事故赔偿限额 -->
+				<item fieldName="AggrCmpnstLmtCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00155" method="getElementByCode.getValue.getCurrency" /> <!-- 年度累计赔偿限额 -->
+				<item fieldName="AggregCmpnstLimit" fieldType="Float" parameterType="CSNODE" parameter="SXU00155" method="getElementByCode.getValue.getAmount" /> <!-- 年度累计赔偿限额 -->
+				<item fieldName="SubjectAddress" fieldType="String" parameterType="CSNODE" parameter="SXU00013" method="getElementByCode.getValue" /> <!-- 标的地址 -->
+				<item fieldName="ZipCode" fieldType="String" parameterType="CSNODE" parameter="SXU00014" method="getElementByCode.getValue" /> <!-- 邮政编码 -->
+				<item fieldName="BizQuality" fieldType="String" parameterType="CSNODE" parameter="SXU00149" method="getElementByCode.getValue" /> <!-- 营业性质 -->
+				<item fieldName="TradeType" fieldType="String" parameterType="CSNODE" parameter="SXU00673" method="getElementByCode.getValue" /> <!-- 行业类型 -->
+				<item fieldName="HrdWrCvrgCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00210" method="getElementByCode.getValue.getCurrency" /> <!-- 计算机硬件保险金额币种 -->
+				<item fieldName="HrdWrCoverage" fieldType="Float" parameterType="CSNODE" parameter="SXU00210" method="getElementByCode.getValue.getAmount" /> <!-- 计算机硬件保险金额 -->
+				<item fieldName="HrdWrRate" fieldType="Float" parameterType="CSNODE" parameter="SXU00006" method="getElementByCode.getValue" /> <!-- 计算机硬件费率 -->
+				<item fieldName="HrdWrPrmmCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00212" method="getElementByCode.getValue.getCurrency" /> <!-- 计算机硬件保费币种 -->
+				<item fieldName="HrdWrPremium" fieldType="Float" parameterType="CSNODE" parameter="SXU00212" method="getElementByCode.getValue.getAmount" /> <!-- 计算机硬件保费 -->
+				<item fieldName="SftWrRate" fieldType="Float" parameterType="CSNODE" parameter="SXU00678" method="getElementByCode.getValue" /> <!-- 计算机软件费率 -->
+				<item fieldName="SftWrPrmmCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00679" method="getElementByCode.getValue.getCurrency" /> <!-- 计算机软件保费币种 -->
+				<item fieldName="SftWrPremium" fieldType="Float" parameterType="CSNODE" parameter="SXU00679" method="getElementByCode.getValue.getAmount" /> <!-- 计算机软件保费 -->
+				<item fieldName="HrdWrDdctDescription" fieldType="String" parameterType="CSNODE" parameter="SXU00695" method="getElementByCode.getValue" /> <!-- 硬件免赔描述 -->
+				<item fieldName="SftWrDdctDescription" fieldType="String" parameterType="CSNODE" parameter="SXU00696" method="getElementByCode.getValue" /> <!-- 软件免赔描述 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" parameter="objectno" /> <!-- 对象号 -->
+			</table>
+		</area>
+	</mapping>
+</definition>

@@ -1,0 +1,581 @@
+package com.sysnet.poc.partymapping.action;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import pharos.framework.pkgen.PKGenerator;
+import pharos.party.vo.CorpRelationshipVO;
+import pharos.party.vo.PartNameVO;
+import pharos.party.vo.PartiesRelationshipVO;
+import pharos.party.vo.PartyCertIDVO;
+import pharos.party.vo.PartyDeclaration;
+import pharos.party.vo.PartyDeclarationForm;
+import pharos.party.vo.PartyNameVO;
+import pharos.party.vo.PartyVO;
+
+import com.sysnet.poc.partymapping.PartyType;
+import com.sysnet.poc.partymapping.vo.DataProvide;
+
+/**
+ * BContract管理类，封装数据提供者，即dataprovider
+ * 
+ * @author lu_haibin
+ * 
+ */
+public class PartyVOManager {
+
+	private PartyVO partyVo;
+
+	private Map<String, List<PartyVO>> partyVoMap = new HashMap<String, List<PartyVO>>();
+
+	private Map<String, List<PartiesRelationshipVO>> partiesRelationshipVOMap = new HashMap<String, List<PartiesRelationshipVO>>();
+
+	private Map<String, List<CorpRelationshipVO>> corpRelationshipVOMap = new HashMap<String, List<CorpRelationshipVO>>();
+
+	private Map<String, List<PartyCertIDVO>> partyCertIDVOMap = new HashMap<String, List<PartyCertIDVO>>();
+
+	private Map<String, List<PartyNameVO>> partyNameVOMap = new HashMap<String, List<PartyNameVO>>();
+
+	private Map<String, List<PartNameVO>> partNameVOMap = new HashMap<String, List<PartNameVO>>();
+
+	private Map<String, String> globalDataMap = new HashMap<String, String>();// 全局变量在PartyBusiness类中已经放入数据
+
+	private Map<String, List<PartyDeclarationForm>> partyDeclarationFormMap = new HashMap<String, List<PartyDeclarationForm>>();
+
+	private Map<String, List<PartyDeclaration>> partyDeclarationMap = new HashMap<String, List<PartyDeclaration>>();
+
+	// private Map<String, List<BDeclarationForm>> bDeclarationFormMap = new
+	// HashMap<String, List<BDeclarationForm>>();
+
+	public void init(Map<String, DataProvide> provides) throws Exception {// 初始化Pharos中取得的数据提供者
+
+		Set<String> keys = provides.keySet();
+		for (Iterator<String> iterator = keys.iterator(); iterator.hasNext();) {
+
+			DataProvide dataProvide = provides.get(iterator.next().toString());
+
+			if (PartyType.PHAROS_ELEMENT_TYPE_PartyVo.equalsIgnoreCase(dataProvide.getProvideType())) {
+
+				partyVoMap.put(dataProvide.getName(), this.getPartyVOs(dataProvide));
+			} else if (PartyType.PHAROS_ELEMENT_TYPE_PARTYDECLARATION.equalsIgnoreCase(dataProvide.getProvideType())) {
+
+				partyDeclarationMap.put(dataProvide.getName(), this.getPartyDeclaration(dataProvide));
+
+			} else if (PartyType.PHAROS_ELEMENT_TYPE_PartiesRelationshipVO.equalsIgnoreCase(dataProvide.getProvideType())) {
+
+				partiesRelationshipVOMap.put(dataProvide.getName(), this.getPartiesRelationshipVOs(dataProvide));
+
+			} else if (PartyType.PHAROS_ELEMENT_TYPE_CorpRelationshipVO.equalsIgnoreCase(dataProvide.getProvideType())) {
+
+				corpRelationshipVOMap.put(dataProvide.getName(), this.getCorpRelationshipVOs(dataProvide));
+
+			} else if (PartyType.PHAROS_ELEMENT_TYPE_PartyCertIDVO.equalsIgnoreCase(dataProvide.getProvideType())) {
+
+				partyCertIDVOMap.put(dataProvide.getName(), this.getPartyCertIDVOs(dataProvide));
+
+			} else if (PartyType.PHAROS_ELEMENT_TYPE_PARTNAMEVOINDEX.equalsIgnoreCase(dataProvide.getProvideType())) {
+
+				partNameVOMap.put(dataProvide.getName(), this.getPartNameVOs(dataProvide));
+
+			} else if (PartyType.PHAROS_ELEMENT_TYPE_PARTYNAMEVOINDEX.equalsIgnoreCase(dataProvide.getProvideType())) {
+
+				partyNameVOMap.put(dataProvide.getName(), this.getPartyNameVOs(dataProvide));
+
+			} else if (PartyType.PHAROS_ELEMENT_TYPE_PartyDeclarationForm.equalsIgnoreCase(dataProvide.getProvideType())) {
+				partyDeclarationFormMap.put(dataProvide.getName(), this.getPartyDeclarationForms(dataProvide));
+
+			}
+			// else
+			// if(PartyType.PHAROS_ELEMENT_TYPE_BDeclarationForm.equalsIgnoreCase(dataProvide.getProvideType())){
+			// bDeclarationFormMap.put(dataProvide.getName(),
+			// this.getBDeclarationForms(dataProvide));
+			//
+			// }
+			else if (PartyType.PHAROS_ELEMENT_TYPE_GLOBAL.equalsIgnoreCase(dataProvide.getProvideType())) {// 全局参数
+
+			}
+
+		}
+
+	}
+
+	/**
+	 * 获取PartyVO对象集合，并缓存
+	 * 
+	 * @param dataProvide
+	 * @return PartyVO
+	 */
+	private List<PartyVO> getPartyVOs(DataProvide dataProvide) {
+
+		try {
+			List<PartyVO> partyVOList = null;
+			if (partyVoMap.containsKey(dataProvide.getName())) {
+				partyVOList = partyVoMap.get(dataProvide.getName());
+			} else {
+
+				partyVOList = this.getPartyVOList(dataProvide);
+				// 缓存
+				partyVoMap.put(dataProvide.getName(), partyVOList);
+			}
+			return partyVOList;
+		} catch (Exception ex) {
+
+			ex.printStackTrace();
+			return null;
+		}
+	}
+
+	/**
+	 * 取PartyVO对象集合
+	 * 
+	 * @param dataProvide
+	 * @return
+	 */
+	private List<PartyVO> getPartyVOList(DataProvide dataProvide) {
+
+		List<PartyVO> pVoList = new ArrayList<PartyVO>();
+		pVoList.add(partyVo);
+		return pVoList;
+
+	}
+
+	private List<PartyDeclaration> getPartyDeclaration(DataProvide dataProvide) {
+
+		try {
+			List<PartyDeclaration> partyDeclarationList = null;
+			if (partyDeclarationMap.containsKey(dataProvide.getName())) {
+				partyDeclarationList = partyDeclarationMap.get(dataProvide.getName());
+			} else {
+
+				partyDeclarationList = this.getPartyDeclarationList(dataProvide);
+				// 缓存
+				partyDeclarationMap.put(dataProvide.getName(), partyDeclarationList);
+			}
+			return partyDeclarationList;
+		} catch (Exception ex) {
+
+			ex.printStackTrace();
+			return null;
+		}
+	}
+
+	private List<PartyDeclaration> getPartyDeclarationList(DataProvide dataProvide) {
+		List<PartyDeclaration> partyDeclarationList = partyVo.getDecls();
+		return partyDeclarationList;
+	}
+
+	/**
+	 * 获取PartiesRelationshipVO对象集合，并缓存
+	 * 
+	 * @param dataProvide
+	 * @return PartiesRelationshipVO
+	 */
+	private List<PartiesRelationshipVO> getPartiesRelationshipVOs(DataProvide dataProvide) {
+
+		try {
+			List<PartiesRelationshipVO> partiesRelationshipVOList = null;
+			if (partiesRelationshipVOMap.containsKey(dataProvide.getName())) {
+				partiesRelationshipVOList = partiesRelationshipVOMap.get(dataProvide.getName());
+			} else {
+
+				partiesRelationshipVOList = this.getPartiesRelationshipVOList(dataProvide);
+				// 缓存
+				partiesRelationshipVOMap.put(dataProvide.getName(), partiesRelationshipVOList);
+			}
+			return partiesRelationshipVOList;
+		} catch (Exception ex) {
+
+			ex.printStackTrace();
+			return null;
+		}
+	}
+
+	/**
+	 * 取PartiesRelationshipVO对象集合
+	 * 
+	 * @param dataProvide
+	 * @return
+	 */
+	private List<PartiesRelationshipVO> getPartiesRelationshipVOList(DataProvide dataProvide) {
+		List<PartiesRelationshipVO> partiesRelationshipVOList = partyVo.getPartiesRelationships();
+		for (PartiesRelationshipVO vo : partiesRelationshipVOList) {
+			if (vo.getId() == 0) {
+				vo.setId(PKGenerator.nextPK());
+			}
+		}
+		return partiesRelationshipVOList;
+	}
+
+	/**
+	 * 获取CorpRelationshipVO对象集合，并缓存
+	 * 
+	 * @param dataProvide
+	 * @return CorpRelationshipVO
+	 */
+	private List<CorpRelationshipVO> getCorpRelationshipVOs(DataProvide dataProvide) {
+
+		try {
+			List<CorpRelationshipVO> corpRelationshipVOList = null;
+			if (corpRelationshipVOMap.containsKey(dataProvide.getName())) {
+				corpRelationshipVOList = corpRelationshipVOMap.get(dataProvide.getName());
+			} else {
+
+				corpRelationshipVOList = this.getCorpRelationshipVOList(dataProvide);
+				// 缓存
+				corpRelationshipVOMap.put(dataProvide.getName(), corpRelationshipVOList);
+			}
+			return corpRelationshipVOList;
+		} catch (Exception ex) {
+
+			ex.printStackTrace();
+			return null;
+		}
+	}
+
+	/**
+	 * 取CorpRelationshipVO对象集合
+	 * 
+	 * @param dataProvide
+	 * @return
+	 */
+	private List<CorpRelationshipVO> getCorpRelationshipVOList(DataProvide dataProvide) {
+
+		List<CorpRelationshipVO> corpRelationshipVOList = partyVo.getCorpRelationships();
+		if (corpRelationshipVOList != null && corpRelationshipVOList.size() > 0) {
+			Iterator<CorpRelationshipVO> iter = corpRelationshipVOList.iterator();
+			while (iter.hasNext()) {
+				CorpRelationshipVO cvo = iter.next();
+				if (!cvo.getStatus().equals("1")) {
+					iter.remove();
+				}
+			}
+
+		}
+		return corpRelationshipVOList;
+
+	}
+
+
+	/**
+	 * 获取PartyCertIDVO对象集合，并缓存
+	 * 
+	 * @param dataProvide
+	 * @return PartyCertIDVO
+	 */
+	private List<PartyCertIDVO> getPartyCertIDVOs(DataProvide dataProvide) {
+
+		try {
+			List<PartyCertIDVO> partyCertIDVOList = null;
+			if (partyCertIDVOMap.containsKey(dataProvide.getName())) {
+				partyCertIDVOList = partyCertIDVOMap.get(dataProvide.getName());
+			} else {
+
+				partyCertIDVOList = this.getPartyCertIDVOList(dataProvide);
+				// 缓存
+				partyCertIDVOMap.put(dataProvide.getName(), partyCertIDVOList);
+			}
+			return partyCertIDVOList;
+		} catch (Exception ex) {
+
+			ex.printStackTrace();
+			return null;
+		}
+	}
+
+	/**
+	 * 取CorpRelationshipVO对象集合
+	 * 
+	 * @param dataProvide
+	 * @return
+	 */
+	private List<PartyCertIDVO> getPartyCertIDVOList(DataProvide dataProvide) {
+
+		List<PartyCertIDVO> partyCertIDVOList = partyVo.getCerts();
+		for (PartyCertIDVO vo : partyCertIDVOList) {
+			if (vo.getId() == 0) {
+				vo.setId(PKGenerator.nextPK());
+			}
+		}
+		return partyCertIDVOList;
+
+	}
+
+	private List<PartNameVO> getPartNameVOs(DataProvide dataProvide) {
+
+		try {
+			List<PartNameVO> partNameVOList = null;
+			if (partNameVOMap.containsKey(dataProvide.getName())) {
+				partNameVOList = partNameVOMap.get(dataProvide.getName());
+			} else {
+
+				partNameVOList = this.getPartNameVOList(dataProvide);
+				// 缓存
+				partNameVOMap.put(dataProvide.getName(), partNameVOList);
+			}
+			return partNameVOList;
+		} catch (Exception ex) {
+
+			ex.printStackTrace();
+			return null;
+
+		}
+	}
+
+	private List<PartNameVO> getPartNameVOList(DataProvide dataProvide) {
+		List<PartNameVO> partNameVOList = new ArrayList<PartNameVO>();
+		if (partyNameVOMap.get("PartyNameVO") == null) {
+			getPartyNameVOs("PartyNameVO");
+		}
+		List<PartyNameVO> partyNameVOList = partyNameVOMap.get("PartyNameVOIndex");
+		for (PartyNameVO partyNameVO : partyNameVOList) {
+			partNameVOList.addAll(partyNameVO.getPartnamelist());
+
+		}
+		return partNameVOList;
+
+	}
+
+	private List<PartyNameVO> getPartyNameVOs(String dataProvide) {
+
+		try {
+			List<PartyNameVO> partyNameVOList = null;
+			if (partyNameVOMap.containsKey(dataProvide)) {
+				partyNameVOList = partyNameVOMap.get(dataProvide);
+			} else {
+
+				partyNameVOList = this.getPartyNameVOList();
+				// 缓存
+				partyNameVOMap.put(dataProvide, partyNameVOList);
+			}
+			return partyNameVOList;
+		} catch (Exception ex) {
+
+			ex.printStackTrace();
+			return null;
+
+		}
+	}
+
+	/**
+	 * 获取PartyNameVO对象集合，并缓存
+	 * 
+	 * @param dataProvide
+	 * @return PartyNameVO
+	 */
+	private List<PartyNameVO> getPartyNameVOs(DataProvide dataProvide) {
+		return getPartyNameVOs(dataProvide.getName());
+	}
+
+	/**
+	 * 取PartyCertIDVO对象集合
+	 * 
+	 * @param dataProvide
+	 * @return
+	 */
+	private List<PartyNameVO> getPartyNameVOList() {
+		List<PartyNameVO> partyNameVOList = partyVo.getNames();
+		return partyNameVOList;
+
+	}
+
+	// /**
+	// * 获取BDeclarationForm对象集合，并缓存，此种情况支持10001/10002这种带/的
+	// */
+	// private List<BDeclarationForm> getBDeclarationForms(DataProvide
+	// dataProvide){
+	// try
+	// {
+	// List<BDeclarationForm> bDeclarationFormList = null;
+	// if (bDeclarationFormMap.containsKey(dataProvide.getName())) {
+	// bDeclarationFormList = bDeclarationFormMap.get(dataProvide.getName());
+	// }
+	// else {
+	// if(dataProvide==null)
+	// {
+	// System.out.print("null------------------");
+	// }
+	// bDeclarationFormList = this.getBDeclarationFormList(dataProvide);
+	// // 缓存
+	// bDeclarationFormMap.put(dataProvide.getName(), bDeclarationFormList);
+	// }
+	// return bDeclarationFormList;
+	// }
+	// catch(Exception ex)
+	// {
+	//
+	// ex.printStackTrace();
+	// return null;
+	//
+	// }
+	//
+	// }
+
+	// /**
+	// * 取BDeclarationForm对象集合
+	// */
+	// private List<BDeclarationForm> getBDeclarationFormList(DataProvide
+	// dataProvide) {
+	// List<BDeclarationForm> bdeclarationFormList = new
+	// ArrayList<BDeclarationForm>();
+	// String nodeName = dataProvide.getNodeName();
+	// Object obj = null;
+	//
+	// String path[]= nodeName.split("/");
+	//
+	// for (int i = 0; i < path.length; i++) {
+	//
+	// if(i == 0)
+	// {
+	// obj = partyVo.getPartyDeclFormByCode(Integer.parseInt(path[i]));
+	// }
+	// else
+	// {
+	// if(i == 1)
+	// {
+	// obj =
+	// ((PartyDeclarationForm)obj).getDeclarationFormByCode(Integer.parseInt(path[i]),
+	// true);
+	// }
+	// else
+	// {
+	// obj =
+	// ((BDeclarationForm)obj).getDeclarationFormByCode(Integer.parseInt(path[i]),
+	// true);
+	// }
+	//
+	// }
+	//
+	// }
+	//
+	//
+	//
+	//
+	// bdeclarationFormList.add((BDeclarationForm)obj);
+	// return bdeclarationFormList;
+	//
+	// }
+
+	/**
+	 * 获取PartyDeclarationForm对象集合，并缓存,此种情况支持10001这种不带/的
+	 */
+	private List<PartyDeclarationForm> getPartyDeclarationForms(DataProvide dataProvide) throws Exception {
+
+		// try
+		// {
+		List<PartyDeclarationForm> partyDeclarationFormList = null;
+		if (partyDeclarationFormMap.containsKey(dataProvide.getName())) {
+			partyDeclarationFormList = partyDeclarationFormMap.get(dataProvide.getName());
+		} else {
+			partyDeclarationFormList = this.getPartyDeclarationFormList(dataProvide);
+			// 缓存
+			partyDeclarationFormMap.put(dataProvide.getName(), partyDeclarationFormList);
+		}
+		return partyDeclarationFormList;
+		// }
+		// catch(Exception ex)
+		// {
+
+		// ex.printStackTrace();
+		// return null;
+
+		// }
+	}
+
+	/**
+	 * 取PartyDeclarationForm对象集合
+	 */
+	private List<PartyDeclarationForm> getPartyDeclarationFormList(DataProvide dataProvide) throws Exception {
+		List<PartyDeclarationForm> partydeclarationFormList = new ArrayList<PartyDeclarationForm>();
+		String nodeName = dataProvide.getNodeName();// 得到配置模板里面的数据提供者的nodeName
+		Object obj = null;
+		// try{
+		if (nodeName.indexOf("/") != -1) {// 此时是10001/10002的这种有多个/的形式
+
+			String path[] = nodeName.split("/");
+			for (int i = 0; i < path.length; i++) {
+
+				if (i == 0) {
+					obj = partyVo.getPartyDeclFormByCode(path[i]);// 得到第一层的DF
+					if (obj == null) {// 有可能客户职工里面没有大病这些信息，所以要判断一下，否则在取得第二层的DF的时候会报空指针
+
+						break;
+					}
+				} else {
+					obj = ((PartyDeclarationForm) obj).getDeclarationFormByCode(path[i], true);// 得到第二层以及之后的DF，都是PartyDeclarationForm类型，直接强制转换即可
+
+				}
+
+			}
+
+		} else {// 此时是直接在DF下挂数据项的情况，即无/的情况
+			obj = partyVo.getPartyDeclFormByCode(nodeName);
+		}
+		// }catch(NullPointerException e){
+		//
+		// log.info("当前出错的Party增量是:" + partyVo.getCode());
+		// }
+
+		partydeclarationFormList.add((PartyDeclarationForm) obj);
+		return partydeclarationFormList;
+
+	}
+
+	/**
+	 * 获取全局参数缓存
+	 * 
+	 * @param key
+	 * @return
+	 */
+	public List<Map<String, String>> getGlobalData() {
+		List<Map<String, String>> globalList = new ArrayList<Map<String, String>>();
+		globalList.add(this.globalDataMap);
+		return globalList;
+	}
+
+	public void setPartyVo(PartyVO partyVo) {
+		this.partyVo = partyVo;
+	}
+
+	public void setGlobalDataMap(Map<String, String> map) {
+		this.globalDataMap = map;
+	}
+
+	public List<?> getProvide(DataProvide provide) throws Exception {// 根据相应的DataProvide对象，得到相对应的数据提供者
+		List<?> list = null;
+		// 如果没有此节点，终止循环 2009-09-14
+		if (provide == null) {
+			return list;
+		}
+		String type = provide.getProvideType();
+
+		if (type.equalsIgnoreCase(PartyType.PHAROS_ELEMENT_TYPE_PartyVo)) {
+
+			list = this.getPartyVOs(provide);
+
+		} else if (type.equalsIgnoreCase(PartyType.PHAROS_ELEMENT_TYPE_PartiesRelationshipVO)) {
+			list = this.getPartiesRelationshipVOs(provide);
+		} else if (type.equalsIgnoreCase(PartyType.PHAROS_ELEMENT_TYPE_CorpRelationshipVO)) {
+			list = this.getCorpRelationshipVOs(provide);
+
+		} else if (type.equalsIgnoreCase(PartyType.PHAROS_ELEMENT_TYPE_PartyCertIDVO)) {
+			list = this.getPartyCertIDVOs(provide);
+		} else if (type.equalsIgnoreCase(PartyType.PHAROS_ELEMENT_TYPE_PartyNameVO)) {
+			list = this.getPartyNameVOs(provide);
+		} else if (type.equalsIgnoreCase(PartyType.PHAROS_ELEMENT_TYPE_GLOBAL)) {
+			list = this.getGlobalData();
+		} else if (type.equalsIgnoreCase(PartyType.PHAROS_ELEMENT_TYPE_PartyDeclarationForm)) {
+			list = this.getPartyDeclarationForms(provide);
+		}
+		// else
+		// if(type.equalsIgnoreCase(PartyType.PHAROS_ELEMENT_TYPE_BDeclarationForm)){
+		// list = this.getBDeclarationForms(provide);
+		// }
+
+		return list;
+	}
+
+}

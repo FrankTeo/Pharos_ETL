@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition description="利益损失标的表">
+	<mapping>
+		<area description="利益损失标的表">
+			<table tableName="T_SubjProfitLoss" dataProviderType="CSNODE" as="Contract">
+				<item fieldName="PolicyNo" fieldType="String" parameterType="GLOBAL" parameter="policyno" /> <!-- 保单号 -->
+				<item fieldName="EndorseNo" fieldType="String" parameterType="GLOBAL" parameter="endorseno" /> <!-- 批单号 -->
+				<item fieldName="NodeNo" fieldType="String" parameterType="GLOBAL" parameter="nodeno" /> <!-- 节点号 -->
+				<item fieldName="ContractNo" fieldType="String" parameterType="GLOBAL" parameter="contractno" /> <!-- 合同号 -->
+				<item fieldName="SubVersionNo" fieldType="String" parameterType="GLOBAL" parameter="version" /> <!-- 版本号 -->
+				<item fieldName="ProposalNo" fieldType="String" parameterType="GLOBAL" parameter="proposalno" /> <!-- 投保单号 -->
+				<!--<item fieldName="InsureProjectName" fieldType="String" />--> <!-- 保险项目名称 -->
+				<!--<item fieldName="ProjectTrade" fieldType="String" />--> <!-- 项目所属行业 -->
+				<!--<item fieldName="ProjectExecuteArea" fieldType="String" />--> <!-- 项目主要执行地 -->
+				<!--<item fieldName="ProjectExecuteTerm" fieldType="String" />--> <!-- 项目执行期 -->
+				<!--<item fieldName="ProjectDocumentArea" fieldType="String" />--> <!-- 项目资料备份地点 -->
+				<!--<item fieldName="MainRiskPolicyNo" fieldType="String" />--> <!-- 主险保单号 -->
+				<!--<item fieldName="SalesLastYearCurrency" fieldType="String" />--> <!-- 上年度营业额币种 -->
+				<!--<item fieldName="SalesLastYear" fieldType="Float" />--> <!-- 上年度营业额 -->
+				<!--<item fieldName="GrossPrftLstYCurrency" fieldType="String" />--> <!-- 上年度毛利币种 -->
+				<!--<item fieldName="GrossProfitLastYear" fieldType="Float" />--> <!-- 上年度毛利 -->
+				<!--<item fieldName="SalaryLstYCurrency" fieldType="String" />--> <!-- 上年度工资币种 -->
+				<!--<item fieldName="SalaryLastYear" fieldType="Float" />--> <!-- 上年度工资 -->
+				<!--<item fieldName="QuotaGrossProfit" fieldType="String" />--> <!-- 毛利限额 -->
+				<!--<item fieldName="QuotaSalary" fieldType="String" />--> <!-- 工资限额 -->
+				<!--<item fieldName="QuotaSupport" fieldType="String" />--> <!-- 维持限额 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" parameter="objectno" /> <!-- 对象号 -->
+				<!--<item fieldName="Remark" fieldType="String" />--> <!-- 备注 -->
+				<!--<item fieldName="CrtTime" fieldType="Date" />--> <!-- 创建时间 -->
+				<!--<item fieldName="MdfTime" fieldType="Date" />--> <!-- 修改时间 -->
+			</table>
+		</area>
+	</mapping>
+</definition>

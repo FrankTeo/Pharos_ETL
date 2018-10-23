@@ -1,0 +1,146 @@
+package com.sysnet.poc.partymapping.action;
+
+import java.util.List;
+
+import org.apache.commons.logging.Log;
+
+import pharos.framework.base.Money;
+import pharos.party.vo.PartyVO;
+
+import com.sysnet.poc.partymapping.ReflectUtil;
+import com.sysnet.poc.partymapping.SequenceUtil;
+import com.sysnet.poc.partymapping.vo.Item;
+import com.sysnet.poc.partymapping.vo.MappingDescription;
+import com.sysnet.poc.partymapping.vo.Table;
+import com.sysnet.poc.util.DateHelper;
+import com.sysnet.poc.util.OdsLogger;
+
+/**
+ * STG_PTY_PARTY--当事方_当事方映射处理
+ * 
+ * @author lu_haibin
+ * 
+ */
+public class PartyVOMappingAction extends AbsPharosMappingAction {
+
+	private Item item;
+	private static final Log log = OdsLogger.getLog("partyLog4j", "Party");
+
+	public boolean execute() throws Exception {
+
+		boolean rs = false;
+		try {
+			if ((item.getParameter().trim()).equals("timestamp")) {
+				item.setValue("null");
+			}
+			// 如果是 序列取序列的值
+			if (item.getSequenceName() != null && !item.getSequenceName().equals("")) {
+				String seq = String.valueOf(SequenceUtil.getSequenceNextValueByName(item.getSequenceName()));// 取序列
+				item.setValue(seq);
+			}
+			// 如果是引用取引用的值
+			else if (item.getRef() != null && !item.getRef().equals("")) {
+				String arr[] = item.getRef().split("[/]");
+				MappingDescription mapDesc = item.getParent().getParent();
+				List<Table> tableList = mapDesc.getTable();
+				for (Table table : tableList) {
+					if (table.getTableName().equalsIgnoreCase(arr[1]) && table.getDataProvide().equalsIgnoreCase(arr[0])) {
+						List<Item> itemList = table.getItems();
+						for (Item _item : itemList) {
+							if (_item.getName().equalsIgnoreCase(arr[2])) {
+								item.setValue(_item.getValue());
+								break;
+							}
+						}
+						break;
+					}
+				}
+			} else {
+				PartyVO partyVo = (PartyVO) this.provideInstnace;
+				String methodNm = item.getMethod();
+				Object obj = null;
+				// 调用反射
+				if (methodNm == null) {
+					log.error("class PartyVOMappingAction report:" + item.getParameter() + "get method name is null!");
+				} else {
+
+					if (methodNm.indexOf(".") != -1) {// 判断MethodMappingManager类中配置的方法名称是否有"."，因为返回值可能是通过多个方法的调用返回的
+
+						String parm = item.getParameter();// ParameterMapping这个类中的key也是item标签中，Map的parameter属性的值，即和MethodMappingManager类中，方法名称的key是一致的
+						Class<?>[] parameters = new Class[1];// 1代表要反射的参数的个数
+						parameters[0] = int.class;// 将parameters作为参数传到反射类的方法中
+
+						String temp[] = methodNm.split("[.]");// 用"."将这个方法的字符串分割
+
+						for (int i = 0; i < temp.length; i++) {
+							if (i == 0) {// 此时说明是第一个方法名
+								if (parm == null) {// 这说明这个方法在调用的时候不需要参数，这是因为在ParameterMapping这个类中，Map的key也是item标签中的parameter属性的值，即和MethodMappingManager类中，方法名称的key是一致的
+
+									obj = ReflectUtil.getObjByReflect(partyVo, temp[i]);// 直接反射，调用partyVo的对应的这个方法
+
+								} else if ("getPartyDeclFormByCode".equals(temp[i])) {// 在团体客户中需要先通过partyVo的getPartyDeclFormByCode()方法得到一个数据项的Form，然后再根据这个Form得到多个数据项，所以这里要先拿到这个团体客户的数据项的总的code
+
+									obj = ReflectUtil.getObjByReflectByParameters(partyVo, temp[i], parameters, 10000);
+
+								} else {// 否则就是第一个方法名是带参数的，此时直接传入这个code，即parm即可得到方法返回的数据
+
+									obj = ReflectUtil.getObjByReflectByParameters(partyVo, temp[i], parameters, Integer.parseInt(parm));
+									if (obj == null) {
+
+										break;
+									}
+								}
+
+							} else {// 否则就是第二个方法名，第三个方法名。。。。
+								if ("getPartyDeclByCode".equals(temp[i])) {// 第二个方法名有可能是通过partyVo的getPartyDeclFormByCode()方法再次调用getPartyDeclByCode而得到一个数据项，然后再通过getValue得到值
+
+									obj = ReflectUtil.getObjByReflectByParameters(obj, temp[i], parameters, Integer.parseInt(parm));
+
+								} else {
+									obj = ReflectUtil.getObjByReflect(obj, temp[i]);// 否则就说明方法没有参数了，直接反射得到数据即可
+
+								}
+
+							}
+						}
+
+					} else {// 说明只通过一个方法调用即可得到相关值，即MethodMappingManager中的方法只有一个，而不是多个方法的调用
+
+						obj = ReflectUtil.getObjByReflect(partyVo, methodNm);
+					}
+				}
+				if (obj instanceof Money) {
+
+					item.setValue(String.valueOf(((Money) obj).getAmount()));
+				} else if (obj instanceof java.util.Date) {
+					item.setValue(DateHelper.convertEnDateToCnDateTime(String.valueOf(obj)));
+				}
+				// else if(obj == null){//这里如果不特殊处理的话，那么String.valueOf(null)就会报错
+				//
+				// if("isbmicitizenindv".equals(item.getParameter())){//客户居民里面有的数据项，在客户职工里面没有
+				// item.setValue(null);
+				// }
+				//					
+				// }
+				else {
+
+					item.setValue(String.valueOf(obj));// 将值设置到这个item上面，用于拼凑SQL语句
+
+				}
+
+			}
+			rs = true;
+		} catch (Exception ex) {
+			// log.error("PartyMainThread:",ex);
+			// ex.printStackTrace();
+			throw ex;
+		}
+		return rs;
+	}
+
+	public void setMappingItem(Item item) {
+
+		this.item = item;
+	}
+
+}

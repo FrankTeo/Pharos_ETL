@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition description="保单代理表">
+	<mapping>
+		<area description="保单代理表">
+			<table tableName="T_PolicyAgency" dataProviderType="MULTICHANNELINFO" as="Contract">
+				<item fieldName="PolicyNo" fieldType="String" parameterType="GLOBAL" parameter="policyno" /> <!-- 保单号 -->
+				<item fieldName="EndorseNo" fieldType="String" parameterType="GLOBAL" parameter="endorseno" /> <!-- 批单号 -->
+				<item fieldName="AgencyType" fieldType="String" parameterType="MULTICHANNELINFO" method="getAgencyType" /> <!-- 中介类型 -->
+				<item fieldName="PartyCode" fieldType="String" parameterType="MULTICHANNELINFO" method="getPartyCode" /> <!-- 当事方 -->
+				<item fieldName="ContractNo" fieldType="String" parameterType="GLOBAL" parameter="contractno" /> <!-- 合同号 -->
+				<item fieldName="NodeNo" fieldType="String" parameterType="GLOBAL" parameter="nodeno" /> <!-- 节点号 -->
+				<item fieldName="SubVersionNo" fieldType="String" parameterType="GLOBAL" parameter="version" /> <!-- 版本号 -->
+				<item fieldName="ProposalNo" fieldType="String" parameterType="GLOBAL" parameter="proposalno" /> <!-- 投保单号 -->
+				<item fieldName="ProtocolCode" fieldType="String" parameterType="MULTICHANNELINFO" method="getProtocolCode" /> <!-- 协议编码 -->
+				<item fieldName="ExpenseCurrency" fieldType="String" parameterType="MULTICHANNELINFO" method="getCurrency" /> <!-- 币种 -->
+				<item fieldName="ExpenseRate" fieldType="Float" parameterType="MULTICHANNELINFO" method="getRate" /> <!-- 费用比例 -->
+				<item fieldName="ExpenseAmount" fieldType="Float" parameterType="MULTICHANNELINFO" method="getAmount" /> <!-- 费用金额 -->
+				<item fieldName="ExpenseVariance" fieldType="Float" parameterType="MULTICHANNELINFO" method="getAmountChanged" /> <!-- 费用变化量 -->
+				<item fieldName="IsMainAgency" fieldType="String" parameterType="MULTICHANNELINFO" method="getIsMainAgency" /> <!-- 是否主中介 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" parameter="objectno" /> <!-- 对象号 -->
+				<!--<item fieldName="Remark" fieldType="String" />--> <!-- 备注 -->
+				<!--<item fieldName="CrtTime" fieldType="Date" />--> <!-- 创建时间 -->
+				<!--<item fieldName="MdfTime" fieldType="Date" />--> <!-- 修改时间 -->
+			</table>
+		</area>
+	</mapping>
+</definition>

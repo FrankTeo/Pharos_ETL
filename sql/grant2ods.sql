@@ -1,0 +1,16 @@
+grant select, update, insert on etl_pharos_incr_insure to htbiz_ods;
+grant select, update, insert on etl_pharos_incr_claim_ct to htbiz_ods;
+grant select, update, insert on etl_pharos_incr_party to htbiz_ods;
+grant select on t_bcontractnode to htbiz_ods;
+grant select on t_wcontractnode to htbiz_ods;
+grant select on t_claim to htbiz_ods;
+grant select on t_claim_version to htbiz_ods;
+grant select on t_parameter to htbiz_ods;
+grant select on t_companynode to htbiz_ods;
+grant select on t_parametervalue to htbiz_ods;
+grant select on t_parameterattributevalue to htbiz_ods;
+grant select on t_secuser to htbiz_ods;
+grant select on t_pelement to htbiz_ods;
+grant select on t_pelementattribute to htbiz_ods;
+grant select on t_assignedelement to htbiz_ods;
+grant select on t_Redefinitionitem to htbiz_ods;

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition description="企财险标的表">
+	<mapping>
+		<area description="企财险标的表">
+			<table tableName="t_subjenterprise" dataProviderType="CSNODE" as="Contract">
+				<item fieldName="PolicyNo" fieldType="String" parameterType="GLOBAL" parameter="policyno" /> <!-- 保单号 -->
+				<item fieldName="EndorseNo" fieldType="String" parameterType="GLOBAL" parameter="endorseno" /> <!-- 批单号 -->
+				<item fieldName="NodeNo" fieldType="String" parameterType="GLOBAL" parameter="nodeno" /> <!-- 节点号 -->
+				<item fieldName="ContractNo" fieldType="String" parameterType="GLOBAL" parameter="contractno" /> <!-- 合同号 -->
+				<item fieldName="SubVersionNo" fieldType="String" parameterType="GLOBAL" parameter="version" /> <!-- 版本号 -->
+				<item fieldName="ProposalNo" fieldType="String" parameterType="GLOBAL" parameter="proposalno" /> <!-- 投保单号 -->
+				<item fieldName="QuotaExplain" fieldType="String" parameterType="CSNODE" parameter="SXU00087" method="getElementByCode.getValue" /> <!-- 保单限额说明 -->
+				<item fieldName="PerAccdCmpnstLmtCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00121" method="getElementByCode.getValue.getCurrency" /> <!-- 每次事故赔偿限额币种 -->
+				<item fieldName="PerAccdCmpnstLimit" fieldType="Float" parameterType="CSNODE" parameter="SXU00121" method="getElementByCode.getValue.getAmount" /> <!-- 每次事故赔偿限额 -->
+				<item fieldName="AggrCmpnstLmtCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00155" method="getElementByCode.getValue.getCurrency" /> <!-- 年度累计赔偿限额 -->
+				<item fieldName="AggregCmpnstLimit" fieldType="Float" parameterType="CSNODE" parameter="SXU00155" method="getElementByCode.getValue.getAmount" /> <!-- 年度累计赔偿限额 -->
+				<item fieldName="SubjectAddress" fieldType="String" parameterType="CSNODE" parameter="SXU00013" method="getElementByCode.getValue" /> <!-- 标的地址 -->
+				<item fieldName="ZipCode" fieldType="String" parameterType="CSNODE" parameter="SXU00014" method="getElementByCode.getValue" /> <!-- 邮政编码 -->
+				<item fieldName="BoilerLocation" fieldType="String" parameterType="CSNODE" parameter="SXU00254" method="getElementByCode.getValue" /> <!-- 锅炉容器位置 -->
+				<item fieldName="TPPerAccdLmtCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00753" method="getElementByCode.getValue.getCurrency" /> <!-- 第三者每次事故赔偿限额币种 -->
+				<item fieldName="TPPerAccdLimit" fieldType="Float" parameterType="CSNODE" parameter="SXU00753" method="getElementByCode.getValue.getAmount" /> <!-- 第三者每次事故赔偿限额 -->
+				<item fieldName="TPPerPrsnLmtCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00754" method="getElementByCode.getValue.getCurrency" /> <!-- 第三者每一受害方币种 -->
+				<item fieldName="TPPerPrsnLimit" fieldType="Float" parameterType="CSNODE" parameter="SXU00754" method="getElementByCode.getValue.getAmount" /> <!-- 第三者每一受害方 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" parameter="objectno" /> <!-- 对象号 -->
+			</table>
+		</area>
+	</mapping>
+</definition>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition description="产品责任险标的表">
+	<mapping>
+		<area description="产品责任险标的表">
+			<table tableName="T_SubjProductDuty" dataProviderType="CSNODE" as="Contract">
+				<item fieldName="PolicyNo" fieldType="String" parameterType="GLOBAL" parameter="policyno" /> <!-- 保单号 -->
+				<item fieldName="EndorseNo" fieldType="String" parameterType="GLOBAL" parameter="endorseno" /> <!-- 批单号 -->
+				<item fieldName="NodeNo" fieldType="String" parameterType="GLOBAL" parameter="nodeno" /> <!-- 节点号 -->
+				<item fieldName="ContractNo" fieldType="String" parameterType="GLOBAL" parameter="contractno" /> <!-- 合同号 -->
+				<item fieldName="SubVersionNo" fieldType="String" parameterType="GLOBAL" parameter="version" /> <!-- 版本号 -->
+				<item fieldName="ProposalNo" fieldType="String" parameterType="GLOBAL" parameter="proposalno" /> <!-- 投保单号 -->
+				<!--<item fieldName="SubjectAddress" fieldType="String" />--> <!-- 标的地址 -->
+				<!--<item fieldName="InsureDistrict" fieldType="String" />--> <!-- 承保区域 -->
+				<!--<item fieldName="BizQuality" fieldType="String" />--> <!-- 被保人营业性质 -->
+				<!--<item fieldName="ProductUsage" fieldType="String" />--> <!-- 产品用途 -->
+				<!--<item fieldName="QualityStandard" fieldType="String" />--> <!-- 质量标准 -->
+				<!--<item fieldName="CertificationKind" fieldType="String" />--> <!-- 获得何种认证 -->
+				<!--<item fieldName="ProductDate" fieldType="Date" />--> <!-- 投产日期 -->
+				<!--<item fieldName="HistoryAccident" fieldType="String" />--> <!-- 以前发生过何种事故 -->
+				<!--<item fieldName="InsureWay" fieldType="String" />--> <!-- 承保方式 -->
+				<!--<item fieldName="RetroactiveDate" fieldType="Date" />--> <!-- 追溯日 -->
+				<!--<item fieldName="ExceptAnnQuantity" fieldType="Float" />--> <!-- 预计年销售量 -->
+				<!--<item fieldName="ExceptTtlCurrency" fieldType="String" />--> <!-- 预计销售总额币种 -->
+				<!--<item fieldName="ExceptTtlAmount" fieldType="Float" />--> <!-- 预计销售总额 -->
+				<!--<item fieldName="OccupationYear" fieldType="Long" />--> <!-- 从业年数 -->
+				<!--<item fieldName="HasRecall" fieldType="String" />--> <!-- 有赔案或召回 -->
+				<!--<item fieldName="HasReject" fieldType="String" />--> <!-- 有退保或拒保 -->
+				<!--<item fieldName="AggrCmpnLmtCurrency" fieldType="String" />--> <!-- 累计赔偿限额币种 -->
+				<!--<item fieldName="AggregCmpnstLimit" fieldType="Float" />--> <!-- 累计赔偿限额 -->
+				<!--<item fieldName="PerAccdLimitCurrency" fieldType="String" />--> <!-- 每次事故责任限额币种 -->
+				<!--<item fieldName="PerAccdLimit" fieldType="Float" />--> <!-- 每次事故责任限额 -->
+				<!--<item fieldName="PerAccdPrpLmtCurrency" fieldType="String" />--> <!-- 每次事故财产限额币种 -->
+				<!--<item fieldName="PerAccdPrprtyLimit" fieldType="Float" />--> <!-- 每次事故财产限额 -->
+				<!--<item fieldName="PerPrsnDthLmtCurrency" fieldType="String" />--> <!-- 每人人身伤亡责任限额币种 -->
+				<!--<item fieldName="PerPrsnDeathLimit" fieldType="Float" />--> <!-- 每人人身伤亡责任限额 -->
+				<!--<item fieldName="ExtendRptPeriod" fieldType="String" />--> <!-- 延长报告期限 -->
+				<!--<item fieldName="MinPremiumCurrency" fieldType="String" />--> <!-- 最低保险费币种 -->
+				<!--<item fieldName="MinPremium" fieldType="Float" />--> <!-- 最低保险费 -->
+				<!--<item fieldName="PrePremiumCurrency" fieldType="String" />--> <!-- 预收保费币种 -->
+				<!--<item fieldName="PrePremium" fieldType="Float" />--> <!-- 预收保费 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" parameter="objectno" /> <!-- 对象号 -->
+				<!--<item fieldName="Remark" fieldType="String" />--> <!-- 备注 -->
+				<!--<item fieldName="CrtTime" fieldType="Date" />--> <!-- 创建时间 -->
+				<!--<item fieldName="MdfTime" fieldType="Date" />--> <!-- 修改时间 -->
+			</table>
+		</area>
+	</mapping>
+</definition>

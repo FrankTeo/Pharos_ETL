@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition description="货运险标的表">
+	<mapping>
+		<area description="货运险标的表">
+			<table tableName="T_SubjFreight" dataProviderType="CSNODE" as="Contract">
+				<item fieldName="PolicyNo" fieldType="String" parameterType="GLOBAL" parameter="policyno" /> <!-- 保单号 -->
+				<item fieldName="EndorseNo" fieldType="String" parameterType="GLOBAL" parameter="endorseno" /> <!-- 批单号 -->
+				<item fieldName="NodeNo" fieldType="String" parameterType="GLOBAL" parameter="nodeno" /> <!-- 节点号 -->
+				<item fieldName="ContractNo" fieldType="String" parameterType="GLOBAL" parameter="contractno" /> <!-- 合同号 -->
+				<item fieldName="SubVersionNo" fieldType="String" parameterType="GLOBAL" parameter="version" /> <!-- 版本号 -->
+				<item fieldName="ProposalNo" fieldType="String" parameterType="GLOBAL" parameter="proposalno" /> <!-- 投保单号 -->
+				<item fieldName="Ship" fieldType="String" parameterType="ROLE" parameter="SXU00005" method="getRoleByCode.getParty.getCode" /> <!-- 船舶Party -->
+				<!--<item fieldName="ShipName" fieldType="String" parameterType="ROLE" parameter="SXU00005" method="getRoleByCode.getParty.getNames.get0" />--> <!-- 船名 -->
+				<item fieldName="ShipFlag" fieldType="String" parameterType="CSNODE" parameter="SXU00310" method="getElementByCode.getValue" /> <!-- 船旗 -->
+				<item fieldName="GoodsCategory" fieldType="String" parameterType="CSNODE" parameter="SXU00061" method="getElementByCode.getValue" /> <!-- 货物大类 -->
+				<item fieldName="GoodsType" fieldType="String" parameterType="CSNODE" parameter="SXU00513" method="getElementByCode.getValue" /> <!-- 货物小类 -->
+				<item fieldName="TransportType" fieldType="String" parameterType="CSNODE" parameter="SXU00062" method="getElementByCode.getValue" /> <!-- 运输方式 -->
+				<item fieldName="VoyageNo" fieldType="String" parameterType="CSNODE" parameter="SXU00065" method="getElementByCode.getValue" /> <!-- 航次 -->
+				<item fieldName="DeparturePort" fieldType="String" parameterType="CSNODE" parameter="SXU00068" method="getElementByCode.getValue" /> <!-- 启运港 -->
+				<item fieldName="TransitionPort" fieldType="String" parameterType="CSNODE" parameter="SXU00070" method="getElementByCode.getValue" /> <!-- 途经港 -->
+				<item fieldName="DestinationPort" fieldType="String" parameterType="CSNODE" parameter="SXU00071" method="getElementByCode.getValue" /> <!-- 目的港 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" parameter="objectno" /> <!-- 对象号 -->
+			</table>
+		</area>
+	</mapping>
+</definition>

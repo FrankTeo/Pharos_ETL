@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition description="船舶险标的表">
+	<mapping>
+		<area description="船舶险标的表">
+			<table tableName="t_subjship" dataProviderType="CSNODE" as="Contract">
+				<item fieldName="PolicyNo" fieldType="String" parameterType="GLOBAL" parameter="policyno" /> <!-- 保单号 -->
+				<item fieldName="EndorseNo" fieldType="String" parameterType="GLOBAL" parameter="endorseno" /> <!-- 批单号 -->
+				<item fieldName="NodeNo" fieldType="String" parameterType="GLOBAL" parameter="nodeno" /> <!-- 节点号 -->
+				<item fieldName="ContractNo" fieldType="String" parameterType="GLOBAL" parameter="contractno" /> <!-- 合同号 -->
+				<item fieldName="SubVersionNo" fieldType="String" parameterType="GLOBAL" parameter="version" /> <!-- 版本号 -->
+				<item fieldName="ProposalNo" fieldType="String" parameterType="GLOBAL" parameter="proposalno" /> <!-- 投保单号 -->
+				<item fieldName="PartyCode" fieldType="String" parameterType="ROLE" parameter="SXU00005" method="getRoleByCode.getParty.getCode" /> <!-- 船舶Party -->
+				<item fieldName="ShipVersion" fieldType="String" parameterType="ROLE" parameter="SXU00005" method="getRoleByCode.getParty.getVersionNo" /> <!-- 船舶版本 -->
+				<item fieldName="InsuanceDay" fieldType="Long" parameterType="CSNODE" method="getInsureDays" /> <!-- 保险天数 -->
+				<item fieldName="DayOfYear" fieldType="Long" parameterType="CSNODE" parameter="SXU00216" method="getElementByCode.getValue" /> <!-- 保险年度天数 -->
+				<item fieldName="InsuranceCondition" fieldType="String" parameterType="CSNODE" parameter="SXU00080" method="getElementByCode.getValue" /> <!-- 承保条件 -->
+				<item fieldName="VoyageRange" fieldType="String" parameterType="CSNODE" parameter="SXU00530" method="getElementByCode.getValue" /> <!-- 航行范围 -->
+				<item fieldName="ShipFlag" fieldType="String" parameterType="CSNODE" parameter="SXU00310" method="getElementByCode.getValue" /> <!-- 船旗 -->
+				<item fieldName="PremiumCorrect" fieldType="Float" parameterType="CSNODE" parameter="SXU00517" method="getElementByCode.getValue" /> <!-- 加退费 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" parameter="objectno" /> <!-- 对象号 -->
+			</table>
+		</area>
+	</mapping>
+</definition>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition description="分保费用表">
+	<mapping>
+		<area description="分保费用表">
+			<table tableName="T_ReExpensive" dataProviderType="CSNODE" as="Contract">
+				<item fieldName="PolicyNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="policyno" /> <!-- 保单号 -->
+				<item fieldName="EndorseNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="endorseno" /> <!-- 批单号 -->
+				<item fieldName="OriginPrmmCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00808" method="getElementByCode.getValue.getCurrency" /> <!-- 原保费币种 -->
+				<item fieldName="OriginPremium" fieldType="Float" parameterType="CSNODE" parameter="SXU00808" method="getElementByCode.getValue.getAmount" /> <!-- 原保费 -->
+				<item fieldName="DuePrmmCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00809" method="getElementByCode.getValue.getCurrency" /> <!-- 应收保费币种 -->
+				<item fieldName="DuePremium" fieldType="Float" parameterType="CSNODE" parameter="SXU00809" method="getElementByCode.getValue.getAmount" /> <!-- 应收保费 -->
+				<item fieldName="BrokerCmmsRate" fieldType="Float" parameterType="CSNODE" parameter="SXU00831" method="getElementByCode.getValue" /> <!-- 经纪手续费率 -->
+				<item fieldName="ReinsureCmmsRate" fieldType="Float" parameterType="CSNODE" parameter="SXU00810" method="getElementByCode.getValue" /> <!-- 分保手续费率 -->
+				<item fieldName="ReReinsureCmmsRate" fieldType="Float" parameterType="CSNODE" parameter="SXU00812" method="getElementByCode.getValue" /> <!-- 转分手续费率 -->
+				<item fieldName="OtherCmmsRate" fieldType="Float" parameterType="CSNODE" parameter="SXU00814" method="getElementByCode.getValue" /> <!-- 其他手续费率 -->
+				<item fieldName="TaxRate" fieldType="Float" parameterType="CSNODE" parameter="SXU00816" method="getElementByCode.getValue" /> <!-- 税率 -->
+				<item fieldName="NetPrmmCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00818" method="getElementByCode.getValue.getCurrency" /> <!-- 净保费币种 -->
+				<item fieldName="NetPremium" fieldType="Float" parameterType="CSNODE" parameter="SXU00818" method="getElementByCode.getValue.getAmount" /> <!-- 净保费 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="objectno" /> <!-- 对象号 -->
+				<!--<item fieldName="Remark" fieldType="String" />--> <!-- 备注 -->
+				<!--<item fieldName="CrtTime" fieldType="Date" />--> <!-- 创建时间 -->
+				<!--<item fieldName="MdfTime" fieldType="Date" />--> <!-- 修改时间 -->
+			</table>
+		</area>
+	</mapping>
+</definition>

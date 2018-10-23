@@ -1,0 +1,184 @@
+package com.sysnet.poc.vo;
+
+import java.sql.*;
+
+/**
+ * StgPrpCipInfo entity.
+ * 
+ * @author MyEclipse Persistence Tools
+ */
+
+public class StgPrpCipInfo implements java.io.Serializable {
+
+	// Fields
+
+	// 保单CD
+	private String policyNo;
+	// 交强险序列号
+	private Long cipId;
+	// 投保单号
+	private String proposalNo;
+	// 标的序列号
+	private Long itemNo;
+	// 交强险浮动标志
+	private String saliFloating;
+	// 商业险连续几年未出险
+	private Long commercialNoPaidContinus;
+	// 商业险赔款上年（次）
+	private Long commercialPaidTimesLy;
+	// 商业险赔款本年（次）
+	private Long commercialPaidTimesTy;
+	// 优惠％
+	private Float sailDiscount;
+	// 交强险连续几年未出险
+	private Long saliNoPaidContinus;
+	// 交强险有责赔款上年（次）
+	private Long saliPaidTimesLy;
+	// 交强险有责赔款本年（次）
+	private Long saliPaidTimesTy;
+	// 对象类型
+	private String objectType;
+	// 批次序号
+	private Long batId;
+	// 对象序号
+	private Long objectId;
+	// 时间戳
+	private Date timeStamp;
+
+	// Constructors
+
+	/** default constructor */
+	public StgPrpCipInfo() {
+	}
+
+	// Property accessors
+
+	public String getPolicyNo() {
+		return policyNo;
+	}
+
+	public void setPolicyNo(String policyNo) {
+		this.policyNo = policyNo;
+	}
+
+	public Long getCipId() {
+		return cipId;
+	}
+
+	public void setCipId(Long cipId) {
+		this.cipId = cipId;
+	}
+
+	public String getProposalNo() {
+		return proposalNo;
+	}
+
+	public void setProposalNo(String proposalNo) {
+		this.proposalNo = proposalNo;
+	}
+
+	public Long getItemNo() {
+		return itemNo;
+	}
+
+	public void setItemNo(Long itemNo) {
+		this.itemNo = itemNo;
+	}
+
+	public String getSaliFloating() {
+		return this.saliFloating;
+	}
+
+	public void setSaliFloating(String saliFloating) {
+		this.saliFloating = saliFloating;
+	}
+
+	public Long getCommercialNoPaidContinus() {
+		return this.commercialNoPaidContinus;
+	}
+
+	public void setCommercialNoPaidContinus(Long commercialNoPaidContinus) {
+		this.commercialNoPaidContinus = commercialNoPaidContinus;
+	}
+
+	public Long getCommercialPaidTimesLy() {
+		return this.commercialPaidTimesLy;
+	}
+
+	public void setCommercialPaidTimesLy(Long commercialPaidTimesLy) {
+		this.commercialPaidTimesLy = commercialPaidTimesLy;
+	}
+
+	public Long getCommercialPaidTimesTy() {
+		return this.commercialPaidTimesTy;
+	}
+
+	public void setCommercialPaidTimesTy(Long commercialPaidTimesTy) {
+		this.commercialPaidTimesTy = commercialPaidTimesTy;
+	}
+
+	public Float getSailDiscount() {
+		return this.sailDiscount;
+	}
+
+	public void setSailDiscount(Float sailDiscount) {
+		this.sailDiscount = sailDiscount;
+	}
+
+	public Long getSaliNoPaidContinus() {
+		return this.saliNoPaidContinus;
+	}
+
+	public void setSaliNoPaidContinus(Long saliNoPaidContinus) {
+		this.saliNoPaidContinus = saliNoPaidContinus;
+	}
+
+	public Long getSaliPaidTimesLy() {
+		return this.saliPaidTimesLy;
+	}
+
+	public void setSaliPaidTimesLy(Long saliPaidTimesLy) {
+		this.saliPaidTimesLy = saliPaidTimesLy;
+	}
+
+	public Long getSaliPaidTimesTy() {
+		return this.saliPaidTimesTy;
+	}
+
+	public void setSaliPaidTimesTy(Long saliPaidTimesTy) {
+		this.saliPaidTimesTy = saliPaidTimesTy;
+	}
+
+	public String getObjectType() {
+		return this.objectType;
+	}
+
+	public void setObjectType(String objectType) {
+		this.objectType = objectType;
+	}
+
+	public Long getBatId() {
+		return this.batId;
+	}
+
+	public void setBatId(Long batId) {
+		this.batId = batId;
+	}
+
+	public Long getObjectId() {
+		return this.objectId;
+	}
+
+	public void setObjectId(Long objectId) {
+		this.objectId = objectId;
+	}
+
+	public Date getTimeStamp() {
+		return this.timeStamp;
+	}
+
+	public void setTimeStamp(Date timeStamp) {
+		this.timeStamp = timeStamp;
+	}
+
+}

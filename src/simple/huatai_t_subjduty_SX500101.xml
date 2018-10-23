@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition description="责任险标的表">
+	<mapping>
+		<area description="责任险标的表">
+			<table tableName="T_SubjDuty" dataProviderType="CSNODE" as="Contract">
+				<item fieldName="PolicyNo" fieldType="String" parameterType="GLOBAL" parameter="policyno" /> <!-- 保单号 -->
+				<item fieldName="EndorseNo" fieldType="String" parameterType="GLOBAL" parameter="endorseno" /> <!-- 批单号 -->
+				<item fieldName="NodeNo" fieldType="String" parameterType="GLOBAL" parameter="nodeno" /> <!-- 节点号 -->
+				<item fieldName="ContractNo" fieldType="String" parameterType="GLOBAL" parameter="contractno" /> <!-- 合同号 -->
+				<item fieldName="SubVersionNo" fieldType="String" parameterType="GLOBAL" parameter="version" /> <!-- 版本号 -->
+				<item fieldName="ProposalNo" fieldType="String" parameterType="GLOBAL" parameter="proposalno" /> <!-- 投保单号 -->
+				<item fieldName="CertificateNo" fieldType="String" parameterType="CSNODE" parameter="SXU00169" method="getElementByCode.getValue" /> <!-- 执业许可证号 -->
+				<item fieldName="BizQuality" fieldType="String" parameterType="CSNODE" parameter="SXU00170" method="getElementByCode.getValue" /> <!-- 营业性质 -->
+				<item fieldName="AnnTouristNumber" fieldType="Float" parameterType="CSNODE" parameter="SXU00171" method="getElementByCode.getValue" /> <!-- 年旅客量人次 -->
+				<item fieldName="AnnTouristDay" fieldType="Float" parameterType="CSNODE" parameter="SXU00172" method="getElementByCode.getValue" /> <!-- 年旅客量人天 -->
+				<item fieldName="AnnSaleCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00173" method="getElementByCode.getValue.getCurrency" /> <!-- 年营业额币种 -->
+				<item fieldName="AnnSale" fieldType="Float" parameterType="CSNODE" parameter="SXU00173" method="getElementByCode.getValue.getAmount" /> <!-- 年营业额 -->
+				<item fieldName="InsurePeriod" fieldType="Float" parameterType="CSNODE" parameter="SXU00174" method="getElementByCode.getValue" /> <!-- 保险期限月 -->
+				<item fieldName="PreAccdLimitCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00121" method="getElementByCode.getValue.getCurrency" /> <!-- 每次事故责任限额币种 -->
+				<item fieldName="PreAccdLimit" fieldType="Float" parameterType="CSNODE" parameter="SXU00121" method="getElementByCode.getValue.getAmount" /> <!-- 每次事故责任限额 -->
+				<item fieldName="NtnPerPrsnLmtDscrpt" fieldType="String" parameterType="CSNODE" parameter="SXU00175" method="getElementByCode.getValue" /> <!-- 国内每人限额描述 -->
+				<item fieldName="NtnPerPrptyLmtDscrpt" fieldType="String" parameterType="CSNODE" parameter="SXU00176" method="getElementByCode.getValue" /> <!-- 国内每人物损限额描述 -->
+				<item fieldName="AbrdPerPrsnLmtDscrpt" fieldType="String" parameterType="CSNODE" parameter="SXU00177" method="getElementByCode.getValue" /> <!-- 出境每人限额描述 -->
+				<item fieldName="AbrdPerPrptyLmtDscrpt" fieldType="String" parameterType="CSNODE" parameter="SXU00178" method="getElementByCode.getValue" /> <!-- 出境每人物损限额描述 -->
+				<item fieldName="PerAccdDdctDescription" fieldType="String" parameterType="CSNODE" method="getDeductible" /> <!-- 每次免赔说明 -->
+				<item fieldName="SpecialTourItem" fieldType="String" parameterType="CSNODE" parameter="SXU00179" method="getElementByCode.getValue" /> <!-- 特殊旅游项目 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" parameter="objectno" /> <!-- 对象号 -->
+			</table>
+		</area>
+	</mapping>
+</definition>

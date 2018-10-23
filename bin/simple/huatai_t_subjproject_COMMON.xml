@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition description="工程险标的表">
+	<mapping>
+		<area description="工程险标的表">
+			<table tableName="T_SubjProject" dataProviderType="CSNODE" as="Contract">
+				<item fieldName="PolicyNo" fieldType="String" parameterType="GLOBAL" parameter="policyno" /> <!-- 保单号 -->
+				<item fieldName="EndorseNo" fieldType="String" parameterType="GLOBAL" parameter="endorseno" /> <!-- 批单号 -->
+				<item fieldName="NodeNo" fieldType="String" parameterType="GLOBAL" parameter="nodeno" /> <!-- 节点号 -->
+				<item fieldName="ContractNo" fieldType="String" parameterType="GLOBAL" parameter="contractno" /> <!-- 合同号 -->
+				<item fieldName="SubVersionNo" fieldType="String" parameterType="GLOBAL" parameter="version" /> <!-- 版本号 -->
+				<item fieldName="ProposalNo" fieldType="String" parameterType="GLOBAL" parameter="proposalno" /> <!-- 投保单号 -->
+				<!--<item fieldName="ProjectName" fieldType="String" />--> <!-- 工程名称 -->
+				<!--<item fieldName="StructureType" fieldType="String" />--> <!-- 工程建筑类型 -->
+				<!--<item fieldName="ProjectStart" fieldType="Date" />--> <!-- 建工起期 -->
+				<!--<item fieldName="ProjectEnd" fieldType="Date" />--> <!-- 建工止期 -->
+				<!--<item fieldName="CoverGuaranteePeriod" fieldType="String" />--> <!-- 是否投保保证期 -->
+				<!--<item fieldName="GuaranteeStart" fieldType="Date" />--> <!-- 保险保证期限起期 -->
+				<!--<item fieldName="GuaranteeEnd" fieldType="Date" />--> <!-- 保险保证期限止期 -->
+				<!--<item fieldName="GuaranteePeriodDays" fieldType="Long" />--> <!-- 保证期天数 -->
+				<!--<item fieldName="GuaranteeExtendClause" fieldType="String" />--> <!-- 保证期扩展条款 -->
+				<!--<item fieldName="CoverAssessmentPeriod" fieldType="String" />--> <!-- 有无试车考核期 -->
+				<!--<item fieldName="AssessmentStart" fieldType="Date" />--> <!-- 试车考核期限起期 -->
+				<!--<item fieldName="AssessmentEnd" fieldType="Date" />--> <!-- 试车考核期限止期 -->
+				<!--<item fieldName="AssessmentDays" fieldType="String" />--> <!-- 试车考核期天数 -->
+				<!--<item fieldName="PredictDate" fieldType="Date" />--> <!-- 预计验收完工日期 -->
+				<!--<item fieldName="TermExplain" fieldType="String" />--> <!-- 保险期限说明 -->
+				<!--<item fieldName="PrptyLssCvrgCurrency" fieldType="String" />--> <!-- 物损部分保额币种 -->
+				<!--<item fieldName="PrptyLssCoverage" fieldType="Float" />--> <!-- 物损部分保额 -->
+				<!--<item fieldName="PropertyLossRate" fieldType="Float" />--> <!-- 物损费率 -->
+				<!--<item fieldName="PrptyLssPrmmCurrency" fieldType="String" />--> <!-- 物损部分保费币种 -->
+				<!--<item fieldName="PrptyLssPremium" fieldType="Float" />--> <!-- 物损部分保费 -->
+				<!--<item fieldName="LossDeduct" fieldType="String" />--> <!-- 物质损失免赔 -->
+				<!--<item fieldName="EarthQuakeLmtCurrency" fieldType="String" />--> <!-- 地震赔偿限额 -->
+				<!--<item fieldName="EarthQuakeLimit" fieldType="Float" />--> <!-- 地震赔偿限额 -->
+				<!--<item fieldName="SpecialRiskDeduct" fieldType="String" />--> <!-- 特殊风险免赔 -->
+				<!--<item fieldName="WaterFloodLmtCurrency" fieldType="String" />--> <!-- 洪水赔偿限额 -->
+				<!--<item fieldName="WaterFloodLimit" fieldType="Float" />--> <!-- 洪水赔偿限额 -->
+				<!--<item fieldName="PerAccdCmpnstLmtCurrency" fieldType="String" />--> <!-- 每次事故赔偿限额币种 -->
+				<!--<item fieldName="PerAccdCmpnstLimit" fieldType="Float" />--> <!-- 每次事故赔偿限额 -->
+				<!--<item fieldName="AggrCmpnstLmtCurrency" fieldType="String" />--> <!-- 年度累计赔偿限额币种 -->
+				<!--<item fieldName="AggregCmpnstLimit" fieldType="Float" />--> <!-- 年度累计赔偿限额 -->
+				<!--<item fieldName="LimitDescription" fieldType="String" />--> <!-- 限额说明 -->
+				<!--<item fieldName="AggregDutyLmtCurrency" fieldType="String" />--> <!-- 累计责任限额币种 -->
+				<!--<item fieldName="AggregDutyLimit" fieldType="Float" />--> <!-- 累计责任限额 -->
+				<!--<item fieldName="PerAccdDutyLmtCurrency" fieldType="String" />--> <!-- 每次事故责任限额币种 -->
+				<!--<item fieldName="PerAccdDutyLimit" fieldType="Float" />--> <!-- 每次事故责任限额 -->
+				<!--<item fieldName="PerAccdLossLmtCurrency" fieldType="String" />--> <!-- 每次事故财损限额币种 -->
+				<!--<item fieldName="PerAccdLossLimit" fieldType="Float" />--> <!-- 每次事故财损限额 -->
+				<!--<item fieldName="PerAccdInjuryLmtCurrency" fieldType="String" />--> <!-- 每次事故人伤限额币种 -->
+				<!--<item fieldName="PerAccdInjuryLimit" fieldType="Float" />--> <!-- 每次事故人伤限额 -->
+				<!--<item fieldName="PerAccdPerPrsnLmtCurrency" fieldType="String" />--> <!-- 每次每人赔偿限额币种 -->
+				<!--<item fieldName="PerAccdPerPrsnLimit" fieldType="Float" />--> <!-- 每次每人赔偿限额 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" parameter="objectno" /> <!-- 对象号 -->
+				<!--<item fieldName="Remark" fieldType="String" />--> <!-- 备注 -->
+				<!--<item fieldName="CrtTime" fieldType="Date" />--> <!-- 创建时间 -->
+				<!--<item fieldName="MdfTime" fieldType="Date" />--> <!-- 修改时间 -->
+			</table>
+		</area>
+	</mapping>
+</definition>

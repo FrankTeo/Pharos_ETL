@@ -1,0 +1,726 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition version="1.0" author="Frank Zhang" createDate="2014-01-15" description="当事方数据映射描述文档">
+	<dataProviders>
+		<dataProvider name="PartyVO" providerType="PARTYVO" />
+		<dataProvider name="PartiesRelationshipVO" providerType="PARTIESRELATIONSHIPVO" />
+		<dataProvider name="CorpRelationshipVO" providerType="CORPRELATIONSHIPVO" />
+		<dataProvider name="PartyCertIDVO" providerType="PARTYCERTIDVO" />
+		<dataProvider name="PartyNameVO" providerType="PARTYNAMEVO" />
+		<dataProvider name="PartNameVO" providerType="PARTNAMEVO" />
+		<dataProvider name="Declaration" providerType="DECLARATION" />
+		<dataProvider name="GLOBAL" providerType="GLOBAL" />
+		<dataProvider name="individualClient" nodeName="/1010" providerType="PARTYVO-CORPRELATIONSHIPVO" />
+		<dataProvider name="institutionClient" nodeName="/1009" providerType="PARTYVO-CORPRELATIONSHIPVO" />
+		<dataProvider name="agencyStaff" nodeName="/1011" providerType="PARTYVO-CORPRELATIONSHIPVO" />
+		<dataProvider name="ClaimAssessor" nodeName="/501" providerType="PARTYVO-CORPRELATIONSHIPVO" />
+		<dataProvider name="ClaimChecker" nodeName="/502" providerType="PARTYVO-CORPRELATIONSHIPVO" />
+		<dataProvider name="ClaimIdentifier" nodeName="/503" providerType="PARTYVO-CORPRELATIONSHIPVO" />
+		<dataProvider name="ClaimLawyer" nodeName="/504" providerType="PARTYVO-CORPRELATIONSHIPVO" />
+		<dataProvider name="employee" nodeName="/1000" providerType="PARTYVO-CORPRELATIONSHIPVO" />
+		<dataProvider name="agency" nodeName="/1007" providerType="PARTYVO-CORPRELATIONSHIPVO" />
+		<dataProvider name="individualAgent" nodeName="/1003" providerType="PARTYVO-CORPRELATIONSHIPVO" />
+		<dataProvider name="broker" nodeName="/1006" providerType="PARTYVO-CORPRELATIONSHIPVO" />
+		<dataProvider name="coinsurer" nodeName="/1002" providerType="PARTYVO-CORPRELATIONSHIPVO" />
+		<dataProvider name="Reinsurer" nodeName="/1004" providerType="PARTYVO-CORPRELATIONSHIPVO" />
+		<dataProvider name="boat" nodeName="/1012" providerType="PARTYVO-CORPRELATIONSHIPVO" /><!--船舶 20140226 by FZ-->
+		<dataProvider name="bank" nodeName="/2002" providerType="PARTYVO-CORPRELATIONSHIPVO" /><!--银行 20140312 by FZ-->
+		<dataProvider name="branch" nodeName="/1008" providerType="PARTYVO-CORPRELATIONSHIPVO" /><!--分支机构 20140312 by FZ-->
+		<dataProvider name="salesteam" nodeName="/2001" providerType="PARTYVO-CORPRELATIONSHIPVO" /><!--销售团队 20140312 by FZ-->
+		<dataProvider name="clientContactInfo" nodeName="SXP00001" providerType="PARTYVO-DFL" />
+		<dataProvider name="groupContactInfo" nodeName="SXP00002" providerType="PARTYVO-DFL" />
+		<dataProvider name="agencyAgreementList" nodeName="230083" providerType="PARTYVO-DFL" />
+	</dataProviders>
+	<mapping>
+		<area description="当事方表">
+			<table tableName="T_Party" dataProvider="PartyVO" as="party">
+				<item fieldName="PartyCode" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="PartyCode" /> <!-- 当事方Code -->
+				<item fieldName="VersionNo" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="versionno" /> <!-- 版本号 -->
+				<item fieldName="PartyId" fieldType="String" parameterType="OBJECT" method="getId" /> <!-- 当事方ID -->
+				<item fieldName="StartDate" fieldType="Date" parameterType="OBJECT" method="getTerm.getStartdate" /> <!-- 起始时间 -->
+				<item fieldName="EndDate" fieldType="Date" parameterType="OBJECT" method="getTerm.getEnddate" /> <!-- 结束时间 -->
+				<item fieldName="Status" fieldType="String" parameterType="OBJECT" method="getStatus" /> <!-- 状态 -->
+				<item fieldName="CreateUser" fieldType="String" parameterType="OBJECT" method="getCreateuserid" /> <!-- 创建者ID -->
+				<item fieldName="CreateDate" fieldType="Date" parameterType="OBJECT" method="getCreatedatetime" /> <!-- 创建日期 -->
+				<item fieldName="ChangeUser" fieldType="String" parameterType="OBJECT" method="getChangeuserid" /> <!-- 修改者ID -->
+				<item fieldName="ChangeDate" fieldType="Date" parameterType="OBJECT" method="getChangedatetime" /> <!-- 修改日期 -->
+				<item fieldName="CompanyCode" fieldType="String" parameterType="OBJECT" method="getCompanyCode" /> <!-- 公司Code -->
+				<item fieldName="CompanyNodeCode" fieldType="String" parameterType="OBJECT" method="getCompanynodeCode" /> <!-- 分公司Code -->
+				<item fieldName="ObjectNo" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="ObjectNo" /> <!-- 对象号 -->
+			</table>
+		</area>
+		<area description="公司关系表">
+			<table tableName="T_CorpRelationShip" dataProvider="CorpRelationshipVO" dependent="party">
+				<item fieldName="PartyCode" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="PartyCode" /> <!-- 当事方 -->
+				<item fieldName="VersionNo" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="versionno" /> <!-- 版本号 -->
+				<item fieldName="RSCode" fieldType="String" parameterType="OBJECT" method="getRsCode" /> <!-- 公司关系代码 -->
+				<item fieldName="RelationStartDate" fieldType="Date" parameterType="OBJECT" method="getStartDate" /> <!-- 关系开始时间 -->
+				<item fieldName="RelationEndDate" fieldType="Date" parameterType="OBJECT" method="getEndDate" /> <!-- 关系结束时间 -->
+				<item fieldName="Status" fieldType="String" parameterType="OBJECT" method="getStatus" /> <!-- 状态 -->
+				<item fieldName="ObjectNo" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="ObjectNo" /> <!-- 对象号 -->
+			</table>
+		</area>
+		<area description="当事方名称表">
+			<table tableName="T_PartyName" dataProvider="PartyNameVO" dependent="party">
+				<item fieldName="PartyCode" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="PartyCode" /> <!-- 当事方 -->
+				<item fieldName="VersionNo" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="versionno" /> <!-- 版本号 -->
+				<item fieldName="NameType" fieldType="String" parameterType="OBJECT" method="getNametype" /> <!-- 名称类型 -->
+				<item fieldName="Name" fieldType="String" parameterType="OBJECT" method="getName" /> <!-- 名称 -->
+				<item fieldName="NameId" fieldType="String" parameterType="OBJECT" method="getId" /> <!-- 名称ID -->
+				<item fieldName="ObjectNo" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="ObjectNo" /> <!-- 对象号 -->
+			</table>
+		</area>
+		<area description="当事方证件表">
+			<table tableName="T_PartyCertId" dataProvider="PartyCertIDVO" dependent="party">
+				<item fieldName="PartyCode" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="PartyCode" /> <!-- 当事方 -->
+				<item fieldName="VersionNo" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="versionno" /> <!-- 版本号 -->
+				<item fieldName="SerialNo" fieldType="Long" parameterType="OBJECT" method="getId" /> <!-- 序号 -->
+				<item fieldName="GovIssuredType" fieldType="String" parameterType="OBJECT" method="getGovissuredtype" /> <!-- 证件类型 -->
+				<item fieldName="GovIssuredCode" fieldType="String" parameterType="OBJECT" method="getGovissuredcode" /> <!-- 证件号码 -->
+				<item fieldName="CertStartDate" fieldType="Date" parameterType="OBJECT" method="getStartDate" /> <!-- 证件有效期起 -->
+				<item fieldName="CertEndDate" fieldType="Date" parameterType="OBJECT" method="getEndDate" /> <!-- 证件有效期止 -->
+				<item fieldName="ObjectNo" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="ObjectNo" /> <!-- 对象号 -->
+			</table>
+		</area>
+		<area description="当事方关系表">
+			<table tableName="T_PartiesRelationShip" dataProvider="PartiesRelationshipVO" dependent="party">
+				<item fieldName="PartyCode" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="PartyCode" /> <!-- 当事方 -->
+				<item fieldName="TargetPartyCode" fieldType="String" parameterType="OBJECT" method="getTargetpartycode" /> <!-- 关系当事方 -->
+				<item fieldName="RelationShip" fieldType="String" parameterType="OBJECT" method="getRelationship" /> <!-- 关系代码 -->
+				<item fieldName="StartDate" fieldType="Date" parameterType="OBJECT" method="getTerm.getStartdate" /> <!-- 开始时间 -->
+				<item fieldName="EndDate" fieldType="Date" parameterType="OBJECT" method="getTerm.getEnddate" /> <!-- 结束时间 -->
+				<item fieldName="VersionNo" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="versionno" /> <!-- 版本号 -->
+				<item fieldName="ObjectNo" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="ObjectNo" /> <!-- 对象号 -->
+			</table>
+		</area>
+		<area description="个人客户表">
+			<table tableName="T_PersonCustomer" dataProvider="individualClient" dependent="party" as="customer">
+				<item fieldName="PartyCode" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="PartyCode" /> <!-- 当事方 -->
+				<item fieldName="VersionNo" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="versionno" /> <!-- 版本号 -->
+				<item fieldName="Name" fieldType="String" parameterType="OBJECT" method="getPartyName" /> <!-- 名称 -->
+				<item fieldName="Sex" fieldType="String" parameterType="OBJECT" method="getGender" /> <!-- 性别 -->
+				<item fieldName="Birthday" fieldType="String" parameterType="OBJECT" method="getBirthday" /> <!-- 出生日期 -->
+				<item fieldName="CertificateType" fieldType="String" parameterType="OBJECT" method="getCerts.get0.getGovissuredtype" /> <!-- 证件类型 -->
+				<item fieldName="CertificateNo" fieldType="String" parameterType="OBJECT" method="getCerts.get0.getGovissuredcode" /> <!-- 证件号码 -->
+				<item fieldName="Mobile" fieldType="String" parameterType="OBJECT" parameter="SXP00010" method="getPartyDeclarationByCode.getValue" /> <!-- 移动电话 -->
+				<item fieldName="RiskLevel" fieldType="String" parameterType="OBJECT" parameter="SXP00015" method="getPartyDeclarationByCode.getValue" /> <!-- 风险等级 -->
+				<item fieldName="Nationality" fieldType="String" parameterType="OBJECT" parameter="SXP00002" method="getPartyDeclarationByCode.getValue" /> <!-- 国籍 -->
+				<item fieldName="IsKeepCertificate" fieldType="String" parameterType="OBJECT" parameter="SXP00003" method="getPartyDeclarationByCode.getValue" /> <!-- 是否留存证件 -->
+				<item fieldName="WorkUnit" fieldType="String" parameterType="OBJECT" parameter="SXP00005" method="getPartyDeclarationByCode.getValue" /> <!-- 工作单位 -->
+				<item fieldName="TradeCode" fieldType="String" parameterType="OBJECT" parameter="SXU00673" method="getPartyDeclarationByCode.getValue" /> <!-- 行业 -->
+				<item fieldName="EMail" fieldType="String" parameterType="OBJECT" parameter="SXP00007" method="getPartyDeclarationByCode.getValue" /> <!-- 电子邮件 -->
+				<item fieldName="QQ" fieldType="String" parameterType="OBJECT" parameter="SXP00009" method="getPartyDeclarationByCode.getValue" /> <!-- QQ -->
+				<item fieldName="MSN" fieldType="String" parameterType="OBJECT" parameter="SXP00008" method="getPartyDeclarationByCode.getValue" /> <!-- MSN -->
+				<item fieldName="National" fieldType="String" parameterType="OBJECT" parameter="SXP00011" method="getPartyDeclarationByCode.getValue" /> <!-- 民族 -->
+				<item fieldName="Married" fieldType="String" parameterType="OBJECT" parameter="SXP00012" method="getPartyDeclarationByCode.getValue" /> <!-- 婚姻状况 -->
+				<item fieldName="ServiceMark" fieldType="String" parameterType="OBJECT" parameter="SXP00016" method="getPartyDeclarationByCode.getValue" /> <!-- 在职标志 -->
+				<item fieldName="HealthFlag" fieldType="String" parameterType="OBJECT" parameter="SXP00017" method="getPartyDeclarationByCode.getValue" /> <!-- 医保标识 -->
+				<item fieldName="SocialCardNo" fieldType="String" parameterType="OBJECT" parameter="SXP00018" method="getPartyDeclarationByCode.getValue" /> <!-- 社保卡号 -->
+				<item fieldName="EmployeeNo" fieldType="String" parameterType="OBJECT" parameter="SXP00019" method="getPartyDeclarationByCode.getValue" /> <!-- 员工号 -->
+				<item fieldName="OccupationalCode" fieldType="String" parameterType="OBJECT" parameter="SXP00020" method="getPartyDeclarationByCode.getValue" /> <!-- 职业代码 -->
+				<item fieldName="BankAccount" fieldType="String" parameterType="OBJECT" parameter="SXP00021" method="getPartyDeclarationByCode.getValue" /> <!-- 银行账号 -->
+				<item fieldName="BankName" fieldType="String" parameterType="OBJECT" parameter="SXP00022" method="getPartyDeclarationByCode.getValue" /> <!-- 开户银行 -->
+				<item fieldName="AccountQuality" fieldType="String" parameterType="OBJECT" parameter="SXP00023" method="getPartyDeclarationByCode.getValue" /> <!-- 账户性质 -->
+				<item fieldName="BankNo" fieldType="String" parameterType="OBJECT" parameter="SXP00024" method="getPartyDeclarationByCode.getValue" /> <!-- 开户银行编码 -->
+				<item fieldName="BankProvince" fieldType="String" parameterType="OBJECT" parameter="SXP00025" method="getPartyDeclarationByCode.getValue" /> <!-- 开户行省 -->
+				<item fieldName="BankCity" fieldType="String" parameterType="OBJECT" parameter="SXP00026" method="getPartyDeclarationByCode.getValue" /> <!-- 开户行市 -->
+				<item fieldName="IsVip" fieldType="String" parameterType="OBJECT" parameter="SXP00001" method="getPartyDeclarationByCode.getValue" /> <!-- 是否VIP客户 -->
+				<item fieldName="Province" fieldType="String" parameterType="OBJECT" parameter="SXU00541" method="getPartyDeclarationByCode.getValue" /> <!-- 省 -->
+				<item fieldName="City" fieldType="String" parameterType="OBJECT" parameter="SXU00542" method="getPartyDeclarationByCode.getValue" /> <!-- 市 -->
+				<item fieldName="Area" fieldType="String" parameterType="OBJECT" parameter="SXU00543" method="getPartyDeclarationByCode.getValue" /> <!-- 区县 -->
+				<item fieldName="ObjectNo" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="ObjectNo" /> <!-- 对象号 -->
+				<item fieldName="Remark" fieldType="String" parameterType="OBJECT" parameter="SXW00114" method="getPartyDeclarationByCode.getValue" /> <!-- 备注 -->
+			</table>
+		</area>
+		<area description="集体客户表">
+			<table tableName="T_CollectiveCustomer" dataProvider="institutionClient" dependent="party" as="customer">
+				<item fieldName="PartyCode" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="PartyCode" /> <!-- 当事方 -->
+				<item fieldName="VersionNo" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="versionno" /> <!-- 版本号 -->
+				<item fieldName="Name" fieldType="String" parameterType="OBJECT" method="getPartyName" /> <!-- 名称 -->
+				<item fieldName="RiskLevel" fieldType="String" parameterType="OBJECT" parameter="SXP00034" method="getPartyDeclarationByCode.getValue" /> <!-- 风险等级 -->
+				<item fieldName="Nationality" fieldType="String" parameterType="OBJECT" parameter="SXP00054" method="getPartyDeclarationByCode.getValue" /> <!-- 国籍 -->
+				<item fieldName="IsKeepCertificate" fieldType="String" parameterType="OBJECT" parameter="SXP00003" method="getPartyDeclarationByCode.getValue" /> <!-- 是否留存证件 -->
+				<item fieldName="TradeCode" fieldType="String" parameterType="OBJECT" parameter="SXU00673" method="getPartyDeclarationByCode.getValue" /> <!-- 行业 -->
+				<item fieldName="WorkAddress" fieldType="String" parameterType="OBJECT" parameter="SXP00032" method="getPartyDeclarationByCode.getValue" /> <!-- 单位地址 -->
+				<item fieldName="OrganizationFrom" fieldType="String" parameterType="OBJECT" parameter="SXP00035" method="getPartyDeclarationByCode.getValue" /> <!-- 所有制 -->
+				<item fieldName="BusinessScope" fieldType="String" parameterType="OBJECT" parameter="SXP00036" method="getPartyDeclarationByCode.getValue" /> <!-- 经营范围 -->
+				<item fieldName="MemberNumber" fieldType="Long" parameterType="OBJECT" parameter="SXP00037" method="getPartyDeclarationByCode.getValue" /> <!-- 员工人数 -->
+				<item fieldName="Chairman" fieldType="String" parameterType="OBJECT" parameter="SXP00038" method="getPartyDeclarationByCode.getValue" /> <!-- 控股股东 -->
+				<item fieldName="LegelPerson" fieldType="String" parameterType="OBJECT" parameter="SXP00042" method="getPartyDeclarationByCode.getValue" /> <!-- 法人代表 -->
+				<item fieldName="Transactor" fieldType="String" parameterType="OBJECT" parameter="SXP00046" method="getPartyDeclarationByCode.getValue" /> <!-- 办理人姓名 -->
+				<item fieldName="TransCertType" fieldType="String" parameterType="OBJECT" parameter="SXP00047" method="getPartyDeclarationByCode.getValue" /> <!-- 办理人证件类型 -->
+				<item fieldName="TransCertNo" fieldType="String" parameterType="OBJECT" parameter="SXP00048" method="getPartyDeclarationByCode.getValue" /> <!-- 办理人证件号码 -->
+				<item fieldName="TransVaildTerm" fieldType="String" parameterType="OBJECT" parameter="SXP00049" method="getPartyDeclarationByCode.getValue" /> <!-- 办理人证件有效期 -->
+				<item fieldName="IRCertTerm" fieldType="String" parameterType="OBJECT" parameter="SXP00045" method="getPartyDeclarationByCode.getValue" /> <!-- 法人证件有效期 -->
+				<item fieldName="IRCertNo" fieldType="String" parameterType="OBJECT" parameter="SXP00044" method="getPartyDeclarationByCode.getValue" /> <!-- 法人证件号码 -->
+				<item fieldName="IRCertType" fieldType="String" parameterType="OBJECT" parameter="SXP00043" method="getPartyDeclarationByCode.getValue" /> <!-- 法人证件类型 -->
+				<item fieldName="CSCertTerm" fieldType="String" parameterType="OBJECT" parameter="SXP00041" method="getPartyDeclarationByCode.getValue" /> <!-- 控股人证件有效期 -->
+				<item fieldName="CSCertNo" fieldType="String" parameterType="OBJECT" parameter="SXP00040" method="getPartyDeclarationByCode.getValue" /> <!-- 控股人证件号码 -->
+				<item fieldName="CSCertType" fieldType="String" parameterType="OBJECT" parameter="SXP00039" method="getPartyDeclarationByCode.getValue" /> <!-- 控股人证件类型 -->
+				<item fieldName="CustGroup" fieldType="String" parameterType="OBJECT" parameter="SXP00055" method="getPartyDeclarationByCode.getValue" /> <!-- 客户群 -->
+				<item fieldName="PremiumScale" fieldType="String" parameterType="OBJECT" parameter="SXP00052" method="getPartyDeclarationByCode.getValue" /> <!-- 保费规模 -->
+				<item fieldName="EnterpriseScale" fieldType="String" parameterType="OBJECT" parameter="SXP00051" method="getPartyDeclarationByCode.getValue" /> <!-- 企业规模 -->
+				<item fieldName="TotalAsset" fieldType="String" parameterType="OBJECT" parameter="SXP00053" method="getPartyDeclarationByCode.getValue" /> <!-- 总资产 -->
+				<item fieldName="ListAddress" fieldType="String" parameterType="OBJECT" parameter="SXP00050" method="getPartyDeclarationByCode.getValue" /> <!-- 上市地点 -->
+				<item fieldName="Country" fieldType="String" parameterType="OBJECT" parameter="SXP00054" method="getPartyDeclarationByCode.getValue" /> <!-- 国家地区 -->
+				<item fieldName="IsVip" fieldType="String" parameterType="OBJECT" parameter="SXP00001" method="getPartyDeclarationByCode.getValue" /> <!-- 是否VIP客户 -->
+				<item fieldName="ObjectNo" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="ObjectNo" /> <!-- 对象号 -->
+			</table>
+		</area>
+		<area description="联系信息表_个人">
+			<table tableName="T_ContactInfo" dataProvider="clientContactInfo" dependent="party" as="customer">
+				<item fieldName="PartyCode" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="PartyCode" /> <!-- 当事方 -->
+				<item fieldName="VersionNo" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="versionno" /> <!-- 版本号 -->
+				<item fieldName="Mobile" fieldType="String" parameterType="DFL" parameter="mobilePhone" /> <!-- 移动电话 -->
+				<item fieldName="EMail" fieldType="String" parameterType="DFL" parameter="Email" /> <!-- 电子邮件 -->
+				<item fieldName="Relation" fieldType="String" parameterType="DFL" parameter="relation" /> <!-- 关联关系 -->
+				<item fieldName="FamilyPhone" fieldType="String" parameterType="DFL" parameter="familyPhone" /> <!-- 家庭电话 -->
+				<item fieldName="FamilyAddress" fieldType="String" parameterType="DFL" parameter="familyAddress" /> <!-- 家庭住址 -->
+				<item fieldName="FamilyZipCode" fieldType="String" parameterType="DFL" parameter="familyPostCode" /> <!-- 家庭邮编 -->
+				<item fieldName="WorkAddress" fieldType="String" parameterType="DFL" parameter="workAddress" /> <!-- 单位地址 -->
+				<item fieldName="WorkZipCode" fieldType="String" parameterType="DFL" parameter="workPostCode" /> <!-- 单位邮编 -->
+				<item fieldName="WorkPhone" fieldType="String" parameterType="DFL" parameter="officePhone" /> <!-- 单位电话 -->
+				<item fieldName="Name" fieldType="String" parameterType="DFL" parameter="name" /> <!-- 姓名 -->
+				<item fieldName="Fax" fieldType="String" parameterType="DFL" parameter="fax" /> <!-- 传真 -->
+				<item fieldName="ObjectNo" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="ObjectNo" /> <!-- 对象号 -->
+			</table>
+		</area>
+		<area description="联系信息表_团体">
+			<table tableName="T_ContactInfo" dataProvider="groupContactInfo" dependent="party" as="customer">
+				<item fieldName="PartyCode" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="PartyCode" /> <!-- 当事方 -->
+				<item fieldName="VersionNo" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="versionno" /> <!-- 版本号 -->
+				<item fieldName="Mobile" fieldType="String" parameterType="DFL" parameter="mobilePhone" /> <!-- 移动电话 -->
+				<item fieldName="EMail" fieldType="String" parameterType="DFL" parameter="Email" /> <!-- 电子邮件 -->
+				<item fieldName="Relation" fieldType="String" parameterType="DFL" parameter="relation" /> <!-- 关联关系 -->
+				<item fieldName="WorkAddress" fieldType="String" parameterType="DFL" parameter="workAddress" /> <!-- 单位地址 -->
+				<item fieldName="WorkZipCode" fieldType="String" parameterType="DFL" parameter="workPostCode" /> <!-- 单位邮编 -->
+				<item fieldName="WorkPhone" fieldType="String" parameterType="DFL" parameter="telephone" /> <!-- 单位电话 -->
+				<item fieldName="Name" fieldType="String" parameterType="DFL" parameter="name" /> <!-- 姓名 -->
+				<item fieldName="Fax" fieldType="String" parameterType="DFL" parameter=" fax" /> <!-- 传真 -->
+				<item fieldName="ObjectNo" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="ObjectNo" /> <!-- 对象号 -->
+				<item fieldName="Remark" fieldType="String" parameterType="DFL" parameter="Memo" /> <!-- 备注 -->
+			</table>
+		</area>
+		<area description="集体代理人表">
+			<table tableName="T_CollectiveAgency" dataProvider="agency" dependent="party" as="customer">
+				<item fieldName="PartyCode" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="PartyCode" /> <!-- 当事方 -->
+				<item fieldName="VersionNo" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="versionno" /> <!-- 版本号 -->
+				<item fieldName="Name" fieldType="String" parameterType="OBJECT" method="getPartyName" /> <!-- 名称 -->
+				<item fieldName="AgencyStaffNo" fieldType="String" parameterType="OBJECT" parameter="SXP00057" method="getPartyDeclarationByCode.getValue" /> <!-- 代理业务员 -->
+				<item fieldName="Address" fieldType="String" parameterType="OBJECT" parameter="SXU00013" method="getPartyDeclarationByCode.getValue" /> <!-- 地址 -->
+				<item fieldName="TradeCode" fieldType="String" parameterType="OBJECT" parameter="SXP00081" method="getPartyDeclarationByCode.getValue" /> <!-- 行业 -->
+				<item fieldName="EMail" fieldType="String" parameterType="OBJECT" parameter="SXP00007" method="getPartyDeclarationByCode.getValue" /> <!-- 电子邮件 -->
+				<item fieldName="LegelPerson" fieldType="String" parameterType="OBJECT" parameter="SXP00042" method="getPartyDeclarationByCode.getValue" /> <!-- 法人代表 -->
+				<item fieldName="Phone" fieldType="String" parameterType="OBJECT" parameter="SXC00011" method="getPartyDeclarationByCode.getValue" /> <!-- 联系电话 -->
+				<item fieldName="Fax" fieldType="String" parameterType="OBJECT" parameter="SXP00027" method="getPartyDeclarationByCode.getValue" /> <!-- 传真 -->
+				<item fieldName="CertificateNo" fieldType="String" parameterType="OBJECT" parameter="SXU00302" method="getPartyDeclarationByCode.getValue" /> <!-- 身份证号 -->
+				<item fieldName="IsViewBySub" fieldType="String" parameterType="OBJECT" parameter="SXP00068" method="getPartyDeclarationByCode.getValue" /> <!-- 下级可查看 -->
+				<item fieldName="ZipCode" fieldType="String" parameterType="OBJECT" parameter="SXP00069" method="getPartyDeclarationByCode.getValue" /> <!-- 邮编 -->
+				<item fieldName="AccountNo" fieldType="String" parameterType="OBJECT" parameter="SXP00021" method="getPartyDeclarationByCode.getValue" /> <!-- 银行账号 -->
+				<item fieldName="QualificeNo" fieldType="String" parameterType="OBJECT" parameter="SXP00070" method="getPartyDeclarationByCode.getValue" /> <!-- 资格证号 -->
+				<item fieldName="AcquisitionNo" fieldType="String" parameterType="OBJECT" parameter="SXP00071" method="getPartyDeclarationByCode.getValue" /> <!-- 展业证号 -->
+				<item fieldName="Education" fieldType="String" parameterType="OBJECT" parameter="SXP00072" method="getPartyDeclarationByCode.getValue" /> <!-- 学历 -->
+				<item fieldName="Speciality" fieldType="String" parameterType="OBJECT" parameter="SXP00073" method="getPartyDeclarationByCode.getValue" /> <!-- 专业 -->
+				<item fieldName="OfficeHolder" fieldType="String" parameterType="OBJECT" parameter="SXP00074" method="getPartyDeclarationByCode.getValue" /> <!-- 职称 -->
+				<item fieldName="IssueDate" fieldType="Date" parameterType="OBJECT" parameter="SXP00075" method="getPartyDeclarationByCode.getValue" /> <!-- 颁发日期 -->
+				<item fieldName="VaildEndDate" fieldType="Date" parameterType="OBJECT" parameter="SXP00076" method="getPartyDeclarationByCode.getValue" /> <!-- 有效止期 -->
+				<item fieldName="BranchNo" fieldType="String" parameterType="OBJECT" parameter="SXC00031" method="getPartyDeclarationByCode.getValue" /> <!-- 机构 -->
+				<item fieldName="SaleSystem" fieldType="String" parameterType="OBJECT" parameter="SXP00077" method="getPartyDeclarationByCode.getValue" /> <!-- 销售体系 -->
+				<item fieldName="Bank" fieldType="String" parameterType="OBJECT" parameter="SXP00078" method="getPartyDeclarationByCode.getValue" /> <!-- 银行 -->
+				<item fieldName="Manager" fieldType="String" parameterType="OBJECT" parameter="SXP00082" method="getPartyDeclarationByCode.getValue" /> <!-- 上级主管 -->
+				<item fieldName="MemberNumber" fieldType="Long" parameterType="OBJECT" parameter="SXP00083" method="getPartyDeclarationByCode.getValue" /> <!-- 人员数量 -->
+				<item fieldName="AgencyManager" fieldType="String" parameterType="OBJECT" parameter="SXP00084" method="getPartyDeclarationByCode.getValue" /> <!-- 业务负责人 -->
+				<item fieldName="AgencyProperty" fieldType="String" parameterType="OBJECT" parameter="SXP00085" method="getPartyDeclarationByCode.getValue" /> <!-- 代理人性质 -->
+				<item fieldName="JobTitle" fieldType="String" parameterType="OBJECT" parameter="SXP00079" method="getPartyDeclarationByCode.getValue" /> <!-- 职务 -->
+				<item fieldName="AccountBank" fieldType="String" parameterType="OBJECT" parameter="SXP00022" method="getPartyDeclarationByCode.getValue" /> <!-- 开户行名称 -->
+				<item fieldName="ContactName" fieldType="String" parameterType="OBJECT" parameter="SXP00080" method="getPartyDeclarationByCode.getValue" /> <!-- 联系人 -->
+				<item fieldName="InVaildDate" fieldType="Date" parameterType="OBJECT" parameter="SXP00086" method="getPartyDeclarationByCode.getValue" /> <!-- 失效日期 -->
+				<item fieldName="ObjectNo" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="ObjectNo" /> <!-- 对象号 -->
+				<item fieldName="Remark" fieldType="String" parameterType="OBJECT" parameter="SXW00114" method="getPartyDeclarationByCode.getValue" /> <!-- 备注 -->
+			</table>
+		</area>
+		<area description="个人代理人表">
+			<table tableName="T_PersonAgency" dataProvider="individualAgent" dependent="party" as="customer">
+				<item fieldName="PartyCode" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="PartyCode" /> <!-- 当事方 -->
+				<item fieldName="VersionNo" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="versionno" /> <!-- 版本号 -->
+				<item fieldName="Name" fieldType="String" parameterType="OBJECT" method="getPartyName" /> <!-- 名称 -->
+				<item fieldName="Birthday" fieldType="Date" parameterType="OBJECT" method="getBirthday" /> <!-- 出生日期 -->
+				<item fieldName="Address" fieldType="String" parameterType="OBJECT" parameter="SXU00013" method="getPartyDeclarationByCode.getValue" /> <!-- 地址 -->
+				<item fieldName="EMail" fieldType="String" parameterType="OBJECT" parameter="SXP00007" method="getPartyDeclarationByCode.getValue" /> <!-- 电子邮件 -->
+				<item fieldName="Phone" fieldType="String" parameterType="OBJECT" parameter="SXC00011" method="getPartyDeclarationByCode.getValue" /> <!-- 联系电话 -->
+				<item fieldName="Fax" fieldType="String" parameterType="OBJECT" parameter="SXP00027" method="getPartyDeclarationByCode.getValue" /> <!-- 传真 -->
+				<item fieldName="IsViewBySub" fieldType="String" parameterType="OBJECT" parameter="SXP00068" method="getPartyDeclarationByCode.getValue" /> <!-- 下级可查看 -->
+				<item fieldName="ZipCode" fieldType="String" parameterType="OBJECT" parameter="SXP00069" method="getPartyDeclarationByCode.getValue" /> <!-- 邮编 -->
+				<item fieldName="AccountNo" fieldType="String" parameterType="OBJECT" parameter="SXP00021" method="getPartyDeclarationByCode.getValue" /> <!-- 银行账号 -->
+				<item fieldName="QualificeNo" fieldType="String" parameterType="OBJECT" parameter="SXP00070" method="getPartyDeclarationByCode.getValue" /> <!-- 资格证号 -->
+				<item fieldName="AcquisitionNo" fieldType="String" parameterType="OBJECT" parameter="SXP00071" method="getPartyDeclarationByCode.getValue" /> <!-- 展业证号 -->
+				<item fieldName="Education" fieldType="String" parameterType="OBJECT" parameter="SXP00072" method="getPartyDeclarationByCode.getValue" /> <!-- 学历 -->
+				<item fieldName="Speciality" fieldType="String" parameterType="OBJECT" parameter="SXP00073" method="getPartyDeclarationByCode.getValue" /> <!-- 专业 -->
+				<item fieldName="OfficeHolder" fieldType="String" parameterType="OBJECT" parameter="SXP00074" method="getPartyDeclarationByCode.getValue" /> <!-- 职称 -->
+				<item fieldName="IssueDate" fieldType="Date" parameterType="OBJECT" parameter="SXP00075" method="getPartyDeclarationByCode.getValue" /> <!-- 颁发日期 -->
+				<item fieldName="VaildEndDate" fieldType="Date" parameterType="OBJECT" parameter="SXP00076" method="getPartyDeclarationByCode.getValue" /> <!-- 有效止期 -->
+				<item fieldName="BranchNo" fieldType="String" parameterType="OBJECT" parameter="SXC00031" method="getPartyDeclarationByCode.getValue" /> <!-- 机构 -->
+				<item fieldName="SaleSystem" fieldType="String" parameterType="OBJECT" parameter="SXP00077" method="getPartyDeclarationByCode.getValue" /> <!-- 销售体系 -->
+				<item fieldName="Bank" fieldType="String" parameterType="OBJECT" parameter="SXP00078" method="getPartyDeclarationByCode.getValue" /> <!-- 银行 -->
+				<item fieldName="JobTitle" fieldType="String" parameterType="OBJECT" parameter="SXP00079" method="getPartyDeclarationByCode.getValue" /> <!-- 职务 -->
+				<item fieldName="ContactName" fieldType="String" parameterType="OBJECT" parameter="SXP00080" method="getPartyDeclarationByCode.getValue" /> <!-- 联系人 -->
+				<item fieldName="BelongStaff" fieldType="String" parameterType="OBJECT" parameter="SXP00057" method="getPartyDeclarationByCode.getValue" /> <!-- 归属业务员 -->
+				<item fieldName="ObjectNo" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="ObjectNo" /> <!-- 对象号 -->
+				<item fieldName="Remark" fieldType="String" parameterType="OBJECT" parameter="SXW00114" method="getPartyDeclarationByCode.getValue" /> <!-- 备注 -->
+			</table>
+		</area>
+		<area description="代理人业务员表">
+			<table tableName="T_AgencyStaff" dataProvider="agencyStaff" dependent="party" as="customer">
+				<item fieldName="PartyCode" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="PartyCode" /> <!-- 当事方 -->
+				<item fieldName="VersionNo" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="versionno" /> <!-- 版本号 -->
+				<item fieldName="Name" fieldType="String" parameterType="OBJECT" method="getPartyName" /> <!-- 名称 -->
+				<item fieldName="Birthday" fieldType="Date" parameterType="OBJECT" method="getBirthday" /> <!-- 出生日期 -->
+				<item fieldName="AgencyNo" fieldType="String" parameterType="OBJECT" parameter="SXP00093" method="getPartyDeclarationByCode.getValue" /> <!-- 代理人编码 -->
+				<item fieldName="Phone" fieldType="String" parameterType="OBJECT" parameter="SXC00011" method="getPartyDeclarationByCode.getValue" /> <!-- 联系电话 -->
+				<item fieldName="BrokerCode" fieldType="String" parameterType="OBJECT" parameter="SXP00095" method="getPartyDeclarationByCode.getValue" /> <!-- 经纪人编码 -->
+				<item fieldName="IntermediaryType" fieldType="String" parameterType="OBJECT" parameter="SXP00096" method="getPartyDeclarationByCode.getValue" /> <!-- 中介类型 -->
+				<item fieldName="QualificeNo" fieldType="String" parameterType="OBJECT" parameter="SXP00094" method="getPartyDeclarationByCode.getValue" /> <!-- 职业证号 -->
+				<item fieldName="ObjectNo" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="ObjectNo" /> <!-- 对象号 -->
+			</table>
+		</area>
+		<area description="经纪人表">
+			<table tableName="T_Broker" dataProvider="broker" dependent="party" as="customer">
+				<item fieldName="PartyCode" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="PartyCode" /> <!-- 当事方 -->
+				<item fieldName="VersionNo" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="versionno" /> <!-- 版本号 -->
+				<item fieldName="Name" fieldType="String" parameterType="OBJECT" method="getPartyName" /> <!-- 名称 -->
+				<item fieldName="Address" fieldType="String" parameterType="OBJECT" parameter="SXU00013" method="getPartyDeclarationByCode.getValue" /> <!-- 地址 -->
+				<item fieldName="ZipCode" fieldType="String" parameterType="OBJECT" parameter="SXU00014" method="getPartyDeclarationByCode.getValue" /> <!-- 邮编 -->
+				<item fieldName="EMail" fieldType="String" parameterType="OBJECT" parameter="SXC00246" method="getPartyDeclarationByCode.getValue" /> <!-- 电子邮件 -->
+				<item fieldName="LegelPerson" fieldType="String" parameterType="OBJECT" parameter="SXP00042" method="getPartyDeclarationByCode.getValue" /> <!-- 法人代表 -->
+				<item fieldName="Phone" fieldType="String" parameterType="OBJECT" parameter="SXC00011" method="getPartyDeclarationByCode.getValue" /> <!-- 联系电话 -->
+				<item fieldName="Fax" fieldType="String" parameterType="OBJECT" parameter="SXP00027" method="getPartyDeclarationByCode.getValue" /> <!-- 传真 -->
+				<item fieldName="IsViewBySub" fieldType="String" parameterType="OBJECT" parameter="SXP00068" method="getPartyDeclarationByCode.getValue" /> <!-- 下级可查看 -->
+				<item fieldName="AccountNo" fieldType="String" parameterType="OBJECT" parameter="SXP00021" method="getPartyDeclarationByCode.getValue" /> <!-- 银行账号 -->
+				<item fieldName="IssueDate" fieldType="Date" parameterType="OBJECT" parameter="SXP00075" method="getPartyDeclarationByCode.getValue" /> <!-- 颁发日期 -->
+				<item fieldName="VaildEndDate" fieldType="Date" parameterType="OBJECT" parameter="SXP00076" method="getPartyDeclarationByCode.getValue" /> <!-- 有效止期 -->
+				<item fieldName="SaleSystem" fieldType="String" parameterType="OBJECT" parameter="SXP00077" method="getPartyDeclarationByCode.getValue" /> <!-- 销售体系 -->
+				<item fieldName="Bank" fieldType="String" parameterType="OBJECT" parameter="SXP00078" method="getPartyDeclarationByCode.getValue" /> <!-- 银行 -->
+				<item fieldName="BrokerSymbol" fieldType="String" parameterType="OBJECT" parameter="SXP00089" method="getPartyDeclarationByCode.getValue" /> <!-- 分类标志 -->
+				<item fieldName="QualificeNo" fieldType="String" parameterType="OBJECT" parameter="SXP00090" method="getPartyDeclarationByCode.getValue" /> <!-- 业务许可证 -->
+				<item fieldName="SignDate" fieldType="Date" parameterType="OBJECT" parameter="SXP00091" method="getPartyDeclarationByCode.getValue" /> <!-- 签约日期 -->
+				<item fieldName="ContactAddress" fieldType="String" parameterType="OBJECT" parameter="SXP00092" method="getPartyDeclarationByCode.getValue" /> <!-- 联系地址 -->
+				<item fieldName="AccountBank" fieldType="String" parameterType="OBJECT" parameter="SXP00022" method="getPartyDeclarationByCode.getValue" /> <!-- 开户银行 -->
+				<item fieldName="Country" fieldType="String" parameterType="OBJECT" parameter="SXP00062" method="getPartyDeclarationByCode.getValue" /> <!-- 国家地区 -->
+				<item fieldName="ContactName" fieldType="String" parameterType="OBJECT" parameter="SXP00080" method="getPartyDeclarationByCode.getValue" /> <!-- 联系人 -->
+				<item fieldName="BranchNo" fieldType="String" parameterType="OBJECT" parameter="SXC00031" method="getPartyDeclarationByCode.getValue" /> <!-- 机构 -->
+				<item fieldName="ObjectNo" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="ObjectNo" /> <!-- 对象号 -->
+			</table>
+		</area>
+		<area description="保险人表_共保公司">
+			<table tableName="T_Insurer" dataProvider="coinsurer" dependent="party" as="customer">
+				<item fieldName="PartyCode" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="PartyCode" /> <!-- 当事方 -->
+				<item fieldName="VersionNo" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="versionno" /> <!-- 版本号 -->
+				<item fieldName="RSCode" fieldType="String" parameterType="OBJECT" value="pass:1002" /> <!-- 公司关系 -->
+				<item fieldName="Name" fieldType="String" parameterType="OBJECT" method="getPartyName" /> <!-- 名称 -->
+				<item fieldName="Phone" fieldType="String" parameterType="OBJECT" parameter="SXC00014" method="getPartyDeclarationByCode.getValue" /> <!-- 联系电话 -->
+				<item fieldName="Fax" fieldType="String" parameterType="OBJECT" parameter="SXP00027" method="getPartyDeclarationByCode.getValue" /> <!-- 传真 -->
+				<item fieldName="AccountNo" fieldType="String" parameterType="OBJECT" parameter="SXP00021" method="getPartyDeclarationByCode.getValue" /> <!-- 银行账号 -->
+				<item fieldName="Address" fieldType="String" parameterType="OBJECT" parameter="SXP00092" method="getPartyDeclarationByCode.getValue" /> <!-- 联系地址 -->
+				<item fieldName="AddressAbbr" fieldType="String" parameterType="OBJECT" parameter="SXP00097" method="getPartyDeclarationByCode.getValue" /> <!-- 地址简写 -->
+				<item fieldName="ContactPhone" fieldType="String" parameterType="OBJECT" parameter="SXC00014" method="getPartyDeclarationByCode.getValue" /> <!-- 联系人电话 -->
+				<item fieldName="ContactNmae" fieldType="String" parameterType="OBJECT" parameter="SXP00080" method="getPartyDeclarationByCode.getValue" /> <!-- 联系人姓名 -->
+				<item fieldName="ObjectNo" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="ObjectNo" /> <!-- 对象号 -->
+			</table>
+		</area>
+		<area description="保险人表_再保公司">
+			<table tableName="T_Insurer" dataProvider="Reinsurer" dependent="party" as="customer">
+				<item fieldName="PartyCode" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="PartyCode" /> <!-- 当事方 -->
+				<item fieldName="VersionNo" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="versionno" /> <!-- 版本号 -->
+				<item fieldName="RSCode" fieldType="String" parameterType="OBJECT" value="pass:1004" /> <!-- 公司关系 -->
+				<item fieldName="Name" fieldType="String" parameterType="OBJECT" method="getPartyName" /> <!-- 名称 -->
+				<item fieldName="Phone" fieldType="String" parameterType="OBJECT" parameter="SXC00014" method="getPartyDeclarationByCode.getValue" /> <!-- 联系电话 -->
+				<item fieldName="Fax" fieldType="String" parameterType="OBJECT" parameter="SXP00027" method="getPartyDeclarationByCode.getValue" /> <!-- 传真 -->
+				<item fieldName="AccountNo" fieldType="String" parameterType="OBJECT" parameter="SXP00021" method="getPartyDeclarationByCode.getValue" /> <!-- 银行账号 -->
+				<item fieldName="Address" fieldType="String" parameterType="OBJECT" parameter="SXP00092" method="getPartyDeclarationByCode.getValue" /> <!-- 联系地址 -->
+				<item fieldName="AddressAbbr" fieldType="String" parameterType="OBJECT" parameter="SXP00097" method="getPartyDeclarationByCode.getValue" /> <!-- 地址简写 -->
+				<item fieldName="ContactPhone" fieldType="String" parameterType="OBJECT" parameter="SXC00014" method="getPartyDeclarationByCode.getValue" /> <!-- 联系人电话 -->
+				<item fieldName="ContactNmae" fieldType="String" parameterType="OBJECT" parameter="SXP00080" method="getPartyDeclarationByCode.getValue" /> <!-- 联系人姓名 -->
+				<item fieldName="ObjectNo" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="ObjectNo" /> <!-- 对象号 -->
+			</table>
+		</area>
+		<area description="员工表">
+			<table tableName="T_Staff" dataProvider="employee" dependent="party" as="customer">
+				<item fieldName="PartyCode" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="PartyCode" /> <!-- 当事方 -->
+				<item fieldName="VersionNo" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="versionno" /> <!-- 版本号 -->
+				<item fieldName="Name" fieldType="String" parameterType="OBJECT" method="getPartyName" /> <!-- 名称 -->
+				<item fieldName="Birthday" fieldType="String" parameterType="OBJECT" method="getBirthday" /> <!-- 生日 -->
+				<item fieldName="ZipCode" fieldType="String" parameterType="OBJECT" parameter="SXU00014" method="getPartyDeclarationByCode.getValue" /> <!-- 邮编 -->
+				<item fieldName="Phone" fieldType="String" parameterType="OBJECT" parameter="SXC00011" method="getPartyDeclarationByCode.getValue" /> <!-- 联系电话 -->
+				<item fieldName="National" fieldType="String" parameterType="OBJECT" parameter="SXP00011" method="getPartyDeclarationByCode.getValue" /> <!-- 民族 -->
+				<item fieldName="DomicilePlace" fieldType="String" parameterType="OBJECT" parameter="SXP00104" method="getPartyDeclarationByCode.getValue" /> <!-- 户口所在地 -->
+				<item fieldName="AppointDate" fieldType="Date" parameterType="OBJECT" parameter="SXP00105" method="getPartyDeclarationByCode.getValue" /> <!-- 入司时间 -->
+				<item fieldName="BranchNo" fieldType="String" parameterType="OBJECT" parameter="SXC00031" method="getPartyDeclarationByCode.getValue" /> <!-- 机构 -->
+				<item fieldName="ENglishName" fieldType="String" parameterType="OBJECT" parameter="SXP00103" method="getPartyDeclarationByCode.getValue" /> <!-- 英文名 -->
+				<item fieldName="ObjectNo" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="ObjectNo" /> <!-- 对象号 -->
+			</table>
+		</area>
+		<area description="分支机构表">
+			<table tableName="T_Branch" dataProvider="branch" dependent="party" as="customer">
+				<item fieldName="PartyCode" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="PartyCode" /> <!-- 当事方 -->
+				<item fieldName="VersionNo" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="versionno" /> <!-- 版本号 -->
+				<item fieldName="BranchName" fieldType="String" parameterType="OBJECT" method="getPartyName" /> <!-- 机构名称 -->
+				<item fieldName="ObjectNo" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="ObjectNo" /> <!-- 对象号 -->
+			</table>
+		</area>
+		<area description="销售团队表">
+			<table tableName="T_SaleGroup" dataProvider="salesteam" dependent="party" as="customer">
+				<item fieldName="PartyCode" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="PartyCode" /> <!-- 当事方 -->
+				<item fieldName="VersionNo" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="versionno" /> <!-- 版本号 -->
+				<item fieldName="ObjectNo" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="ObjectNo" /> <!-- 对象号 -->
+			</table>
+		</area>
+		<area description="银行表">
+			<table tableName="T_Bank" dataProvider="bank" dependent="party" as="customer">
+				<item fieldName="PartyCode" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="PartyCode" /> <!-- 当事方 -->
+				<item fieldName="VersionNo" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="versionno" /> <!-- 版本号 -->
+				<item fieldName="PartyName" fieldType="String" parameterType="OBJECT" method="getPartyName" /> <!-- 当事方名称 -->
+				<item fieldName="Name" fieldType="String" parameterType="OBJECT" parameter="SXP00080" method="getPartyDeclarationByCode.getValue" /> <!-- 联系人姓名 -->
+				<item fieldName="Telephone" fieldType="String" parameterType="OBJECT" parameter="SXC00011" method="getPartyDeclarationByCode.getValue" /> <!-- 联系电话 -->
+				<item fieldName="Address" fieldType="String" parameterType="OBJECT" parameter="SXP00032" method="getPartyDeclarationByCode.getValue" /> <!-- 地址 -->
+				<item fieldName="ObjectNo" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="ObjectNo" /> <!-- 对象号 -->
+			</table>
+		</area>
+
+		<area description="辅助人表_公估人">
+			<table tableName="T_Aider" dataProvider="ClaimAssessor" dependent="party" as="customer">
+				<item fieldName="PartyCode" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="PartyCode" /> <!-- 当事方 -->
+				<item fieldName="VersionNo" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="versionno" /> <!-- 版本号 -->
+				<item fieldName="RSCode" fieldType="String" parameterType="OBJECT" value="pass:501" /> <!-- 公司关系 -->
+				<item fieldName="Country" fieldType="String" parameterType="OBJECT" parameter="SXP00062" method="getPartyDeclarationByCode.getValue" /> <!-- 国家 -->
+				<item fieldName="Province" fieldType="String" parameterType="OBJECT" parameter="SXP00063" method="getPartyDeclarationByCode.getValue" /> <!-- 省 -->
+				<item fieldName="City" fieldType="String" parameterType="OBJECT" parameter="SXP00064" method="getPartyDeclarationByCode.getValue" /> <!-- 市 -->
+				<item fieldName="CorpName" fieldType="String" parameterType="OBJECT" method="getPartyName" /> <!-- 公司名称 -->
+				<item fieldName="Manager" fieldType="String" parameterType="OBJECT" parameter="SXP00065" method="getPartyDeclarationByCode.getValue" /> <!-- 负责人 -->
+				<item fieldName="Name" fieldType="String" parameterType="OBJECT" parameter="SXP00080" method="getPartyDeclarationByCode.getValue" /> <!-- 联系人姓名 -->
+				<item fieldName="Telephone" fieldType="String" parameterType="OBJECT" parameter="SXC00011" method="getPartyDeclarationByCode.getValue" /> <!-- 联系电话 -->
+				<item fieldName="Fax" fieldType="String" parameterType="OBJECT" parameter="SXP00027" method="getPartyDeclarationByCode.getValue" /> <!-- 传真 -->
+				<item fieldName="CorpNo" fieldType="String" parameterType="OBJECT" parameter="SXP00098" method="getPartyDeclarationByCode.getValue" /> <!-- 公司编码 -->
+				<item fieldName="Mobile" fieldType="String" parameterType="OBJECT" parameter="SXP00101" method="getPartyDeclarationByCode.getValue" /> <!-- 手机 -->
+				<item fieldName="EMail" fieldType="String" parameterType="OBJECT" parameter="SXP00007" method="getPartyDeclarationByCode.getValue" /> <!-- 电子邮件 -->
+				<item fieldName="Address" fieldType="String" parameterType="OBJECT" parameter="SXU00013" method="getPartyDeclarationByCode.getValue" /> <!-- 地址 -->
+				<item fieldName="ZipCode" fieldType="String" parameterType="OBJECT" parameter="SXP00033" method="getPartyDeclarationByCode.getValue" /> <!-- 邮编 -->
+				<item fieldName="Referrer" fieldType="String" parameterType="OBJECT" parameter="SXP00100" method="getPartyDeclarationByCode.getValue" /> <!-- 推荐人 -->
+				<item fieldName="BranchNo" fieldType="String" parameterType="OBJECT" parameter="SXP00102" method="getPartyDeclarationByCode.getValue" /> <!-- 机构 -->
+				<item fieldName="InvaildDate" fieldType="Date" parameterType="OBJECT" parameter="SXP00086" method="getPartyDeclarationByCode.getValue" /> <!-- 失效日期 -->
+				<item fieldName="ShortName" fieldType="String" parameterType="OBJECT" parameter="SXP00067" method="getPartyDeclarationByCode.getValue" /> <!-- 简称 -->
+				<item fieldName="EnglishName" fieldType="String" parameterType="OBJECT" parameter="SXP00103" method="getPartyDeclarationByCode.getValue" /> <!-- 英文名称 -->
+				<item fieldName="Grade" fieldType="String" parameterType="OBJECT" parameter="SXP00099" method="getPartyDeclarationByCode.getValue" /> <!-- 使用等级 -->
+				<item fieldName="ObjectNo" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="ObjectNo" /> <!-- 对象号 -->
+				<item fieldName="Remark" fieldType="String" parameterType="OBJECT" parameter="SXW00114" method="getPartyDeclarationByCode.getValue" /> <!-- 备注 -->
+			</table>
+		</area>
+		<area description="辅助人表_检验人">
+			<table tableName="T_Aider" dataProvider="ClaimChecker" dependent="party" as="customer">
+				<item fieldName="PartyCode" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="PartyCode" /> <!-- 当事方 -->
+				<item fieldName="VersionNo" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="versionno" /> <!-- 版本号 -->
+				<item fieldName="RSCode" fieldType="String" parameterType="OBJECT" value="pass:502" /> <!-- 公司关系 -->
+				<item fieldName="Country" fieldType="String" parameterType="OBJECT" parameter="SXP00062" method="getPartyDeclarationByCode.getValue" /> <!-- 国家 -->
+				<item fieldName="Province" fieldType="String" parameterType="OBJECT" parameter="SXP00063" method="getPartyDeclarationByCode.getValue" /> <!-- 省 -->
+				<item fieldName="City" fieldType="String" parameterType="OBJECT" parameter="SXP00064" method="getPartyDeclarationByCode.getValue" /> <!-- 市 -->
+				<item fieldName="CorpName" fieldType="String" parameterType="OBJECT" method="getPartyName" /> <!-- 公司名称 -->
+				<item fieldName="Manager" fieldType="String" parameterType="OBJECT" parameter="SXP00065" method="getPartyDeclarationByCode.getValue" /> <!-- 负责人 -->
+				<item fieldName="Name" fieldType="String" parameterType="OBJECT" parameter="SXP00080" method="getPartyDeclarationByCode.getValue" /> <!-- 联系人姓名 -->
+				<item fieldName="Telephone" fieldType="String" parameterType="OBJECT" parameter="SXC00011" method="getPartyDeclarationByCode.getValue" /> <!-- 联系电话 -->
+				<item fieldName="Fax" fieldType="String" parameterType="OBJECT" parameter="SXP00027" method="getPartyDeclarationByCode.getValue" /> <!-- 传真 -->
+				<item fieldName="CorpNo" fieldType="String" parameterType="OBJECT" parameter="SXP00098" method="getPartyDeclarationByCode.getValue" /> <!-- 公司编码 -->
+				<item fieldName="Mobile" fieldType="String" parameterType="OBJECT" parameter="SXP00101" method="getPartyDeclarationByCode.getValue" /> <!-- 手机 -->
+				<item fieldName="EMail" fieldType="String" parameterType="OBJECT" parameter="SXP00007" method="getPartyDeclarationByCode.getValue" /> <!-- 电子邮件 -->
+				<item fieldName="Address" fieldType="String" parameterType="OBJECT" parameter="SXU00013" method="getPartyDeclarationByCode.getValue" /> <!-- 地址 -->
+				<item fieldName="ZipCode" fieldType="String" parameterType="OBJECT" parameter="SXP00033" method="getPartyDeclarationByCode.getValue" /> <!-- 邮编 -->
+				<item fieldName="Referrer" fieldType="String" parameterType="OBJECT" parameter="SXP00100" method="getPartyDeclarationByCode.getValue" /> <!-- 推荐人 -->
+				<item fieldName="BranchNo" fieldType="String" parameterType="OBJECT" parameter="SXP00102" method="getPartyDeclarationByCode.getValue" /> <!-- 机构 -->
+				<item fieldName="InvaildDate" fieldType="Date" parameterType="OBJECT" parameter="SXP00086" method="getPartyDeclarationByCode.getValue" /> <!-- 失效日期 -->
+				<item fieldName="ShortName" fieldType="String" parameterType="OBJECT" parameter="SXP00067" method="getPartyDeclarationByCode.getValue" /> <!-- 简称 -->
+				<item fieldName="EnglishName" fieldType="String" parameterType="OBJECT" parameter="SXP00103" method="getPartyDeclarationByCode.getValue" /> <!-- 英文名称 -->
+				<item fieldName="Grade" fieldType="String" parameterType="OBJECT" parameter="SXP00099" method="getPartyDeclarationByCode.getValue" /> <!-- 使用等级 -->
+				<item fieldName="ObjectNo" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="ObjectNo" /> <!-- 对象号 -->
+				<item fieldName="Remark" fieldType="String" parameterType="OBJECT" parameter="SXW00114" method="getPartyDeclarationByCode.getValue" /> <!-- 备注 -->
+			</table>
+		</area>
+		<area description="辅助人表_鉴定人">
+			<table tableName="T_Aider" dataProvider="ClaimIdentifier" dependent="party" as="customer">
+				<item fieldName="PartyCode" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="PartyCode" /> <!-- 当事方 -->
+				<item fieldName="VersionNo" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="versionno" /> <!-- 版本号 -->
+				<item fieldName="RSCode" fieldType="String" parameterType="OBJECT" value="pass:503" /> <!-- 公司关系 -->
+				<item fieldName="Country" fieldType="String" parameterType="OBJECT" parameter="SXP00062" method="getPartyDeclarationByCode.getValue" /> <!-- 国家 -->
+				<item fieldName="Province" fieldType="String" parameterType="OBJECT" parameter="SXP00063" method="getPartyDeclarationByCode.getValue" /> <!-- 省 -->
+				<item fieldName="City" fieldType="String" parameterType="OBJECT" parameter="SXP00064" method="getPartyDeclarationByCode.getValue" /> <!-- 市 -->
+				<item fieldName="CorpName" fieldType="String" parameterType="OBJECT" method="getPartyName" /> <!-- 公司名称 -->
+				<item fieldName="Manager" fieldType="String" parameterType="OBJECT" parameter="SXP00065" method="getPartyDeclarationByCode.getValue" /> <!-- 负责人 -->
+				<item fieldName="Name" fieldType="String" parameterType="OBJECT" parameter="SXP00080" method="getPartyDeclarationByCode.getValue" /> <!-- 联系人姓名 -->
+				<item fieldName="Telephone" fieldType="String" parameterType="OBJECT" parameter="SXC00011" method="getPartyDeclarationByCode.getValue" /> <!-- 联系电话 -->
+				<item fieldName="Fax" fieldType="String" parameterType="OBJECT" parameter="SXP00027" method="getPartyDeclarationByCode.getValue" /> <!-- 传真 -->
+				<item fieldName="CorpNo" fieldType="String" parameterType="OBJECT" parameter="SXP00098" method="getPartyDeclarationByCode.getValue" /> <!-- 公司编码 -->
+				<item fieldName="Mobile" fieldType="String" parameterType="OBJECT" parameter="SXP00101" method="getPartyDeclarationByCode.getValue" /> <!-- 手机 -->
+				<item fieldName="EMail" fieldType="String" parameterType="OBJECT" parameter="SXP00007" method="getPartyDeclarationByCode.getValue" /> <!-- 电子邮件 -->
+				<item fieldName="Address" fieldType="String" parameterType="OBJECT" parameter="SXU00013" method="getPartyDeclarationByCode.getValue" /> <!-- 地址 -->
+				<item fieldName="ZipCode" fieldType="String" parameterType="OBJECT" parameter="SXP00033" method="getPartyDeclarationByCode.getValue" /> <!-- 邮编 -->
+				<item fieldName="Referrer" fieldType="String" parameterType="OBJECT" parameter="SXP00100" method="getPartyDeclarationByCode.getValue" /> <!-- 推荐人 -->
+				<item fieldName="BranchNo" fieldType="String" parameterType="OBJECT" parameter="SXP00102" method="getPartyDeclarationByCode.getValue" /> <!-- 机构 -->
+				<item fieldName="InvaildDate" fieldType="Date" parameterType="OBJECT" parameter="SXP00086" method="getPartyDeclarationByCode.getValue" /> <!-- 失效日期 -->
+				<item fieldName="ShortName" fieldType="String" parameterType="OBJECT" parameter="SXP00067" method="getPartyDeclarationByCode.getValue" /> <!-- 简称 -->
+				<item fieldName="EnglishName" fieldType="String" parameterType="OBJECT" parameter="SXP00103" method="getPartyDeclarationByCode.getValue" /> <!-- 英文名称 -->
+				<item fieldName="Grade" fieldType="String" parameterType="OBJECT" parameter="SXP00099" method="getPartyDeclarationByCode.getValue" /> <!-- 使用等级 -->
+				<item fieldName="ObjectNo" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="ObjectNo" /> <!-- 对象号 -->
+				<item fieldName="Remark" fieldType="String" parameterType="OBJECT" parameter="SXW00114" method="getPartyDeclarationByCode.getValue" /> <!-- 备注 -->
+			</table>
+		</area>
+		<area description="辅助人表_律师">
+			<table tableName="T_Aider" dataProvider="ClaimLawyer" dependent="party" as="customer">
+				<item fieldName="PartyCode" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="PartyCode" /> <!-- 当事方 -->
+				<item fieldName="VersionNo" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="versionno" /> <!-- 版本号 -->
+				<item fieldName="RSCode" fieldType="String" parameterType="OBJECT" value="pass:504" /> <!-- 公司关系 -->
+				<item fieldName="Country" fieldType="String" parameterType="OBJECT" parameter="SXP00062" method="getPartyDeclarationByCode.getValue" /> <!-- 国家 -->
+				<item fieldName="Province" fieldType="String" parameterType="OBJECT" parameter="SXP00063" method="getPartyDeclarationByCode.getValue" /> <!-- 省 -->
+				<item fieldName="City" fieldType="String" parameterType="OBJECT" parameter="SXP00064" method="getPartyDeclarationByCode.getValue" /> <!-- 市 -->
+				<item fieldName="CorpName" fieldType="String" parameterType="OBJECT" method="getPartyName" /> <!-- 公司名称 -->
+				<item fieldName="Manager" fieldType="String" parameterType="OBJECT" parameter="SXP00065" method="getPartyDeclarationByCode.getValue" /> <!-- 负责人 -->
+				<item fieldName="Name" fieldType="String" parameterType="OBJECT" parameter="SXP00080" method="getPartyDeclarationByCode.getValue" /> <!-- 联系人姓名 -->
+				<item fieldName="Telephone" fieldType="String" parameterType="OBJECT" parameter="SXC00011" method="getPartyDeclarationByCode.getValue" /> <!-- 联系电话 -->
+				<item fieldName="Fax" fieldType="String" parameterType="OBJECT" parameter="SXP00027" method="getPartyDeclarationByCode.getValue" /> <!-- 传真 -->
+				<item fieldName="CorpNo" fieldType="String" parameterType="OBJECT" parameter="SXP00098" method="getPartyDeclarationByCode.getValue" /> <!-- 公司编码 -->
+				<item fieldName="Mobile" fieldType="String" parameterType="OBJECT" parameter="SXP00101" method="getPartyDeclarationByCode.getValue" /> <!-- 手机 -->
+				<item fieldName="EMail" fieldType="String" parameterType="OBJECT" parameter="SXP00007" method="getPartyDeclarationByCode.getValue" /> <!-- 电子邮件 -->
+				<item fieldName="Address" fieldType="String" parameterType="OBJECT" parameter="SXU00013" method="getPartyDeclarationByCode.getValue" /> <!-- 地址 -->
+				<item fieldName="ZipCode" fieldType="String" parameterType="OBJECT" parameter="SXP00033" method="getPartyDeclarationByCode.getValue" /> <!-- 邮编 -->
+				<item fieldName="Referrer" fieldType="String" parameterType="OBJECT" parameter="SXP00100" method="getPartyDeclarationByCode.getValue" /> <!-- 推荐人 -->
+				<item fieldName="BranchNo" fieldType="String" parameterType="OBJECT" parameter="SXP00102" method="getPartyDeclarationByCode.getValue" /> <!-- 机构 -->
+				<item fieldName="InvaildDate" fieldType="Date" parameterType="OBJECT" parameter="SXP00086" method="getPartyDeclarationByCode.getValue" /> <!-- 失效日期 -->
+				<item fieldName="ShortName" fieldType="String" parameterType="OBJECT" parameter="SXP00067" method="getPartyDeclarationByCode.getValue" /> <!-- 简称 -->
+				<item fieldName="EnglishName" fieldType="String" parameterType="OBJECT" parameter="SXP00103" method="getPartyDeclarationByCode.getValue" /> <!-- 英文名称 -->
+				<item fieldName="Grade" fieldType="String" parameterType="OBJECT" parameter="SXP00099" method="getPartyDeclarationByCode.getValue" /> <!-- 使用等级 -->
+				<item fieldName="ObjectNo" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="ObjectNo" /> <!-- 对象号 -->
+				<item fieldName="Remark" fieldType="String" parameterType="OBJECT" parameter="SXW00114" method="getPartyDeclarationByCode.getValue" /> <!-- 备注 -->
+			</table>
+		</area>
+		<area description="船舶表">
+			<table tableName="T_Ship" dataProvider="boat" dependent="party" as="customer">
+				<item fieldName="PartyCode" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="PartyCode" /> <!-- 当事方 -->
+				<item fieldName="VersionNo" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="versionno" /> <!-- 版本号 -->
+				<item fieldName="ShipName" fieldType="String" parameterType="OBJECT" method="getPartyName" /> <!-- 船名 -->
+				<item fieldName="ClassSociety" fieldType="String" parameterType="OBJECT" parameter="SXU00063" method="getPartyDeclarationByCode.getValue" /> <!-- 船级社 -->
+				<item fieldName="BuildYear" fieldType="Long" parameterType="OBJECT" parameter="SXU00064" method="getPartyDeclarationByCode.getValue" /> <!-- 建造年份 -->
+				<item fieldName="ShipType" fieldType="String" parameterType="OBJECT" parameter="SXU00203" method="getPartyDeclarationByCode.getValue" /> <!-- 船舶类型 -->
+				<item fieldName="Tonnage" fieldType="Float" parameterType="OBJECT" parameter="SXU00204" method="getPartyDeclarationByCode.getValue" /> <!-- 总吨 -->
+				<item fieldName="NetTon" fieldType="Float" parameterType="OBJECT" parameter="SXU00205" method="getPartyDeclarationByCode.getValue" /> <!-- 净吨 -->
+				<item fieldName="LoadTon" fieldType="Float" parameterType="OBJECT" parameter="SXU00206" method="getPartyDeclarationByCode.getValue" /> <!-- 载重吨 -->
+				<item fieldName="BuildLocation" fieldType="String" parameterType="OBJECT" parameter="SXU00708" method="getPartyDeclarationByCode.getValue" /> <!-- 造船地点 -->
+				<item fieldName="RegisterLocation" fieldType="String" parameterType="OBJECT" parameter="SXU00709" method="getPartyDeclarationByCode.getValue" /> <!-- 注册地 -->
+				<item fieldName="ReformYear" fieldType="Long" parameterType="OBJECT" parameter="SXU00710" method="getPartyDeclarationByCode.getValue" /> <!-- 改造年份 -->
+				<item fieldName="ReformFactory" fieldType="String" parameterType="OBJECT" parameter="SXU00711" method="getPartyDeclarationByCode.getValue" /> <!-- 改造厂家 -->
+				<item fieldName="Attribute" fieldType="String" parameterType="OBJECT" parameter="SXU00712" method="getPartyDeclarationByCode.getValue" /> <!-- 属性 -->
+				<item fieldName="ShipLength" fieldType="String" parameterType="OBJECT" parameter="SXU00713" method="getPartyDeclarationByCode.getValue" /> <!-- 船舶总长 -->
+				<item fieldName="ShipWidth" fieldType="String" parameterType="OBJECT" parameter="SXU00714" method="getPartyDeclarationByCode.getValue" /> <!-- 船舶型宽 -->
+				<item fieldName="ShipDepth" fieldType="String" parameterType="OBJECT" parameter="SXU00715" method="getPartyDeclarationByCode.getValue" /> <!-- 船舶型深 -->
+				<item fieldName="ShipStructure" fieldType="String" parameterType="OBJECT" parameter="SXU00716" method="getPartyDeclarationByCode.getValue" /> <!-- 船质结构 -->
+				<item fieldName="ShipPort" fieldType="String" parameterType="OBJECT" parameter="SXU00717" method="getPartyDeclarationByCode.getValue" /> <!-- 船籍港 -->
+				<item fieldName="ObjectNo" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="ObjectNo" /> <!-- 对象号 -->
+			</table>
+		</area>
+		
+		<area description="CRM个人客户表">
+			<table tableName="T_CRM_Person" dataProvider="individualClient" dependent="party" as="customer">
+				<item fieldName="PartyCode" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="PartyCode" /> <!-- 客户代码 -->
+				<item fieldName="VersionNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="versionno" /> <!-- 版本号 -->
+				<item fieldName="Name" fieldType="String" parameterType="OBJECT" method="getPartyName" /> <!-- 客户名称 -->
+				<item fieldName="CertificateType" fieldType="String" parameterType="OBJECT" method="getCerts.get0.getGovissuredtype" /> <!-- 证件类型 -->
+				<item fieldName="CertificateNo" fieldType="String" parameterType="OBJECT" method="getCerts.get0.getGovissuredcode" /> <!-- 证件号码 -->
+				<item fieldName="Nationality" fieldType="String" parameterType="OBJECT" parameter="SXP00002" method="getPartyDeclarationByCode.getValue" /> <!-- 国籍 -->
+				<item fieldName="Sex" fieldType="String" parameterType="OBJECT" method="getGender" /> <!-- 性别 -->
+				<item fieldName="RiskLevel" fieldType="String" parameterType="OBJECT" parameter="SXP00015" method="getPartyDeclarationByCode.getValue" /> <!-- 反洗钱客户风险 -->
+				<item fieldName="IsKeepCertificate" fieldType="String" parameterType="OBJECT" parameter="SXP00003" method="getPartyDeclarationByCode.getValue" /> <!-- 是否留存证件 -->
+				<item fieldName="Birthday" fieldType="String" parameterType="OBJECT" method="getBirthday" /> <!-- 出生日期 -->
+				<item fieldName="Married" fieldType="String" parameterType="OBJECT" parameter="SXP00012" method="getPartyDeclarationByCode.getValue" /> <!-- 婚姻状况 -->
+				<item fieldName="National" fieldType="String" parameterType="OBJECT" parameter="SXP00011" method="getPartyDeclarationByCode.getValue" /> <!-- 民族 -->
+				<item fieldName="TradeCode" fieldType="String" parameterType="OBJECT" parameter="SXU00673" method="getPartyDeclarationByCode.getValue" /> <!-- 行业 -->
+				<item fieldName="WorkUnit" fieldType="String" parameterType="OBJECT" parameter="SXP00005" method="getPartyDeclarationByCode.getValue" /> <!-- 工作单位 -->
+				<item fieldName="CreateUserId" fieldType="String" parameterType="OBJECT" method="getCreateuserid" /> <!-- 创建人代码 -->
+				<item fieldName="ChangeUserId" fieldType="String" parameterType="OBJECT" method="getChangeuserid" /> <!-- 最后修改人代码 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="ObjectNo" /> <!-- 对象号 -->
+				<item fieldName="Remark" fieldType="String" parameterType="OBJECT" parameter="SXW00114" method="getPartyDeclarationByCode.getValue" /> <!-- 备注 -->
+			</table>
+		</area>
+		<area description="CRM机构客户表">
+			<table tableName="T_CRM_Group" dataProvider="institutionClient" dependent="party" as="customer">
+				<item fieldName="PartyCode" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="PartyCode" /> <!-- 当事方 -->
+				<item fieldName="VersionNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="versionno" /> <!-- 版本号 -->
+				<item fieldName="Name" fieldType="String" parameterType="OBJECT" method="getPartyName" /> <!-- 客户名称 -->
+				<item fieldName="TradeCode" fieldType="String" parameterType="OBJECT" parameter="SXU00673" method="getPartyDeclarationByCode.getValue" /> <!-- 行业代码 -->
+				<item fieldName="OrganizationFrom" fieldType="String" parameterType="OBJECT" parameter="SXP00035" method="getPartyDeclarationByCode.getValue" /> <!-- 所有制 -->
+				<item fieldName="RiskLevel" fieldType="String" parameterType="OBJECT" parameter="SXP00034" method="getPartyDeclarationByCode.getValue" /> <!-- 反洗钱风险等级 -->
+				<item fieldName="CustGroup" fieldType="String" parameterType="OBJECT" parameter="SXP00055" method="getPartyDeclarationByCode.getValue" /> <!-- 客户群 -->
+				<item fieldName="EnterpriseScale" fieldType="String" parameterType="OBJECT" parameter="SXP00051" method="getPartyDeclarationByCode.getValue" /> <!-- 企业规模 -->
+				<item fieldName="MemberNumber" fieldType="Long" parameterType="OBJECT" parameter="SXP00037" method="getPartyDeclarationByCode.getValue" /> <!-- 员工人数 -->
+				<item fieldName="BusinessScope" fieldType="String" parameterType="OBJECT" parameter="SXP00036" method="getPartyDeclarationByCode.getValue" /> <!-- 经营范围 -->
+				<item fieldName="ListAddress" fieldType="String" parameterType="OBJECT" parameter="SXP00050" method="getPartyDeclarationByCode.getValue" /> <!-- 上市地点 -->
+				<item fieldName="TotalAsset" fieldType="String" parameterType="OBJECT" parameter="SXP00053" method="getPartyDeclarationByCode.getValue" /> <!-- 总资产 -->
+				<item fieldName="PremiumScale" fieldType="String" parameterType="OBJECT" parameter="SXP00052" method="getPartyDeclarationByCode.getValue" /> <!-- 保费规模 -->
+				<item fieldName="Country" fieldType="String" parameterType="OBJECT" parameter="SXP00054" method="getPartyDeclarationByCode.getValue" /> <!-- 国家地区 -->
+				<item fieldName="WorkAddress" fieldType="String" parameterType="OBJECT" parameter="SXP00032" method="getPartyDeclarationByCode.getValue" /> <!-- 地址 -->
+				<item fieldName="CreateUserId" fieldType="String" parameterType="OBJECT" method="getCreateuserid" /> <!-- 创建人代码 -->
+				<item fieldName="ChangeUserId" fieldType="String" parameterType="OBJECT" method="getChangeuserid" /> <!-- 最后修改人代码 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="ObjectNo" /> <!-- 对象号 -->
+			</table>
+		</area>
+		<area description="CRM个人客户联系表">
+			<table tableName="T_CRM_PsnContract" dataProvider="clientContactInfo" dependent="party" >
+				<item fieldName="ID" fieldType="String" parameterType="OBJECT" parameter="" method="getId" /> <!-- Id -->
+				<item fieldName="PartyCode" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="PartyCode" /> <!-- 当事方 -->
+				<item fieldName="VersionNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="versionno" /> <!-- 版本号 -->
+				<item fieldName="Name" fieldType="String" parameterType="DFL" parameter="name" /> <!-- 客户名称 -->
+				<item fieldName="Mobile" fieldType="String" parameterType="DFL" parameter="mobilePhone" /> <!-- 手机 -->
+				<item fieldName="EMail" fieldType="String" parameterType="DFL" parameter="Email" /> <!-- Email信箱 -->
+				<item fieldName="WorkPhone" fieldType="String" parameterType="DFL" parameter="officePhone" /> <!-- 办公电话 -->
+				<item fieldName="Fax" fieldType="String" parameterType="DFL" parameter="fax" /> <!-- 传真 -->
+				<item fieldName="FamilyPhone" fieldType="String" parameterType="DFL" parameter="familyPhone" /> <!-- 家庭电话 -->
+				<item fieldName="FamilyAddress" fieldType="String" parameterType="DFL" parameter="familyAddress" /> <!-- 详细地址 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="ObjectNo" /> <!-- 对象号 -->
+			</table>
+		</area>
+		<area description="CRM机构客户联系表">
+			<table tableName="T_CRM_GrpContract" dataProvider="groupContactInfo" dependent="party" >
+				<item fieldName="ID" fieldType="String" parameterType="OBJECT" parameter="" method="getId" /> <!-- Id -->
+				<item fieldName="PartyCode" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="PartyCode" /> <!-- 当事方 -->
+				<item fieldName="VersionNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="versionno" /> <!-- 版本号 -->
+				<item fieldName="Name" fieldType="String" parameterType="DFL" parameter="name" /> <!-- 联系人姓名 -->
+				<item fieldName="Mobile" fieldType="String" parameterType="DFL" parameter="mobilePhone" /> <!-- 手机 -->
+				<item fieldName="EMail" fieldType="String" parameterType="DFL" parameter="Email" /> <!-- Email信箱 -->
+				<item fieldName="WorkPhone" fieldType="String" parameterType="DFL" parameter="telephone" /> <!-- 办公电话 -->
+				<item fieldName="Fax" fieldType="String" parameterType="DFL" parameter=" fax" /> <!-- 传真 -->
+				<item fieldName="WorkAddress" fieldType="String" parameterType="DFL" parameter="workAddress" /> <!-- 单位地址 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="ObjectNo" /> <!-- 对象号 -->
+				<item fieldName="Remark" fieldType="String" parameterType="DFL" parameter="Memo" /> <!-- 备注 -->
+			</table>
+		</area>
+		
+		<area description="CRM辅助人表_公估人">
+			<table tableName="T_CRM_Aider" dataProvider="ClaimAssessor" dependent="party" as="customer">
+				<item fieldName="PartyCode" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="PartyCode" /> <!-- 当事方 -->
+				<item fieldName="VersionNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="versionno" /> <!-- 版本号 -->
+				<item fieldName="RSCode" fieldType="String" parameterType="OBJECT" value="pass:501" /> <!-- 公司关系 -->
+				<item fieldName="CorpName" fieldType="String" parameterType="OBJECT" method="getPartyName" /> <!-- 公司名称 -->
+				<item fieldName="Country" fieldType="String" parameterType="OBJECT" parameter="SXP00062" method="getPartyDeclarationByCode.getValue" /> <!-- 国家地区 -->
+				<item fieldName="Province" fieldType="String" parameterType="OBJECT" parameter="SXP00063" method="getPartyDeclarationByCode.getValue" /> <!-- 省 -->
+				<item fieldName="City" fieldType="String" parameterType="OBJECT" parameter="SXP00064" method="getPartyDeclarationByCode.getValue" /> <!-- 城市 -->
+				<item fieldName="Manager" fieldType="String" parameterType="OBJECT" parameter="SXP00065" method="getPartyDeclarationByCode.getValue" /> <!-- 负责人 -->
+				<item fieldName="Name" fieldType="String" parameterType="OBJECT" parameter="SXP00080" method="getPartyDeclarationByCode.getValue" /> <!-- 联系人 -->
+				<item fieldName="Telephone" fieldType="String" parameterType="OBJECT" parameter="SXC00011" method="getPartyDeclarationByCode.getValue" /> <!-- 联系电话 -->
+				<item fieldName="Grade" fieldType="String" parameterType="OBJECT" parameter="SXP00099" method="getPartyDeclarationByCode.getValue" /> <!-- 使用等级 -->
+				<item fieldName="EnglishName" fieldType="String" parameterType="OBJECT" parameter="SXP00103" method="getPartyDeclarationByCode.getValue" /> <!-- 英文名称 -->
+				<item fieldName="BranchNo" fieldType="String" parameterType="OBJECT" parameter="SXP00102" method="getPartyDeclarationByCode.getValue" /> <!-- 机构 -->
+				<item fieldName="CorpNo" fieldType="String" parameterType="OBJECT" parameter="SXP00098" method="getPartyDeclarationByCode.getValue" /> <!-- 公司编码 -->
+				<item fieldName="Referrer" fieldType="String" parameterType="OBJECT" parameter="SXP00100" method="getPartyDeclarationByCode.getValue" /> <!-- 推荐人 -->
+				<item fieldName="Address" fieldType="String" parameterType="OBJECT" parameter="SXU00013" method="getPartyDeclarationByCode.getValue" /> <!-- 地址 -->
+				<item fieldName="ShortName" fieldType="String" parameterType="OBJECT" parameter="SXP00067" method="getPartyDeclarationByCode.getValue" /> <!-- 简称 -->
+				<item fieldName="ZipCode" fieldType="String" parameterType="OBJECT" parameter="SXP00033" method="getPartyDeclarationByCode.getValue" /> <!-- 单位邮编 -->
+				<item fieldName="InvaildDate" fieldType="Date" parameterType="OBJECT" parameter="SXP00086" method="getPartyDeclarationByCode.getValue" /> <!-- 失效日期 -->
+				<item fieldName="Fax" fieldType="String" parameterType="OBJECT" parameter="SXP00027" method="getPartyDeclarationByCode.getValue" /> <!-- 传真 -->
+				<item fieldName="EMail" fieldType="String" parameterType="OBJECT" parameter="SXP00007" method="getPartyDeclarationByCode.getValue" /> <!-- 电子邮件 -->
+				<item fieldName="Mobile" fieldType="String" parameterType="OBJECT" parameter="SXP00101" method="getPartyDeclarationByCode.getValue" /> <!-- 手机 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="ObjectNo" /> <!-- 对象号 -->
+				<item fieldName="Remark" fieldType="String" parameterType="OBJECT" parameter="SXW00114" method="getPartyDeclarationByCode.getValue" /> <!-- 备注 -->
+			</table>
+		</area>
+		<area description="CRM辅助人表_检验人">
+			<table tableName="T_CRM_Aider" dataProvider="ClaimChecker" dependent="party" as="customer">
+				<item fieldName="PartyCode" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="PartyCode" /> <!-- 当事方 -->
+				<item fieldName="VersionNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="versionno" /> <!-- 版本号 -->
+				<item fieldName="RSCode" fieldType="String" parameterType="OBJECT" value="pass:502" /> <!-- 公司关系 -->
+				<item fieldName="CorpName" fieldType="String" parameterType="OBJECT" method="getPartyName" /> <!-- 公司名称 -->
+				<item fieldName="Country" fieldType="String" parameterType="OBJECT" parameter="SXP00062" method="getPartyDeclarationByCode.getValue" /> <!-- 国家地区 -->
+				<item fieldName="Province" fieldType="String" parameterType="OBJECT" parameter="SXP00063" method="getPartyDeclarationByCode.getValue" /> <!-- 省 -->
+				<item fieldName="City" fieldType="String" parameterType="OBJECT" parameter="SXP00064" method="getPartyDeclarationByCode.getValue" /> <!-- 城市 -->
+				<item fieldName="Manager" fieldType="String" parameterType="OBJECT" parameter="SXP00065" method="getPartyDeclarationByCode.getValue" /> <!-- 负责人 -->
+				<item fieldName="Name" fieldType="String" parameterType="OBJECT" parameter="SXP00080" method="getPartyDeclarationByCode.getValue" /> <!-- 联系人 -->
+				<item fieldName="Telephone" fieldType="String" parameterType="OBJECT" parameter="SXC00011" method="getPartyDeclarationByCode.getValue" /> <!-- 联系电话 -->
+				<item fieldName="Grade" fieldType="String" parameterType="OBJECT" parameter="SXP00099" method="getPartyDeclarationByCode.getValue" /> <!-- 使用等级 -->
+				<item fieldName="EnglishName" fieldType="String" parameterType="OBJECT" parameter="SXP00103" method="getPartyDeclarationByCode.getValue" /> <!-- 英文名称 -->
+				<item fieldName="BranchNo" fieldType="String" parameterType="OBJECT" parameter="SXP00102" method="getPartyDeclarationByCode.getValue" /> <!-- 机构 -->
+				<item fieldName="CorpNo" fieldType="String" parameterType="OBJECT" parameter="SXP00098" method="getPartyDeclarationByCode.getValue" /> <!-- 公司编码 -->
+				<item fieldName="Referrer" fieldType="String" parameterType="OBJECT" parameter="SXP00100" method="getPartyDeclarationByCode.getValue" /> <!-- 推荐人 -->
+				<item fieldName="Address" fieldType="String" parameterType="OBJECT" parameter="SXU00013" method="getPartyDeclarationByCode.getValue" /> <!-- 地址 -->
+				<item fieldName="ShortName" fieldType="String" parameterType="OBJECT" parameter="SXP00067" method="getPartyDeclarationByCode.getValue" /> <!-- 简称 -->
+				<item fieldName="ZipCode" fieldType="String" parameterType="OBJECT" parameter="SXP00033" method="getPartyDeclarationByCode.getValue" /> <!-- 单位邮编 -->
+				<item fieldName="InvaildDate" fieldType="Date" parameterType="OBJECT" parameter="SXP00086" method="getPartyDeclarationByCode.getValue" /> <!-- 失效日期 -->
+				<item fieldName="Fax" fieldType="String" parameterType="OBJECT" parameter="SXP00027" method="getPartyDeclarationByCode.getValue" /> <!-- 传真 -->
+				<item fieldName="EMail" fieldType="String" parameterType="OBJECT" parameter="SXP00007" method="getPartyDeclarationByCode.getValue" /> <!-- 电子邮件 -->
+				<item fieldName="Mobile" fieldType="String" parameterType="OBJECT" parameter="SXP00101" method="getPartyDeclarationByCode.getValue" /> <!-- 手机 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="ObjectNo" /> <!-- 对象号 -->
+				<item fieldName="Remark" fieldType="String" parameterType="OBJECT" parameter="SXW00114" method="getPartyDeclarationByCode.getValue" /> <!-- 备注 -->
+			</table>
+		</area>
+		<area description="CRM辅助人表_鉴定人">
+			<table tableName="T_CRM_Aider" dataProvider="ClaimIdentifier" dependent="party" as="customer">
+				<item fieldName="PartyCode" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="PartyCode" /> <!-- 当事方 -->
+				<item fieldName="VersionNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="versionno" /> <!-- 版本号 -->
+				<item fieldName="RSCode" fieldType="String" parameterType="OBJECT" value="pass:503" /> <!-- 公司关系 -->
+				<item fieldName="CorpName" fieldType="String" parameterType="OBJECT" method="getPartyName" /> <!-- 公司名称 -->
+				<item fieldName="Country" fieldType="String" parameterType="OBJECT" parameter="SXP00062" method="getPartyDeclarationByCode.getValue" /> <!-- 国家地区 -->
+				<item fieldName="Province" fieldType="String" parameterType="OBJECT" parameter="SXP00063" method="getPartyDeclarationByCode.getValue" /> <!-- 省 -->
+				<item fieldName="City" fieldType="String" parameterType="OBJECT" parameter="SXP00064" method="getPartyDeclarationByCode.getValue" /> <!-- 城市 -->
+				<item fieldName="Manager" fieldType="String" parameterType="OBJECT" parameter="SXP00065" method="getPartyDeclarationByCode.getValue" /> <!-- 负责人 -->
+				<item fieldName="Name" fieldType="String" parameterType="OBJECT" parameter="SXP00080" method="getPartyDeclarationByCode.getValue" /> <!-- 联系人 -->
+				<item fieldName="Telephone" fieldType="String" parameterType="OBJECT" parameter="SXC00011" method="getPartyDeclarationByCode.getValue" /> <!-- 联系电话 -->
+				<item fieldName="Grade" fieldType="String" parameterType="OBJECT" parameter="SXP00099" method="getPartyDeclarationByCode.getValue" /> <!-- 使用等级 -->
+				<item fieldName="EnglishName" fieldType="String" parameterType="OBJECT" parameter="SXP00103" method="getPartyDeclarationByCode.getValue" /> <!-- 英文名称 -->
+				<item fieldName="BranchNo" fieldType="String" parameterType="OBJECT" parameter="SXP00102" method="getPartyDeclarationByCode.getValue" /> <!-- 机构 -->
+				<item fieldName="CorpNo" fieldType="String" parameterType="OBJECT" parameter="SXP00098" method="getPartyDeclarationByCode.getValue" /> <!-- 公司编码 -->
+				<item fieldName="Referrer" fieldType="String" parameterType="OBJECT" parameter="SXP00100" method="getPartyDeclarationByCode.getValue" /> <!-- 推荐人 -->
+				<item fieldName="Address" fieldType="String" parameterType="OBJECT" parameter="SXU00013" method="getPartyDeclarationByCode.getValue" /> <!-- 地址 -->
+				<item fieldName="ShortName" fieldType="String" parameterType="OBJECT" parameter="SXP00067" method="getPartyDeclarationByCode.getValue" /> <!-- 简称 -->
+				<item fieldName="ZipCode" fieldType="String" parameterType="OBJECT" parameter="SXP00033" method="getPartyDeclarationByCode.getValue" /> <!-- 单位邮编 -->
+				<item fieldName="InvaildDate" fieldType="Date" parameterType="OBJECT" parameter="SXP00086" method="getPartyDeclarationByCode.getValue" /> <!-- 失效日期 -->
+				<item fieldName="Fax" fieldType="String" parameterType="OBJECT" parameter="SXP00027" method="getPartyDeclarationByCode.getValue" /> <!-- 传真 -->
+				<item fieldName="EMail" fieldType="String" parameterType="OBJECT" parameter="SXP00007" method="getPartyDeclarationByCode.getValue" /> <!-- 电子邮件 -->
+				<item fieldName="Mobile" fieldType="String" parameterType="OBJECT" parameter="SXP00101" method="getPartyDeclarationByCode.getValue" /> <!-- 手机 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="ObjectNo" /> <!-- 对象号 -->
+				<item fieldName="Remark" fieldType="String" parameterType="OBJECT" parameter="SXW00114" method="getPartyDeclarationByCode.getValue" /> <!-- 备注 -->
+			</table>
+		</area>
+		<area description="CRM辅助人表_律师">
+			<table tableName="T_CRM_Aider" dataProvider="ClaimLawyer" dependent="party" as="customer">
+				<item fieldName="PartyCode" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="PartyCode" /> <!-- 当事方 -->
+				<item fieldName="VersionNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="versionno" /> <!-- 版本号 -->
+				<item fieldName="RSCode" fieldType="String" parameterType="OBJECT" value="pass:504" /> <!-- 公司关系 -->
+				<item fieldName="CorpName" fieldType="String" parameterType="OBJECT" method="getPartyName" /> <!-- 公司名称 -->
+				<item fieldName="Country" fieldType="String" parameterType="OBJECT" parameter="SXP00062" method="getPartyDeclarationByCode.getValue" /> <!-- 国家地区 -->
+				<item fieldName="Province" fieldType="String" parameterType="OBJECT" parameter="SXP00063" method="getPartyDeclarationByCode.getValue" /> <!-- 省 -->
+				<item fieldName="City" fieldType="String" parameterType="OBJECT" parameter="SXP00064" method="getPartyDeclarationByCode.getValue" /> <!-- 城市 -->
+				<item fieldName="Manager" fieldType="String" parameterType="OBJECT" parameter="SXP00065" method="getPartyDeclarationByCode.getValue" /> <!-- 负责人 -->
+				<item fieldName="Name" fieldType="String" parameterType="OBJECT" parameter="SXP00080" method="getPartyDeclarationByCode.getValue" /> <!-- 联系人 -->
+				<item fieldName="Telephone" fieldType="String" parameterType="OBJECT" parameter="SXC00011" method="getPartyDeclarationByCode.getValue" /> <!-- 联系电话 -->
+				<item fieldName="Grade" fieldType="String" parameterType="OBJECT" parameter="SXP00099" method="getPartyDeclarationByCode.getValue" /> <!-- 使用等级 -->
+				<item fieldName="EnglishName" fieldType="String" parameterType="OBJECT" parameter="SXP00103" method="getPartyDeclarationByCode.getValue" /> <!-- 英文名称 -->
+				<item fieldName="BranchNo" fieldType="String" parameterType="OBJECT" parameter="SXP00102" method="getPartyDeclarationByCode.getValue" /> <!-- 机构 -->
+				<item fieldName="CorpNo" fieldType="String" parameterType="OBJECT" parameter="SXP00098" method="getPartyDeclarationByCode.getValue" /> <!-- 公司编码 -->
+				<item fieldName="Referrer" fieldType="String" parameterType="OBJECT" parameter="SXP00100" method="getPartyDeclarationByCode.getValue" /> <!-- 推荐人 -->
+				<item fieldName="Address" fieldType="String" parameterType="OBJECT" parameter="SXU00013" method="getPartyDeclarationByCode.getValue" /> <!-- 地址 -->
+				<item fieldName="ShortName" fieldType="String" parameterType="OBJECT" parameter="SXP00067" method="getPartyDeclarationByCode.getValue" /> <!-- 简称 -->
+				<item fieldName="ZipCode" fieldType="String" parameterType="OBJECT" parameter="SXP00033" method="getPartyDeclarationByCode.getValue" /> <!-- 单位邮编 -->
+				<item fieldName="InvaildDate" fieldType="Date" parameterType="OBJECT" parameter="SXP00086" method="getPartyDeclarationByCode.getValue" /> <!-- 失效日期 -->
+				<item fieldName="Fax" fieldType="String" parameterType="OBJECT" parameter="SXP00027" method="getPartyDeclarationByCode.getValue" /> <!-- 传真 -->
+				<item fieldName="EMail" fieldType="String" parameterType="OBJECT" parameter="SXP00007" method="getPartyDeclarationByCode.getValue" /> <!-- 电子邮件 -->
+				<item fieldName="Mobile" fieldType="String" parameterType="OBJECT" parameter="SXP00101" method="getPartyDeclarationByCode.getValue" /> <!-- 手机 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="ObjectNo" /> <!-- 对象号 -->
+				<item fieldName="Remark" fieldType="String" parameterType="OBJECT" parameter="SXW00114" method="getPartyDeclarationByCode.getValue" /> <!-- 备注 -->
+			</table>
+		</area>
+		<area description="CRM当事方证件表">
+			<table tableName="T_CRM_PartyCertId" dataProvider="PartyCertIDVO" dependent="party">
+				<item fieldName="PartyCode" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="PartyCode" /> <!-- 当事方 -->
+				<item fieldName="VersionNo" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="versionno" /> <!-- 版本号 -->
+				<item fieldName="SerialNo" fieldType="Long" parameterType="OBJECT" method="getId" /> <!-- 序号 -->
+				<item fieldName="GovIssuredType" fieldType="String" parameterType="OBJECT" method="getGovissuredtype" /> <!-- 证件类型 -->
+				<item fieldName="GovIssuredCode" fieldType="String" parameterType="OBJECT" method="getGovissuredcode" /> <!-- 证件号码 -->
+				<item fieldName="CertStartDate" fieldType="Date" parameterType="OBJECT" method="getStartDate" /> <!-- 证件有效期起 -->
+				<item fieldName="CertEndDate" fieldType="Date" parameterType="OBJECT" method="getEndDate" /> <!-- 证件有效期止 -->
+				<item fieldName="ObjectNo" fieldType="String" dataProvider="GLOBAL" parameterType="GLOBAL" parameter="ObjectNo" /> <!-- 对象号 -->
+			</table>
+		</area>
+		
+	</mapping>
+</definition>

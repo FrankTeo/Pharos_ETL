@@ -1,0 +1,142 @@
+package com.sysnet.poc.vo;
+
+/**
+ * StgEdrDclRoleInfo entity.
+ * 
+ * @author MyEclipse Persistence Tools
+ */
+
+public class StgEdrDclRoleInfo implements java.io.Serializable {
+
+	// Fields
+
+	// 角色序列号
+	private Long roleId;
+	// 角色ID
+	private Long droleId;
+	// 层级
+	private Long layer;
+	// 根据角色不同含义会有不同，，如果是付款人的话，，就是付款百分比
+	private Double percentage;
+	// 关联到crm系统中的当事人的姓名
+	private String name;
+	// 时间戳
+	private String timeStamp;
+	// partyId
+	private Long partyId;
+	// 对象类型
+	private String objectType;
+	// 批次序号
+	private Long batId;
+	// 对象序号
+	private Long objectId;
+	// 标的序列号
+	private Long itemNo;
+	// 批单CD
+	private String endorseNo;
+
+	// Constructors
+
+	/** default constructor */
+	public StgEdrDclRoleInfo() {
+	}
+
+	// Property accessors
+
+	public Long getRoleId() {
+		return roleId;
+	}
+
+	public void setRoleId(Long roleId) {
+		this.roleId = roleId;
+	}
+
+	public Long getDroleId() {
+		return this.droleId;
+	}
+
+	public void setDroleId(Long droleId) {
+		this.droleId = droleId;
+	}
+
+	public Long getLayer() {
+		return this.layer;
+	}
+
+	public void setLayer(Long layer) {
+		this.layer = layer;
+	}
+
+	public Double getPercentage() {
+		return this.percentage;
+	}
+
+	public void setPercentage(Double percentage) {
+		this.percentage = percentage;
+	}
+
+	public String getName() {
+		return this.name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getTimeStamp() {
+		return this.timeStamp;
+	}
+
+	public void setTimeStamp(String timeStamp) {
+		this.timeStamp = timeStamp;
+	}
+
+	public Long getPartyId() {
+		return this.partyId;
+	}
+
+	public void setPartyId(Long partyId) {
+		this.partyId = partyId;
+	}
+
+	public String getObjectType() {
+		return this.objectType;
+	}
+
+	public void setObjectType(String objectType) {
+		this.objectType = objectType;
+	}
+
+	public Long getBatId() {
+		return this.batId;
+	}
+
+	public void setBatId(Long batId) {
+		this.batId = batId;
+	}
+
+	public Long getObjectId() {
+		return this.objectId;
+	}
+
+	public void setObjectId(Long objectId) {
+		this.objectId = objectId;
+	}
+
+	public Long getItemNo() {
+		return itemNo;
+	}
+
+	public void setItemNo(Long itemNo) {
+		this.itemNo = itemNo;
+	}
+
+	public String getEndorseNo() {
+		return endorseNo;
+	}
+
+	public void setEndorseNo(String endorseNo) {
+		this.endorseNo = endorseNo;
+	}
+
+}

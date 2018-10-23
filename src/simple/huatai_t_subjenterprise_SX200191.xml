@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition description="企财险标的表">
+	<mapping>
+		<area description="企财险标的表">
+			<table tableName="t_subjenterprise" dataProviderType="CSNODE" as="Contract">
+				<item fieldName="PolicyNo" fieldType="String" parameterType="GLOBAL" parameter="policyno" /> <!-- 保单号 -->
+				<item fieldName="EndorseNo" fieldType="String" parameterType="GLOBAL" parameter="endorseno" /> <!-- 批单号 -->
+				<item fieldName="NodeNo" fieldType="String" parameterType="GLOBAL" parameter="nodeno" /> <!-- 节点号 -->
+				<item fieldName="ContractNo" fieldType="String" parameterType="GLOBAL" parameter="contractno" /> <!-- 合同号 -->
+				<item fieldName="SubVersionNo" fieldType="String" parameterType="GLOBAL" parameter="version" /> <!-- 版本号 -->
+				<item fieldName="ProposalNo" fieldType="String" parameterType="GLOBAL" parameter="proposalno" /> <!-- 投保单号 -->
+				<item fieldName="SubjectAddress" fieldType="String" parameterType="CSNODE" parameter="SXU00013" method="getElementByCode.getValue" /> <!-- 标的地址 -->
+				<item fieldName="ZipCode" fieldType="String" parameterType="CSNODE" parameter="SXU00014" method="getElementByCode.getValue" /> <!-- 邮政编码 -->
+				<item fieldName="QuotaExplain" fieldType="String" parameterType="CSNODE" parameter="SXU00087" method="getElementByCode.getValue" /> <!-- 保单限额说明 -->
+				<item fieldName="PerAccdCmpnstLmtCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00121" method="getElementByCode.getValue.getCurrency" /> <!-- 每次事故赔偿限额币种 -->
+				<item fieldName="PerAccdCmpnstLimit" fieldType="Float" parameterType="CSNODE" parameter="SXU00121" method="getElementByCode.getValue.getAmount" /> <!-- 每次事故赔偿限额 -->
+				<item fieldName="AggrCmpnstLmtCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00155" method="getElementByCode.getValue.getCurrency" /> <!-- 年度累计赔偿限额 -->
+				<item fieldName="AggregCmpnstLimit" fieldType="Float" parameterType="CSNODE" parameter="SXU00155" method="getElementByCode.getValue.getAmount" /> <!-- 年度累计赔偿限额 -->
+				<item fieldName="ElPrprtInsureAmtCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00049" method="getElementByCode.getValue.getCurrency" /> <!-- 电梯财产总保险金额币种 -->
+				<item fieldName="ElPrprtInsureAmount" fieldType="Float" parameterType="CSNODE" parameter="SXU00049" method="getElementByCode.getValue.getAmount" /> <!-- 电梯财产总保险金额 -->
+				<item fieldName="ElPrprtInsurePrmmCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00051" method="getElementByCode.getValue.getCurrency" /> <!-- 电梯财产保费合计币种 -->
+				<item fieldName="ElPrprtInsurePremium" fieldType="Float" parameterType="CSNODE" parameter="SXU00051" method="getElementByCode.getValue.getAmount" /> <!-- 电梯财产保费合计 -->
+				<item fieldName="PreAccdFrghtLmtCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00911" method="getElementByCode.getValue.getCurrency" /> <!-- 每次事故运输货物损失币种 -->
+				<item fieldName="PreAccdFrghtLimit" fieldType="Float" parameterType="CSNODE" parameter="SXU00911" method="getElementByCode.getValue.getAmount" /> <!-- 每次事故运输货物损失 -->
+				<item fieldName="PreAccdPrsnPrprtLmtCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00912" method="getElementByCode.getValue.getCurrency" /> <!-- 每次事故个人携带的财产物品损失币种 -->
+				<item fieldName="PreAccdPrsnPrptLimt" fieldType="Float" parameterType="CSNODE" parameter="SXU00912" method="getElementByCode.getValue.getAmount" /> <!-- 每次事故个人携带的财产物品损失 -->
+				<item fieldName="PreAccdPrePrsnLmtCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00913" method="getElementByCode.getValue.getCurrency" /> <!-- 每次事故抢救及医疗费币种 -->
+				<item fieldName="PreAccdPrePrsnLimit" fieldType="Float" parameterType="CSNODE" parameter="SXU00913" method="getElementByCode.getValue.getAmount" /> <!-- 每次事故抢救及医疗费 -->
+				<item fieldName="PreAccdMdclLmtCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00914" method="getElementByCode.getValue.getCurrency" /> <!-- 每次事故抢救及医疗费币种 -->
+				<item fieldName="PreAccdMdclLimit" fieldType="Float" parameterType="CSNODE" parameter="SXU00914" method="getElementByCode.getValue.getAmount" /> <!-- 每次事故抢救及医疗费 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" parameter="objectno" /> <!-- 对象号 -->
+			</table>
+		</area>
+	</mapping>
+</definition>

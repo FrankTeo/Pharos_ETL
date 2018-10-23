@@ -1,0 +1,214 @@
+package com.sysnet.poc.service.dao.impl;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import com.sysnet.poc.service.dao.AccPtyDAO;
+import com.sysnet.poc.vo.StgPtyCorpRelationship;
+import com.sysnet.poc.vo.StgPtyPartiesRelation;
+import com.sysnet.poc.vo.StgPtyParty;
+import com.sysnet.poc.vo.StgPtyPartyCertid;
+import com.sysnet.poc.vo.StgPtyPartyName;
+
+public class AccPtyDAOimpl implements AccPtyDAO {
+
+	private PreparedStatement pstmt = null;
+
+	public void insertStgPtyCorpRelationship(Connection conn, StgPtyCorpRelationship vo) throws SQLException, Exception {
+		if (vo == null) {
+			throw new Exception("Class of AccPtyDAOimpl method insertStgPtyCorpRelationship param StgPtyCorpRelationship is null!");
+		}
+		StringBuffer sqlSB = new StringBuffer(100);
+		sqlSB.append("INSERT INTO STG_PTY_CORP_RELATIONSHIP (");
+		sqlSB.append(" RS_CODE, ");
+		sqlSB.append(" START_DATE, ");
+		sqlSB.append(" END_DATE, ");
+		sqlSB.append(" STATUS, ");
+		sqlSB.append(" REMOVED, ");
+		sqlSB.append(" TIME_STAMP, ");
+		sqlSB.append(" BAT_ID, ");
+		sqlSB.append(" OBJECT_ID, ");
+		sqlSB.append(" OBJECT_TYPE, ");
+		sqlSB.append(" PARTY_ID");
+		sqlSB.append(") values (");
+		sqlSB.append("?,?,?,?,?,?,?,?,?,?)");
+		pstmt = conn.prepareStatement(sqlSB.toString());
+		int i = 1;
+		pstmt.setLong(i++, vo.getRsCode());
+		pstmt.setDate(i++, vo.getStartDate());
+		pstmt.setDate(i++, vo.getEndDate());
+		pstmt.setLong(i++, vo.getStatus());
+		pstmt.setLong(i++, vo.getRemoved());
+		pstmt.setDate(i++, vo.getTimeStamp());
+		pstmt.setLong(i++, vo.getBatId());
+		pstmt.setLong(i++, vo.getObjectId());
+		pstmt.setLong(i++, vo.getId());
+		pstmt.setString(i++, vo.getObjectType());
+		pstmt.execute();
+		pstmt.close();
+
+	}
+
+	public void insertStgPtyPartiesRelation(Connection conn, StgPtyPartiesRelation vo) throws SQLException, Exception {
+		if (vo == null) {
+			throw new Exception("Class of AccPtyDAOimpl method insertStgPtyPartiesRelation param StgPtyPartiesRelation is null!");
+		}
+		StringBuffer sqlSB = new StringBuffer(100);
+		sqlSB.append("INSERT INTO STG_PTY_PARTIES_RELATION (");
+		sqlSB.append(" PR_ID, ");
+		sqlSB.append(" TARGET_PARTY_ID, ");
+		sqlSB.append(" RELATIONSHIP, ");
+		sqlSB.append(" START_DATE, ");
+		sqlSB.append(" END_DATE, ");
+		sqlSB.append(" STATUS, ");
+		sqlSB.append(" TIME_STAMP, ");
+		sqlSB.append(" SOURCE_PARTY_ID, ");
+		sqlSB.append(" OBJECT_ID, ");
+		sqlSB.append(" OBJECT_TYPE, ");
+		sqlSB.append(" BAT_ID");
+		sqlSB.append(") values (");
+		sqlSB.append("?,?,?,?,?,?,?,?,?,?,?)");
+		pstmt = conn.prepareStatement(sqlSB.toString());
+		int i = 1;
+		pstmt.setLong(i++, vo.getPrId());
+		pstmt.setLong(i++, vo.getStgPtyPartyByTargetPartyId());
+		pstmt.setLong(i++, vo.getStgPtyPartyBySourcePartyId());
+		pstmt.setLong(i++, vo.getRelationship());
+		pstmt.setDate(i++, vo.getStartDate());
+		pstmt.setDate(i++, vo.getEndDate());
+		pstmt.setLong(i++, vo.getStatus());
+		pstmt.setDate(i++, vo.getTimeStamp());
+		pstmt.setLong(i++, vo.getObjectId());
+		pstmt.setString(i++, vo.getObjectType());
+		pstmt.setLong(i++, vo.getBatId());
+		pstmt.execute();
+		pstmt.close();
+
+	}
+
+	public void insertStgPtyParty(Connection conn, StgPtyParty vo) throws SQLException, Exception {
+		if (vo == null) {
+			throw new Exception("Class of AccPtyDAOimpl method insertStgPtyParty param StgPtyParty is null!");
+		}
+
+		StringBuffer sqlSB = new StringBuffer(100);
+		sqlSB.append("INSERT INTO STG_PTY_PARTY (");
+		sqlSB.append(" PARTY_ID, ");
+		sqlSB.append(" CODE, ");
+		sqlSB.append(" GENDER, ");
+		sqlSB.append(" BIRTHDAY, ");
+		sqlSB.append(" COMPANY_TYPE, ");
+		sqlSB.append(" TAXS_TYPE, ");
+		sqlSB.append(" TYPE, ");
+		sqlSB.append(" REMOVED, ");
+		sqlSB.append(" STATUS, ");
+		sqlSB.append(" IS_BUSINESS, ");
+		sqlSB.append(" CREATE_DATE_TIME, ");
+		sqlSB.append(" CHANGE_DATE_TIME, ");
+		sqlSB.append(" COMPANY_ID, ");
+		sqlSB.append(" COMPANY_NODE_ID, ");
+		sqlSB.append(" START_DATE, ");
+		sqlSB.append(" END_DATE, ");
+		sqlSB.append(" WARNINGS, ");
+		sqlSB.append(" PARTY_VETO_TYPE, ");
+		sqlSB.append(" TIME_STAMP, ");
+		sqlSB.append(" OBJECT_TYPE, ");
+		sqlSB.append(" BAT_ID, ");
+		sqlSB.append(" OBJECT_ID");
+		sqlSB.append(") values (");
+		sqlSB.append("?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+		pstmt = conn.prepareStatement(sqlSB.toString());
+		int i = 1;
+		pstmt.setLong(i++, vo.getPartyId());
+		pstmt.setLong(i++, vo.getCode());
+		pstmt.setLong(i++, vo.getGender());
+		pstmt.setDate(i++, vo.getBirthday());
+		pstmt.setLong(i++, vo.getCompanyType());
+		pstmt.setLong(i++, vo.getTaxsType());
+		pstmt.setLong(i++, vo.getType());
+		pstmt.setLong(i++, vo.getRemoved());
+		pstmt.setLong(i++, vo.getStatus());
+		pstmt.setLong(i++, vo.getIsBusiness());
+		pstmt.setDate(i++, vo.getCreateDateTime());
+		pstmt.setDate(i++, vo.getChangeDateTime());
+		pstmt.setLong(i++, vo.getCompanyId());
+		pstmt.setLong(i++, vo.getCompanyNodeId());
+		pstmt.setDate(i++, vo.getStartDate());
+		pstmt.setDate(i++, vo.getEndDate());
+		pstmt.setString(i++, vo.getWarnings());
+		pstmt.setString(i++, vo.getPartyVetoType());
+		pstmt.setDate(i++, vo.getTimeStamp());
+		pstmt.setString(i++, vo.getObjectType());
+		pstmt.setLong(i++, vo.getBatId());
+		pstmt.setLong(i++, vo.getObjectId());
+		pstmt.execute();
+		pstmt.close();
+
+	}
+
+	public void insertStgPtyPartyCertid(Connection conn, StgPtyPartyCertid vo) throws SQLException, Exception {
+		if (vo == null) {
+			throw new Exception("Class of AccPtyDAOimpl method insertStgPtyPartyCertid param StgPtyPartyCertid is null!");
+		}
+		StringBuffer sqlSB = new StringBuffer(100);
+		sqlSB.append("INSERT INTO STG_PTY_PARTY_CERTID (");
+		sqlSB.append(" PARTY_ID, ");
+		sqlSB.append(" CERID, ");
+		sqlSB.append(" GOV_ISSURED_CODE, ");
+		sqlSB.append(" GOV_ISSURED_TYPE, ");
+		sqlSB.append(" REMOVED, ");
+		sqlSB.append(" TIME_STAMP, ");
+		sqlSB.append(" OBJECT_TYPE, ");
+		sqlSB.append(" BAT_ID, ");
+		sqlSB.append(" OBJECT_ID");
+		sqlSB.append(") values (");
+		sqlSB.append("?,?,?,?,?,?,?,?,?)");
+		pstmt = conn.prepareStatement(sqlSB.toString());
+		int i = 1;
+		pstmt.setLong(i++, vo.getPartyId());
+		pstmt.setLong(i++, vo.getCerId());
+		pstmt.setString(i++, vo.getGovIssuredCode());
+		pstmt.setString(i++, vo.getGovIssuredType());
+		pstmt.setLong(i++, vo.getRemoved());
+		pstmt.setDate(i++, vo.getTimeStamp());
+		pstmt.setString(i++, vo.getObjectType());
+		pstmt.setLong(i++, vo.getBatId());
+		pstmt.setLong(i++, vo.getObjectId());
+		pstmt.execute();
+		pstmt.close();
+
+	}
+
+	public void insertStgPtyPartyName(Connection conn, StgPtyPartyName vo) throws SQLException, Exception {
+		if (vo == null) {
+			throw new Exception("Class of AccPtyDAOimpl method insertStgPtyPartyName param StgPtyPartyName is null!");
+		}
+		StringBuffer sqlSB = new StringBuffer(100);
+		sqlSB.append("INSERT INTO STG_PTY_PARTY_NAME (");
+		sqlSB.append(" PARTY_ID, ");
+		sqlSB.append(" PART_NAME_TYPE, ");
+		sqlSB.append(" VALUE, ");
+		sqlSB.append(" REMOVED, ");
+		sqlSB.append(" TIME_STAMP, ");
+		sqlSB.append(" BAT_ID, ");
+		sqlSB.append(" OBJECT_ID, ");
+		sqlSB.append(" OBJECT_TYPE");
+		sqlSB.append(") values (");
+		sqlSB.append("?,?,?,?,?,?,?,?)");
+		pstmt = conn.prepareStatement(sqlSB.toString());
+		int i = 1;
+		pstmt.setLong(i++, vo.getPartyId());
+		pstmt.setLong(i++, vo.getPartNameType());
+		pstmt.setString(i++, vo.getValue());
+		pstmt.setLong(i++, vo.getRemoved());
+		pstmt.setDate(i++, vo.getTimeStamp());
+		pstmt.setLong(i++, vo.getBatId());
+		pstmt.setLong(i++, vo.getObjectId());
+		pstmt.setString(i++, vo.getObjectType());
+		pstmt.execute();
+		pstmt.close();
+
+	}
+
+}

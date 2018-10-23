@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition description="展业成本明细表">
+	<mapping>
+		<area description="展业成本明细表">
+			<table tableName="T_AcquisitionCostDetail" dataProviderType="SALESFEEDETAIL" as="Contract">
+				<item fieldName="PolicyNo" fieldType="String" parameterType="GLOBAL" parameter="policyno" /> <!-- 保单号 -->
+				<item fieldName="EndorseNo" fieldType="String" parameterType="GLOBAL" parameter="endorseno" /> <!-- 批单号 -->
+				<item fieldName="SubFeeType" fieldType="String" parameterType="CSNODE" method="getFeeType" /> <!-- 费用小类 -->
+				<item fieldName="ContractNo" fieldType="String" parameterType="GLOBAL" parameter="contractno" /> <!-- 合同号 -->
+				<item fieldName="NodeNo" fieldType="String" parameterType="GLOBAL" parameter="nodeno" /> <!-- 节点号 -->
+				<item fieldName="SubVersionNo" fieldType="String" parameterType="GLOBAL" parameter="version" /> <!-- 版本号 -->
+				<item fieldName="ProposalNo" fieldType="String" parameterType="GLOBAL" parameter="proposalno" /> <!-- 投保单号 -->
+				<item fieldName="Rate" fieldType="Float" parameterType="SALESFEEDETAIL" method="getRate" /> <!-- 费用比例 -->
+				<item fieldName="Amount" fieldType="Float" parameterType="SALESFEEDETAIL" method="getAmount" /> <!-- 费用金额 -->
+				<item fieldName="AmountChanged" fieldType="Float" parameterType="SALESFEEDETAIL" method="getAmountChanged" /> <!-- 费用变化量 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" parameter="objectno" /> <!-- 对象号 -->
+				<!--<item fieldName="Remark" fieldType="String" />--> <!-- 备注 -->
+				<!--<item fieldName="CrtTime" fieldType="Date" />--> <!-- 创建时间 -->
+				<!--<item fieldName="MdfTime" fieldType="Date" />--> <!-- 修改时间 -->
+			</table>
+		</area>
+	</mapping>
+</definition>

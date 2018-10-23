@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition description="农业险标的表">
+	<mapping>
+		<area description="农业险标的表">
+			<table tableName="t_subjagri" dataProviderType="CSNODE" as="Contract">
+				<item fieldName="PolicyNo" fieldType="String" parameterType="GLOBAL" parameter="policyno" /> <!-- 保单号 -->
+				<item fieldName="EndorseNo" fieldType="String" parameterType="GLOBAL" parameter="endorseno" /> <!-- 批单号 -->
+				<item fieldName="NodeNo" fieldType="String" parameterType="GLOBAL" parameter="nodeno" /> <!-- 节点号 -->
+				<item fieldName="ContractNo" fieldType="String" parameterType="GLOBAL" parameter="contractno" /> <!-- 合同号 -->
+				<item fieldName="SubVersionNo" fieldType="String" parameterType="GLOBAL" parameter="version" /> <!-- 版本号 -->
+				<item fieldName="ProposalNo" fieldType="String" parameterType="GLOBAL" parameter="proposalno" /> <!-- 投保单号 -->
+				<item fieldName="SubjectItem" fieldType="String" parameterType="CSNODE" parameter="SXU00880" method="getElementByCode.getValue" /> <!-- 保险明细 -->
+				<item fieldName="PremiumProvider" fieldType="String" parameterType="CSNODE" parameter="SXU00881" method="getElementByCode.getValue" /> <!-- 保费来源 -->
+				<item fieldName="InsureNumber" fieldType="Long" parameterType="CSNODE" parameter="SXU00882" method="getElementByCode.getValue" /> <!-- 承保数量 -->
+				<item fieldName="FamerNumber" fieldType="Long" parameterType="CSNODE" parameter="SXU00883" method="getElementByCode.getValue" /> <!-- 农户数量 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" parameter="objectno" /> <!-- 对象号 -->
+			</table>
+		</area>
+	</mapping>
+</definition>

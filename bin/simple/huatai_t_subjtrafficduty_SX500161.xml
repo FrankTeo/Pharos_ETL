@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition description="交通责任险标的表">
+	<mapping>
+		<area description="交通责任险标的表">
+			<table tableName="T_SubjTrafficDuty" dataProviderType="CSNODE" as="Contract">
+				<item fieldName="PolicyNo" fieldType="String" parameterType="GLOBAL" parameter="policyno" /> <!-- 保单号 -->
+				<item fieldName="EndorseNo" fieldType="String" parameterType="GLOBAL" parameter="endorseno" /> <!-- 批单号 -->
+				<item fieldName="NodeNo" fieldType="String" parameterType="GLOBAL" parameter="nodeno" /> <!-- 节点号 -->
+				<item fieldName="ContractNo" fieldType="String" parameterType="GLOBAL" parameter="contractno" /> <!-- 合同号 -->
+				<item fieldName="SubVersionNo" fieldType="String" parameterType="GLOBAL" parameter="version" /> <!-- 版本号 -->
+				<item fieldName="ProposalNo" fieldType="String" parameterType="GLOBAL" parameter="proposalno" /> <!-- 投保单号 -->
+				<item fieldName="PerPrsnDutyLmtCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00124" method="getElementByCode.getValue.getCurrency" /> <!-- 每人责任限额币种 -->
+				<item fieldName="PerPrsnDutyLimit" fieldType="Float" parameterType="CSNODE" parameter="SXU00124" method="getElementByCode.getValue.getAmount" /> <!-- 每人责任限额 -->
+				<item fieldName="AggregDutyLmtCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00107" method="getElementByCode.getValue.getCurrency" /> <!-- 累计责任限额币种 -->
+				<item fieldName="AggregDutyLimit" fieldType="Float" parameterType="CSNODE" parameter="SXU00107" method="getElementByCode.getValue.getAmount" /> <!-- 累计责任限额 -->
+				<item fieldName="ManageLicense" fieldType="String" parameterType="CSNODE" parameter="SXU00284" method="getElementByCode.getValue" /> <!-- 经营许可证 -->
+				<item fieldName="LineLicense" fieldType="String" parameterType="CSNODE" parameter="SXU00285" method="getElementByCode.getValue" /> <!-- 班线许可证 -->
+				<item fieldName="BizRange" fieldType="String" parameterType="CSNODE" parameter="SXU00283" method="getElementByCode.getValue" /> <!-- 经营区域范围 -->
+				<item fieldName="VehicleType" fieldType="String" parameterType="CSNODE" parameter="SXU00282" method="getElementByCode.getValue" /> <!-- 承保车辆 -->
+				<item fieldName="PassengerSeatNum" fieldType="Long" parameterType="CSNODE" parameter="SXU00281" method="getElementByCode.getValue" /> <!-- 投保交通工具旅客座位数 -->
+				<item fieldName="DriverNum" fieldType="Long" parameterType="CSNODE" parameter="SXU00280" method="getElementByCode.getValue" /> <!-- 聘用司乘人员数量 -->
+				<item fieldName="RecentLossing" fieldType="String" parameterType="CSNODE" parameter="SXU00258" method="getElementByCode.getValue" /> <!-- 最近三年损失 -->
+				<item fieldName="ManageArea" fieldType="String" parameterType="CSNODE" parameter="SXU00101" method="getElementByCode.getValue" /> <!-- 承保区域 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" parameter="objectno" /> <!-- 对象号 -->
+			</table>
+		</area>
+	</mapping>
+</definition>

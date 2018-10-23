@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition description="船舶险标的表">
+	<mapping>
+		<area description="船舶险标的表">
+			<table tableName="t_subjship" dataProviderType="CSNODE" as="Contract">
+				<item fieldName="PolicyNo" fieldType="String" parameterType="GLOBAL" parameter="policyno" /> <!-- 保单号 -->
+				<item fieldName="EndorseNo" fieldType="String" parameterType="GLOBAL" parameter="endorseno" /> <!-- 批单号 -->
+				<item fieldName="NodeNo" fieldType="String" parameterType="GLOBAL" parameter="nodeno" /> <!-- 节点号 -->
+				<item fieldName="ContractNo" fieldType="String" parameterType="GLOBAL" parameter="contractno" /> <!-- 合同号 -->
+				<item fieldName="SubVersionNo" fieldType="String" parameterType="GLOBAL" parameter="version" /> <!-- 版本号 -->
+				<item fieldName="ProposalNo" fieldType="String" parameterType="GLOBAL" parameter="proposalno" /> <!-- 投保单号 -->
+				<item fieldName="InsuanceDay" fieldType="Long" parameterType="CSNODE" parameter="SXU00215" method="getElementByCode.getValue" /> <!-- 保险天数 -->
+				<item fieldName="DayOfYear" fieldType="Long" parameterType="CSNODE" parameter="SXU00216" method="getElementByCode.getValue" /> <!-- 保险年度天数 -->
+				<item fieldName="PremiumCorrect" fieldType="Float" parameterType="CSNODE" parameter="SXU00517" method="getElementByCode.getValue" /> <!-- 加退费 -->
+				<item fieldName="InsuranceCondition" fieldType="String" parameterType="CSNODE" parameter="SXU00080" method="getElementByCode.getValue" /> <!-- 承保条件 -->
+				<item fieldName="ShpFctryNmAddress" fieldType="String" parameterType="CSNODE" parameter="SXU00201" method="getElementByCode.getValue" /> <!-- 建造厂名称地址 -->
+				<item fieldName="ShipName" fieldType="String" parameterType="CSNODE" parameter="SXU00202" method="getElementByCode.getValue" /> <!-- 船名 -->
+				<item fieldName="ShipType" fieldType="String" parameterType="CSNODE" parameter="SXU00203" method="getElementByCode.getValue" /> <!-- 船舶类型 -->
+				<item fieldName="Tonnage" fieldType="Float" parameterType="CSNODE" parameter="SXU00204" method="getElementByCode.getValue" /> <!-- 总吨 -->
+				<item fieldName="LoadTon" fieldType="Float" parameterType="CSNODE" parameter="SXU00206" method="getElementByCode.getValue" /> <!-- 载重吨 -->
+				<item fieldName="NetTon" fieldType="Float" parameterType="CSNODE" parameter="SXU00205" method="getElementByCode.getValue" /> <!-- 净吨 -->
+				<item fieldName="BuildContractNo" fieldType="String" parameterType="CSNODE" parameter="SXU00207" method="getElementByCode.getValue" /> <!-- 合同编号 -->
+				<item fieldName="ShipFactoryNo" fieldType="String" parameterType="CSNODE" parameter="SXU00208" method="getElementByCode.getValue" /> <!-- 船坞/船台编号 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" parameter="objectno" /> <!-- 对象号 -->
+			</table>
+		</area>
+	</mapping>
+</definition>

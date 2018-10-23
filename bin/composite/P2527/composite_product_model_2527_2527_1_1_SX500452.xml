@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definition description="" productCode="506" prodectNodeCode="" version="" author="" createDate="">
+	<dataProviders>
+		<dataProvider name="list" nodeName="" providerType="CSNODE" />
+	</dataProviders>
+	<mapping>
+		<area description="节点表" include="huatai_t_node_COMMON.xml" replace="true">
+			<table tableName="t_node" dataProvider="CSNODE=list" as="node" />
+		</area>
+		<area description="财产清单表" include="huatai_t_propertylist_SX500452.xml" replace="true">
+			<table tableName="t_propertylist" dataProvider="CSNODE=list" as="node" >
+				<item fieldName="LicenseNo" fieldType="String" parameterType="CSNODE" parameter="SXU00286" method="getElementByCode.getValue" /><!-- 车牌号 -->
+				<item fieldName="VinNo" fieldType="String" parameterType="CSNODE" parameter="SXU00287" method="getElementByCode.getValue" /><!-- 车架号 -->
+				<item fieldName="EngineNo" fieldType="String" parameterType="CSNODE" parameter="SXU00288" method="getElementByCode.getValue" /><!-- 发动机号 -->
+				<item fieldName="SeatNum" fieldType="Long" parameterType="CSNODE" parameter="SXU00281" method="getElementByCode.getValue" /><!-- 车座位数 -->
+				<item fieldName="PremiumPer" fieldType="Float" parameterType="CSNODE" parameter="SXU00277" method="getElementByCode.getValue" /><!-- 每座保费 -->
+				<item fieldName="Premium" fieldType="Float" parameterType="CSNODE" parameter="SXU00212" method="getElementByCode.getValue" /><!-- 总保费 -->
+				<item fieldName="CoveragePerson" fieldType="Float" parameterType="CSNODE" parameter="SXU00124" method="getElementByCode.getValue" /><!-- 每人限额 -->
+				<item fieldName="Address" fieldType="String" parameterType="CSNODE" parameter="SXU00289" method="getElementByCode.getValue" /><!-- 座落地址 -->
+				<item fieldName="PropertyVaule" fieldType="Float" parameterType="CSNODE" parameter="SXU00165" method="getElementByCode.getValue" /><!-- 财产价值 -->
+			</table>
+		</area>
+	</mapping>
+</definition>
+

@@ -1,0 +1,19 @@
+ package com.sysnet.poc.partymapping;
+
+ public class PharosNodeType {
+
+ public static final String PHAROS_ELEMENT_TYPE_CSNODE = "CSNODE";
+
+ public static final String PHAROS_ELEMENT_TYPE_CS = "CS";
+
+ public static final String PHAROS_ELEMENT_TYPE_ROLE = "ROLE";
+
+ public static final String PHAROS_ELEMENT_TYPE_DECLARATION = "DECLARATION";
+
+ public static final String PHAROS_ELEMENT_TYPE_DECLARATIONFORM =
+ "DECLARATIONFORM";
+
+ public static final String PHAROS_ELEMENT_TYPE_CONDITION = "CONDITION";
+	
+ public static final String PHAROS_ELEMENT_TYPE_GLOBAL = "GLOBAL";
+ }

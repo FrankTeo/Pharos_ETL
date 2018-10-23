@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition description="货代责任险标的表">
+	<mapping>
+		<area description="货代责任险标的表">
+			<table tableName="T_SubjFreightForward" dataProviderType="CSNODE" as="Contract">
+				<item fieldName="PolicyNo" fieldType="String" parameterType="GLOBAL" parameter="policyno" /><!-- 保单号 -->
+				<item fieldName="EndorseNo" fieldType="String" parameterType="GLOBAL" parameter="endorseno" /><!-- 批单号 -->
+				<item fieldName="NodeNo" fieldType="String" parameterType="GLOBAL" parameter="nodeno" /><!-- 节点号 -->
+				<item fieldName="ContractNo" fieldType="String" parameterType="GLOBAL" parameter="contractno" /><!-- 合同号 -->
+				<item fieldName="SubVersionNo" fieldType="String" parameterType="GLOBAL" parameter="version" /><!-- 版本号 -->
+				<item fieldName="ProposalNo" fieldType="String" parameterType="GLOBAL" parameter="proposalno" /><!-- 投保单号 -->
+				<item fieldName="ALimitCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00560" method="getElementByCode.getValue.getCurrency" /><!-- A赔偿限额币种 -->
+				<item fieldName="ALimitAmount" fieldType="Float" parameterType="CSNODE" parameter="SXU00560" method="getElementByCode.getValue.getAmount" /><!-- A赔偿限额 -->
+				<item fieldName="ADeductDscrpt" fieldType="String" parameterType="CSNODE" parameter="SXU00561" method="getElementByCode.getValue" /><!-- A免赔额 -->
+				<item fieldName="ARate" fieldType="Float" parameterType="CSNODE" parameter="SXU00569" method="getElementByCode.getValue" /><!-- A费率 -->
+				<item fieldName="APremiumCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00573" method="getElementByCode.getValue.getCurrency" /><!-- A保费币种 -->
+				<item fieldName="APremium" fieldType="Float" parameterType="CSNODE" parameter="SXU00573" method="getElementByCode.getValue.getAmount" /><!-- A保费 -->
+				<item fieldName="BILimitDscrpt" fieldType="String" parameterType="CSNODE" parameter="SXU00562" method="getElementByCode.getValue" /><!-- BI赔偿限额 -->
+				<item fieldName="BIDeductDscrpt" fieldType="String" parameterType="CSNODE" parameter="SXU00563" method="getElementByCode.getValue" /><!-- BI免赔额 -->
+				<item fieldName="BIRate" fieldType="Float" parameterType="CSNODE" parameter="SXU00570" method="getElementByCode.getValue" /><!-- BI费率 -->
+				<item fieldName="BIPremiumCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00574" method="getElementByCode.getValue.getCurrency" /><!-- BI保费币种 -->
+				<item fieldName="BIPremium" fieldType="Float" parameterType="CSNODE" parameter="SXU00574" method="getElementByCode.getValue.getAmount" /><!-- BI保费 -->
+				<item fieldName="BIILimitDscrpt" fieldType="String" parameterType="CSNODE" parameter="SXU00564" method="getElementByCode.getValue" /><!-- BII赔偿限额 -->
+				<item fieldName="BIIDeductDscrpt" fieldType="String" parameterType="CSNODE" parameter="SXU00565" method="getElementByCode.getValue" /><!-- BII免赔额 -->
+				<item fieldName="BIIRate" fieldType="Float" parameterType="CSNODE" parameter="SXU00571" method="getElementByCode.getValue" /><!-- BII费率 -->
+				<item fieldName="BIIPremiumCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00575" method="getElementByCode.getValue.getCurrency" /><!-- BII保费币种 -->
+				<item fieldName="BIIPremium" fieldType="Float" parameterType="CSNODE" parameter="SXU00575" method="getElementByCode.getValue.getAmount" /><!-- BII保费 -->
+				<item fieldName="CLimitCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00566" method="getElementByCode.getValue.getCurrency" /><!-- C赔偿限额币种 -->
+				<item fieldName="CLimitAmount" fieldType="Float" parameterType="CSNODE" parameter="SXU00566" method="getElementByCode.getValue.getAmount" /><!-- C赔偿限额 -->
+				<item fieldName="CDeductCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00567" method="getElementByCode.getValue.getCurrency" /><!-- C免赔额币种 -->
+				<item fieldName="CDeductAmount" fieldType="Float" parameterType="CSNODE" parameter="SXU00567" method="getElementByCode.getValue.getAmount" /><!-- C免赔额 -->
+				<item fieldName="CRate" fieldType="Float" parameterType="CSNODE" parameter="SXU00572" method="getElementByCode.getValue.getAmount" /><!-- C费率 -->
+				<item fieldName="CPremiumCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00576" method="getElementByCode.getValue.getCurrency" /><!-- C保费币种 -->
+				<item fieldName="CPremium" fieldType="Float" parameterType="CSNODE" parameter="SXU00576" method="getElementByCode.getValue.getAmount" /><!-- C保费 -->
+				<item fieldName="BizIncomeCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00568" method="getElementByCode.getValue.getCurrency" /><!-- 营业收入币种 -->
+				<item fieldName="BizIncomeAmount" fieldType="Float" parameterType="CSNODE" parameter="SXU00568" method="getElementByCode.getValue.getAmount" /><!-- 营业收入额 -->
+				<item fieldName="PrmmTtlCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00580" method="getElementByCode.getValue.getCurrency" /><!-- 总保费币种 -->
+				<item fieldName="PremiumTotal" fieldType="Float" parameterType="CSNODE" parameter="SXU00580" method="getElementByCode.getValue.getAmount" /><!-- 总保费 -->
+				<item fieldName="StoreAddress" fieldType="String" parameterType="CSNODE" parameter="SXU00577" method="getElementByCode.getValue" /><!-- 仓储地址 -->
+				<item fieldName="LicenseNo" fieldType="String" parameterType="CSNODE" parameter="SXU00578" method="getElementByCode.getValue" /><!-- 车牌号码 -->
+				<item fieldName="ContractDocument" fieldType="String" parameterType="CSNODE" parameter="SXU00579" method="getElementByCode.getValue" /><!-- 认可的合同文件 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" parameter="objectid" /><!-- 对象号 -->
+			</table>
+		</area>
+	</mapping>
+</definition>

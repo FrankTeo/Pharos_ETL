@@ -1,0 +1,124 @@
+package com.sysnet.poc.vo;
+
+import java.sql.*;
+
+/**
+ * StgPrdProduct entity.
+ * 
+ * @author MyEclipse Persistence Tools
+ */
+
+public class StgPrdProduct implements java.io.Serializable {
+
+	// Fields
+
+	// 产品代码
+	private String productCd;
+	// 中文名称
+	private String nameCn;
+	//
+	private String companyCd;
+	// 批次序号
+	private Long batId;
+	// 对象序号
+	private Long objectId;
+	// 时间戳
+	private Date timeStamp;
+	// 对象类型
+	private String objectType;
+	// 当前数据在源系统中，生效的时间，例：源系统中记录出现的时间
+	private Date soucSysStartDate;
+	// 当前数据在源系统中，生效的时间，例：源系统中记录删除的时间、记录修改的时间
+	private Date soucSysEndDate;
+	// 产品ID
+	private Long productId;
+
+	// Constructors
+
+	/** default constructor */
+	public StgPrdProduct() {
+	}
+
+	// Property accessors
+
+	public String getProductCd() {
+		return this.productCd;
+	}
+
+	public void setProductCd(String productCd) {
+		this.productCd = productCd;
+	}
+
+	public String getNameCn() {
+		return this.nameCn;
+	}
+
+	public void setNameCn(String nameCn) {
+		this.nameCn = nameCn;
+	}
+
+	public String getCompanyCd() {
+		return companyCd;
+	}
+
+	public void setCompanyCd(String companyCd) {
+		this.companyCd = companyCd;
+	}
+
+	public Long getBatId() {
+		return this.batId;
+	}
+
+	public void setBatId(Long batId) {
+		this.batId = batId;
+	}
+
+	public Long getObjectId() {
+		return this.objectId;
+	}
+
+	public void setObjectId(Long objectId) {
+		this.objectId = objectId;
+	}
+
+	public Date getTimeStamp() {
+		return this.timeStamp;
+	}
+
+	public void setTimeStamp(Date timeStamp) {
+		this.timeStamp = timeStamp;
+	}
+
+	public String getObjectType() {
+		return this.objectType;
+	}
+
+	public void setObjectType(String objectType) {
+		this.objectType = objectType;
+	}
+
+	public Date getSoucSysStartDate() {
+		return this.soucSysStartDate;
+	}
+
+	public void setSoucSysStartDate(Date soucSysStartDate) {
+		this.soucSysStartDate = soucSysStartDate;
+	}
+
+	public Date getSoucSysEndDate() {
+		return this.soucSysEndDate;
+	}
+
+	public void setSoucSysEndDate(Date soucSysEndDate) {
+		this.soucSysEndDate = soucSysEndDate;
+	}
+
+	public Long getProductId() {
+		return productId;
+	}
+
+	public void setProductId(Long productId) {
+		this.productId = productId;
+	}
+
+}

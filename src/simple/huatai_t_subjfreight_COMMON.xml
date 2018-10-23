@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition description="货运险标的表">
+	<mapping>
+		<area description="货运险标的表">
+			<table tableName="T_SubjFreight" dataProviderType="CSNODE" as="Contract">
+				<item fieldName="PolicyNo" fieldType="String" parameterType="GLOBAL" parameter="policyno" /> <!-- 保单号 -->
+				<item fieldName="EndorseNo" fieldType="String" parameterType="GLOBAL" parameter="endorseno" /> <!-- 批单号 -->
+				<item fieldName="NodeNo" fieldType="String" parameterType="GLOBAL" parameter="nodeno" /> <!-- 节点号 -->
+				<item fieldName="ContractNo" fieldType="String" parameterType="GLOBAL" parameter="contractno" /> <!-- 合同号 -->
+				<item fieldName="SubVersionNo" fieldType="String" parameterType="GLOBAL" parameter="version" /> <!-- 版本号 -->
+				<item fieldName="ProposalNo" fieldType="String" parameterType="GLOBAL" parameter="proposalno" /> <!-- 投保单号 -->
+				<!--<item fieldName="Ship" fieldType="String" />--> <!-- 船舶Party -->
+				<!--<item fieldName="ShipName" fieldType="String" />--> <!-- 船名 -->
+				<!--<item fieldName="ShipFlag" fieldType="String" />--> <!-- 船旗 -->
+				<!--<item fieldName="DepartureDate" fieldType="Date" />--> <!-- 启运日期 -->
+				<!--<item fieldName="FollowUpDate" fieldType="Date" />--> <!-- 跟进日期 -->
+				<!--<item fieldName="GoodsCategory" fieldType="String" />--> <!-- 货物大类 -->
+				<!--<item fieldName="GoodsType" fieldType="String" />--> <!-- 货物小类 -->
+				<!--<item fieldName="TransportType" fieldType="String" />--> <!-- 运输方式 -->
+				<!--<item fieldName="VoyageNo" fieldType="String" />--> <!-- 航次 -->
+				<!--<item fieldName="InvoiceNo" fieldType="String" />--> <!-- 发票号 -->
+				<!--<item fieldName="LoadBillNo" fieldType="String" />--> <!-- 提单号 -->
+				<!--<item fieldName="DeparturePort" fieldType="String" />--> <!-- 启运港 -->
+				<!--<item fieldName="DepartureArea" fieldType="String" />--> <!-- 启运地 -->
+				<!--<item fieldName="TransitionPort" fieldType="String" />--> <!-- 途经港 -->
+				<!--<item fieldName="DestinationPort" fieldType="String" />--> <!-- 目的港 -->
+				<!--<item fieldName="DestinationArea" fieldType="String" />--> <!-- 目的地 -->
+				<!--<item fieldName="TransportTools" fieldType="String" />--> <!-- 转运工具 -->
+				<!--<item fieldName="DatePrint" fieldType="String" />--> <!-- 日期打印 -->
+				<!--<item fieldName="ExceptArriveDate" fieldType="Date" />--> <!-- 预计抵达日期 -->
+				<!--<item fieldName="OriginalNumber" fieldType="Long" />--> <!-- 正本份数 -->
+				<!--<item fieldName="PremiumPrint" fieldType="String" />--> <!-- 保费打印 -->
+				<!--<item fieldName="Surveyor" fieldType="String" />--> <!-- 查勘代理人 -->
+				<!--<item fieldName="SurveyName" fieldType="String" />--> <!-- 查勘代理人名 -->
+				<!--<item fieldName="ClaimPayAt" fieldType="String" />--> <!-- 赔款偿付地 -->
+				<!--<item fieldName="InsuranceCondition" fieldType="String" />--> <!-- 承保条件 -->
+				<!--<item fieldName="LicenseNo" fieldType="String" />--> <!-- 车牌号 -->
+				<!--<item fieldName="TransRange" fieldType="String" />--> <!-- 运输范围 -->
+				<!--<item fieldName="ManageLicense" fieldType="String" />--> <!-- 业务经营许可证号 -->
+				<!--<item fieldName="BizQuality" fieldType="String" />--> <!-- 营业性质 -->
+				<!--<item fieldName="Voyage" fieldType="String" />--> <!-- 航程 -->
+				<!--<item fieldName="EntrustTransRatio" fieldType="Float" />--> <!-- 委托运输比例 -->
+				<!--<item fieldName="FreightCvrgCurrency" fieldType="String" />--> <!-- 货运险保险金额币种 -->
+				<!--<item fieldName="FreightCoverage" fieldType="Float" />--> <!-- 货运险保险金额 -->
+				<!--<item fieldName="AnnSalesCurrency" fieldType="String" />--> <!-- 年营业额币种 -->
+				<!--<item fieldName="AnnSales" fieldType="Float" />--> <!-- 年营业额 -->
+				<!--<item fieldName="InsureTermMonth" fieldType="Long" />--> <!-- 保险期限（个月） -->
+				<!--<item fieldName="AnnGoodsValue" fieldType="String" />--> <!-- 年货物价值 -->
+				<!--<item fieldName="PerAccdCmpnstLmtCurrency" fieldType="String" />--> <!-- 每次事故赔偿限额币种 -->
+				<!--<item fieldName="PerAccdCmpnstLimit" fieldType="Float" />--> <!-- 每次事故赔偿限额 -->
+				<!--<item fieldName="AggrCmpnstLmtCurrency" fieldType="String" />--> <!-- 年度累计赔偿限额 -->
+				<!--<item fieldName="AggregCmpnstLimit" fieldType="Float" />--> <!-- 年度累计赔偿限额 -->
+				<!--<item fieldName="CalPrmmByCoverage" fieldType="Long" />--> <!-- 保额计算保费 -->
+				<!--<item fieldName="CalPrmmBySales" fieldType="Long" />--> <!-- 年营业额计算保费 -->
+				<!--<item fieldName="AddSpecialItem" fieldType="String" />--> <!-- 附加险特殊项目责任保险 -->
+				<!--<item fieldName="VinNo" fieldType="String" />--> <!-- 车架号 -->
+				<!--<item fieldName="EngineNo" fieldType="String" />--> <!-- 发动机号 -->
+				<!--<item fieldName="FactoryModel" fieldType="String" />--> <!-- 厂牌型号 -->
+				<!--<item fieldName="VehicleOwner" fieldType="String" />--> <!-- 机动车所有人 -->
+				<!--<item fieldName="VhclOwnCrtfctId" fieldType="String" />--> <!-- 所有人证件号 -->
+				<!--<item fieldName="FixedDriver" fieldType="String" />--> <!-- 约定驾驶人 -->
+				<!--<item fieldName="GoodsDescription" fieldType="String" />--> <!-- 货物种类 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" parameter="objectno" /> <!-- 对象号 -->
+				<!--<item fieldName="Remark" fieldType="String" />--> <!-- 备注 -->
+				<!--<item fieldName="CrtTime" fieldType="Date" />--> <!-- 创建时间 -->
+				<!--<item fieldName="MdfTime" fieldType="Date" />--> <!-- 修改时间 -->
+			</table>
+		</area>
+	</mapping>
+</definition>

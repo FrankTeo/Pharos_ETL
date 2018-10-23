@@ -1,0 +1,80 @@
+package com.sysnet.etl;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import org.apache.log4j.Logger;
+
+import com.sysnet.poc.control.manage.vo.StopBean;
+
+/**
+ * 调用数据库中的存储过程抽取登场区中的数据到ETL数据库
+ * 
+ * @author Administrator
+ * 
+ */
+public class Work extends Thread {
+
+	private StopBean sb;
+	private Logger log = Logger.getLogger(Work.class.getName());
+
+	private List<Topic> vo = new ArrayList<Topic>();
+
+	{
+		Topic t5 = new Topic();
+		t5.setCode(5);
+		t5.setName("当事方");
+		t5.setTableName("ETL_STAGE_ETL_PARTY_STATUS");
+		vo.add(t5);
+		Topic t1 = new Topic();
+		t1.setCode(1);
+		t1.setName("承保");
+		t1.setTableName("ETL_STAGE_ETL_STATUS");
+		vo.add(t1);
+		Topic t4 = new Topic();
+		t4.setCode(4);
+		t4.setName("理赔");
+		t4.setTableName("ETL_STAGE_ETL_CLM_STATUS");
+		vo.add(t4);
+		Topic t6 = new Topic();
+		t6.setCode(6);
+		t6.setName("收付费");
+		t6.setTableName("ETL_STAGE_ETL_ACC_STATUS");
+		vo.add(t6);
+
+	}
+
+	@Override
+	public void run() {
+		firstRun();
+	}
+
+	public void work() {
+		DoProcedure p = new DoProcedure();
+		for (Topic topic : vo) {
+			if (p.runProcedure(topic))
+				this.log.info(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()) + "\n" + "========" + topic.getName() + "执行成功==========" + "\n");
+			else {
+				this.log.info(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()) + "\n" + "========" + topic.getName() + "执行失败=========" + "\n");
+			}
+
+		}
+	}
+
+	public void firstRun() {
+		this.log.info(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()) + "\n" + "===========ODS调度程序开始执行" + "\n");
+		work();
+		sb.setStop(1);
+	}
+
+
+	public StopBean getSb() {
+		return sb;
+	}
+
+	public void setSb(StopBean sb) {
+		this.sb = sb;
+	}
+}

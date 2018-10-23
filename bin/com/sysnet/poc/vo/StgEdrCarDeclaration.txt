@@ -1,0 +1,874 @@
+package com.sysnet.poc.vo;
+
+import java.sql.*;
+
+/**
+ * StgEdrCarDeclaration entity.
+ * 
+ * @author MyEclipse Persistence Tools
+ */
+
+public class StgEdrCarDeclaration implements java.io.Serializable {
+
+	// Fields
+
+	// 批单CD
+	private String endorseNo;
+	// 标的序列号
+	private Long itemNo;
+	// 港澳车牌号码
+	private String hkmCarNo;
+	// 车型别名
+	private String carByname;
+	// 号牌号码
+	private String carNumber;
+	// 号牌种类
+	private String numberType;
+	// 年均里程
+	private Float yearlyMiles;
+	// 发动机号
+	private String engineNo;
+	// VIN码
+	private String vinNo;
+	// 车架号
+	private String plateNo;
+	// 使用性质
+	private String use;
+	// 车辆种类
+	private String vehicleType;
+	// 载客量
+	private Long passenger;
+	// 排量
+	private Float gas;
+	// 行驶区域
+	private String drivingArea;
+	// 新车购置价
+	private Double price;
+	// 投保实际价值
+	private Double actualPrice;
+	// 特别约定
+	private String specialAgreement;
+	// 投保地区
+	private String applyLocation;
+	// 初登日期
+	private Date registerDate;
+	// 使用年限
+	private Long ageLimit;
+	// 被保人与车辆关系
+	private String vehicleRelationship;
+	// 条款产品
+	private String clauseProduct;
+	// 号牌底色
+	private String plateColor;
+	// 车型代码
+	private String carTypeCode;
+	// 载质量
+	private Float quality;
+	// 车身颜色
+	private String vehicleColor;
+	// 是否护养
+	private String isMaintain;
+	// 是否上年承保
+	private String isRenewal;
+	// 是否详实保单
+	private String isDetail;
+	// 指定专修厂车型系数
+	private Float carTypeQuotietyFactory;
+	// 车损险车型系数
+	private Float carTypeQuotietyLoss;
+	// 盗抢险车型系数
+	private Float carTypeQuotietyTheft;
+	// 种类
+	private String carType;
+	// 更新日期
+	private Date changeDate;
+	// 验车时间
+	private Date checkDate;
+	// 上年违法次数
+	private Long breakTimes;
+	// 争议解决
+	private String dispute;
+	// 仲裁委员会
+	private String attribution;
+	// 渠道码
+	private String channelCode;
+	// 批改次数
+	private Long changeTimes;
+	// 理赔次数
+	private Long claimTimes;
+	// 车型名称
+	private String carTypeName;
+	// 业务来源
+	private String businessSource;
+	// 验车情况
+	private String checkDetail;
+	// 整备质量
+	private Float equipmentQuality;
+	// 优惠给付方式
+	private String isDiscount;
+	// 是否为未还清贷款的车辆
+	private String isLoanoff;
+	// 保险车辆指定专修点
+	private String isSpot;
+	// 厂商
+	private String manufacturer;
+	// 备注
+	private String note;
+	// 停放地
+	private String parkingPlace;
+	// 项目代码
+	private String projectCode;
+	// 快速查询码
+	private String quickFilterCode;
+	// 类比价格
+	private String relativePrice;
+	// 安全性能
+	private String security;
+	// 变速器类型
+	private String transmissionType;
+	// 车辆种类别名
+	private String vehicleTypeByname;
+	// 年款
+	private Date year;
+	// 批次序号
+	private Long batId;
+	// 对象序号
+	private Long objectId;
+	// 对象类型
+	private String objectType;
+	// 时间戳
+	private Timestamp timeStamp;
+	// 特别约定代码
+	private String specialAgreementCode;
+	// 特别约定内容
+	private String specialAgreementContent;
+	// 直销直接类型
+	private String directBusinessType;
+	// 已行驶总里程
+	private String mileAges;
+	// 未上牌车辆标志代码
+	private String newVehicleFlag;
+	// 是否本地车标志 1：本地车 2：外地车
+	private String ecdemicVehicleFlag;
+	// 特别车标志 1:车辆所有权转移重新投保 2:临时上道或临时入境
+	private String specialCarFlag;
+	// 跨省首年投保未出险证明的年数
+	private Long noDamageYears;
+	// 功率
+	private Float power;
+	// 管辖区县
+	private String area;
+	// 港澳牌标志 0:是 1:不是
+	private Long hkFlag;
+	// 生产国家代码
+	private String countryCode;
+	// 生产日期
+	private Date makeDate;
+	// 购车发票号
+	private String invoiceNo;
+	// 上期承保公司
+	private String lastInsurer;
+	// 规格型号
+	private String model;
+	// 购买日期
+	private Date buyDate;
+	// 车辆所属类型 0：个人 1：集体
+	private String policyType;
+	// 司法管辖
+	private String judicalScope;
+	// 1：是 0：否
+	private String isDeductiblePctg;
+	// 玻璃来源
+	private String glassSource;
+	// 保单CD
+	private String policyNo;
+
+	// Constructors
+
+	/** default constructor */
+	public StgEdrCarDeclaration() {
+	}
+
+	// Property accessors
+
+	public String getEndorseNo() {
+		return endorseNo;
+	}
+
+	public void setEndorseNo(String endorseNo) {
+		this.endorseNo = endorseNo;
+	}
+
+	public Long getItemNo() {
+		return itemNo;
+	}
+
+	public void setItemNo(Long itemNo) {
+		this.itemNo = itemNo;
+	}
+
+	public String getHkmCarNo() {
+		return this.hkmCarNo;
+	}
+
+	public void setHkmCarNo(String hkmCarNo) {
+		this.hkmCarNo = hkmCarNo;
+	}
+
+	public String getCarByname() {
+		return this.carByname;
+	}
+
+	public void setCarByname(String carByname) {
+		this.carByname = carByname;
+	}
+
+	public String getCarNumber() {
+		return this.carNumber;
+	}
+
+	public void setCarNumber(String carNumber) {
+		this.carNumber = carNumber;
+	}
+
+	public String getNumberType() {
+		return this.numberType;
+	}
+
+	public void setNumberType(String numberType) {
+		this.numberType = numberType;
+	}
+
+	public Float getYearlyMiles() {
+		return this.yearlyMiles;
+	}
+
+	public void setYearlyMiles(Float yearlyMiles) {
+		this.yearlyMiles = yearlyMiles;
+	}
+
+	public String getEngineNo() {
+		return this.engineNo;
+	}
+
+	public void setEngineNo(String engineNo) {
+		this.engineNo = engineNo;
+	}
+
+	public String getVinNo() {
+		return this.vinNo;
+	}
+
+	public void setVinNo(String vinNo) {
+		this.vinNo = vinNo;
+	}
+
+	public String getPlateNo() {
+		return this.plateNo;
+	}
+
+	public void setPlateNo(String plateNo) {
+		this.plateNo = plateNo;
+	}
+
+	public String getUse() {
+		return this.use;
+	}
+
+	public void setUse(String use) {
+		this.use = use;
+	}
+
+	public String getVehicleType() {
+		return this.vehicleType;
+	}
+
+	public void setVehicleType(String vehicleType) {
+		this.vehicleType = vehicleType;
+	}
+
+	public Long getPassenger() {
+		return this.passenger;
+	}
+
+	public void setPassenger(Long passenger) {
+		this.passenger = passenger;
+	}
+
+	public Float getGas() {
+		return this.gas;
+	}
+
+	public void setGas(Float gas) {
+		this.gas = gas;
+	}
+
+	public String getDrivingArea() {
+		return this.drivingArea;
+	}
+
+	public void setDrivingArea(String drivingArea) {
+		this.drivingArea = drivingArea;
+	}
+
+	public Double getPrice() {
+		return this.price;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
+	}
+
+	public Double getActualPrice() {
+		return this.actualPrice;
+	}
+
+	public void setActualPrice(Double actualPrice) {
+		this.actualPrice = actualPrice;
+	}
+
+	public String getSpecialAgreement() {
+		return this.specialAgreement;
+	}
+
+	public void setSpecialAgreement(String specialAgreement) {
+		this.specialAgreement = specialAgreement;
+	}
+
+	public String getApplyLocation() {
+		return this.applyLocation;
+	}
+
+	public void setApplyLocation(String applyLocation) {
+		this.applyLocation = applyLocation;
+	}
+
+	public Date getRegisterDate() {
+		return this.registerDate;
+	}
+
+	public void setRegisterDate(Date registerDate) {
+		this.registerDate = registerDate;
+	}
+
+	public Long getAgeLimit() {
+		return this.ageLimit;
+	}
+
+	public void setAgeLimit(Long ageLimit) {
+		this.ageLimit = ageLimit;
+	}
+
+	public String getVehicleRelationship() {
+		return this.vehicleRelationship;
+	}
+
+	public void setVehicleRelationship(String vehicleRelationship) {
+		this.vehicleRelationship = vehicleRelationship;
+	}
+
+	public String getClauseProduct() {
+		return this.clauseProduct;
+	}
+
+	public void setClauseProduct(String clauseProduct) {
+		this.clauseProduct = clauseProduct;
+	}
+
+	public String getPlateColor() {
+		return this.plateColor;
+	}
+
+	public void setPlateColor(String plateColor) {
+		this.plateColor = plateColor;
+	}
+
+	public String getCarTypeCode() {
+		return this.carTypeCode;
+	}
+
+	public void setCarTypeCode(String carTypeCode) {
+		this.carTypeCode = carTypeCode;
+	}
+
+	public Float getQuality() {
+		return this.quality;
+	}
+
+	public void setQuality(Float quality) {
+		this.quality = quality;
+	}
+
+	public String getVehicleColor() {
+		return this.vehicleColor;
+	}
+
+	public void setVehicleColor(String vehicleColor) {
+		this.vehicleColor = vehicleColor;
+	}
+
+	public String getIsMaintain() {
+		return this.isMaintain;
+	}
+
+	public void setIsMaintain(String isMaintain) {
+		this.isMaintain = isMaintain;
+	}
+
+	public String getIsRenewal() {
+		return this.isRenewal;
+	}
+
+	public void setIsRenewal(String isRenewal) {
+		this.isRenewal = isRenewal;
+	}
+
+	public String getIsDetail() {
+		return this.isDetail;
+	}
+
+	public void setIsDetail(String isDetail) {
+		this.isDetail = isDetail;
+	}
+
+	public Float getCarTypeQuotietyFactory() {
+		return this.carTypeQuotietyFactory;
+	}
+
+	public void setCarTypeQuotietyFactory(Float carTypeQuotietyFactory) {
+		this.carTypeQuotietyFactory = carTypeQuotietyFactory;
+	}
+
+	public Float getCarTypeQuotietyLoss() {
+		return this.carTypeQuotietyLoss;
+	}
+
+	public void setCarTypeQuotietyLoss(Float carTypeQuotietyLoss) {
+		this.carTypeQuotietyLoss = carTypeQuotietyLoss;
+	}
+
+	public Float getCarTypeQuotietyTheft() {
+		return this.carTypeQuotietyTheft;
+	}
+
+	public void setCarTypeQuotietyTheft(Float carTypeQuotietyTheft) {
+		this.carTypeQuotietyTheft = carTypeQuotietyTheft;
+	}
+
+	public String getCarType() {
+		return this.carType;
+	}
+
+	public void setCarType(String carType) {
+		this.carType = carType;
+	}
+
+	public Date getChangeDate() {
+		return this.changeDate;
+	}
+
+	public void setChangeDate(Date changeDate) {
+		this.changeDate = changeDate;
+	}
+
+	public Date getCheckDate() {
+		return this.checkDate;
+	}
+
+	public void setCheckDate(Date checkDate) {
+		this.checkDate = checkDate;
+	}
+
+	public Long getBreakTimes() {
+		return this.breakTimes;
+	}
+
+	public void setBreakTimes(Long breakTimes) {
+		this.breakTimes = breakTimes;
+	}
+
+	public String getDispute() {
+		return this.dispute;
+	}
+
+	public void setDispute(String dispute) {
+		this.dispute = dispute;
+	}
+
+	public String getAttribution() {
+		return this.attribution;
+	}
+
+	public void setAttribution(String attribution) {
+		this.attribution = attribution;
+	}
+
+	public String getChannelCode() {
+		return this.channelCode;
+	}
+
+	public void setChannelCode(String channelCode) {
+		this.channelCode = channelCode;
+	}
+
+	public Long getChangeTimes() {
+		return this.changeTimes;
+	}
+
+	public void setChangeTimes(Long changeTimes) {
+		this.changeTimes = changeTimes;
+	}
+
+	public Long getClaimTimes() {
+		return this.claimTimes;
+	}
+
+	public void setClaimTimes(Long claimTimes) {
+		this.claimTimes = claimTimes;
+	}
+
+	public String getCarTypeName() {
+		return this.carTypeName;
+	}
+
+	public void setCarTypeName(String carTypeName) {
+		this.carTypeName = carTypeName;
+	}
+
+	public String getBusinessSource() {
+		return this.businessSource;
+	}
+
+	public void setBusinessSource(String businessSource) {
+		this.businessSource = businessSource;
+	}
+
+	public String getCheckDetail() {
+		return this.checkDetail;
+	}
+
+	public void setCheckDetail(String checkDetail) {
+		this.checkDetail = checkDetail;
+	}
+
+	public Float getEquipmentQuality() {
+		return this.equipmentQuality;
+	}
+
+	public void setEquipmentQuality(Float equipmentQuality) {
+		this.equipmentQuality = equipmentQuality;
+	}
+
+	public String getIsDiscount() {
+		return this.isDiscount;
+	}
+
+	public void setIsDiscount(String isDiscount) {
+		this.isDiscount = isDiscount;
+	}
+
+	public String getIsLoanoff() {
+		return this.isLoanoff;
+	}
+
+	public void setIsLoanoff(String isLoanoff) {
+		this.isLoanoff = isLoanoff;
+	}
+
+	public String getIsSpot() {
+		return this.isSpot;
+	}
+
+	public void setIsSpot(String isSpot) {
+		this.isSpot = isSpot;
+	}
+
+	public String getManufacturer() {
+		return this.manufacturer;
+	}
+
+	public void setManufacturer(String manufacturer) {
+		this.manufacturer = manufacturer;
+	}
+
+	public String getNote() {
+		return this.note;
+	}
+
+	public void setNote(String note) {
+		this.note = note;
+	}
+
+	public String getParkingPlace() {
+		return this.parkingPlace;
+	}
+
+	public void setParkingPlace(String parkingPlace) {
+		this.parkingPlace = parkingPlace;
+	}
+
+	public String getProjectCode() {
+		return this.projectCode;
+	}
+
+	public void setProjectCode(String projectCode) {
+		this.projectCode = projectCode;
+	}
+
+	public String getQuickFilterCode() {
+		return this.quickFilterCode;
+	}
+
+	public void setQuickFilterCode(String quickFilterCode) {
+		this.quickFilterCode = quickFilterCode;
+	}
+
+	public String getRelativePrice() {
+		return this.relativePrice;
+	}
+
+	public void setRelativePrice(String relativePrice) {
+		this.relativePrice = relativePrice;
+	}
+
+	public String getSecurity() {
+		return this.security;
+	}
+
+	public void setSecurity(String security) {
+		this.security = security;
+	}
+
+	public String getTransmissionType() {
+		return this.transmissionType;
+	}
+
+	public void setTransmissionType(String transmissionType) {
+		this.transmissionType = transmissionType;
+	}
+
+	public String getVehicleTypeByname() {
+		return this.vehicleTypeByname;
+	}
+
+	public void setVehicleTypeByname(String vehicleTypeByname) {
+		this.vehicleTypeByname = vehicleTypeByname;
+	}
+
+	public Date getYear() {
+		return this.year;
+	}
+
+	public void setYear(Date year) {
+		this.year = year;
+	}
+
+	public Long getBatId() {
+		return this.batId;
+	}
+
+	public void setBatId(Long batId) {
+		this.batId = batId;
+	}
+
+	public Long getObjectId() {
+		return this.objectId;
+	}
+
+	public void setObjectId(Long objectId) {
+		this.objectId = objectId;
+	}
+
+	public String getObjectType() {
+		return this.objectType;
+	}
+
+	public void setObjectType(String objectType) {
+		this.objectType = objectType;
+	}
+
+	public Timestamp getTimeStamp() {
+		return this.timeStamp;
+	}
+
+	public void setTimeStamp(Timestamp timeStamp) {
+		this.timeStamp = timeStamp;
+	}
+
+	public String getSpecialAgreementCode() {
+		return this.specialAgreementCode;
+	}
+
+	public void setSpecialAgreementCode(String specialAgreementCode) {
+		this.specialAgreementCode = specialAgreementCode;
+	}
+
+	public String getSpecialAgreementContent() {
+		return this.specialAgreementContent;
+	}
+
+	public void setSpecialAgreementContent(String specialAgreementContent) {
+		this.specialAgreementContent = specialAgreementContent;
+	}
+
+	public String getDirectBusinessType() {
+		return this.directBusinessType;
+	}
+
+	public void setDirectBusinessType(String directBusinessType) {
+		this.directBusinessType = directBusinessType;
+	}
+
+	public String getMileAges() {
+		return this.mileAges;
+	}
+
+	public void setMileAges(String mileAges) {
+		this.mileAges = mileAges;
+	}
+
+	public String getNewVehicleFlag() {
+		return this.newVehicleFlag;
+	}
+
+	public void setNewVehicleFlag(String newVehicleFlag) {
+		this.newVehicleFlag = newVehicleFlag;
+	}
+
+	public String getEcdemicVehicleFlag() {
+		return this.ecdemicVehicleFlag;
+	}
+
+	public void setEcdemicVehicleFlag(String ecdemicVehicleFlag) {
+		this.ecdemicVehicleFlag = ecdemicVehicleFlag;
+	}
+
+	public String getSpecialCarFlag() {
+		return this.specialCarFlag;
+	}
+
+	public void setSpecialCarFlag(String specialCarFlag) {
+		this.specialCarFlag = specialCarFlag;
+	}
+
+	public Long getNoDamageYears() {
+		return this.noDamageYears;
+	}
+
+	public void setNoDamageYears(Long noDamageYears) {
+		this.noDamageYears = noDamageYears;
+	}
+
+	public Float getPower() {
+		return this.power;
+	}
+
+	public void setPower(Float power) {
+		this.power = power;
+	}
+
+	public String getArea() {
+		return this.area;
+	}
+
+	public void setArea(String area) {
+		this.area = area;
+	}
+
+	public Long getHkFlag() {
+		return this.hkFlag;
+	}
+
+	public void setHkFlag(Long hkFlag) {
+		this.hkFlag = hkFlag;
+	}
+
+	public String getCountryCode() {
+		return this.countryCode;
+	}
+
+	public void setCountryCode(String countryCode) {
+		this.countryCode = countryCode;
+	}
+
+	public Date getMakeDate() {
+		return this.makeDate;
+	}
+
+	public void setMakeDate(Date makeDate) {
+		this.makeDate = makeDate;
+	}
+
+	public String getInvoiceNo() {
+		return this.invoiceNo;
+	}
+
+	public void setInvoiceNo(String invoiceNo) {
+		this.invoiceNo = invoiceNo;
+	}
+
+	public String getLastInsurer() {
+		return this.lastInsurer;
+	}
+
+	public void setLastInsurer(String lastInsurer) {
+		this.lastInsurer = lastInsurer;
+	}
+
+	public String getModel() {
+		return this.model;
+	}
+
+	public void setModel(String model) {
+		this.model = model;
+	}
+
+	public Date getBuyDate() {
+		return this.buyDate;
+	}
+
+	public void setBuyDate(Date buyDate) {
+		this.buyDate = buyDate;
+	}
+
+	public String getPolicyType() {
+		return this.policyType;
+	}
+
+	public void setPolicyType(String policyType) {
+		this.policyType = policyType;
+	}
+
+	public String getJudicalScope() {
+		return this.judicalScope;
+	}
+
+	public void setJudicalScope(String judicalScope) {
+		this.judicalScope = judicalScope;
+	}
+
+	public String getIsDeductiblePctg() {
+		return this.isDeductiblePctg;
+	}
+
+	public void setIsDeductiblePctg(String isDeductiblePctg) {
+		this.isDeductiblePctg = isDeductiblePctg;
+	}
+
+	public String getGlassSource() {
+		return this.glassSource;
+	}
+
+	public void setGlassSource(String glassSource) {
+		this.glassSource = glassSource;
+	}
+
+	public String getPolicyNo() {
+		return policyNo;
+	}
+
+	public void setPolicyNo(String policyNo) {
+		this.policyNo = policyNo;
+	}
+
+}

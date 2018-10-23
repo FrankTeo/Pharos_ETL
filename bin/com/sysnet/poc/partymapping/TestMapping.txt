@@ -1,0 +1,88 @@
+ package com.sysnet.poc.partymapping;
+
+ import java.sql.Connection;
+ import java.sql.DriverManager;
+ import java.util.HashMap;
+ import java.util.Map;
+ import pharos.ctm.bo.BContractBO;
+ import pharos.ctm.exception.CTMException;
+ import pharos.ctm.vo.BContract;
+ import com.sysnet.poc.service.storage.StorageTransAction;
+ import com.sysnet.poc.util.PharosServiceContainer;
+
+ public class TestMapping {
+
+ /**
+ * @param args
+ * @throws Exception
+ */
+ public static void main(String[] args) throws Exception {
+
+ ProductMappingBuilder productMappingBuilder = new ProductMappingBuilder();
+
+ try {
+ productMappingBuilder.setMapDocument(MappingCacheManager
+ .getMapping("party"));
+
+ PharosServiceContainer service = PharosServiceContainer.Instance();
+ BContractBO bContractBo = service.getBContractBO();
+
+ // 获取保单数据对象
+ //BContract bContract = bContractBo.getVersion2("H222000AA200900000308", "1",
+ 1, Integer.parseInt("1"));
+			
+ //BContract bContract =
+ bContractBo.getContractByProposalNo("T222000AA200900000575");
+			
+ BContract bContract =
+ bContractBo.getContractByProposalNo("E222000AA200900000579");
+			
+ Map<String,String> globalDataMap = new HashMap<String,String>();
+ globalDataMap.put("batid", "1");
+ globalDataMap.put("objectid", "1");
+ globalDataMap.put("objecttype", "1");
+ globalDataMap.put("version", "9");
+ productMappingBuilder.setBContract(bContract);
+ productMappingBuilder.setGlobalDataMap(globalDataMap);
+ productMappingBuilder.execute();
+ }
+ catch (NumberFormatException e) {
+ // TODO Auto-generated catch block
+ e.printStackTrace();
+ }
+ catch (CTMException e) {
+ // TODO Auto-generated catch block
+ e.printStackTrace();
+ }
+ catch (CloneNotSupportedException e) {
+ // TODO Auto-generated catch block
+ e.printStackTrace();
+ }
+		
+ Connection conn = null;
+ try {
+ Class.forName("oracle.jdbc.driver.OracleDriver");
+ conn = DriverManager.getConnection(
+ "jdbc:oracle:thin:@192.168.10.193:1522:orcl", "ya_stage", "ya_stage");
+			
+			
+ StorageTransAction storage = new StorageTransAction();
+ storage.setConnection(conn);
+ storage.setSColumns(productMappingBuilder.getResult());
+ storage.buildStatement();
+ storage.commit();
+ } catch (Exception ex) {
+ ex.printStackTrace();
+ }finally{
+ if(conn != null){
+ try{
+ conn.close();
+ }catch(Exception ex){
+ ex.printStackTrace();
+ }
+ }
+ }
+
+ }
+
+ }

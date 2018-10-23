@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition description="标的表">
+	<mapping>
+		<area description="标的表">
+			<table tableName="T_Subject" dataProviderType="CSNODE" as="Contract">
+				<item fieldName="PolicyNo" fieldType="String" parameterType="GLOBAL" parameter="policyno" /> <!-- 保单号 -->
+				<item fieldName="EndorseNo" fieldType="String" parameterType="GLOBAL" parameter="endorseno" /> <!-- 批单号 -->
+				<item fieldName="NodeNo" fieldType="String" parameterType="GLOBAL" parameter="nodeno" /> <!-- 节点号 -->
+				<item fieldName="ContractNo" fieldType="String" parameterType="GLOBAL" parameter="contractno" /> <!-- 合同号 -->
+				<item fieldName="SubVersionNo" fieldType="String" parameterType="GLOBAL" parameter="version" /> <!-- 版本号 -->
+				<item fieldName="ProposalNo" fieldType="String" parameterType="GLOBAL" parameter="proposalno" /> <!-- 投保单号 -->
+				<item fieldName="MainClause" fieldType="String" parameterType="CSNODE" method="getClause" /> <!-- 主险条款 -->
+				<item fieldName="InsureValue" fieldType="Float" parameterType="CSNODE" method="getInsuredValue" /> <!-- 保险价值 -->
+				<item fieldName="CoverageCurrency" fieldType="String" parameterType="CSNODE" method="getInsuredValueCurrency" /> <!-- 保额币种 -->
+				<item fieldName="Coverage" fieldType="Float" parameterType="CSNODE" method="getInsuredValue" /> <!-- 保额 -->
+				<item fieldName="PremiumCurrency" fieldType="String" parameterType="CSNODE" method="getPremiumCurrency" /> <!-- 保费币种 -->
+				<item fieldName="Premium" fieldType="Float" parameterType="CSNODE" method="getPremiumValue" /> <!-- 保费 -->
+				<item fieldName="MainRiskCoverage" fieldType="Float" parameterType="CSNODE" method="getFinalMainIV" /> <!-- 主险保额 -->
+				<item fieldName="MainRiskPremium" fieldType="Float" parameterType="CSNODE" method="getFinalMainPremium" /> <!-- 主险保费 -->
+				<item fieldName="AccessoryRiskCoverage" fieldType="Float" parameterType="CSNODE" method="getFinalAddIV" /> <!-- 附加险保额 -->
+				<item fieldName="AccessoryRiskPremium" fieldType="Float" parameterType="CSNODE" method="getFinalAddPremium" /> <!-- 附加险保费 -->
+				<!-- <item fieldName="TradeCategory" fieldType="String" parameterType="CSNODE" parameter="SXU00555" method="getElementByCode.getValue" /> --> <!-- 行业大类 -->
+				<!-- <item fieldName="TradeType" fieldType="String" parameterType="CSNODE" parameter="SXU00557" method="getElementByCode.getValue" /> --><!-- 行业小类 -->
+				<item fieldName="RiskLevel" fieldType="String" parameterType="CSNODE" method="getRiskLevel" /> <!-- 风险等级 -->
+				<item fieldName="Rate" fieldType="Float" parameterType="CSNODE" parameter="SXU00006" method="getElementByCode.getValue" /> <!-- 费率 -->
+				<item fieldName="Ratio" fieldType="Float" parameterType="CSNODE" parameter="SXU00007" method="getElementByCode.getValue" /> <!-- 系数 -->
+				<item fieldName="ExchangeRate" fieldType="Float" parameterType="CSNODE" method="getExchangeRate" /> <!-- 汇率 -->
+				<item fieldName="DeductDescription" fieldType="String" parameterType="CSNODE" method="getDeductible" /> <!-- 免赔说明 -->
+				<item fieldName="StartDate" fieldType="Date" parameterType="CSNODE" method="getOriginalDate" /> <!-- 保险起期 -->
+				<item fieldName="EndDate" fieldType="Date" parameterType="GLOBAL" parameter="enddate" /> <!-- 保险止期 -->
+				<item fieldName="BizStatus" fieldType="String" parameterType="CSNODE" method="getBizStatus" /> <!-- BIZ状态 -->
+				<item fieldName="TermCount" fieldType="Long" parameterType="CSNODE" method="getInsureDays" /> <!-- 期间数量 -->
+				<item fieldName="SpecialAgreedA" fieldType="String" parameterType="CSNODE" method="getSpecialAgreement" /> <!-- 特别约定A -->
+				<item fieldName="SpecialAgreedB" fieldType="String" parameterType="CSNODE" method="getSpecialAgreementAdd" /> <!-- 特别约定B -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" parameter="objectno" /> <!-- 对象号 -->
+				<!--<item fieldName="Remark" fieldType="String" />--> <!-- 备注 -->
+				<!--<item fieldName="CrtTime" fieldType="Date" />--> <!-- 创建时间 -->
+				<!--<item fieldName="MdfTime" fieldType="Date" />--> <!-- 修改时间 -->
+			</table>
+		</area>
+	</mapping>
+</definition>

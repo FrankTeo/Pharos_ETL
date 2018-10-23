@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition description="工程险关系方表">
+	<mapping>
+		<area description="工程险关系方表">
+			<table tableName="T_PartyProject" dataProviderType="DECLARATIONFORMLIST" as="Contract">
+				<item fieldName="PolicyNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="policyno" /> <!-- 保单号 -->
+				<item fieldName="EndorseNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="endorseno" /> <!-- 批单号 -->
+				<item fieldName="NodeNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="nodeno" /> <!-- 节点号 -->
+				<item fieldName="ContractNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="contractno" /> <!-- 合同号 -->
+				<item fieldName="SubVersionNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="version" /> <!-- 版本号 -->
+				<item fieldName="PartyName" fieldType="String" parameterType="DECLARATIONFORMLIST" parameter="name" method="getElementByName.getValue" /> <!-- 名称 -->
+				<item fieldName="PartyType" fieldType="String" parameterType="DECLARATIONFORMLIST" parameter="projectPartyType" method="getElementByName.getValue" /> <!-- 类别 -->
+				<item fieldName="IsInsure" fieldType="String" parameterType="DECLARATIONFORMLIST" parameter="isInsured" method="getElementByName.getValue" /> <!-- 是否被保险人 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" dataProvider="GLOBAL" parameter="objectno" /> <!-- 对象号 -->
+				<!--<item fieldName="Remark" fieldType="String" />--> <!-- 备注 -->
+				<!--<item fieldName="CrtTime" fieldType="Date" />--> <!-- 创建时间 -->
+				<!--<item fieldName="MdfTime" fieldType="Date" />--> <!-- 修改时间 -->
+			</table>
+		</area>
+	</mapping>
+</definition>

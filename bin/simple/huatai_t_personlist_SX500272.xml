@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition description="人员清单表">
+	<mapping>
+		<area description="人员清单表">
+			<table tableName="T_PersonList" dataProviderType="CSNODE" as="Contract">
+				<item fieldName="PolicyNo" fieldType="String" parameterType="GLOBAL" parameter="policyno" /> <!-- 保单号 -->
+				<item fieldName="EndorseNo" fieldType="String" parameterType="GLOBAL" parameter="endorseno" /> <!-- 批单号 -->
+				<item fieldName="NodeNo" fieldType="String" parameterType="GLOBAL" parameter="nodeno" /> <!-- 节点号 -->
+				<item fieldName="SerialNo" fieldType="Long" parameterType="CSNODE" method="getId" /> <!-- 序号 -->
+				<item fieldName="ContractNo" fieldType="String" parameterType="GLOBAL" parameter="contractno" /> <!-- 合同号 -->
+				<item fieldName="SubVersionNo" fieldType="String" parameterType="GLOBAL" parameter="version" /> <!-- 版本号 -->
+				<item fieldName="Name" fieldType="String" parameterType="CSNODE" parameter="SXU00126" method="getElementByCode.getValue" /> <!-- 名称 -->
+				<item fieldName="CertType" fieldType="String" parameterType="CSNODE" parameter="SXU00519" method="getElementByCode.getValue" /> <!-- 证件类型 -->
+				<item fieldName="CertNo" fieldType="String" parameterType="CSNODE" parameter="SXU00520" method="getElementByCode.getValue" /> <!-- 证件号码 -->
+				<item fieldName="Profession" fieldType="String" parameterType="CSNODE" parameter="SXU00127" method="getElementByCode.getValue" /> <!-- 职业工种 -->
+				<item fieldName="PersonCategory" fieldType="String" parameterType="CSNODE" parameter="SXU00294" method="getElementByCode.getValue" /> <!-- 类别 -->
+				<item fieldName="PrePrsnDthLmtCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00272" method="getElementByCode.getValue.getCurrency" /> <!-- 每人死亡责任限额币种 -->
+				<item fieldName="PrePrsnDthLimit" fieldType="Float" parameterType="CSNODE" parameter="SXU00272" method="getElementByCode.getValue.getAmount" /> <!-- 每人死亡责任限额 -->
+				<item fieldName="PrePrsnDsblLmtCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00273" method="getElementByCode.getValue.getCurrency" /> <!-- 每人伤残责任限额币种 -->
+				<item fieldName="PrePrsnDsblLimit" fieldType="Float" parameterType="CSNODE" parameter="SXU00273" method="getElementByCode.getValue.getAmount" /> <!-- 每人伤残责任限额 -->
+				<item fieldName="PrePrsnMdclLmtCurrency" fieldType="String" parameterType="CSNODE" parameter="SXU00274" method="getElementByCode.getValue.getCurrency" /> <!-- 每人医疗费用责任限额币种 -->
+				<item fieldName="PrePrsnMdclLimit" fieldType="Float" parameterType="CSNODE" parameter="SXU00274" method="getElementByCode.getValue.getAmount" /> <!-- 每人医疗费用责任限额 -->
+				<item fieldName="ObjectNo" fieldType="String" parameterType="GLOBAL" parameter="objectno" /> <!-- 对象号 -->
+			</table>
+		</area>
+	</mapping>
+</definition>

@@ -1,0 +1,60 @@
+package com.sysnet.poc.service.collection.acc;
+
+import pharos.account.bo.IBankAccountBO;
+import pharos.account.vo.banks.AccCashBox;
+
+import com.sysnet.poc.control.manage.vo.EtlPharosIncrAcc;
+import com.sysnet.poc.util.DateHelper;
+import com.sysnet.poc.util.PharosServiceContainer;
+import com.sysnet.poc.vo.StgAccCashbox;
+
+public class AccCashBoxCollection {
+	private StgAccCashbox stgAccCashbox;
+
+	public AccCashBoxCollection(EtlPharosIncrAcc ec) {
+		PharosServiceContainer pc = PharosServiceContainer.Instance();
+		IBankAccountBO bankAccuntBO = pc.getIBankAccountBO();
+		AccCashBox cashBox = bankAccuntBO.getCashBox(ec.getObjectNo());
+		this.setAcccashbox(cashBox, ec);
+	}
+
+	private void setAcccashbox(AccCashBox cashBox, EtlPharosIncrAcc ec) {
+		if (cashBox != null) {
+			this.stgAccCashbox = new StgAccCashbox();
+			this.stgAccCashbox.setCashboxId(cashBox.getId());
+			this.stgAccCashbox.setRemoved(new Long(0));
+			this.stgAccCashbox.setSource(new Long(cashBox.getSource()));
+			this.stgAccCashbox.setDocumentType(new Long(cashBox.getDocumentType()));
+			this.stgAccCashbox.setCashier(cashBox.getCashier());
+			this.stgAccCashbox.setBusinessCompanyNodeCode(cashBox.getBusinessCompanyNodeCode());
+			this.stgAccCashbox.setTransno(cashBox.getTransNo());
+			this.stgAccCashbox.setCurrency(new Long(cashBox.getCurrency()));
+			this.stgAccCashbox.setDueDate(DateHelper.getSqlDate(cashBox.getDueDate()));
+			this.stgAccCashbox.setStatus(new Long(cashBox.getStatus()));
+			this.stgAccCashbox.setBankAccount(cashBox.getBankAccount());
+			this.stgAccCashbox.setFeeTransno(cashBox.getFeeTransNo());
+			this.stgAccCashbox.setFeeAmount(cashBox.getFeeAmount());
+			this.stgAccCashbox.setAmount(cashBox.getAmount());
+			this.stgAccCashbox.setTotalAmount(cashBox.getTotalAmount());
+			this.stgAccCashbox.setBoxno(cashBox.getBoxNo());
+			this.stgAccCashbox.setBusinessCompanyCode(cashBox.getBusinessCompanyCode());
+			this.stgAccCashbox.setPaymentType(new Long(cashBox.getType()));
+			this.stgAccCashbox.setCheckBook(cashBox.getCheckBook());
+			this.stgAccCashbox.setCheckNumber(cashBox.getCheckNumber());
+			this.stgAccCashbox.setUserCompanyCode(cashBox.getUserCompanyCode());
+			this.stgAccCashbox.setUserCompanyNodeCode(cashBox.getUserCompanyNodeCode());
+			this.stgAccCashbox.setObjectId(ec.getObjectId());
+			this.stgAccCashbox.setObjectType(String.valueOf(ec.getObjectType()));
+			this.stgAccCashbox.setTimeStamp(ec.getTimeStamp());
+			this.stgAccCashbox.setBatId(ec.getBatId());
+		}
+	}
+
+	public StgAccCashbox getStgAccCashbox() {
+		return stgAccCashbox;
+	}
+
+	public void setStgAccCashbox(StgAccCashbox stgAccCashbox) {
+		this.stgAccCashbox = stgAccCashbox;
+	}
+}
